@@ -17,6 +17,32 @@ const {
 export const metadata: Metadata = {
   title: name,
   description,
+  icons: [
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      url: "/icons/favicon-16x16.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      url: "/icons/favicon-32x32.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "96x96",
+      url: "/icons/favicon-96x96.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "128x128",
+      url: "/icons/favicon-128x128.png",
+    },
+  ],
 };
 
 export default function RootLayout({
