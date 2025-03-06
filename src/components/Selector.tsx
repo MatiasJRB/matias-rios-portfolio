@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/utils";
 
 interface NavItem {
@@ -26,6 +26,57 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // este compponente tiene que saber si se alcanzo una seccion, para marcarla como seleccionada
+  const observer = new IntersectionObserver(
+    (entries) => {
+      let visibleSection: string | null = null;
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Obtener la sección que está más centrada en el viewport
+          if (
+            !visibleSection ||
+            Math.abs(entry.boundingClientRect.top) <
+              Math.abs(
+                document.getElementById(visibleSection)?.getBoundingClientRect()
+                  .top || 0
+              )
+          ) {
+            visibleSection = entry.target.id;
+          }
+        }
+      });
+
+      if (visibleSection) {
+        setSelectedSection(visibleSection); // Cambiar la sección seleccionada
+      }
+    },
+    {
+      threshold: 0.5, // Umbral de visibilidad (50%)
+      rootMargin: "0px 0px -50% 0px", // Ajustar el margen para detectar la sección más centrada
+    }
+  );
+
+  useEffect(() => {
+    // Observar todas las secciones
+    navItems.forEach((item) => {
+      const section = document.getElementById(item.id);
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    // Cleanup al desmontar el componente
+    return () => {
+      navItems.forEach((item) => {
+        const section = document.getElementById(item.id);
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
 
   return (
     <div className={cn("flex flex-col items-start", className)}>

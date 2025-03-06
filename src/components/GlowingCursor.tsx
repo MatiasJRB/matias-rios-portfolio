@@ -5,7 +5,6 @@ export default function GlowingCursor() {
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
 
   useEffect(() => {
-    console.log("GlowingCursor mounted");
     const updateCursor = (e: MouseEvent) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
