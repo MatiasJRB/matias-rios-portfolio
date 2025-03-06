@@ -34,7 +34,7 @@ const History: React.FC<HistoryProps> = ({ className }) => {
             {job.startDate}{" "}
             <span
               className="inline-block w-4 h-px bg-gray-500"
-              style={{ margin: "3px 2px" }}
+              style={{ margin: "4.5px 3px" }}
             ></span>{" "}
             {job.endDate}
           </div>
@@ -57,6 +57,7 @@ const History: React.FC<HistoryProps> = ({ className }) => {
                 <span className="font-bold">
                   {job.position} · {job.name}
                 </span>
+
                 <div className="arrow-container hover:translate-x-1 hover:-translate-y-1 transition-all ml-2">
                   <FaArrowRight className="arrow" size={14} />
                 </div>

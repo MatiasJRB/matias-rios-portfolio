@@ -1,11 +1,13 @@
 import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import resume from "../resume.json";
 import { cn } from "@/utils";
 
 const iconMap: Record<string, React.ElementType> = {
   "fab fa-github": FaGithub,
   "fab fa-linkedin": FaLinkedin,
+  email: MdEmail,
 };
 
 interface Profile {

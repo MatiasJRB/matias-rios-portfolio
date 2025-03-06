@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import resume from '../resume.json';
+import { cn } from "@/utils";
+import resume from "../resume.json";
 
 type Basics = {
   about: string;
@@ -8,10 +9,15 @@ type Basics = {
 
 const { about } = resume.basics as Basics;
 
-export default function About() {
+interface AboutProps {
+  className?: string;
+}
+
+export default function About({ className }: AboutProps) {
   return (
-    <div className="w-full" id="about">
-      <div dangerouslySetInnerHTML={{ __html: about }} />
+    // dentro deeste div, salto de linea por cada <p> en about
+    <div className={cn("w-full", className)} id="about">
+      <div className="space-y-4" dangerouslySetInnerHTML={{ __html: about }} />
     </div>
   );
 }

@@ -8,7 +8,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
-    <footer className={cn("w-full text-xs", className)}>
+    <footer className={cn("w-full text-sm", className)}>
       {/* footer from resume is html, insert here */}
       <div
         dangerouslySetInnerHTML={{ __html: footer }}

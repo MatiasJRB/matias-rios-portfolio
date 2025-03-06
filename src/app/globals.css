@@ -19,6 +19,25 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   color: #94a3b8;
+  font-size: 16px;
+}
+
+::-webkit-scrollbar {
+  width: 4px; /* Ancho del scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a; /* Color del fondo */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e7e5e4; /* Color del thumb (barra de desplazamiento) */
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a6a09b; /* Color cuando el mouse pasa por encima */
+  cursor: pointer;
 }
 
 .right-column {
@@ -35,6 +54,14 @@ body {
 .arrow-container {
   transition: transform 0.1s ease-in-out;
   transform: translate(-5px, 5px);
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #f1f1f1;
 }
 
 .arrow {

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import resume from '../resume.json';
+import resume from "../resume.json";
 
 interface Basics {
   name: string;
@@ -11,7 +11,6 @@ interface Basics {
 const Presentation: React.FC = () => {
   const basics: Basics = resume.basics;
 
-
   return (
     <div className="w-full">
       <div className="mb-1">
@@ -19,8 +18,10 @@ const Presentation: React.FC = () => {
           {basics.name}
         </a>
       </div>
-      <div className="mb-4 text-lg">{basics.label}</div>
-      <p className="text-base leading-relaxed max-w-xs">{basics.summary}</p>
+      <div className="mt-2 text-lg text-stone-200">{basics.label}</div>
+      <p className="mt-2 text-base leading-relaxe max-w-xs md:max-w-sm lg:max-w-sm">
+        {basics.summary}
+      </p>
     </div>
   );
 };

@@ -15,6 +15,10 @@
       {
         "icon": "fab fa-linkedin",
         "url": "https://www.linkedin.com/in/johndoe/"
+      },
+      {
+        "icon": "email",
+        "url": "mailto:jhondoe@gmail.com"
       }
     ]
   },

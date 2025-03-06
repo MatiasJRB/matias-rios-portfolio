@@ -14,8 +14,6 @@ const Page = () => {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log("Changing styles of columns");
-
     if (!mobile) {
       // Evitar scroll en el body
       document.body.style.overflow = "hidden";
@@ -37,8 +35,7 @@ const Page = () => {
 
   useEffect(() => {
     const updateMobile = () => {
-      console.log("updateMobile");
-      setMobile(window.innerWidth < 768);
+      setMobile(window.innerWidth < 1024);
     };
 
     updateMobile(); // Ejecutar una vez al montar
@@ -59,7 +56,6 @@ const Page = () => {
 
       // escrolleo solo dentro de la columna derecha
       const scrollArea = scrollAreaRef.current;
-      console.log("scrollArea", scrollArea);
       if (!scrollArea) return;
 
       const deltaY = event.deltaY;
@@ -82,15 +78,16 @@ const Page = () => {
 
   return (
     <div
-      className="overflow-y-hidden 
-      grid grid-cols-1 md:grid-cols-2 w-full 
-      max-w-screen-xl mx-auto md:px-24 lg:px-24  bg-dark"
+      className={`overflow-y-hidden 
+      grid grid-cols-1 lg:grid-cols-2 w-full 
+      px-6
+      max-w-screen-xl mx-auto md:px-24 lg:px-24  bg-dark`}
     >
       {/* First Column */}
-      <div className={`left-column  ${mobile ? "mt-[-64px]" : ""}`}>
+      <div className={`left-column  ${mobile ? "mt-[-48px]" : ""}`}>
         <div className="pt-24 mb-6 md:mb-16">
           <Presentation />
-          <Selector className="mt-8" />
+          {!mobile && <Selector className="mt-8" />}
           <SocialMedia className="mt-8" />
         </div>
         {/* <Selector /> */}
@@ -100,7 +97,13 @@ const Page = () => {
       {/* Second Column with Scrollable Area */}
       <div className="right-column" ref={scrollAreaRef}>
         {!mobile && <div style={{ marginTop: "96px" }} />}
-        <About />
+
+        {mobile && <div className=" subtitle">About</div>}
+
+        <About className="mt-8" />
+
+        {mobile && <div className="mt-8 subtitle">History</div>}
+
         <History className="mt-8" />
         <Footer className="my-8" />
       </div>
