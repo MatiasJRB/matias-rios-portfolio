@@ -84,13 +84,18 @@ const Page = () => {
       max-w-screen-xl mx-auto md:px-24 lg:px-24  bg-dark`}
     >
       {/* First Column */}
-      <div className={`left-column  ${mobile ? "mt-[-48px]" : ""}`}>
+      <div
+        className={`left-column  ${mobile ? "mt-[-48px]" : ""} flex flex-col`}
+      >
         <div className="pt-24 mb-6 md:mb-16">
           <Presentation />
-          {!mobile && <Selector className="mt-8" />}
-          <SocialMedia className="mt-8" />
+
+          {!mobile && <Selector className="mt-8 lg:mt-16" />}
+
+          <div className="lg:fixed lg:bottom-16 w-full ">
+            <SocialMedia className="mt-8 " />
+          </div>
         </div>
-        {/* <Selector /> */}
         <div className="mt-auto mb-20 md:mb-24">{/* <SocialMedia /> */}</div>
       </div>
 
