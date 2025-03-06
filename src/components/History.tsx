@@ -18,11 +18,9 @@ interface HistoryProps {
 
 const History: React.FC<HistoryProps> = ({ className }) => {
   const [work, setWork] = useState<Job[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     import("../resume.json").then((data) => setWork(data.work));
-    setIsMobile(window.innerWidth <= 768);
   }, []);
 
   return (
