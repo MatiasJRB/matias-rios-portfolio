@@ -84,7 +84,7 @@ const History: React.FC<HistoryProps> = ({ className }) => {
 
       {/* BOTÓN PARA VER RESUMEN COMPLETO */}
       <div className="mt-6">
-        <a href="/resume" target="_blank">
+        <a href="/resume.pdf" target="_blank">
           <div className="flex flex-row job-title cursor-pointer transform transition-all-300">
             View Full Resume
             <div className="arrow-container ml-2 hover:translate-x-1 hover:-translate-y-1 transition-all ">
