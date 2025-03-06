@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { cn } from "@/utils";
 
-const navItems = [
+interface NavItem {
+  id: string;
+  label: string;
+}
+
+const navItems: NavItem[] = [
   { id: "about", label: "About" },
   { id: "history", label: "Experience" },
 ];
@@ -14,6 +19,14 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
   const [selectedSection, setSelectedSection] = useState("about");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
 
+  const handleSelect = (item: NavItem) => {
+    const section = document.getElementById(item.id);
+    if (section) {
+      setSelectedSection(item.id);
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className={cn("flex flex-col items-start", className)}>
       {navItems.map((item) => (
@@ -25,6 +38,7 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
           )}
           onMouseOver={() => setHoveredSection(item.id)}
           onMouseLeave={() => setHoveredSection(null)}
+          onClick={() => handleSelect(item)}
         >
           <span
             className={cn(
@@ -33,16 +47,7 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
                 "w-16 bg-white"
             )}
           />
-          <button
-            className="uppercase text-xs font-bold tracking-widest"
-            onClick={() => {
-              const section = document.getElementById(item.id);
-              if (section) {
-                setSelectedSection(item.id);
-                section.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
+          <button className="uppercase text-xs font-bold tracking-widest cursor-pointer">
             {item.label}
           </button>
         </div>

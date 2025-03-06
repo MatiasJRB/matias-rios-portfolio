@@ -48,5 +48,5 @@
       "highlights": ["React", "Redux", "JavaScript", "Node.js", "MongoDB"]
     }
   ],
-  "footer": "<p>Based on the design of <a href=\"https://brittanychiang.com\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>Brittany Chiang</a>, this SPA is built with the <a href=\"https://quasar.dev\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>Quasar Framework</a>. All text is set in the <a href=\"https://rsms.me/inter/\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>Inter</a> typeface.</p>"
+  "footer": "<p>Based on the design of <a href=\"https://brittanychiang.com\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>Brittany Chiang</a>, built with the <a href=\"https://nextjs.org/\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>NextJS</a> and TailwindCSS. All text is set in the <a href=\"https://rsms.me/inter/\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>Inter</a> typeface.</p>"
 }

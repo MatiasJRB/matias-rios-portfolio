@@ -30,24 +30,37 @@ const History: React.FC<HistoryProps> = ({ className }) => {
       {work.map((job) => (
         <div key={job.name} className="w-full mb-6">
           {/* FECHAS */}
-          <div className="text-sm text-gray-400">
+          <div className="text-sm font-semibold  text-gray-400">
             {job.startDate}{" "}
-            <span className="inline-block w-4 h-px bg-gray-500 mx-1"></span>{" "}
+            <span
+              className="inline-block w-4 h-px bg-gray-500"
+              style={{ margin: "3px 2px" }}
+            ></span>{" "}
             {job.endDate}
           </div>
 
           {/* TITULO + LINK */}
-          <div className="mt-2">
+          <div className="mt-2 bg-primary">
             <a
               href={job.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-gray-300 hover:text-green-400 transition-all"
+              className="
+              flex items-center 
+              transition-all"
             >
-              <span className="font-bold">
-                {job.position} · {job.name}
-              </span>
-              <FaArrowRight className="ml-2 transform transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <div
+                className="flex flex-row 
+                job-title text-stone-200
+                transform transition-all-300"
+              >
+                <span className="font-bold">
+                  {job.position} · {job.name}
+                </span>
+                <div className="arrow-container hover:translate-x-1 hover:-translate-y-1 transition-all ml-2">
+                  <FaArrowRight className="arrow" size={14} />
+                </div>
+              </div>
             </a>
           </div>
 
@@ -59,7 +72,7 @@ const History: React.FC<HistoryProps> = ({ className }) => {
             {job.highlights.map((task) => (
               <span
                 key={task}
-                className="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full mr-2 mb-2"
+                className="skill bg-gray-800 text-geome7ric font-semibold text-xs px-3 py-1 rounded-full mr-2 mb-2"
               >
                 {task}
               </span>
@@ -70,12 +83,13 @@ const History: React.FC<HistoryProps> = ({ className }) => {
 
       {/* BOTÓN PARA VER RESUMEN COMPLETO */}
       <div className="mt-6">
-        <a
-          href="/resume"
-          className="inline-flex items-center text-gray-300 hover:text-green-400 transition-all"
-        >
-          View Full Resume
-          <FaArrowRight className="ml-2 transform transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
+        <a href="/resume" target="_blank" rel="noopener noreferrer">
+          <div className="flex flex-row job-title">
+            View Full Resume
+            <div className="arrow-container ml-2">
+              <FaArrowRight className="arrow" size={14} />
+            </div>
+          </div>
         </a>
       </div>
     </div>

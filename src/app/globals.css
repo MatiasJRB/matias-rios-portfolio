@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,23 +14,87 @@
 
 html,
 body {
-  overflow: hidden;
-  height: 100%;
   scroll-behavior: smooth;
-}
-
-body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  color: #94a3b8;
 }
 
 .right-column {
-  overflow-y: hidden; /* Oculta el scroll vertical */
+  overflow-y: auto; /* Oculta el scroll vertical */
+  height: 100vh; /* Altura máxima */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE y Edge */
 }
 
 .right-column::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
+}
+
+.arrow-container {
+  transition: transform 0.1s ease-in-out;
+  transform: translate(-5px, 5px);
+}
+
+.arrow {
+  transform: rotate(-45deg);
+  transition: all 0.1s;
+}
+
+.bg-dark {
+  background: #0f172a;
+}
+
+.text-geome7ric {
+  color: #00ee90;
+}
+.job-title:hover {
+  color: #00ee90;
+}
+
+.skill {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  text-align: center;
+  background-color: #142133;
+}
+
+.skill:hover {
+  background-color: #0c1226;
+  transition: all 0.1s;
+}
+
+.job-title:hover {
+  .arrow-container {
+    transition: transform 0.1s ease-in-out;
+    transform: translate(1px, -1px);
+
+    .arrow {
+      transition: transform 0.1s ease-in-out;
+    }
+  }
+}
+
+a {
+  &.text-bold {
+    font-weight: 700;
+  }
+
+  &.cursor-pointer {
+    cursor: pointer;
+  }
+
+  color: #f1f1f1;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  font-weight: 700;
+}
+
+a:hover {
+  color: #fafafa;
 }
