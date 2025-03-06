@@ -23,6 +23,10 @@
       {
         "icon": "fab fa-linkedin",
         "url": "https://www.linkedin.com/in/matiasjriosb/"
+      },
+      {
+        "icon": "email",
+        "url": "mailto:matiasjriosb@gmail.com"
       }
     ]
   },
