@@ -43,7 +43,19 @@ export default function JsonLd() {
     return () => {
       document.head.removeChild(script);
     };
-  }, []);
+  }, [
+    label,
+    location.city,
+    location.countryCode,
+    location.postalCode,
+    location.region,
+    name,
+    profiles,
+    skills,
+    summary,
+    url,
+    work,
+  ]);
 
   return null; // This component doesn't render anything visible
 }
