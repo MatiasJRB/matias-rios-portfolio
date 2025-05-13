@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import GlowingCursor from "@/components/GlowingCursor";
 import Firebase from "@/components/Firebase";
+import JsonLd from "@/components/JsonLd";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,6 +18,30 @@ const {
 export const metadata: Metadata = {
   title: name,
   description,
+  metadataBase: new URL("https://matiasjriosb.com.ar"),
+  openGraph: {
+    title: name,
+    description,
+    url: "https://matiasjriosb.com.ar",
+    siteName: name,
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg", // You'll need to add this image
+        width: 1200,
+        height: 630,
+        alt: name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: name,
+    description,
+    creator: "@matiasriosj", // Replace with your Twitter handle if available
+    images: ["/images/og-image.jpg"], // Same as OpenGraph image
+  },
   icons: [
     {
       rel: "icon",
@@ -55,6 +80,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-dark antialiased `}>
         <GlowingCursor />
         <Firebase />
+        <JsonLd />
 
         {children}
       </body>
