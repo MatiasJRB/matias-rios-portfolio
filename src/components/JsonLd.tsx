@@ -1,7 +1,5 @@
-"use client";
-
-import { useEffect } from "react";
 import resume from "@/resume.json";
+import Script from "next/script";
 
 export default function JsonLd() {
   const {
@@ -10,52 +8,33 @@ export default function JsonLd() {
     skills,
   } = resume;
 
-  useEffect(() => {
-    // Create the schema object
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name,
-      jobTitle: label,
-      description: summary,
-      url,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: location.city,
-        addressRegion: location.region,
-        addressCountry: location.countryCode,
-        postalCode: location.postalCode,
-      },
-      sameAs: profiles.map((profile) => profile.url),
-      knowsAbout: skills.map((skill) => skill.name),
-      worksFor: work.map((job) => ({
-        "@type": "Organization",
-        name: job.name,
-      })),
-    };
-
-    // Add the script to the DOM
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.text = JSON.stringify(schema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, [
-    label,
-    location.city,
-    location.countryCode,
-    location.postalCode,
-    location.region,
+  // Create the schema object
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
     name,
-    profiles,
-    skills,
-    summary,
+    jobTitle: label,
+    description: summary,
     url,
-    work,
-  ]);
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: location.city,
+      addressRegion: location.region,
+      addressCountry: location.countryCode,
+      postalCode: location.postalCode,
+    },
+    sameAs: profiles.map((profile) => profile.url),
+    knowsAbout: skills.map((skill) => skill.name),
+    worksFor: work.map((job) => ({
+      "@type": "Organization",
+      name: job.name,
+    })),
+  };
 
-  return null; // This component doesn't render anything visible
+  // Using next/script is better for performance than client-side script injection
+  return (
+    <Script id="json-ld" type="application/ld+json" strategy="afterInteractive">
+      {JSON.stringify(schema)}
+    </Script>
+  );
 }

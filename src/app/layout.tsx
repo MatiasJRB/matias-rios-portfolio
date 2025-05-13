@@ -28,19 +28,25 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-image.jpg", // You'll need to add this image
+        url: "https://matiasjriosb.com.ar/images/og-image.jpg",
         width: 1200,
         height: 630,
         alt: name,
       },
     ],
+    logo: {
+      url: "https://matiasjriosb.com.ar/icons/favicon-96x96.png",
+      width: 96,
+      height: 96,
+      alt: name,
+    },
   },
   twitter: {
     card: "summary_large_image",
     title: name,
     description,
-    creator: "@matiasriosj", // Replace with your Twitter handle if available
-    images: ["/images/og-image.jpg"], // Same as OpenGraph image
+    creator: "@matiasriosj",
+    images: ["https://matiasjriosb.com.ar/images/og-image.jpg"],
   },
   icons: [
     {
