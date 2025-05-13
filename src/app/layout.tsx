@@ -17,9 +17,8 @@ const {
 export const metadata: Metadata = {
   title: name,
   description,
-  metadataBase: new URL("https://matiasjrb.com.ar"),
-  openGraph: {
-    title: name,
+  metadataBase: new URL("https://matiasjrb.com.ar"),  openGraph: {
+    title: `${name} | Software Engineer | Full-Stack Developer`,
     description,
     url: "https://matiasjrb.com.ar",
     siteName: name,
@@ -33,10 +32,9 @@ export const metadata: Metadata = {
         alt: name,
       },
     ],
-  },
-  twitter: {
+  },  twitter: {
     card: "summary_large_image",
-    title: name,
+    title: `${name} | Software Engineer | Full-Stack Developer`,
     description,
     creator: "@matiasriosj",
     images: ["/images/og-image.jpg"], // Cambiado a ruta relativa
