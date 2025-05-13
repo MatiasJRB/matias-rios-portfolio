@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
 import GlowingCursor from "@/components/GlowingCursor";
 import Firebase from "@/components/Firebase";
@@ -28,16 +27,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://matiasjriosb.com.ar/images/og-image.jpg",
+        url: "/images/og-image.jpg", // Cambiado a ruta relativa
         width: 1200,
         height: 630,
         alt: name,
-      },
-      {
-        url: "https://matiasjriosb.com.ar/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: `${name} Logo`,
       },
     ],
   },
@@ -46,7 +39,7 @@ export const metadata: Metadata = {
     title: name,
     description,
     creator: "@matiasriosj",
-    images: ["https://matiasjriosb.com.ar/images/og-image.jpg"],
+    images: ["/images/og-image.jpg"], // Cambiado a ruta relativa
   },
   icons: [
     {
@@ -83,12 +76,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <meta
-          property="og:logo"
-          content="https://matiasjriosb.com.ar/images/og-image.jpg"
-        />
-      </Head>
       <body className={`${inter.className} bg-dark antialiased `}>
         <GlowingCursor />
         <Firebase />
