@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import resume from "@/resume.json";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://matiasjriosb.com.ar";
+  const baseUrl = "https://matiasjrb.com.ar";
   const currentDate = new Date().toISOString();
 
   // Base routes
