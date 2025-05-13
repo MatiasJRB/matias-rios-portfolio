@@ -33,13 +33,13 @@ export const metadata: Metadata = {
         height: 630,
         alt: name,
       },
+      {
+        url: "https://matiasjriosb.com.ar/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${name} Logo`,
+      },
     ],
-    logo: {
-      url: "https://matiasjriosb.com.ar/icons/favicon-96x96.png",
-      width: 96,
-      height: 96,
-      alt: name,
-    },
   },
   twitter: {
     card: "summary_large_image",
