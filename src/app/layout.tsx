@@ -17,11 +17,11 @@ const {
 export const metadata: Metadata = {
   title: name,
   description,
-  metadataBase: new URL("https://matiasjriosb.com.ar"),
+  metadataBase: new URL("https://matiasjrb.com.ar"),
   openGraph: {
     title: name,
     description,
-    url: "https://matiasjriosb.com.ar",
+    url: "https://matiasjrb.com.ar",
     siteName: name,
     locale: "en_US",
     type: "website",
