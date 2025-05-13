@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
+import Head from "next/head";
 import "./globals.css";
 import GlowingCursor from "@/components/GlowingCursor";
 import Firebase from "@/components/Firebase";
@@ -83,6 +83,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <meta
+          property="og:logo"
+          content="https://matiasjriosb.com.ar/images/og-image.jpg"
+        />
+      </Head>
       <body className={`${inter.className} bg-dark antialiased `}>
         <GlowingCursor />
         <Firebase />
