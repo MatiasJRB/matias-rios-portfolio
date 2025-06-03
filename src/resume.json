@@ -32,6 +32,25 @@
   },
   "work": [
     {
+      "name": "Mangxo",
+      "position": "Tech Lead",
+      "url": "https://mangxo.com",
+      "startDate": "03-2025",
+      "endDate": "PRESENT",
+      "summary": "As Tech Lead at Mangxo, I am responsible for technically and operationally leading the development team, ensuring solutions are scalable, maintainable, and aligned with product strategy. I act as the liaison between business vision and technical execution, working closely with the CTO. My focus includes building with a medium and long-term vision, anticipating the evolution of the product, team, and platform.",
+      "highlights": [
+        "Technical leadership in designing architectures for new features and systems.",
+        "Defining and maintaining technical quality standards (tests, CI/CD, PRs, versioning).",
+        "Coordinating the development team (dailies, sprint planning, PR reviews).",
+        "Onboarding and technical mentoring for new developers.",
+        "Aligning technical implementation with product objectives.",
+        "Administering and maintaining technical infrastructure (development, staging, production).",
+        "Supervising and implementing CI/CD tools and monitoring.",
+        "Communicating progress, risks, and technical decisions to the CTO.",
+        "Designing key components with a focus on scalability and future business evolution."
+      ]
+    },
+    {
       "name": "Kalkomey",
       "position": "Software Engineer",
       "url": "https://kalkomey.com",
