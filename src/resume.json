@@ -51,33 +51,6 @@
       ]
     },
     {
-      "name": "Kalkomey",
-      "position": "Software Engineer",
-      "url": "https://kalkomey.com",
-      "startDate": "09-2022",
-      "endDate": "12-2024",
-      "summary": "Backend Lead at HuntWise, a leading hunting app, where I implemented backend solutions to enhance system reliability and drive market growth. Collaborated with product, marketing, and development teams to align technical solutions with business goals. Previously managed backend development for Cargill, consistently delivering milestones and strengthening client relationships. Recognized for leadership, strategic planning, and technical contributions with a promotion.",
-      "highlights": [
-        "Node.js",
-        "Express",
-        "JavaScript",
-        "Python",
-        "PostgreSQL",
-        "Mocha",
-        "Docker",
-        "AWS",
-        "GitHub Actions",
-        "Strapi",
-        "Braze",
-        "Prisma",
-        "Ruby on Rails",
-        "Rspec",
-        "Sidekiq",
-        "MySQL",
-        "SQLServer"
-      ]
-    },
-    {
       "name": "Geome7ric",
       "position": "Co-Founder",
       "url": "https://geome7ric.com",
@@ -85,22 +58,30 @@
       "endDate": "PRESENT",
       "summary": "These days, my primary role is guiding discoveries and development. Specializing in bespoke applications using Quasar Framework and NestJS. Focused on modern, tailored applications for diverse clientele.",
       "highlights": [
-        "Quasar",
-        "NestJS",
-        "Next.js",
-        "Laravel",
-        "TypeScript",
-        "PostgreSQL",
-        "MySQL",
-        "Prisma",
-        "Budgeting",
-        "Client Relations",
-        "Project Management",
-        "Team Leadership",
-        "Docker",
-        "WooCommerce"
+        "Co-founded Geome7ric, guiding software discoveries, development processes, and overall technical strategy.",
+        "Led the design and development of bespoke applications for diverse clients using modern stacks like Quasar (Vue.js) for frontend and NestJS (Node.js, TypeScript) for backend.",
+        "Managed full project lifecycles, including budgeting, client relations, project management, and team leadership.",
+        "Implemented and deployed solutions using Next.js, Laravel, PostgreSQL, MySQL, and Docker.",
+        "Developed and integrated e-commerce solutions with WooCommerce.",
+        "Responsible for client acquisition, requirements gathering, and ensuring successful project delivery."
       ],
       "icon": "sell"
+    },
+    {
+      "name": "Kalkomey",
+      "position": "Software Engineer",
+      "url": "https://kalkomey.com",
+      "startDate": "09-2022",
+      "endDate": "12-2024",
+      "summary": "Backend Lead at HuntWise, a leading hunting app, where I implemented backend solutions to enhance system reliability and drive market growth. Collaborated with product, marketing, and development teams to align technical solutions with business goals. Previously managed backend development for Cargill, consistently delivering milestones and strengthening client relationships. Recognized for leadership, strategic planning, and technical contributions with a promotion.",
+      "highlights": [
+        "Led backend development for the HuntWise app, implementing solutions with Node.js, Express, and PostgreSQL to enhance system reliability and support market growth.",
+        "Engineered and maintained robust backend services using Python and Ruby on Rails, contributing to core product features.",
+        "Managed backend development for key client projects like Cargill, consistently delivering milestones and strengthening client relationships.",
+        "Collaborated with product, marketing, and development teams to align technical solutions with business goals, utilizing AWS, Docker, and CI/CD pipelines (GitHub Actions).",
+        "Spearheaded the adoption of Prisma for ORM, improving developer productivity and data access patterns.",
+        "Recognized with a promotion for leadership, strategic planning, and significant technical contributions to the platform."
+      ]
     },
     {
       "name": "Nuqlea",
@@ -109,99 +90,20 @@
       "startDate": "06-2021",
       "endDate": "08-2022",
       "summary": "Led mobile app development, contributed to platform design using Quasar Framework, Laravel. Transitioned app from beta to production on Apple, Google. Enhanced B2C app, tackled system-wide issues, improved UX/UI. Learned startup agility, meeting deadlines.",
-      "highlights": ["Quasar", "Vue.js", "JavaScript", "Laravel", "MySQL"]
-    }
-  ],
-  "volunteer": [
-    {
-      "organization": "Organization",
-      "position": "Volunteer",
-      "url": "https://organization.com/",
-      "startDate": "2012-01",
-      "endDate": "2013-01",
-      "summary": "Description…",
-      "highlights": ["Awarded 'Volunteer of the Month'"]
-    }
-  ],
-  "education": [
-    {
-      "institution": "University",
-      "url": "https://institution.com/",
-      "area": "Software Development",
-      "studyType": "Bachelor",
-      "startDate": "2011-01",
-      "endDate": "2013-01",
-      "score": "4.0",
-      "courses": ["DB1101 - Basic SQL"]
-    }
-  ],
-  "awards": [
-    {
-      "title": "Award",
-      "date": "2014-11-01",
-      "awarder": "Company",
-      "summary": "There is no spoon."
-    }
-  ],
-  "certificates": [
-    {
-      "name": "Certificate",
-      "date": "2021-11-07",
-      "issuer": "Company",
-      "url": "https://certificate.com"
-    }
-  ],
-  "publications": [
-    {
-      "name": "Publication",
-      "publisher": "Company",
-      "releaseDate": "2014-10-01",
-      "url": "https://publication.com",
-      "summary": "Description…"
-    }
-  ],
-  "skills": [
-    {
-      "name": "Web Development",
-      "level": "Advanced",
-      "keywords": ["HTML", "CSS", "JavaScript", "Vue.js", "Quasar"],
-      "icon": "web"
+      "highlights": [
+        "Led full-stack development of a hybrid mobile application using Quasar Framework (Vue.js) and a Laravel backend.",
+        "Successfully transitioned the mobile app from beta to production, managing deployments to Apple App Store and Google Play Store.",
+        "Contributed significantly to platform design and architecture, enhancing features for a B2C application.",
+        "Improved application performance and UX/UI by tackling system-wide issues and refactoring key components.",
+        "Operated effectively in an agile startup environment, consistently meeting tight deadlines and adapting to evolving requirements.",
+        "Utilized MySQL for database management and JavaScript (ES6+) for frontend and backend logic."
+      ]
     }
   ],
   "languages": [
     {
       "language": "English",
-      "fluency": "Native speaker"
-    }
-  ],
-  "interests": [
-    {
-      "name": "Wildlife",
-      "keywords": ["Ferrets", "Unicorns"]
-    }
-  ],
-  "references": [
-    {
-      "name": "Jane Doe",
-      "reference": "Reference…"
-    }
-  ],
-  "projects": [
-    {
-      "title": "Project",
-      "description": "Description…",
-      "content": "Content…",
-      "media": [
-        {
-          "type": "url",
-          "title": "Link",
-          "src": "https://project.com"
-        }
-      ],
-      "date": "2021-11-01",
-      "status": "Finished",
-      "tags": ["Tag1", "Tag2"],
-      "images": ["https://via.placeholder.com/150"]
+      "fluency": "Professional working proficiency"
     }
   ],
   "footer": "<p>Based on the design of <a href=\"https://brittanychiang.com\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>Brittany Chiang</a>, built with  <a href=\"https://nextjs.prg\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>NextJS 15</a> and deployed with <a href=\"https://vercel.com\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>Vercel</a>. All text is set in the <a href=\"https://rsms.me/inter/\" target=\"_blank\" class=\"text-bold cursor-pointer link\" clickable>Inter</a> typeface. </p>"
