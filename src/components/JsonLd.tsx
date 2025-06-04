@@ -5,42 +5,14 @@ export default function JsonLd() {
   const {
     basics: { name, label, url, summary, location, profiles },
     work,
-    skills,
   } = resume;
-
   // Create the schema object
-  interface Location {
-    city: string;
-    region: string;
-    countryCode: string;
-    postalCode: string;
-  }
-
   interface Profile {
     url: string;
   }
 
-  interface Skill {
-    name: string;
-  }
-
   interface Work {
     name: string;
-  }
-
-  interface Basics {
-    name: string;
-    label: string;
-    url: string;
-    summary: string;
-    location: Location;
-    profiles: Profile[];
-  }
-
-  interface Resume {
-    basics: Basics;
-    work: Work[];
-    skills?: Skill[];
   }
 
   const schema: {
@@ -58,7 +30,6 @@ export default function JsonLd() {
       postalCode: string;
     };
     sameAs: string[];
-    knowsAbout?: (string | undefined)[];
     worksFor: { "@type": string; name: string }[];
   } = {
     "@context": "https://schema.org",
@@ -75,7 +46,6 @@ export default function JsonLd() {
       postalCode: location.postalCode,
     },
     sameAs: profiles.map((profile: Profile) => profile.url),
-    knowsAbout: skills?.map((skill: Skill | undefined) => skill?.name),
     worksFor: work.map((job: Work) => ({
       "@type": "Organization",
       name: job.name,

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import {
   FaCode,
-  FaCogs,
   FaUsers,
   FaGraduationCap,
   FaBuilding,
@@ -17,6 +16,7 @@ import {
   FaShieldAlt,
   FaRocket,
 } from "react-icons/fa";
+import Image from "next/image";
 
 interface Job {
   name: string;
@@ -37,13 +37,13 @@ const History: React.FC<HistoryProps> = ({ className }) => {
   useEffect(() => {
     import("../resume.json").then((data) => setWork(data.work));
   }, []);
-
   // Función para obtener el logo de la empresa
   const getCompanyLogo = (companyName: string) => {
     const logoMap: { [key: string]: string } = {
       Mangxo: "/images/work/mango.png",
       Geome7ric: "/images/work/geome7ric.png",
       Kalkomey: "/images/work/kalkomey.png",
+      Nuqlea: "/images/work/nuqlea.png",
     };
 
     return logoMap[companyName] || null;
@@ -155,10 +155,12 @@ const History: React.FC<HistoryProps> = ({ className }) => {
                 {getCompanyLogo(job.name) && (
                   <div className="flex-shrink-0 mr-3">
                     <div className="w-10 h-10 rounded-full bg-white/10 border border-gray-600/50 flex items-center justify-center overflow-hidden">
-                      <img
+                      <Image
                         src={getCompanyLogo(job.name)!}
                         alt={`${job.name} logo`}
-                        className="w-8 h-8 object-contain"
+                        width={32}
+                        height={32}
+                        className="object-contain"
                       />
                     </div>
                   </div>
