@@ -76,28 +76,42 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
       };
     }
   }, []);
-
   return (
-    <div className={cn("flex flex-col items-start", className)}>
+    <div
+      className={cn("flex flex-col items-start", className)}
+      style={{ color: "var(--color-text)" }}
+    >
       {navItems.map((item) => (
         <div
           key={item.id}
-          className={cn(
-            "mb-4 cursor-pointer flex items-center text-gray-400 transition-all",
-            selectedSection === item.id && "text-white"
-          )}
+          className="mb-4 cursor-pointer flex items-center transition-all duration-300"
+          style={{
+            color:
+              selectedSection === item.id
+                ? "var(--color-text)"
+                : "var(--color-muted)",
+          }}
           onMouseOver={() => setHoveredSection(item.id)}
           onMouseLeave={() => setHoveredSection(null)}
           onClick={() => handleSelect(item)}
         >
           <span
-            className={cn(
-              "w-8 h-px bg-gray-500 mr-2 transition-all",
-              (selectedSection === item.id || hoveredSection === item.id) &&
-                "w-16 bg-white"
-            )}
+            className="h-px transition-all duration-300 mr-2"
+            style={{
+              width:
+                selectedSection === item.id || hoveredSection === item.id
+                  ? "4rem"
+                  : "2rem",
+              backgroundColor:
+                selectedSection === item.id || hoveredSection === item.id
+                  ? "var(--color-text)"
+                  : "var(--color-muted)",
+            }}
           />
-          <button className="uppercase text-xs font-bold tracking-widest cursor-pointer">
+          <button
+            className="uppercase text-xs font-bold tracking-widest cursor-pointer"
+            style={{ color: "var(--color-text)" }}
+          >
             {item.label}
           </button>
         </div>

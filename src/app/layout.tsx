@@ -4,6 +4,7 @@ import "./globals.css";
 import GlowingCursor from "@/components/GlowingCursor";
 import Firebase from "@/components/Firebase";
 import JsonLd from "@/components/JsonLd";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -75,13 +76,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-dark antialiased `}>
-        <GlowingCursor />
-        <Firebase />
-        <JsonLd />
-
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.className} antialiased transition-colors duration-300`}
+      >
+        <ThemeProvider>
+          <GlowingCursor />
+          <Firebase />
+          <JsonLd />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

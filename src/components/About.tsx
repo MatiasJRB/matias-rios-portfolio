@@ -16,8 +16,17 @@ interface AboutProps {
 export default function About({ className }: AboutProps) {
   return (
     // dentro deeste div, salto de linea por cada <p> en about
-    <div className={cn("w-full", className)} id="about">
-      <div className="space-y-4" dangerouslySetInnerHTML={{ __html: about }} />
+    <div
+      className={cn("w-full", className)}
+      id="about"
+      style={{ color: "var(--color-muted)" }}
+    >
+      {" "}
+      <div
+        className="space-y-4"
+        dangerouslySetInnerHTML={{ __html: about }}
+        style={{ color: "var(--color-muted)" }}
+      />
     </div>
   );
 }

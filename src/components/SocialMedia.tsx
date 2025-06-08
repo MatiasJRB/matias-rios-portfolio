@@ -42,7 +42,16 @@ const SocialMedia: React.FC<SocialMediaProps> = ({
           <IconComponent
             key={index}
             size={24}
-            className="cursor-pointer text-gray-400 hover:text-white/85 mr-6"
+            className="cursor-pointer transition-colors duration-300 mr-6"
+            style={{
+              color: "var(--color-muted)",
+            }}
+            onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
+              e.currentTarget.style.color = "var(--color-text)";
+            }}
+            onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
+              e.currentTarget.style.color = "var(--color-muted)";
+            }}
             onClick={() => handleURL(profile.url)}
           />
         ) : null;

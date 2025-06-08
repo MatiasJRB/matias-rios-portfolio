@@ -7,6 +7,7 @@ import Selector from "@/components/Selector";
 import SocialMedia from "@/components/SocialMedia";
 import History from "@/components/History";
 import Footer from "@/components/Footer";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 const Page = () => {
   const [mobile, setMobile] = useState(false);
@@ -78,37 +79,47 @@ const Page = () => {
 
   return (
     <div
-      className={`overflow-y-hidden 
-      grid grid-cols-1 lg:grid-cols-2 w-full 
-      px-6
-      max-w-screen-xl mx-auto md:px-24 lg:px-24  bg-dark`}
+      className="min-h-screen overflow-y-hidden grid grid-cols-1 lg:grid-cols-2 w-full
+       px-6 max-w-screen-xl mx-auto md:px-24 lg:px-24 transition-colors duration-300"
+      style={{
+        backgroundColor: "var(--color-background)",
+        color: "var(--color-text)",
+      }}
     >
-      {/* First Column */}
+      <div className="fixed right-6 top-6 z-50">
+        <ThemeSwitch />
+      </div>{" "}
       <div
-        className={`left-column  ${mobile ? "mt-[-48px]" : ""} flex flex-col`}
+        className={`left-column ${mobile ? "mt-[-48px]" : ""} flex flex-col`}
       >
-        <div className="pt-24 mb-6 md:mb-16">
+        <div className="pt-24 mb-6 md:mb-16 px-6">
           <Presentation />
-
           {!mobile && <Selector className="mt-8 lg:mt-16" />}
-
-          <div className="lg:fixed lg:bottom-16 w-full ">
-            <SocialMedia className="mt-8 " />
+          <div className="lg:fixed lg:bottom-16 w-full flex justify-between items-center mt-8">
+            <SocialMedia />
           </div>
         </div>
-        <div className="mt-auto mb-20 md:mb-24">{/* <SocialMedia /> */}</div>
-      </div>
-
-      {/* Second Column with Scrollable Area */}
-      <div className="right-column" ref={scrollAreaRef}>
-        {!mobile && <div style={{ marginTop: "96px" }} />}
-
-        {mobile && <div className=" subtitle">About</div>}
-
-        <About className="mt-8" />
-
-        {mobile && <div className="mt-8 subtitle">History</div>}
-
+      </div>{" "}
+      {/* Second Column with Scrollable Area */}{" "}
+      <div className="right-column  px-6" ref={scrollAreaRef}>
+        {!mobile && <div className="mt-24" />}{" "}
+        {mobile && (
+          <div
+            className="text-xs font-bold mb-2 uppercase tracking-wider"
+            style={{ color: "var(--color-muted)" }}
+          >
+            About
+          </div>
+        )}
+        <About className="mt-8" />{" "}
+        {mobile && (
+          <div
+            className="mt-8 text-xs font-bold mb-2 uppercase tracking-wider"
+            style={{ color: "var(--color-muted)" }}
+          >
+            History
+          </div>
+        )}
         <History className="mt-8" />
         <Footer className="my-8" />
       </div>
