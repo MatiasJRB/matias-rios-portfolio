@@ -41,6 +41,21 @@ const Presentation: React.FC = () => {
         I am always looking for new opportunities to work on exciting projects.
         If you have an idea or a project in mind, feel free to reach me out.
       </p>
+      {/* Strategic Portfolio CTA */}
+      {/* <div className="mt-6 lg:mt-10">
+        <a
+          href="https://geome7ric.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-6 py-3 
+          hover:to-primary-700
+          text-dark
+           font-semibold rounded-lg transition-all duration-300 transform 
+          "
+        >
+          <span> Explore Geome7ric as my showcase</span>
+        </a>
+      </div> */}
     </div>
   );
 };

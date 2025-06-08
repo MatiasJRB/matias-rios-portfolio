@@ -149,34 +149,58 @@ const History: React.FC<HistoryProps> = ({ className }) => {
           </div>{" "}
           {/* TITULO + LINK */}
           <div className="mt-2">
+            {" "}
             <a
               href={job.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center transition-all"
+              className="flex items-center transition-all group"
+              onMouseEnter={(e) => {
+                const jobTexts =
+                  e.currentTarget.querySelectorAll(".job-text-span");
+                const arrow = e.currentTarget.querySelector(".job-arrow");
+                const logo = e.currentTarget.querySelector(".company-logo");
+                jobTexts.forEach((span) => {
+                  (span as HTMLElement).style.color = "var(--color-accent)";
+                });
+                if (arrow) {
+                  (arrow as HTMLElement).style.color = "var(--color-accent)";
+                }
+                if (logo) {
+                  (logo as HTMLElement).style.boxShadow =
+                    "0 0 0 2px var(--color-accent)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                const jobTexts =
+                  e.currentTarget.querySelectorAll(".job-text-span");
+                const arrow = e.currentTarget.querySelector(".job-arrow");
+                const logo = e.currentTarget.querySelector(".company-logo");
+                jobTexts.forEach((span) => {
+                  (span as HTMLElement).style.color = "var(--color-text)";
+                });
+                if (arrow) {
+                  (arrow as HTMLElement).style.color = "var(--color-text)";
+                }
+                if (logo) {
+                  (logo as HTMLElement).style.boxShadow =
+                    "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)";
+                }
+              }}
             >
               {" "}
-              <div
-                className="flex flex-row transform transition-all duration-300"
-                style={{
-                  color: "var(--color-text)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--color-accent)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--color-text)";
-                }}
-              >
+              <div className="flex flex-row transform transition-all duration-300">
                 {/* LOGO DE LA EMPRESA */}{" "}
                 {getCompanyLogo(job.name) && (
                   <div className="flex-shrink-0 mr-3">
                     {" "}
                     <div
-                      className="w-10 h-10 rounded-full border flex items-center justify-center overflow-hidden shadow-sm"
+                      className="company-logo w-10 h-10 rounded-full border flex items-center justify-center overflow-hidden transition-all duration-200"
                       style={{
                         backgroundColor: "var(--color-muted)",
                         borderColor: "var(--color-border)",
+                        boxShadow:
+                          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
                       }}
                     >
                       <Image
@@ -191,15 +215,28 @@ const History: React.FC<HistoryProps> = ({ className }) => {
                 )}{" "}
                 <div className="flex items-center">
                   {" "}
-                  <span
-                    className="font-bold"
-                    style={{ color: "var(--color-text)" }}
-                  >
-                    {job.position} · {job.name}
+                  <span className="font-bold">
+                    <span
+                      className="job-text-span transition-colors duration-200"
+                      style={{ color: "var(--color-text)" }}
+                    >
+                      {job.position}
+                    </span>
+                    <span style={{ color: "var(--color-muted)" }}> · </span>
+                    <span
+                      className="job-text-span transition-colors duration-200"
+                      style={{ color: "var(--color-text)" }}
+                    >
+                      {job.name}
+                    </span>{" "}
                   </span>
-                  <div className="ml-2 transform -translate-x-1 translate-y-1 hover:translate-x-1 hover:-translate-y-1 transition-all duration-100 ease-in-out">
+                  <div
+                    className="ml-2 transform transition-all duration-200 ease-in-out
+                    translate-x-0 translate-y-0 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  >
                     <FaArrowRight
-                      className="transform -rotate-45 transition-all duration-100"
+                      className="job-arrow transform -rotate-45 transition-all duration-200"
+                      style={{ color: "var(--color-text)" }}
                       size={14}
                     />
                   </div>
@@ -273,23 +310,31 @@ const History: React.FC<HistoryProps> = ({ className }) => {
         <a href="/[ENG]_Matias_Rios_CV_Jan_25.pdf" target="_blank">
           {" "}
           <div
-            className="flex flex-row cursor-pointer transform transition-all duration-300"
+            className="flex flex-row items-center cursor-pointer group transition-all duration-300"
             style={{ color: "var(--color-text)" }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = "var(--color-accent)";
+              const arrow = e.currentTarget.querySelector(".resume-arrow");
+              if (arrow) {
+                (arrow as HTMLElement).style.color = "var(--color-accent)";
+              }
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = "var(--color-text)";
+              const arrow = e.currentTarget.querySelector(".resume-arrow");
+              if (arrow) {
+                (arrow as HTMLElement).style.color = "var(--color-text)";
+              }
             }}
           >
             View Full Resume
             <div
-              className="ml-2 
-            transform -translate-x-1 translate-y-1 hover:translate-x-1 
-            hover:-translate-y-1 transition-all duration-100 ease-in-out"
+              className="ml-2 transform transition-all duration-200 ease-in-out
+              translate-x-0 translate-y-0 group-hover:translate-x-1 group-hover:-translate-y-1"
             >
               <FaArrowRight
-                className="transform -rotate-45 transition-all duration-100"
+                className="resume-arrow transform -rotate-45 transition-all duration-200"
+                style={{ color: "var(--color-text)" }}
                 size={14}
               />
             </div>
