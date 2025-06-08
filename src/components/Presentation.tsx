@@ -33,7 +33,7 @@ const Presentation: React.FC = () => {
         style={{ color: "var(--color-muted)" }}
       >
         {basics.summary}
-      </p>
+      </p>{" "}
       <p
         className="mt-4 lg:mt-8 text-base leading-relaxed max-w-xs md:max-w-sm lg:max-w-sm"
         style={{ color: "var(--color-muted)" }}
