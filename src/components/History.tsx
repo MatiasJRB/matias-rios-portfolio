@@ -34,6 +34,7 @@ interface HistoryProps {
 
 const History: React.FC<HistoryProps> = ({ className }) => {
   const [work, setWork] = useState<Job[]>([]);
+
   useEffect(() => {
     import("../resume.json").then((data) => setWork(data.work));
   }, []);

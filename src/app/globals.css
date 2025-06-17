@@ -138,3 +138,9 @@ html.dark body {
 .right-column::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+
+/* Scroll margin for navigation targets to align with left column */
+#about,
+#history {
+  scroll-margin-top: 96px;
+}
