@@ -82,7 +82,8 @@ const MobileHeader = () => {
                   className="block w-full text-left py-3 px-4 rounded-lg transition-all duration-200 uppercase text-sm font-bold tracking-widest"
                   style={{ color: "var(--color-text)" }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "var(--color-surface)";
+                    e.currentTarget.style.backgroundColor =
+                      "var(--color-surface)";
                     e.currentTarget.style.color = "var(--color-primary)";
                   }}
                   onMouseLeave={(e) => {
@@ -96,7 +97,10 @@ const MobileHeader = () => {
             </nav>
 
             {/* Social Media in Mobile Menu */}
-            <div className="px-6 pb-6 pt-2 border-t" style={{ borderColor: "var(--color-border)" }}>
+            <div
+              className="px-6 pb-6 pt-2 border-t"
+              style={{ borderColor: "var(--color-border)" }}
+            >
               <SocialMedia behavior="justify-start" className="mt-4" />
             </div>
           </motion.div>

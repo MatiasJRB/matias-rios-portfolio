@@ -12,16 +12,16 @@ export default function GlowingCursor() {
     setMounted(true);
     const updateCursor = (e: MouseEvent) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
-      
+
       // Detectar si está sobre un elemento interactivo
       const target = e.target as HTMLElement;
-      const isInteractive = 
+      const isInteractive =
         target.tagName === "A" ||
         target.tagName === "BUTTON" ||
         target.closest("a") !== null ||
         target.closest("button") !== null ||
         target.classList.contains("cursor-pointer");
-      
+
       setIsHovering(isInteractive);
     };
     window.addEventListener("mousemove", updateCursor);
@@ -29,7 +29,7 @@ export default function GlowingCursor() {
   }, []);
 
   if (!mounted) return null;
-  
+
   const glowColor =
     theme === "dark"
       ? isHovering
