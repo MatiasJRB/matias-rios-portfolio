@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
-
-interface NavItem {
-  id: string;
-  label: string;
-}
-
-const navItems: NavItem[] = [
-  { id: "about", label: "About" },
-  { id: "history", label: "Experience" },
-];
-
-interface SelectorProps {
-  className?: string;
-}
+import type { NavItem, SelectorProps } from "@/types";
+import { NAV_ITEMS, INTERSECTION_CONFIG } from "@/constants";
 
 const Selector: React.FC<SelectorProps> = ({ className }) => {
   const [selectedSection, setSelectedSection] = useState("about");
@@ -60,7 +48,7 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
         }
       );
 
-      navItems.forEach((item) => {
+      NAV_ITEMS.forEach((item) => {
         const section = document.getElementById(item.id);
         if (section) {
           observer.observe(section);
@@ -68,7 +56,7 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
       });
 
       return () => {
-        navItems.forEach((item) => {
+        NAV_ITEMS.forEach((item) => {
           const section = document.getElementById(item.id);
           if (section) {
             observer.unobserve(section);
@@ -85,41 +73,42 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
     >
-      {navItems.map((item) => (
+      {NAV_ITEMS.map((item) => {
+        const isSelected = selectedSection === item.id;
+        const isHovered = hoveredSection === item.id;
+        
+        return (
         <div
           key={item.id}
-          className="mb-4 cursor-pointer flex items-center transition-all duration-300"
-          style={{
-            color:
-              selectedSection === item.id
-                ? "var(--color-text)"
-                : "var(--color-muted)",
-          }}
+          className="mb-4 cursor-pointer flex items-center"
           onMouseOver={() => setHoveredSection(item.id)}
           onMouseLeave={() => setHoveredSection(null)}
           onClick={() => handleSelect(item)}
         >
-          <span
-            className="h-px transition-all duration-300 mr-2"
-            style={{
-              width:
-                selectedSection === item.id || hoveredSection === item.id
-                  ? "4rem"
-                  : "2rem",
-              backgroundColor:
-                selectedSection === item.id || hoveredSection === item.id
-                  ? "var(--color-text)"
-                  : "var(--color-muted)",
+          <motion.span
+            className="h-px mr-3"
+            animate={{
+              width: isSelected || isHovered ? "3rem" : "2rem",
+              backgroundColor: isSelected
+                ? "var(--color-primary)"
+                : isHovered
+                ? "var(--color-text)"
+                : "var(--color-muted)",
             }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           />
-          <button
+          <motion.button
             className="uppercase text-xs font-bold tracking-widest cursor-pointer"
-            style={{ color: "var(--color-text)" }}
+            animate={{
+              color: isSelected || isHovered ? "var(--color-text)" : "var(--color-muted)",
+            }}
+            transition={{ duration: 0.2 }}
           >
             {item.label}
-          </button>
+          </motion.button>
         </div>
-      ))}
+      );
+      })}
     </motion.div>
   );
 };

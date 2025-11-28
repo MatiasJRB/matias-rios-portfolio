@@ -18,37 +18,23 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-interface Job {
-  name: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  url: string;
-  summary: string;
-  highlights: string[];
-}
-
-interface HistoryProps {
-  className?: string;
-}
+import { SkeletonHistoryCard } from "./SkeletonLoader";
+import type { Job, HistoryProps } from "@/types";
+import { COMPANY_LOGOS, THEME_COLORS } from "@/constants";
 
 const History: React.FC<HistoryProps> = ({ className }) => {
   const [work, setWork] = useState<Job[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    import("../resume.json").then((data) => setWork(data.work));
+    import("../resume.json").then((data) => {
+      setWork(data.work);
+      setIsLoading(false);
+    });
   }, []);
   // Función para obtener el logo de la empresa
   const getCompanyLogo = (companyName: string) => {
-    const logoMap: { [key: string]: string } = {
-      Mangxo: "/images/work/mango.png",
-      Geome7ric: "/images/work/geome7ric.png",
-      Kalkomey: "/images/work/kalkomey.png",
-      Nuqlea: "/images/work/nuqlea.png",
-    };
-
-    return logoMap[companyName] || null;
+    return COMPANY_LOGOS[companyName] || null;
   };
   // Función para obtener el icono apropiado basado en el contenido del highlight
   const getIconForHighlight = (highlight: string) => {
@@ -133,16 +119,46 @@ const History: React.FC<HistoryProps> = ({ className }) => {
   };
 
   return (
-    <div id="history" className={cn("w-full", className)}>
-      {work.map((job, index) => (
-        <motion.div
-          key={job.name}
-          className="w-full mb-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-        >
+    <div id="history" className={cn("w-full relative", className)}>
+      {/* Línea temporal vertical */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-px hidden md:block"
+        style={{
+          background: "linear-gradient(to bottom, transparent, var(--color-border), transparent)",
+        }}
+      />
+      
+      {isLoading ? (
+        // Skeleton loaders mientras carga
+        <>
+          <SkeletonHistoryCard />
+          <SkeletonHistoryCard />
+          <SkeletonHistoryCard />
+        </>
+      ) : (
+        work.map((job, index) => (
+        <div key={job.name} className="relative">
+          {/* Dot en la línea temporal */}
+          <div
+            className="absolute left-0 top-8 w-3 h-3 rounded-full border-2 hidden md:block"
+            style={{
+              backgroundColor: "var(--color-background)",
+              borderColor: "var(--color-primary)",
+              transform: "translateX(-6px)",
+              boxShadow: "0 0 0 4px var(--color-background)",
+            }}
+          />
+          
+          <motion.div
+            className="w-full mb-8 p-6 md:pl-10 rounded-lg transition-all duration-300 group"
+            style={{
+              backgroundColor: "transparent",
+            }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+          >
           {/* FECHAS */}
           <div
             className="text-sm font-semibold"
@@ -269,23 +285,22 @@ const History: React.FC<HistoryProps> = ({ className }) => {
               {job.highlights.map((task) => (
                 <div
                   key={task}
-                  className="group flex items-start space-x-3 
-                  p-4 rounded-lg transition-all duration-200 border
-                   shadow-sm hover:shadow-md"
+                  className="group/item flex items-start space-x-3 
+                  p-4 rounded-lg transition-all duration-200 border"
                   style={{
                     backgroundColor: "var(--color-surface)",
                     borderColor: "var(--color-border)",
                     color: "var(--color-muted)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor =
-                      "var(--color-background)";
-                    e.currentTarget.style.borderColor = "var(--color-muted)";
+                    e.currentTarget.style.backgroundColor = "var(--color-background)";
+                    e.currentTarget.style.borderColor = "var(--color-primary)";
+                    e.currentTarget.style.transform = "translateX(4px)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor =
-                      "var(--color-surface)";
+                    e.currentTarget.style.backgroundColor = "var(--color-surface)";
                     e.currentTarget.style.borderColor = "var(--color-border)";
+                    e.currentTarget.style.transform = "translateX(0)";
                   }}
                 >
                   {" "}
@@ -311,7 +326,9 @@ const History: React.FC<HistoryProps> = ({ className }) => {
             </div>
           </div>
         </motion.div>
-      ))}
+        </div>
+      ))
+      )}
 
       {/* BOTÓN PARA VER RESUMEN COMPLETO */}
 

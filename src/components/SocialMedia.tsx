@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import resume from "../resume.json";
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
+import type { SocialMediaProps } from "@/types";
 
 const iconMap: Record<string, React.ElementType> = {
   "fab fa-github": FaGithub,
@@ -16,12 +17,7 @@ interface Profile {
   url: string;
 }
 
-interface SocialMediaProps {
-  behavior?: string;
-  className?: string;
-}
-
-const SocialMedia: React.FC<SocialMediaProps> = ({
+const SocialMedia: React.FC<SocialMediaProps & { behavior?: string }> = ({
   behavior = "justify-start",
   className,
 }) => {

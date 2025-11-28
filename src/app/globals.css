@@ -2,25 +2,33 @@
 
 @theme {
   /* Light mode colors */
-  --color-primary: #2563eb; /* Links, botones primarios, íconos sociales */
-  --color-secondary: #4b5563; /* Texto secundario, subtítulos, descripciones */
-  --color-accent: #10b981; /* Color de éxito, etiquetas "activo", "completo" */
-  --color-background: #ffffff; /* Fondo principal, background global */
-  --color-surface: #f9fafb; /* Fondo secundario, secciones, tarjetas, paneles */
-  --color-text: #111827; /* Texto principal, párrafos, body text */
-  --color-muted: #4b5563; /* Texto secundario, subtítulos, descripciones */
+  --color-primary: #00ee90; /* Verde accent geome7ric */
+  --color-primary-hover: #00d580; /* Verde accent hover */
+  --color-secondary: #64748b; /* Texto secundario, subtítulos */
+  --color-accent: #00ee90; /* Color de éxito, etiquetas "activo" */
+  --color-background: #ffffff; /* Fondo principal */
+  --color-surface: #f8fafc; /* Fondo secundario, cards */
+  --color-card: #f1f5f9; /* Fondo de cards */
+  --color-card-hover: #e2e8f0; /* Fondo de cards hover */
+  --color-text: #0f172a; /* Texto principal */
+  --color-text-secondary: #475569; /* Texto secundario */
+  --color-muted: #64748b; /* Texto terciario */
   --color-success: #10b981; /* Etiquetas "activo", "completo" */
-  --color-warning: #f59e0b; /* Alertas suaves, hover de botones */
-  --color-error: #ef4444; /* Mensajes de error, badges */
-  --color-border: #e5e7eb; /* Líneas separadoras, inputs */
-  --shadow: rgba(0, 0, 0, 0.05); /* Sombras de tarjetas y modales */
+  --color-warning: #f59e0b; /* Alertas suaves */
+  --color-error: #ef4444; /* Mensajes de error */
+  --color-border: #e2e8f0; /* Líneas separadoras */
+  --color-border-accent: #00ee90; /* Borde con accent */
+  --shadow: rgba(0, 0, 0, 0.05); /* Sombras de tarjetas */
+  --shadow-hover: rgba(0, 238, 144, 0.15); /* Sombra con accent */
 
-  /* Dark mode colors (keeping existing) */
-  --color-background-dark: rgb(17 24 39);
-  --color-foreground-dark: rgb(243 244 246);
-  --color-text-primary-dark: rgb(243 244 246);
-  --color-text-secondary-dark: rgb(203 213 225);
-  --color-text-muted-dark: rgb(148 163 184);
+  /* Dark mode colors */
+  --color-background-dark: #0f172a;
+  --color-foreground-dark: #f1f5f9;
+  --color-text-primary-dark: #f1f5f9;
+  --color-text-secondary-dark: #cbd5e1;
+  --color-text-muted-dark: #94a3b8;
+  --color-card-dark: #1e293b;
+  --color-card-hover-dark: #334155;
 }
 
 /* Root theme variables for smooth transitions */
@@ -31,23 +39,29 @@
 }
 
 .dark {
-  --background: rgb(17 24 39);
-  --foreground: rgb(243 244 246);
+  --background: #0f172a;
+  --foreground: #f1f5f9;
   color-scheme: dark;
 
   /* Dark mode color overrides */
-  --color-primary: #60a5fa;
-  --color-secondary: #9ca3af;
-  --color-accent: #34d399;
-  --color-background: rgb(17 24 39);
-  --color-surface: rgb(30 41 59);
-  --color-text: rgb(243 244 246);
-  --color-muted: rgb(148 163 184);
+  --color-primary: #00ee90;
+  --color-primary-hover: #00d580;
+  --color-secondary: #94a3b8;
+  --color-accent: #00ee90;
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-card: #1e293b;
+  --color-card-hover: #334155;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-muted: #94a3b8;
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-error: #f87171;
-  --color-border: rgb(55 65 81);
-  --shadow: rgba(0, 0, 0, 0.25);
+  --color-border: #334155;
+  --color-border-accent: #00ee90;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-hover: rgba(0, 238, 144, 0.2);
 }
 
 html {
@@ -57,6 +71,18 @@ html {
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--color-background);
   color: var(--color-text);
+}
+
+/* Respetar preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 html.dark {
