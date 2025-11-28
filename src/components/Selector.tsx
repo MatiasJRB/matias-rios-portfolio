@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils";
+import { motion } from "framer-motion";
 
 interface NavItem {
   id: string;
@@ -77,9 +78,12 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
     }
   }, []);
   return (
-    <div
+    <motion.div
       className={cn("flex flex-col items-start", className)}
       style={{ color: "var(--color-text)" }}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
     >
       {navItems.map((item) => (
         <div
@@ -116,7 +120,7 @@ const Selector: React.FC<SelectorProps> = ({ className }) => {
           </button>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

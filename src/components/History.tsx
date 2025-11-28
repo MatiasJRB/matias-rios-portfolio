@@ -17,6 +17,7 @@ import {
   FaRocket,
 } from "react-icons/fa";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface Job {
   name: string;
@@ -133,10 +134,16 @@ const History: React.FC<HistoryProps> = ({ className }) => {
 
   return (
     <div id="history" className={cn("w-full", className)}>
-      {work.map((job) => (
-        <div key={job.name} className="w-full mb-6">
-          {" "}
-          {/* FECHAS */}{" "}
+      {work.map((job, index) => (
+        <motion.div
+          key={job.name}
+          className="w-full mb-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+        >
+          {/* FECHAS */}
           <div
             className="text-sm font-semibold"
             style={{ color: "var(--color-muted)" }}
@@ -147,7 +154,7 @@ const History: React.FC<HistoryProps> = ({ className }) => {
               style={{ backgroundColor: "var(--color-muted)" }}
             ></span>{" "}
             {job.endDate}
-          </div>{" "}
+          </div>
           {/* TITULO + LINK */}
           <div className="mt-2">
             {" "}
@@ -244,8 +251,8 @@ const History: React.FC<HistoryProps> = ({ className }) => {
                 </div>
               </div>
             </a>
-          </div>{" "}
-          {/* RESUMEN */}{" "}
+          </div>
+          {/* RESUMEN */}
           <p className="mt-2 text-sm" style={{ color: "var(--color-muted)" }}>
             {job.summary}
           </p>
@@ -303,9 +310,13 @@ const History: React.FC<HistoryProps> = ({ className }) => {
               ))}
             </div>
           </div>
-        </div>
-      ))}{" "}
-      {/* BOTÓN PARA VER RESUMEN COMPLETO */}{" "}
+        </motion.div>
+      ))}
+
+      {/* BOTÓN PARA VER RESUMEN COMPLETO */}
+
+      {/* BOTÓN PARA VER RESUMEN COMPLETO */}
+>>>>>>> Stashed changes
       <div className="mt-6">
         {" "}
         <a href="/[ENG]_Matias_Rios_CV_Jan_25.pdf" target="_blank">

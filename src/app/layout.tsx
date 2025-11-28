@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-image.jpg", // Cambiado a ruta relativa
+        url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
         alt: name,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: `${name} | Software Engineer | Full-Stack Developer`,
     description,
     creator: "@matiasriosj",
-    images: ["/images/og-image.jpg"], // Cambiado a ruta relativa
+    images: ["/images/og-image.jpg"],
   },
   icons: [
     {

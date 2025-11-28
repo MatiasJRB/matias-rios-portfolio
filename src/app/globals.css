@@ -144,3 +144,71 @@ html.dark body {
 #history {
   scroll-margin-top: 96px;
 }
+
+.arrow-container {
+  transition: transform 0.3s ease-out;
+  transform: translate(-5px, 5px);
+}
+
+.arrow {
+  transform: rotate(-45deg);
+  transition: all 0.3s ease-out;
+}
+
+.bg-dark {
+  background: #0f172a;
+}
+
+.text-geome7ric {
+  color: #00ee90;
+}
+.job-title:hover {
+  color: #00ee90;
+}
+
+.skill {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  text-align: center;
+  background-color: #142133;
+  transition: all 0.3s ease-out;
+}
+
+.skill:hover {
+  background-color: #0c1226;
+  transform: scale(1.05);
+}
+
+.job-title:hover {
+  .arrow-container {
+    transition: transform 0.3s ease-out;
+    transform: translate(1px, -1px);
+
+    .arrow {
+      transition: transform 0.3s ease-out;
+    }
+  }
+}
+
+a {
+  &.text-bold {
+    font-weight: 700;
+  }
+
+  &.cursor-pointer {
+    cursor: pointer;
+  }
+
+  color: #f1f1f1;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  font-weight: 700;
+}
+
+a:hover {
+  color: #fafafa;
+}
