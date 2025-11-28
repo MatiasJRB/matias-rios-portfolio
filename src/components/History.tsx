@@ -154,6 +154,7 @@ const History: React.FC<HistoryProps> = ({ className }) => {
               className="w-full mb-8 p-6 md:pl-10 rounded-lg transition-all duration-300 group"
               style={{
                 backgroundColor: "transparent",
+                willChange: "transform, opacity",
               }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -238,7 +239,9 @@ const History: React.FC<HistoryProps> = ({ className }) => {
                             alt={`${job.name} logo`}
                             width={32}
                             height={32}
-                            className="object-contain "
+                            className="object-contain"
+                            loading="lazy"
+                            quality={85}
                           />
                         </div>
                       </div>

@@ -9,6 +9,8 @@ import History from "@/components/History";
 import Footer from "@/components/Footer";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MobileHeader from "@/components/MobileHeader";
+import { ParallaxBackground } from "@/components/ParallaxBackground";
+import { SkipToContent } from "@/components/SkipToContent";
 
 const Page = () => {
   const [mobile, setMobile] = useState(false);
@@ -81,6 +83,8 @@ const Page = () => {
 
   return (
     <>
+      <SkipToContent />
+      <ParallaxBackground />
       <MobileHeader />
       <div
         className="min-h-screen overflow-y-hidden grid grid-cols-1 lg:grid-cols-2 w-full
@@ -105,7 +109,12 @@ const Page = () => {
           </div>
         </div>{" "}
         {/* Second Column with Scrollable Area */}{" "}
-        <div className="right-column px-0 md:px-4" ref={scrollAreaRef}>
+        <div 
+          id="main-content"
+          className="right-column px-0 md:px-4" 
+          ref={scrollAreaRef}
+          tabIndex={-1}
+        >
           {!mobile && <div className="mt-24" />}{" "}
           {mobile && (
             <div
