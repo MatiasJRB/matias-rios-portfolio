@@ -21,7 +21,8 @@ export const ParallaxBackground = () => {
     window.addEventListener("resize", setCanvasSize);
 
     // Particles
-    const particles: { x: number; y: number; baseY: number; speed: number }[] = [];
+    const particles: { x: number; y: number; baseY: number; speed: number }[] =
+      [];
     const particleCount = 30;
 
     for (let i = 0; i < particleCount; i++) {
@@ -45,7 +46,7 @@ export const ParallaxBackground = () => {
 
     const animate = () => {
       if (!ctx || !canvas) return;
-      
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Smooth mouse follow
@@ -53,7 +54,8 @@ export const ParallaxBackground = () => {
 
       particles.forEach((particle) => {
         // Parallax effect based on mouse position
-        const parallaxOffset = (mouseY - canvas.height / 2) * particle.speed * 0.05;
+        const parallaxOffset =
+          (mouseY - canvas.height / 2) * particle.speed * 0.05;
         particle.y = particle.baseY + parallaxOffset;
 
         // Draw particle
@@ -72,7 +74,9 @@ export const ParallaxBackground = () => {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(0, 238, 144, ${0.05 * (1 - distance / 150)})`;
+            ctx.strokeStyle = `rgba(0, 238, 144, ${
+              0.05 * (1 - distance / 150)
+            })`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

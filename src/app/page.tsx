@@ -109,9 +109,9 @@ const Page = () => {
           </div>
         </div>{" "}
         {/* Second Column with Scrollable Area */}{" "}
-        <div 
+        <div
           id="main-content"
-          className="right-column px-0 md:px-4" 
+          className="right-column px-0 md:px-4"
           ref={scrollAreaRef}
           tabIndex={-1}
         >
