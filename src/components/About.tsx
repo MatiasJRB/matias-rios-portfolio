@@ -19,7 +19,7 @@ export default function About({ className }: AboutProps) {
 
   return (
     <motion.div
-      className={cn("w-full", className)}
+      className={cn("w-full scroll-mt-24", className)}
       id="about"
       style={{ color: "var(--color-muted)" }}
       initial={{ opacity: 0, y: 30 }}

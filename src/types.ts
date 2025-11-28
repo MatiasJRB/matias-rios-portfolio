@@ -48,6 +48,7 @@ export interface AboutProps {
 
 export interface HistoryProps {
   className?: string;
+  id?: string;
 }
 
 export interface SelectorProps {

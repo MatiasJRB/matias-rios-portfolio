@@ -2,7 +2,6 @@
 
 import resume from "../resume.json";
 import { motion } from "framer-motion";
-import { TypingEffect } from "./TypingEffect";
 
 interface Basics {
   name: string;
@@ -27,7 +26,7 @@ const Presentation: React.FC = () => {
           href="#about"
           style={{ color: "var(--color-text)" }}
         >
-          <TypingEffect text={basics.name} speed={80} />
+          {basics.name}
         </a>
       </div>
       <div className="mt-2 text-lg lg:text-xl">{basics.label}</div>

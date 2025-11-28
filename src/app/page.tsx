@@ -11,11 +11,18 @@ import ThemeSwitch from "@/components/ThemeSwitch";
 import MobileHeader from "@/components/MobileHeader";
 import { ParallaxBackground } from "@/components/ParallaxBackground";
 import { SkipToContent } from "@/components/SkipToContent";
+import { KeyboardNavigationHint } from "@/components/KeyboardNavigationHint";
+import { useKeyboardNavigation } from "@/hooks/useKeyboardNavigation";
 
 const Page = () => {
   const [mobile, setMobile] = useState(false);
 
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  // Keyboard navigation setup - auto-discovers navigable elements
+  const { isKeyboardMode } = useKeyboardNavigation({
+    smooth: true,
+  });
 
   // Detectar si es mobile
   useEffect(() => {
@@ -85,6 +92,7 @@ const Page = () => {
     <>
       <SkipToContent />
       <ParallaxBackground />
+      <KeyboardNavigationHint isKeyboardMode={isKeyboardMode} />
       <MobileHeader />
       <div
         className="min-h-screen overflow-y-hidden grid grid-cols-1 lg:grid-cols-2 w-full
@@ -100,7 +108,10 @@ const Page = () => {
         <div
           className={`left-column ${mobile ? "mt-[-48px]" : ""} flex flex-col`}
         >
-          <div className="pt-16 md:pt-24 mb-6 md:mb-16 px-0 md:px-4">
+          <div
+            id="presentation"
+            className="pt-16 md:pt-24 mb-6 md:mb-16 px-0 md:px-4 scroll-mt-24"
+          >
             <Presentation />
             {!mobile && <Selector className="mt-8 lg:mt-16" />}
             <div className="lg:fixed lg:bottom-16 w-full flex justify-between items-center mt-8">
@@ -133,7 +144,7 @@ const Page = () => {
               History
             </div>
           )}
-          <History className="mt-8" />
+          <History id="history" className="mt-8" />
           <Footer className="my-8" />
         </div>
       </div>

@@ -43,7 +43,7 @@ export default function GlowingCursor() {
 
   return (
     <div
-      className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-[0] transition-all duration-300"
+      className="pointer-events-none fixed top-0 left-0 w-screen h-screen -z-10 transition-all duration-300"
       style={{
         background: `radial-gradient(circle at ${cursorPos.x}px ${cursorPos.y}px, ${glowColor} 0%, transparent ${gradientSize})`,
       }}

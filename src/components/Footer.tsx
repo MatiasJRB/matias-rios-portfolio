@@ -9,7 +9,8 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
     <footer
-      className={cn("w-full text-sm", className)}
+      id="footer"
+      className={cn("w-full text-sm scroll-mt-24", className)}
       style={{ color: "var(--color-muted)" }}
     >
       {/* footer from resume is html, insert here */}
