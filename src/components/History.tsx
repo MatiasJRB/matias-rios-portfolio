@@ -316,7 +316,6 @@ const History: React.FC<HistoryProps> = ({ className }) => {
       {/* BOTÓN PARA VER RESUMEN COMPLETO */}
 
       {/* BOTÓN PARA VER RESUMEN COMPLETO */}
->>>>>>> Stashed changes
       <div className="mt-6">
         {" "}
         <a href="/[ENG]_Matias_Rios_CV_Jan_25.pdf" target="_blank">

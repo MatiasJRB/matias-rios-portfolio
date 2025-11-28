@@ -36,13 +36,13 @@ const SocialMedia: React.FC<SocialMediaProps> = ({
   const profiles = resume.basics.profiles as Profile[];
 
   const getAriaLabel = (url: string) => {
-    if (url.includes('github')) return 'GitHub Profile';
-    if (url.includes('linkedin')) return 'LinkedIn Profile';
-    return 'Social Media Profile';
+    if (url.includes("github")) return "GitHub Profile";
+    if (url.includes("linkedin")) return "LinkedIn Profile";
+    return "Social Media Profile";
   };
 
   return (
-    <motion.div 
+    <motion.div
       className={cn(`flex ${behavior}`, className)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
