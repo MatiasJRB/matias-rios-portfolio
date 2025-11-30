@@ -47,7 +47,7 @@ export default function InteractiveLayout({
     // En desktop, evitar scroll en el body (el scroll lo maneja .right-column)
     // En mobile, permitir scroll normal en el body
     document.body.style.overflow = mobile ? "auto" : "hidden";
-    
+
     return () => {
       document.body.style.overflow = "auto";
     };

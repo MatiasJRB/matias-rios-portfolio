@@ -22,10 +22,6 @@ export default async function Page({
   ]);
 
   return (
-    <ClientPageWrapper
-      lang={lang}
-      resume={resume}
-      dictionary={dictionary}
-    />
+    <ClientPageWrapper lang={lang} resume={resume} dictionary={dictionary} />
   );
 }

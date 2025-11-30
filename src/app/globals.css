@@ -166,7 +166,7 @@ html.dark body {
     max-height: 100vh;
     scrollbar-width: thin;
   }
-  
+
   .right-column::-webkit-scrollbar {
     width: 4px;
   }
