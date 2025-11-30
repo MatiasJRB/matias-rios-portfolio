@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import About from "@/components/About";
 import Presentation from "@/components/Presentation";
 import Selector from "@/components/Selector";
@@ -15,13 +15,14 @@ export default function PageContent({
   lang,
   resume,
   dictionary,
+  scrollAreaRef,
 }: {
   lang: Locale;
   resume: Resume;
   dictionary: Dictionary;
+  scrollAreaRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const [mobile, setMobile] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateMobile = () => {

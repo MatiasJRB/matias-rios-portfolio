@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import InteractiveLayout from "@/components/InteractiveLayout";
-import PageContent from "@/components/PageContent";
+import ClientPageWrapper from "@/components/ClientPageWrapper";
 import { type Locale } from "@/i18n/config";
 import { getResume } from "@/data/get-resume";
 import { getDictionary } from "@/i18n/get-dictionary";
@@ -23,12 +22,10 @@ export default async function Page({
   ]);
 
   return (
-    <InteractiveLayout
+    <ClientPageWrapper
       lang={lang}
+      resume={resume}
       dictionary={dictionary}
-      profiles={resume.basics.profiles}
-    >
-      <PageContent lang={lang} resume={resume} dictionary={dictionary} />
-    </InteractiveLayout>
+    />
   );
 }

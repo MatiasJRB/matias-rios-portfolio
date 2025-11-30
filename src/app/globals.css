@@ -155,14 +155,28 @@ html.dark body {
 }
 
 .right-column {
-  overflow-y: auto;
-  height: 100vh;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: thin;
+  -ms-overflow-style: auto;
 }
 
-.right-column::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+/* En desktop (lg y superior), hacer scroll dentro de la columna */
+@media (min-width: 1024px) {
+  .right-column {
+    overflow-y: auto;
+    max-height: 100vh;
+    scrollbar-width: thin;
+  }
+  
+  .right-column::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+/* En mobile, scroll normal del body */
+@media (max-width: 1023px) {
+  .right-column {
+    overflow-y: visible;
+  }
 }
 
 /* Scroll margin for navigation targets to align with left column */

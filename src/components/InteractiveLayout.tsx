@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useKeyboardNavigation } from "@/hooks/useKeyboardNavigation";
 import { ParallaxBackground } from "@/components/ParallaxBackground";
 import { SkipToContent } from "@/components/SkipToContent";
@@ -15,6 +15,7 @@ interface InteractiveLayoutProps {
   lang: Locale;
   dictionary: Dictionary;
   profiles: Profile[];
+  scrollAreaRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function InteractiveLayout({
@@ -22,9 +23,9 @@ export default function InteractiveLayout({
   lang,
   dictionary,
   profiles,
+  scrollAreaRef,
 }: InteractiveLayoutProps) {
   const [mobile, setMobile] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   // Keyboard navigation setup - auto-discovers navigable elements
   const { isKeyboardMode, currentActionHint } = useKeyboardNavigation({
@@ -37,43 +38,33 @@ export default function InteractiveLayout({
       setMobile(window.innerWidth < 1024);
     };
 
-    updateMobile(); // Ejecutar una vez al montar
-
+    updateMobile();
     window.addEventListener("resize", updateMobile);
     return () => window.removeEventListener("resize", updateMobile);
   }, []);
 
   useEffect(() => {
-    if (!mobile) {
-      // Evitar scroll en el body
-      document.body.style.overflow = "hidden";
-
-      if (scrollAreaRef.current) {
-        scrollAreaRef.current.style.overflowY = "auto"; // Asegurar que sea scrolleable
-        scrollAreaRef.current.style.height = "100vh"; // Fijar altura
-      }
-    } else {
+    // En desktop, evitar scroll en el body (el scroll lo maneja .right-column)
+    // En mobile, permitir scroll normal en el body
+    document.body.style.overflow = mobile ? "auto" : "hidden";
+    
+    return () => {
       document.body.style.overflow = "auto";
-
-      if (scrollAreaRef.current) {
-        // Permitir que el body haga scroll en mobile
-        scrollAreaRef.current.style.overflow = "auto";
-        scrollAreaRef.current.style.height = "auto"; // Restablecer altura
-      }
-    }
+    };
   }, [mobile]);
 
+  // Scroll global controla la columna derecha en desktop
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
       if (mobile) {
-        // scroll the body
+        // En mobile, permitir scroll normal del body
         return;
       }
 
-      // prevent scrolling the whole page
+      // Prevenir scroll del body en desktop
       event.preventDefault();
 
-      // escrolleo solo dentro de la columna derecha
+      // Aplicar el scroll a la columna derecha
       const scrollArea = scrollAreaRef.current;
       if (!scrollArea) return;
 
@@ -84,6 +75,7 @@ export default function InteractiveLayout({
 
       scrollArea.scrollTop += deltaY;
 
+      // Evitar que se quede pegado en los extremos
       if (scrollArea.scrollTop === 0) {
         scrollArea.scrollTop = 1;
       } else if (scrollArea.scrollTop === maxScroll) {
@@ -93,7 +85,7 @@ export default function InteractiveLayout({
 
     window.addEventListener("wheel", handleScroll, { passive: false });
     return () => window.removeEventListener("wheel", handleScroll);
-  }, [mobile]);
+  }, [mobile, scrollAreaRef]);
 
   return (
     <>
@@ -106,7 +98,7 @@ export default function InteractiveLayout({
       />
       <MobileHeader dictionary={dictionary} profiles={profiles} />
       <div
-        className="min-h-screen overflow-y-hidden grid grid-cols-1 lg:grid-cols-2 w-full
+        className="min-h-screen grid grid-cols-1 lg:grid-cols-2 w-full
          px-5 max-w-screen-xl mx-auto md:px-16 lg:px-24 transition-colors duration-300"
         style={{
           backgroundColor: "var(--color-background)",
