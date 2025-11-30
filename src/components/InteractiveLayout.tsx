@@ -23,7 +23,6 @@ export default function InteractiveLayout({
   dictionary,
   profiles,
 }: InteractiveLayoutProps) {
-
   // Keyboard navigation setup - auto-discovers navigable elements
   const { isKeyboardMode, currentActionHint } = useKeyboardNavigation({
     smooth: true,
