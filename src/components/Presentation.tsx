@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
 
 interface Basics {
   name: string;
@@ -13,9 +14,10 @@ interface Basics {
 interface PresentationProps {
   lang: Locale;
   basics: Basics;
+  dictionary: Dictionary;
 }
 
-const Presentation: React.FC<PresentationProps> = ({ lang, basics }) => {
+const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
   return (
     <motion.div
       className="w-full"
@@ -44,9 +46,7 @@ const Presentation: React.FC<PresentationProps> = ({ lang, basics }) => {
         className="mt-4 lg:mt-8 text-base leading-relaxed max-w-xs md:max-w-sm lg:max-w-sm"
         style={{ color: "var(--color-muted)" }}
       >
-        {lang === "en"
-          ? "I am always looking for new opportunities to work on exciting projects. If you have an idea or a project in mind, feel free to reach me out."
-          : "Siempre estoy buscando nuevas oportunidades para trabajar en proyectos emocionantes. Si tienes una idea o un proyecto en mente, no dudes en contactarme."}
+        {dictionary.cta.lookingForOpportunities}
       </p>
     </motion.div>
   );

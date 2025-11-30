@@ -7,15 +7,21 @@ import { KeyboardNavigationHint } from "@/components/KeyboardNavigationHint";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MobileHeader from "@/components/MobileHeader";
 import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
+import type { Profile } from "@/types";
 
 interface InteractiveLayoutProps {
   children: React.ReactNode;
   lang: Locale;
+  dictionary: Dictionary;
+  profiles: Profile[];
 }
 
 export default function InteractiveLayout({
   children,
   lang,
+  dictionary,
+  profiles,
 }: InteractiveLayoutProps) {
   const [mobile, setMobile] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -96,9 +102,9 @@ export default function InteractiveLayout({
       <KeyboardNavigationHint
         isKeyboardMode={isKeyboardMode}
         actionHint={currentActionHint}
-        lang={lang}
+        dictionary={dictionary}
       />
-      <MobileHeader lang={lang} />
+      <MobileHeader dictionary={dictionary} profiles={profiles} />
       <div
         className="min-h-screen overflow-y-hidden grid grid-cols-1 lg:grid-cols-2 w-full
          px-5 max-w-screen-xl mx-auto md:px-16 lg:px-24 transition-colors duration-300"

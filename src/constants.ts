@@ -1,7 +1,7 @@
 // Constantes de navegación
 export const NAV_ITEMS = [
-  { id: "about", label: "About" },
-  { id: "history", label: "Experience" },
+  { id: "about", labelKey: "about" },
+  { id: "history", labelKey: "experience" },
 ] as const;
 
 // Mapeo de logos de empresas

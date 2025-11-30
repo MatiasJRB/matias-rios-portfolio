@@ -1,5 +1,5 @@
 import { cn } from "@/utils";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import {
   FaCode,
@@ -24,12 +24,9 @@ import { COMPANY_LOGOS } from "@/constants";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
-const History: React.FC<HistoryProps & { lang: Locale; work: Job[] }> = ({
-  className,
-  id = "history",
-  lang,
-  work,
-}) => {
+const History: React.FC<
+  HistoryProps & { lang: Locale; work: Job[]; dictionary: Dictionary }
+> = ({ className, id = "history", lang: _lang, work, dictionary }) => {
   const [isLoading] = useState(false);
   // Función para obtener el logo de la empresa
   const getCompanyLogo = (companyName: string) => {
@@ -318,7 +315,7 @@ const History: React.FC<HistoryProps & { lang: Locale; work: Job[] }> = ({
                     className="text-xs font-semibold uppercase tracking-wider mb-3"
                     style={{ color: "var(--color-muted)" }}
                   >
-                    Key Responsibilities
+                    {dictionary.history.keyResponsibilities}
                   </h4>{" "}
                   <div className="space-y-2">
                     {job.highlights.map((task, taskIndex) => (
@@ -401,7 +398,7 @@ const History: React.FC<HistoryProps & { lang: Locale; work: Job[] }> = ({
               }
             }}
           >
-            View Full Resume
+            {dictionary.history.viewFullResume}
             <div
               className="ml-2 transform transition-all duration-200 ease-in-out
               translate-x-0 translate-y-0 group-hover:translate-x-1 group-hover:-translate-y-1"

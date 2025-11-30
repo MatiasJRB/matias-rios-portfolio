@@ -9,13 +9,16 @@ import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import type { Locale } from "@/i18n/config";
 import type { Resume } from "@/types";
+import type { Dictionary } from "@/i18n/types";
 
 export default function PageContent({
   lang,
   resume,
+  dictionary,
 }: {
   lang: Locale;
   resume: Resume;
+  dictionary: Dictionary;
 }) {
   const [mobile, setMobile] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -40,14 +43,21 @@ export default function PageContent({
           id="presentation"
           className="pt-16 md:pt-24 mb-6 md:mb-16 px-0 md:px-4 scroll-mt-24"
         >
-          <Presentation lang={lang} basics={resume.basics} />
+          <Presentation
+            lang={lang}
+            basics={resume.basics}
+            dictionary={dictionary}
+          />
           {!mobile && (
             <nav aria-label="Section navigation" className="mt-8 lg:mt-16">
-              <Selector lang={lang} className="" />
+              <Selector dictionary={dictionary} className="" />
             </nav>
           )}
           <div className="lg:fixed lg:bottom-16 w-full flex justify-between items-center mt-8">
-            <SocialMedia profiles={resume.basics.profiles} />
+            <SocialMedia
+              profiles={resume.basics.profiles}
+              dictionary={dictionary}
+            />
             <LanguageSwitcher currentLocale={lang} />
           </div>
         </header>
@@ -69,7 +79,7 @@ export default function PageContent({
             className="text-xs font-bold mb-2 uppercase tracking-wider"
             style={{ color: "var(--color-muted)" }}
           >
-            {lang === "en" ? "About" : "Acerca de"}
+            {dictionary.sections.about}
           </h2>
         )}
         <section id="about" aria-labelledby="about-heading">
@@ -82,11 +92,16 @@ export default function PageContent({
             className="mt-8 text-xs font-bold mb-2 uppercase tracking-wider"
             style={{ color: "var(--color-muted)" }}
           >
-            {lang === "en" ? "History" : "Experiencia"}
+            {dictionary.sections.history}
           </h2>
         )}
         <section id="history" aria-labelledby="history-heading">
-          <History lang={lang} work={resume.work} className="mt-8" />
+          <History
+            lang={lang}
+            work={resume.work}
+            className="mt-8"
+            dictionary={dictionary}
+          />
         </section>
 
         <Footer footer={resume.footer} className="my-8" />

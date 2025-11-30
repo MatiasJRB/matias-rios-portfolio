@@ -1,17 +1,17 @@
 "use client";
 
-import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
 
 interface KeyboardNavigationHintProps {
   isKeyboardMode?: boolean;
   actionHint?: string | null;
-  lang: Locale;
+  dictionary: Dictionary;
 }
 
 export const KeyboardNavigationHint = ({
   isKeyboardMode = false,
   actionHint = null,
-  lang: _lang,
+  dictionary,
 }: KeyboardNavigationHintProps) => {
   return (
     <div
@@ -64,7 +64,7 @@ export const KeyboardNavigationHint = ({
               transition: "color 0.2s ease",
             }}
           >
-            navegar
+            {dictionary.keyboard.navigate}
           </span>
         </div>
 

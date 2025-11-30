@@ -49,5 +49,25 @@
     "keyboardHint": "Presiona Tab para navegar",
     "focusIndicator": "Navegación por teclado activa",
     "navigationMenu": "Menú de navegación"
+  },
+  "history": {
+    "keyResponsibilities": "Responsabilidades Principales",
+    "viewFullResume": "Ver CV Completo"
+  },
+  "social": {
+    "githubProfile": "Perfil de GitHub",
+    "linkedinProfile": "Perfil de LinkedIn",
+    "emailContact": "Contacto por Email",
+    "socialMediaProfile": "Perfil en Redes Sociales"
+  },
+  "keyboard": {
+    "navigate": "navegar"
+  },
+  "sections": {
+    "about": "Acerca de",
+    "history": "Experiencia"
+  },
+  "cta": {
+    "lookingForOpportunities": "Siempre estoy buscando nuevas oportunidades para trabajar en proyectos emocionantes. Si tienes una idea o un proyecto en mente, no dudes en contactarme."
   }
 }

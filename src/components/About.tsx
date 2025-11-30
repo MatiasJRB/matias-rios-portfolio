@@ -2,19 +2,29 @@
 
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 import type { AboutProps } from "@/types";
 
 export default function About({
   className,
   about,
 }: AboutProps & { about: string }) {
-  // Convert HTML string to paragraphs with keyboard navigation support
-  const renderNavigableParagraphs = (htmlString: string) => {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = htmlString;
-    const paragraphs = tempDiv.querySelectorAll("p");
+  // Extract paragraph content using regex (works on both server and client)
+  const paragraphs = useMemo(() => {
+    const paragraphRegex = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+    const matches: string[] = [];
+    let match;
 
-    return Array.from(paragraphs).map((p, index) => (
+    while ((match = paragraphRegex.exec(about)) !== null) {
+      matches.push(match[1]);
+    }
+
+    // If no <p> tags found, treat the whole content as one paragraph
+    if (matches.length === 0 && about.trim()) {
+      matches.push(about);
+    }
+
+    return matches.map((content, index) => (
       <div
         key={index}
         data-paragraph
@@ -29,11 +39,11 @@ export default function About({
         <p
           className="text-sm leading-relaxed"
           style={{ color: "var(--color-muted)" }}
-          dangerouslySetInnerHTML={{ __html: p.innerHTML }}
+          dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>
     ));
-  };
+  }, [about]);
 
   return (
     <motion.div
@@ -45,7 +55,7 @@ export default function About({
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="space-y-4">{renderNavigableParagraphs(about)}</div>
+      <div className="space-y-4">{paragraphs}</div>
     </motion.div>
   );
 }

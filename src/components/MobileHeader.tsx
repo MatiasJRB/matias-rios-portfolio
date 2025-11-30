@@ -1,34 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import SocialMedia from "./SocialMedia";
 import { cn } from "@/utils";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { NAV_ITEMS } from "@/constants";
-import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
+import type { Profile } from "@/types";
 
-const MobileHeader = ({ lang }: { lang: Locale }) => {
+interface MobileHeaderProps {
+  dictionary: Dictionary;
+  profiles: Profile[];
+}
+
+const MobileHeader = ({ dictionary, profiles }: MobileHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [_isScrolled, _setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
-  const [_name, _setName] = useState("");
-
-  useEffect(() => {
-    import(`@/data/resume/${lang}.json`).then((data) => {
-      _setName(data.default.basics.name);
-    });
-  }, [lang]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      _setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   if (!isMobile) return null;
 
@@ -82,25 +71,29 @@ const MobileHeader = ({ lang }: { lang: Locale }) => {
             transition={{ duration: 0.2 }}
           >
             <nav className="px-6 py-4 space-y-4">
-              {NAV_ITEMS.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className="block w-full text-left py-3 px-4 rounded-lg transition-all duration-200 uppercase text-sm font-bold tracking-widest"
-                  style={{ color: "var(--color-text)" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor =
-                      "var(--color-surface)";
-                    e.currentTarget.style.color = "var(--color-primary)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "var(--color-text)";
-                  }}
-                >
-                  {item.label}
-                </button>
-              ))}
+              {NAV_ITEMS.map((item) => {
+                const label =
+                  dictionary.nav[item.labelKey as keyof typeof dictionary.nav];
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className="block w-full text-left py-3 px-4 rounded-lg transition-all duration-200 uppercase text-sm font-bold tracking-widest"
+                    style={{ color: "var(--color-text)" }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor =
+                        "var(--color-surface)";
+                      e.currentTarget.style.color = "var(--color-primary)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                      e.currentTarget.style.color = "var(--color-text)";
+                    }}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </nav>
 
             {/* Social Media in Mobile Menu */}
@@ -109,7 +102,8 @@ const MobileHeader = ({ lang }: { lang: Locale }) => {
               style={{ borderColor: "var(--color-border)" }}
             >
               <SocialMedia
-                lang={lang}
+                profiles={profiles}
+                dictionary={dictionary}
                 behavior="justify-start"
                 className="mt-4"
               />

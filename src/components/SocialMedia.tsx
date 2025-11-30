@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
 import type { SocialMediaProps, Profile } from "@/types";
+import type { Dictionary } from "@/i18n/types";
 
 const iconMap: Record<string, React.ElementType> = {
   "fab fa-github": FaGithub,
@@ -12,8 +13,12 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const SocialMedia: React.FC<
-  SocialMediaProps & { behavior?: string; profiles: Profile[] }
-> = ({ behavior = "justify-start", className, profiles }) => {
+  SocialMediaProps & {
+    behavior?: string;
+    profiles: Profile[];
+    dictionary: Dictionary;
+  }
+> = ({ behavior = "justify-start", className, profiles, dictionary }) => {
   const handleURL = (url: string) => {
     if (url.startsWith("https://")) {
       window.open(url, "_blank");
@@ -23,9 +28,10 @@ const SocialMedia: React.FC<
   };
 
   const getAriaLabel = (url: string) => {
-    if (url.includes("github")) return "GitHub Profile";
-    if (url.includes("linkedin")) return "LinkedIn Profile";
-    return "Social Media Profile";
+    if (url.includes("github")) return dictionary.social.githubProfile;
+    if (url.includes("linkedin")) return dictionary.social.linkedinProfile;
+    if (url.includes("mailto")) return dictionary.social.emailContact;
+    return dictionary.social.socialMediaProfile;
   };
 
   return (

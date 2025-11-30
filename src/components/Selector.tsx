@@ -1,31 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
-import type { NavItem, SelectorProps } from "@/types";
+import type { SelectorProps } from "@/types";
 import { NAV_ITEMS } from "@/constants";
-import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
-const Selector: React.FC<SelectorProps & { lang: Locale }> = ({
+const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
   className,
-  lang,
+  dictionary,
 }) => {
   const [selectedSection, setSelectedSection] = useState("about");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
-  const [_dict, _setDict] = useState<Dictionary | null>(null);
 
-  useEffect(() => {
-    async function loadDict() {
-      const dictModule = await import(`@/i18n/dictionaries/${lang}.json`);
-      _setDict(dictModule.default);
-    }
-    loadDict();
-  }, [lang]);
-
-  const handleSelect = (item: NavItem) => {
-    const section = document.getElementById(item.id);
+  const handleSelect = (id: string) => {
+    const section = document.getElementById(id);
     if (section) {
-      setSelectedSection(item.id);
+      setSelectedSection(id);
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -90,6 +80,8 @@ const Selector: React.FC<SelectorProps & { lang: Locale }> = ({
       {NAV_ITEMS.map((item) => {
         const isSelected = selectedSection === item.id;
         const isHovered = hoveredSection === item.id;
+        const label =
+          dictionary.nav[item.labelKey as keyof typeof dictionary.nav];
 
         return (
           <div
@@ -97,7 +89,7 @@ const Selector: React.FC<SelectorProps & { lang: Locale }> = ({
             className="mb-4 cursor-pointer flex items-center"
             onMouseOver={() => setHoveredSection(item.id)}
             onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => handleSelect(item)}
+            onClick={() => handleSelect(item.id)}
           >
             <motion.span
               className="h-px mr-3"
@@ -121,7 +113,7 @@ const Selector: React.FC<SelectorProps & { lang: Locale }> = ({
               }}
               transition={{ duration: 0.2 }}
             >
-              {item.label}
+              {label}
             </motion.button>
           </div>
         );
