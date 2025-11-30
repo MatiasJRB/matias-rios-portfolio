@@ -24,25 +24,13 @@ import { COMPANY_LOGOS } from "@/constants";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
-const History: React.FC<HistoryProps & { lang: Locale }> = ({
+const History: React.FC<HistoryProps & { lang: Locale; work: Job[] }> = ({
   className,
   id = "history",
   lang,
+  work,
 }) => {
-  const [work, setWork] = useState<Job[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [_dict, _setDict] = useState<Dictionary | null>(null);
-
-  useEffect(() => {
-    Promise.all([
-      import(`@/data/resume/${lang}.json`),
-      import(`@/i18n/dictionaries/${lang}.json`),
-    ]).then(([resumeData, dictData]) => {
-      setWork(resumeData.default.work);
-      _setDict(dictData.default);
-      setIsLoading(false);
-    });
-  }, [lang]);
+  const [isLoading] = useState(false);
   // Función para obtener el logo de la empresa
   const getCompanyLogo = (companyName: string) => {
     return COMPANY_LOGOS[companyName] || null;

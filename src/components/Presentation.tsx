@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import type { Locale } from "@/i18n/config";
-import type { Dictionary } from "@/i18n/types";
 
 interface Basics {
   name: string;
@@ -14,25 +12,10 @@ interface Basics {
 
 interface PresentationProps {
   lang: Locale;
+  basics: Basics;
 }
 
-const Presentation: React.FC<PresentationProps> = ({ lang }) => {
-  const [basics, setBasics] = useState<Basics | null>(null);
-  const [dict, setDict] = useState<Dictionary | null>(null);
-
-  useEffect(() => {
-    async function loadData() {
-      const [resumeModule, dictModule] = await Promise.all([
-        import(`@/data/resume/${lang}.json`),
-        import(`@/i18n/dictionaries/${lang}.json`),
-      ]);
-      setBasics(resumeModule.default.basics);
-      setDict(dictModule.default);
-    }
-    loadData();
-  }, [lang]);
-
-  if (!basics || !dict) return null;
+const Presentation: React.FC<PresentationProps> = ({ lang, basics }) => {
   return (
     <motion.div
       className="w-full"

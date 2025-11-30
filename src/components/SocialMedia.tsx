@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
-import type { SocialMediaProps } from "@/types";
-import type { Locale } from "@/i18n/config";
+import type { SocialMediaProps, Profile } from "@/types";
 
 const iconMap: Record<string, React.ElementType> = {
   "fab fa-github": FaGithub,
@@ -12,23 +11,9 @@ const iconMap: Record<string, React.ElementType> = {
   email: MdEmail,
 };
 
-interface Profile {
-  icon: string;
-  url: string;
-}
-
 const SocialMedia: React.FC<
-  SocialMediaProps & { behavior?: string; lang: Locale }
-> = ({ behavior = "justify-start", className, lang }) => {
-  const [profiles, setProfiles] = useState<Profile[]>([]);
-
-  useEffect(() => {
-    async function loadResume() {
-      const resumeModule = await import(`@/data/resume/${lang}.json`);
-      setProfiles(resumeModule.default.basics.profiles);
-    }
-    loadResume();
-  }, [lang]);
+  SocialMediaProps & { behavior?: string; profiles: Profile[] }
+> = ({ behavior = "justify-start", className, profiles }) => {
   const handleURL = (url: string) => {
     if (url.startsWith("https://")) {
       window.open(url, "_blank");
@@ -46,7 +31,7 @@ const SocialMedia: React.FC<
   return (
     <div className={cn(`flex ${behavior}`, className)}>
       {profiles.map((profile, index) => {
-        const IconComponent = iconMap[profile.icon] || null;
+        const IconComponent = profile.icon ? iconMap[profile.icon] : null;
         return IconComponent ? (
           <motion.div
             key={index}

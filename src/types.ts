@@ -40,6 +40,7 @@ export interface Job {
 export interface Resume {
   basics: Basics;
   work: Job[];
+  footer: string;
 }
 
 // Component Props

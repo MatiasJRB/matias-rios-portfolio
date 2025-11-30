@@ -2,24 +2,12 @@
 
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { SkeletonAbout } from "./SkeletonLoader";
-import type { AboutProps, Basics } from "@/types";
-import type { Locale } from "@/i18n/config";
+import type { AboutProps } from "@/types";
 
 export default function About({
   className,
-  lang,
-}: AboutProps & { lang: Locale }) {
-  const [about, setAbout] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    import(`@/data/resume/${lang}.json`).then((data) => {
-      setAbout((data.default.basics as Basics).about);
-      setIsLoading(false);
-    });
-  }, [lang]);
+  about,
+}: AboutProps & { about: string }) {
 
   // Convert HTML string to paragraphs with keyboard navigation support
   const renderNavigableParagraphs = (htmlString: string) => {
@@ -58,11 +46,7 @@ export default function About({
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {isLoading ? (
-        <SkeletonAbout />
-      ) : (
-        <div className="space-y-4">{renderNavigableParagraphs(about)}</div>
-      )}
+      <div className="space-y-4">{renderNavigableParagraphs(about)}</div>
     </motion.div>
   );
 }
