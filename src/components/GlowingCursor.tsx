@@ -1,17 +1,31 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTheme } from "next-themes";
 
 export default function GlowingCursor() {
-  const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
-  const [mounted, setMounted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const { theme } = useTheme();
+  const normalLayerRef = useRef<HTMLDivElement>(null);
+  const hoverLayerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
+    // Mostrar el cursor solo en el cliente
+    if (containerRef.current) {
+      containerRef.current.style.opacity = "1";
+    }
+
     const updateCursor = (e: MouseEvent) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
+      const x = e.clientX;
+      const y = e.clientY;
+
+      // Actualizar posición directamente en el DOM para evitar re-renders
+      if (normalLayerRef.current) {
+        normalLayerRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, var(--glow-color-normal), transparent 40%)`;
+      }
+      if (hoverLayerRef.current) {
+        hoverLayerRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, var(--glow-color-hover), transparent 40%)`;
+      }
 
       // Detectar si está sobre un elemento interactivo
       const target = e.target as HTMLElement;
@@ -24,29 +38,46 @@ export default function GlowingCursor() {
 
       setIsHovering(isInteractive);
     };
+
     window.addEventListener("mousemove", updateCursor);
     return () => window.removeEventListener("mousemove", updateCursor);
   }, []);
 
-  if (!mounted) return null;
-
-  const glowColor =
-    theme === "dark"
-      ? isHovering
-        ? "rgba(0, 238, 144, 0.25)" // Verde cuando hover
-        : "rgba(51, 49, 123, 0.2)" // Violeta normal
-      : isHovering
-      ? "rgba(0, 238, 144, 0.2)" // Verde cuando hover
-      : "rgba(59, 130, 246, 0.15)"; // Azul normal
-
-  const gradientSize = isHovering ? "40%" : theme === "dark" ? "35%" : "25%";
+  const glowColorNormal =
+    theme === "dark" ? "rgba(51, 49, 123, 0.15)" : "rgba(59, 130, 246, 0.1)";
+  const glowColorHover =
+    theme === "dark" ? "rgba(0, 238, 144, 0.2)" : "rgba(0, 238, 144, 0.15)";
 
   return (
     <div
-      className="pointer-events-none fixed top-0 left-0 w-screen h-screen -z-10 transition-all duration-300"
-      style={{
-        background: `radial-gradient(circle at ${cursorPos.x}px ${cursorPos.y}px, ${glowColor} 0%, transparent ${gradientSize})`,
-      }}
-    ></div>
+      ref={containerRef}
+      className="pointer-events-none fixed inset-0 z-30 overflow-hidden"
+      style={
+        {
+          opacity: 0,
+          "--glow-color-normal": glowColorNormal,
+          "--glow-color-hover": glowColorHover,
+        } as React.CSSProperties
+      }
+    >
+      {/* Capa normal */}
+      <div
+        ref={normalLayerRef}
+        className="absolute inset-0"
+        style={{
+          opacity: isHovering ? 0 : 1,
+          transition: "opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
+      {/* Capa hover */}
+      <div
+        ref={hoverLayerRef}
+        className="absolute inset-0"
+        style={{
+          opacity: isHovering ? 1 : 0,
+          transition: "opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
+    </div>
   );
 }

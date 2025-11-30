@@ -38,36 +38,37 @@ const SocialMedia: React.FC<SocialMediaProps & { behavior?: string }> = ({
   };
 
   return (
-    <motion.div
-      className={cn(`flex ${behavior}`, className)}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.4 }}
-    >
+    <div className={cn(`flex ${behavior}`, className)}>
       {profiles.map((profile, index) => {
         const IconComponent = iconMap[profile.icon] || null;
         return IconComponent ? (
-          <IconComponent
+          <motion.div
             key={index}
-            size={24}
-            className="cursor-pointer transition-colors duration-300 mr-6"
-            style={{
-              color: "var(--color-muted)",
-            }}
-            onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
-              e.currentTarget.style.color = "var(--color-text)";
-            }}
-            onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
-              e.currentTarget.style.color = "var(--color-muted)";
-            }}
-            onClick={() => handleURL(profile.url)}
-            aria-label={getAriaLabel(profile.url)}
-            role="button"
-            tabIndex={0}
-          />
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+          >
+            <IconComponent
+              size={24}
+              className="cursor-pointer transition-colors duration-300 mr-6"
+              style={{
+                color: "var(--color-muted)",
+              }}
+              onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
+                e.currentTarget.style.color = "var(--color-text)";
+              }}
+              onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
+                e.currentTarget.style.color = "var(--color-muted)";
+              }}
+              onClick={() => handleURL(profile.url)}
+              aria-label={getAriaLabel(profile.url)}
+              role="button"
+              tabIndex={0}
+            />
+          </motion.div>
         ) : null;
       })}
-    </motion.div>
+    </div>
   );
 };
 

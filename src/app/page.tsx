@@ -20,7 +20,7 @@ const Page = () => {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   // Keyboard navigation setup - auto-discovers navigable elements
-  const { isKeyboardMode } = useKeyboardNavigation({
+  const { isKeyboardMode, currentActionHint } = useKeyboardNavigation({
     smooth: true,
   });
 
@@ -92,7 +92,10 @@ const Page = () => {
     <>
       <SkipToContent />
       <ParallaxBackground />
-      <KeyboardNavigationHint isKeyboardMode={isKeyboardMode} />
+      <KeyboardNavigationHint
+        isKeyboardMode={isKeyboardMode}
+        actionHint={currentActionHint}
+      />
       <MobileHeader />
       <div
         className="min-h-screen overflow-y-hidden grid grid-cols-1 lg:grid-cols-2 w-full

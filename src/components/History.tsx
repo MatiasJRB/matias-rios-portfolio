@@ -161,11 +161,16 @@ const History: React.FC<HistoryProps> = ({ className, id = "history" }) => {
                   willChange: "transform, opacity",
                 }}
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                animate={index === 0 ? { opacity: 1, y: 0 } : undefined}
+                whileInView={index === 0 ? undefined : { opacity: 1, y: 0 }}
+                viewport={
+                  index === 0
+                    ? undefined
+                    : { once: true, margin: "-100px", amount: 0.1 }
+                }
                 transition={{
                   duration: 0.5,
-                  delay: index * 0.1,
+                  delay: index === 0 ? 0 : index * 0.1,
                   ease: "easeOut",
                 }}
               >
@@ -291,6 +296,7 @@ const History: React.FC<HistoryProps> = ({ className, id = "history" }) => {
                 {/* RESUMEN */}
                 <div
                   data-job-summary
+                  data-job-url={job.url}
                   className="relative scroll-mt-24"
                   style={{ paddingLeft: "24px" }}
                 >
@@ -320,6 +326,7 @@ const History: React.FC<HistoryProps> = ({ className, id = "history" }) => {
                       <div
                         key={task}
                         id={`${jobId}-task-${taskIndex}`}
+                        data-job-url={job.url}
                         className="group/item flex items-start space-x-3 
                   p-4 rounded-lg transition-all duration-200 border scroll-mt-24"
                         style={{

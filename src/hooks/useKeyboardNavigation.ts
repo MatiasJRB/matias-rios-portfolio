@@ -15,6 +15,9 @@ export const useKeyboardNavigation = ({
   const isNavigating = useRef(false);
   const [isKeyboardMode, setIsKeyboardMode] = useState(false);
   const [currentSection, setCurrentSection] = useState<string | null>(null);
+  const [currentActionHint, setCurrentActionHint] = useState<string | null>(
+    null
+  );
   const navigableElements = useRef<HTMLElement[]>([]);
   const currentHoveredElement = useRef<HTMLElement | null>(null);
   const hasCollected = useRef(false);
@@ -88,6 +91,36 @@ export const useKeyboardNavigation = ({
       const isFooterParagraph = element.hasAttribute("data-footer-paragraph");
       const isViewResume = element.id === "view-resume";
 
+      // Helper function to extract domain from URL
+      const getDomainFromUrl = (url: string | null): string | null => {
+        if (!url) return null;
+        try {
+          const domain = new URL(url).hostname.replace("www.", "");
+          return domain;
+        } catch {
+          return null;
+        }
+      };
+
+      // Update action hint based on element type
+      if (isHover) {
+        if (isViewResume) {
+          setCurrentActionHint("open cv");
+        } else if (isJobSummary) {
+          const url = element.getAttribute("data-job-url");
+          const domain = getDomainFromUrl(url);
+          setCurrentActionHint(domain ? `visit ${domain}` : "visit page");
+        } else if (isTask) {
+          const url = element.getAttribute("data-job-url");
+          const domain = getDomainFromUrl(url);
+          setCurrentActionHint(domain ? `visit ${domain}` : "visit page");
+        } else {
+          setCurrentActionHint(null);
+        }
+      } else {
+        setCurrentActionHint(null);
+      }
+
       if (isTask) {
         if (isHover) {
           element.style.backgroundColor = "var(--color-background)";
@@ -152,6 +185,29 @@ export const useKeyboardNavigation = ({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Handle Enter key for opening links
+      if (e.key === "Enter" && isKeyboardMode) {
+        const elements = navigableElements.current;
+        const currentElement = elements[currentIndex.current];
+
+        if (currentElement) {
+          // Check if it's the view resume button
+          if (currentElement.id === "view-resume") {
+            e.preventDefault();
+            window.open("/[ENG]_Matias_Rios_CV_Jan_25.pdf", "_blank");
+            return;
+          }
+
+          // Check if it's a job summary or task (both have data-job-url attribute)
+          const jobUrl = currentElement.getAttribute("data-job-url");
+          if (jobUrl) {
+            e.preventDefault();
+            window.open(jobUrl, "_blank");
+            return;
+          }
+        }
+      }
+
       if (!["ArrowUp", "ArrowDown"].includes(e.key)) return;
       e.preventDefault();
 
@@ -221,7 +277,7 @@ export const useKeyboardNavigation = ({
           () => {
             isNavigating.current = false;
           },
-          smooth ? 300 : 50
+          smooth ? 100 : 50
         );
       }
     };
@@ -231,6 +287,7 @@ export const useKeyboardNavigation = ({
         setIsKeyboardMode(false);
         clearCurrentHover();
         setCurrentSection(null);
+        setCurrentActionHint(null);
       }
     };
 
@@ -239,6 +296,7 @@ export const useKeyboardNavigation = ({
         setIsKeyboardMode(false);
         clearCurrentHover();
         setCurrentSection(null);
+        setCurrentActionHint(null);
       }
     };
 
@@ -247,6 +305,7 @@ export const useKeyboardNavigation = ({
         setIsKeyboardMode(false);
         clearCurrentHover();
         setCurrentSection(null);
+        setCurrentActionHint(null);
       }
     };
 
@@ -275,5 +334,6 @@ export const useKeyboardNavigation = ({
   return {
     isKeyboardMode,
     currentSection,
+    currentActionHint,
   };
 };
