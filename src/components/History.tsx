@@ -289,12 +289,23 @@ const History: React.FC<HistoryProps> = ({ className, id = "history" }) => {
                   </a>
                 </div>
                 {/* RESUMEN */}
-                <p
-                  className="mt-2 text-sm"
-                  style={{ color: "var(--color-muted)" }}
+                <div 
+                  data-job-summary
+                  className="relative scroll-mt-24"
+                  style={{ paddingLeft: '24px' }}
                 >
-                  {job.summary}
-                </p>
+                  {/* Green dot indicator for summary */}
+                  <div 
+                    className="keyboard-indicator absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-green-500 transition-opacity duration-200"
+                    style={{ opacity: 0 }}
+                  />
+                  <p
+                    className="mt-2 text-sm"
+                    style={{ color: "var(--color-muted)" }}
+                  >
+                    {job.summary}
+                  </p>
+                </div>
                 {/* HIGHLIGHTS */}
                 <div className="mt-4">
                   {" "}

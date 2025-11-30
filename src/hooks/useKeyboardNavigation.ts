@@ -25,19 +25,27 @@ export const useKeyboardNavigation = ({
 
     // Get main sections
     const presentation = document.getElementById("presentation");
-    const about = document.getElementById("about");
-    const viewResume = document.getElementById("view-resume");
-    const footer = document.getElementById("footer");
+    
+    // Get About section paragraphs
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      const paragraphs = aboutSection.querySelectorAll<HTMLElement>('[data-paragraph]');
+      paragraphs.forEach((p) => {
+        elements.push(p);
+      });
+    }
 
-    if (presentation) elements.push(presentation);
-    if (about) elements.push(about);
-
-    // Get all job cards and their tasks - in DOM order (which should be chronological)
+    // Get all job cards and their content - in DOM order
     const jobCards = document.querySelectorAll<HTMLElement>(
-      '[id^="job-"]:not([id*="-task-"])'
+      '[id^="job-"]:not([id*="-task-"]):not([id*="-summary"])'
     );
     jobCards.forEach((job) => {
-      elements.push(job);
+      // Get summary paragraph
+      const summary = job.querySelector<HTMLElement>('[data-job-summary]');
+      if (summary) {
+        elements.push(summary);
+      }
+      
       // Get ALL tasks for this job in order
       const tasks = job.querySelectorAll<HTMLElement>(
         '[id^="' + job.id + '-task-"]'
@@ -47,21 +55,35 @@ export const useKeyboardNavigation = ({
       });
     });
 
+    // View resume button
+    const viewResume = document.getElementById("view-resume");
     if (viewResume) elements.push(viewResume);
-    if (footer) elements.push(footer);
+    
+    // Footer paragraph
+    const footer = document.getElementById("footer");
+    if (footer) {
+      const footerParagraph = footer.querySelector<HTMLElement>('[data-footer-paragraph]');
+      if (footerParagraph) {
+        elements.push(footerParagraph);
+      }
+    }
 
     navigableElements.current = elements;
     hasCollected.current = true;
     return elements;
   }, []);
 
-  // Apply the same hover styles that onMouseEnter applies
+  // Apply the same hover styles that onMouseEnter applies + green dot for paragraphs
   const applyHoverStyles = useCallback(
     (element: HTMLElement | null, isHover: boolean) => {
       if (!element) return;
 
-      // Only apply to task elements (the ones with the hover effect)
+      // Check element type
       const isTask = element.id.includes("-task-");
+      const isParagraph = element.hasAttribute('data-paragraph');
+      const isJobSummary = element.hasAttribute('data-job-summary');
+      const isFooterParagraph = element.hasAttribute('data-footer-paragraph');
+      const isViewResume = element.id === 'view-resume';
 
       if (isTask) {
         if (isHover) {
@@ -72,6 +94,26 @@ export const useKeyboardNavigation = ({
           element.style.backgroundColor = "var(--color-surface)";
           element.style.borderColor = "var(--color-border)";
           element.style.transform = "translateX(0)";
+        }
+      } else if (isParagraph || isJobSummary || isFooterParagraph) {
+        // Show/hide green dot indicator
+        const indicator = element.querySelector('.keyboard-indicator');
+        if (indicator) {
+          (indicator as HTMLElement).style.opacity = isHover ? '1' : '0';
+        }
+      } else if (isViewResume) {
+        if (isHover) {
+          element.style.color = "var(--color-accent)";
+          const arrow = element.querySelector('.resume-arrow');
+          if (arrow) {
+            (arrow as HTMLElement).style.color = "var(--color-accent)";
+          }
+        } else {
+          element.style.color = "var(--color-text)";
+          const arrow = element.querySelector('.resume-arrow');
+          if (arrow) {
+            (arrow as HTMLElement).style.color = "var(--color-text)";
+          }
         }
       }
     },
