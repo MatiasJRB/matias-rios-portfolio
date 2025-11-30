@@ -23,18 +23,19 @@ El middleware intercepta **todas las peticiones** y aplica esta lógica:
 ```typescript
 function getLocale(request: NextRequest): string {
   // 1️⃣ Primero: Verificar cookie de preferencia
-  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
+  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
   if (cookieLocale && i18n.locales.includes(cookieLocale)) {
-    return cookieLocale // ✅ Usa la preferencia guardada
+    return cookieLocale; // ✅ Usa la preferencia guardada
   }
 
   // 2️⃣ Segundo: Detectar del navegador
-  const languages = new Negotiator({ headers }).languages()
-  return match(languages, i18n.locales, i18n.defaultLocale)
+  const languages = new Negotiator({ headers }).languages();
+  return match(languages, i18n.locales, i18n.defaultLocale);
 }
 ```
 
 **Características**:
+
 - ✅ Lee la cookie `NEXT_LOCALE` primero
 - ✅ Si no existe cookie, usa `Accept-Language` del navegador
 - ✅ Guarda automáticamente la preferencia en cookie (1 año)
@@ -47,14 +48,15 @@ Cuando el usuario cambia manualmente el idioma:
 ```typescript
 const switchLocale = (newLocale: Locale) => {
   // Guardar preferencia en cookie
-  setLocaleCookie(newLocale) // ✨ NUEVO
-  
+  setLocaleCookie(newLocale); // ✨ NUEVO
+
   // Navegar a la nueva ruta
-  router.push(`/${newLocale}/...`)
-}
+  router.push(`/${newLocale}/...`);
+};
 ```
 
 **Características**:
+
 - ✅ Guarda la preferencia del usuario
 - ✅ La cookie persiste por 1 año
 - ✅ Se respeta en todas las visitas futuras
@@ -65,10 +67,10 @@ Funciones auxiliares para manejar cookies:
 
 ```typescript
 // Guardar preferencia
-setLocaleCookie('es') // Guarda por 1 año
+setLocaleCookie("es"); // Guarda por 1 año
 
 // Leer preferencia (cliente)
-getLocaleCookie() // Returns 'es' | 'en' | null
+getLocaleCookie(); // Returns 'es' | 'en' | null
 ```
 
 ## 🎯 Flujos de Usuario
@@ -134,6 +136,7 @@ Accept-Language: es-AR,es;q=0.9,en-US;q=0.8,en;q=0.7
 ```
 
 **Interpretación**:
+
 - `es-AR` (prioridad máxima)
 - `es` (0.9)
 - `en-US` (0.8)
@@ -156,10 +159,11 @@ El sistema usa **@formatjs/intl-localematcher** para encontrar la mejor coincide
 ### Middleware Matcher
 
 ```typescript
-matcher: ['/((?!_next|api|icons|images|.*\\..*).*)']
+matcher: ["/((?!_next|api|icons|images|.*\\..*).*)"];
 ```
 
 **Excluye**:
+
 - `/_next/*` - Assets de Next.js
 - `/api/*` - API routes
 - `/icons/*` - Iconos
@@ -203,7 +207,7 @@ En `src/i18n/cookies.ts`:
 
 ```typescript
 // De 1 año a 30 días
-maxAge: 30 * 24 * 60 * 60
+maxAge: 30 * 24 * 60 * 60;
 ```
 
 ### Forzar Respeto al Navegador
@@ -214,7 +218,7 @@ Si prefieres que siempre detecte del navegador (sin cookies):
 // En middleware.ts, comentar la parte de cookie
 function getLocale(request: NextRequest): string {
   // const cookieLocale = ... ❌ Comentar esto
-  
+
   // Siempre detectar del navegador
   const negotiatorHeaders = ...
   return match(languages, i18n.locales, i18n.defaultLocale)
@@ -228,13 +232,13 @@ Podrías usar headers de Vercel/Cloudflare:
 ```typescript
 function getLocale(request: NextRequest): string {
   // Cookie
-  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
-  if (cookieLocale) return cookieLocale
-  
+  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
+  if (cookieLocale) return cookieLocale;
+
   // Geolocalización (Vercel)
-  const country = request.headers.get('x-vercel-ip-country')
-  if (country === 'AR' || country === 'ES') return 'es'
-  
+  const country = request.headers.get("x-vercel-ip-country");
+  if (country === "AR" || country === "ES") return "es";
+
   // Accept-Language
   // ...
 }
@@ -254,7 +258,7 @@ const switchLocale = (newLocale: Locale) => {
       new_language: newLocale,
     })
   }
-  
+
   setLocaleCookie(newLocale)
   router.push(...)
 }
@@ -262,14 +266,14 @@ const switchLocale = (newLocale: Locale) => {
 
 ## ✅ Ventajas de Este Sistema
 
-| Ventaja | Descripción |
-|---------|-------------|
-| 🎯 **Automático** | Detecta idioma sin intervención del usuario |
-| 💾 **Persistente** | Recuerda preferencia del usuario |
-| 🚀 **Rápido** | Cookie se lee antes de renderizar |
-| 🌍 **Inteligente** | Usa mejores prácticas de i18n |
-| 🔒 **Seguro** | Cookie con SameSite=Lax |
-| ⚡ **Performance** | Zero impacto en bundle JS |
+| Ventaja            | Descripción                                 |
+| ------------------ | ------------------------------------------- |
+| 🎯 **Automático**  | Detecta idioma sin intervención del usuario |
+| 💾 **Persistente** | Recuerda preferencia del usuario            |
+| 🚀 **Rápido**      | Cookie se lee antes de renderizar           |
+| 🌍 **Inteligente** | Usa mejores prácticas de i18n               |
+| 🔒 **Seguro**      | Cookie con SameSite=Lax                     |
+| ⚡ **Performance** | Zero impacto en bundle JS                   |
 
 ## 🐛 Troubleshooting
 
@@ -278,10 +282,11 @@ const switchLocale = (newLocale: Locale) => {
 **Problema**: La cookie no persiste entre recargas.
 
 **Solución**: Verificar que el navegador permite cookies:
+
 ```javascript
 // DevTools Console
-document.cookie = "test=1"
-console.log(document.cookie) // Debe mostrar "test=1"
+document.cookie = "test=1";
+console.log(document.cookie); // Debe mostrar "test=1"
 ```
 
 ### Siempre redirige al mismo idioma
@@ -289,9 +294,11 @@ console.log(document.cookie) // Debe mostrar "test=1"
 **Problema**: Ignora el cambio de idioma.
 
 **Solución**: Borrar la cookie `NEXT_LOCALE`:
+
 ```javascript
 // DevTools Console
-document.cookie = "NEXT_LOCALE=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+document.cookie =
+  "NEXT_LOCALE=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 ```
 
 ### Middleware no ejecuta
@@ -299,6 +306,7 @@ document.cookie = "NEXT_LOCALE=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
 **Problema**: No hay redirección automática.
 
 **Solución**: Verificar que `middleware.ts` está en `src/`:
+
 ```
 src/
 ├── middleware.ts  ✅ Debe estar aquí
