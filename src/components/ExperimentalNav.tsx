@@ -14,7 +14,10 @@ interface ExperimentalNavProps {
   className?: string;
 }
 
-export function ExperimentalNav({ items, className = "" }: ExperimentalNavProps) {
+export function ExperimentalNav({
+  items,
+  className = "",
+}: ExperimentalNavProps) {
   const [activeSection, setActiveSection] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -55,13 +58,15 @@ export function ExperimentalNav({ items, className = "" }: ExperimentalNavProps)
   return (
     <div className={cn("relative", className)}>
       {/* Progress bar */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-opacity-20 rounded-full overflow-hidden"
-        style={{ backgroundColor: "var(--color-border)" }}>
+      <div
+        className="absolute left-0 top-0 bottom-0 w-1 bg-opacity-20 rounded-full overflow-hidden"
+        style={{ backgroundColor: "var(--color-border)" }}
+      >
         <motion.div
           className="w-full rounded-full"
-          style={{ 
+          style={{
             background: "var(--gradient-primary)",
-            boxShadow: "0 0 10px var(--color-primary)"
+            boxShadow: "0 0 10px var(--color-primary)",
           }}
           animate={{ height: `${scrollProgress}%` }}
           transition={{ duration: 0.1 }}
@@ -91,7 +96,7 @@ export function ExperimentalNav({ items, className = "" }: ExperimentalNavProps)
                 }}
                 transition={{ duration: 0.3 }}
               />
-              
+
               <motion.span
                 className="relative text-sm font-medium"
                 initial={false}
@@ -111,9 +116,9 @@ export function ExperimentalNav({ items, className = "" }: ExperimentalNavProps)
                 {isActive && (
                   <motion.div
                     className="absolute -left-6 top-1/2 w-1 h-8 rounded-r-full"
-                    style={{ 
+                    style={{
                       background: "var(--gradient-primary)",
-                      boxShadow: "0 0 10px var(--color-primary)"
+                      boxShadow: "0 0 10px var(--color-primary)",
                     }}
                     initial={{ opacity: 0, x: -10, y: "-50%" }}
                     animate={{ opacity: 1, x: 0, y: "-50%" }}
@@ -127,7 +132,8 @@ export function ExperimentalNav({ items, className = "" }: ExperimentalNavProps)
               <motion.div
                 className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none"
                 style={{
-                  background: "radial-gradient(circle at center, var(--color-primary)10, transparent 70%)",
+                  background:
+                    "radial-gradient(circle at center, var(--color-primary)10, transparent 70%)",
                 }}
                 transition={{ duration: 0.3 }}
               />
@@ -184,7 +190,8 @@ export function FloatingNav({ items }: FloatingNavProps) {
           style={{
             backgroundColor: "var(--color-card)",
             border: "1px solid var(--color-border)",
-            boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2), 0 0 20px var(--shadow-hover)",
+            boxShadow:
+              "0 10px 40px rgba(0, 0, 0, 0.2), 0 0 20px var(--shadow-hover)",
           }}
           initial={{ opacity: 0, y: 100, x: "-50%" }}
           animate={{ opacity: 1, y: 0, x: "-50%" }}
@@ -202,7 +209,9 @@ export function FloatingNav({ items }: FloatingNavProps) {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   animate={{
-                    color: isActive ? "var(--color-text)" : "var(--color-muted)",
+                    color: isActive
+                      ? "var(--color-text)"
+                      : "var(--color-muted)",
                   }}
                 >
                   {item.label}
@@ -211,7 +220,11 @@ export function FloatingNav({ items }: FloatingNavProps) {
                       className="absolute inset-0 rounded-full"
                       style={{ background: "var(--gradient-primary)" }}
                       layoutId="activeNav"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     />
                   )}
                   <span className="relative z-10">{item.label}</span>

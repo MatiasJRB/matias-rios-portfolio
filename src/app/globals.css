@@ -344,17 +344,21 @@ a:focus-visible {
 
 /* Glow effect para elementos interactivos */
 @keyframes glow-pulse {
-  0%, 100% {
-    box-shadow: 0 0 20px var(--color-primary)30, 0 0 40px var(--color-primary)15;
+  0%,
+  100% {
+    box-shadow: 0 0 20px var(--color-primary) 30,
+      0 0 40px var(--color-primary) 15;
   }
   50% {
-    box-shadow: 0 0 30px var(--color-primary)50, 0 0 60px var(--color-primary)25;
+    box-shadow: 0 0 30px var(--color-primary) 50,
+      0 0 60px var(--color-primary) 25;
   }
 }
 
 /* Gradient animation para texto */
 @keyframes gradient-shift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -426,7 +430,7 @@ a:focus-visible {
 }
 
 .glow-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
@@ -459,13 +463,18 @@ a:focus-visible {
 }
 
 .btn-modern::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -510,7 +519,7 @@ a:focus-visible {
 }
 
 .skill::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;

@@ -44,10 +44,10 @@ const SocialMedia: React.FC<
             key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.6, 
+            transition={{
+              duration: 0.6,
               delay: 0.4 + index * 0.15,
-              ease: [0.25, 0.4, 0.25, 1]
+              ease: [0.25, 0.4, 0.25, 1],
             }}
           >
             <MagneticButton strength={0.4}>
@@ -65,11 +65,13 @@ const SocialMedia: React.FC<
                   }}
                   onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
                     e.currentTarget.style.color = "var(--color-primary)";
-                    e.currentTarget.style.filter = "drop-shadow(0 0 8px var(--color-primary))";
+                    e.currentTarget.style.filter =
+                      "drop-shadow(0 0 8px var(--color-primary))";
                   }}
                   onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
                     e.currentTarget.style.color = "var(--color-muted)";
-                    e.currentTarget.style.filter = "drop-shadow(0 0 0px transparent)";
+                    e.currentTarget.style.filter =
+                      "drop-shadow(0 0 0px transparent)";
                   }}
                   onClick={() => handleURL(profile.url)}
                   aria-label={getAriaLabel(profile.url)}

@@ -13,7 +13,7 @@ export default function About({
 
   useEffect(() => {
     // Obtener el contenedor de scroll correcto
-    const rightColumn = document.querySelector('.right-column');
+    const rightColumn = document.querySelector(".right-column");
     scrollRootRef.current = rightColumn;
   }, []);
   // Extract paragraph content using regex (works on both server and client)
@@ -45,10 +45,10 @@ export default function About({
         {/* Green dot indicator with glow */}
         <div
           className="keyboard-indicator absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-opacity duration-200"
-          style={{ 
+          style={{
             opacity: 0,
             background: "var(--color-primary)",
-            boxShadow: "0 0 10px var(--color-primary)"
+            boxShadow: "0 0 10px var(--color-primary)",
           }}
         />
         <p

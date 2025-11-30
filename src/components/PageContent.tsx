@@ -37,9 +37,11 @@ export default function PageContent({
     <>
       {/* Left Column - Header Section */}
       <aside
-        className={`left-column ${mobile ? "mt-[-48px]" : ""} flex flex-col lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto`}
+        className={`left-column ${
+          mobile ? "mt-[-48px]" : ""
+        } flex flex-col lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto`}
         aria-label="Profile and navigation"
-        style={{ scrollbarWidth: 'none' }}
+        style={{ scrollbarWidth: "none" }}
       >
         <header
           id="presentation"

@@ -1,32 +1,32 @@
 // 🎨 EJEMPLO DE USO - Componentes Modernos 2025
 // Este archivo muestra cómo implementar todos los nuevos efectos
 
-import { 
-  MagneticButton, 
-  GlowCard, 
-  TiltCard, 
+import {
+  MagneticButton,
+  GlowCard,
+  TiltCard,
   FloatingElement,
   GradientText,
-  PulseGlow 
-} from '@/components/AdvancedEffects';
+  PulseGlow,
+} from "@/components/AdvancedEffects";
 
-import { 
-  ScrollReveal, 
-  ScrollParallax, 
+import {
+  ScrollReveal,
+  ScrollParallax,
   ScrollScale,
   StaggerChildren,
-  staggerItemVariants 
-} from '@/components/ScrollReveal';
+  staggerItemVariants,
+} from "@/components/ScrollReveal";
 
-import { ExperimentalNav, FloatingNav } from '@/components/ExperimentalNav';
-import { motion } from 'framer-motion';
+import { ExperimentalNav, FloatingNav } from "@/components/ExperimentalNav";
+import { motion } from "framer-motion";
 
 export default function ModernComponentsExample() {
   const navItems = [
-    { id: 'hero', label: 'Inicio' },
-    { id: 'features', label: 'Características' },
-    { id: 'projects', label: 'Proyectos' },
-    { id: 'contact', label: 'Contacto' },
+    { id: "hero", label: "Inicio" },
+    { id: "features", label: "Características" },
+    { id: "projects", label: "Proyectos" },
+    { id: "contact", label: "Contacto" },
   ];
 
   return (
@@ -40,7 +40,10 @@ export default function ModernComponentsExample() {
       <FloatingNav items={navItems} />
 
       {/* SECCIÓN HÉROE */}
-      <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <section
+        id="hero"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      >
         {/* Elemento flotante de fondo */}
         <ScrollParallax speed={0.5} className="absolute top-20 right-20">
           <FloatingElement duration={4} yOffset={20}>
@@ -59,7 +62,8 @@ export default function ModernComponentsExample() {
 
           <ScrollReveal direction="up" delay={0.2}>
             <p className="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-12">
-              Diseño moderno con efectos visuales avanzados y animaciones fluidas
+              Diseño moderno con efectos visuales avanzados y animaciones
+              fluidas
             </p>
           </ScrollReveal>
 
@@ -78,11 +82,15 @@ export default function ModernComponentsExample() {
         <div className="container mx-auto">
           <ScrollReveal direction="up">
             <h2 className="text-5xl md:text-6xl font-bold text-center mb-16">
-              Características <span className="gradient-text-secondary">Modernas</span>
+              Características{" "}
+              <span className="gradient-text-secondary">Modernas</span>
             </h2>
           </ScrollReveal>
 
-          <StaggerChildren staggerDelay={0.15} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggerChildren
+            staggerDelay={0.15}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {/* Card 1 - Glow Effect */}
             <motion.div variants={staggerItemVariants}>
               <GlowCard glowColor="#00ff94" className="h-full">
@@ -90,7 +98,8 @@ export default function ModernComponentsExample() {
                   <div className="text-4xl mb-4">✨</div>
                   <h3 className="text-2xl font-bold mb-4">Glow Cards</h3>
                   <p className="text-muted">
-                    Cards con efectos de brillo que reaccionan al movimiento del cursor
+                    Cards con efectos de brillo que reaccionan al movimiento del
+                    cursor
                   </p>
                 </div>
               </GlowCard>
@@ -185,7 +194,8 @@ export default function ModernComponentsExample() {
                           Proyecto {project}
                         </h3>
                         <p className="text-lg text-muted mb-6">
-                          Descripción del proyecto con todas las tecnologías y logros alcanzados
+                          Descripción del proyecto con todas las tecnologías y
+                          logros alcanzados
                         </p>
                         <div className="flex gap-2 flex-wrap mb-6">
                           <span className="skill">React</span>
@@ -194,9 +204,7 @@ export default function ModernComponentsExample() {
                           <span className="skill">Tailwind</span>
                         </div>
                         <MagneticButton>
-                          <button className="btn-modern">
-                            Ver Proyecto
-                          </button>
+                          <button className="btn-modern">Ver Proyecto</button>
                         </MagneticButton>
                       </div>
                       <div className="aspect-video bg-gradient-primary rounded-xl opacity-50" />
@@ -220,18 +228,17 @@ export default function ModernComponentsExample() {
 
           <ScrollReveal direction="up" delay={0.2}>
             <p className="text-xl text-muted mb-12">
-              ¿Tienes un proyecto en mente? Conversemos sobre cómo puedo ayudarte
+              ¿Tienes un proyecto en mente? Conversemos sobre cómo puedo
+              ayudarte
             </p>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.4}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <MagneticButton strength={0.3}>
-                <button className="btn-modern">
-                  Enviar Email
-                </button>
+                <button className="btn-modern">Enviar Email</button>
               </MagneticButton>
-              
+
               <MagneticButton strength={0.3}>
                 <button className="glass px-8 py-4 rounded-xl font-bold hover:border-primary transition-all">
                   Descargar CV

@@ -30,20 +30,23 @@ const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
         <a
           className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl cursor-pointer font-black tracking-tighter leading-tight"
           href="#about"
-          style={{ 
+          style={{
             color: "var(--color-text)",
-            textShadow: "0 0 40px rgba(0, 255, 148, 0.1)"
+            textShadow: "0 0 40px rgba(0, 255, 148, 0.1)",
           }}
         >
           {basics.name}
         </a>
       </div>
-      <div className="mt-4 text-xl md:text-2xl lg:text-3xl font-bold tracking-tight" style={{
-        background: "var(--gradient-primary)",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        backgroundClip: "text",
-      }}>
+      <div
+        className="mt-4 text-xl md:text-2xl lg:text-3xl font-bold tracking-tight"
+        style={{
+          background: "var(--gradient-primary)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
         {basics.label}
       </div>
       <p
