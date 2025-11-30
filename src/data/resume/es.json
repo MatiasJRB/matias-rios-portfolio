@@ -1,0 +1,110 @@
+{
+  "basics": {
+    "name": "Matias Rios",
+    "label": "Ingeniero de Software",
+    "image": "",
+    "email": "matiasjriosb@gmail.com",
+    "phone": "(291) 645-0794",
+    "url": "https://matiasjrb.com.ar",
+    "summary": "+5 años de experiencia como ingeniero de software. Impulso el éxito empresarial a través de un liderazgo visionario y una mentalidad emprendedora.",
+    "about": "<p>En 2013, comencé una carrera en ingeniería informática, y para 2018, vendí mi primer software: una aplicación de inventario para una tienda de mascotas local. Desde entonces, he estado programando para diversas industrias, incluyendo construcción, comercio electrónico, retail físico, salud, distribución, logística portuaria y transporte corporativo.</p><p>Mi experiencia abarca desde desarrollo móvil híbrido frontend hasta ingeniería backend pura. Mi enfoque principal en estos días está en el desarrollo backend, destacándome en la fase de planificación con soluciones estratégicas y con visión de futuro. Proyectos notables incluyen liderar el recorrido de una aplicación móvil desde beta hasta las tiendas de aplicaciones en <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a>, e implementar un proceso de integración clave en <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a>, impulsando mayores suscripciones e ingresos.</p><p>Cuando no estoy en la computadora, usualmente estoy en el gimnasio, jugando fútbol en el mejor <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">club de amigos</a> de mi ciudad, o con amigos y familia. También gestiono proyectos en <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, mi emprendimiento de software.</p>",
+    "location": {
+      "address": "Corrientes 211",
+      "postalCode": "B8000",
+      "city": "Bahía Blanca",
+      "countryCode": "AR",
+      "region": "Buenos Aires"
+    },
+    "profiles": [
+      {
+        "icon": "fab fa-github",
+        "url": "https://github.com/MatiasJRB"
+      },
+      {
+        "icon": "fab fa-linkedin",
+        "url": "https://www.linkedin.com/in/matiasjriosb/"
+      },
+      {
+        "icon": "email",
+        "url": "mailto:matiasjriosb@gmail.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Mangxo",
+      "position": "Tech Lead",
+      "url": "https://mangxo.com",
+      "startDate": "03-2025",
+      "endDate": "PRESENTE",
+      "summary": "Soy responsable de liderar técnica y operacionalmente el equipo de desarrollo, asegurando que las soluciones sean escalables, mantenibles y alineadas con la estrategia del producto. Actúo como enlace entre la visión empresarial y la ejecución técnica, trabajando estrechamente con el CTO. Mi enfoque incluye construir con una visión a mediano y largo plazo, anticipando la evolución del producto, el equipo y la plataforma.",
+      "highlights": [
+        "Liderazgo técnico en el diseño de arquitecturas para nuevas funcionalidades y sistemas.",
+        "Definición y mantenimiento de estándares de calidad técnica (tests, CI/CD, PRs, versionado).",
+        "Coordinación del equipo de desarrollo (dailies, planificación de sprints, revisión de PRs).",
+        "Onboarding y mentoría técnica para nuevos desarrolladores.",
+        "Alineación de la implementación técnica con los objetivos del producto.",
+        "Administración y mantenimiento de infraestructura técnica (desarrollo, staging, producción).",
+        "Supervisión e implementación de herramientas de CI/CD y monitoreo.",
+        "Comunicación de progreso, riesgos y decisiones técnicas al CTO.",
+        "Diseño de componentes clave con enfoque en escalabilidad y evolución futura del negocio."
+      ]
+    },
+    {
+      "name": "Geome7ric",
+      "position": "Co-Fundador",
+      "url": "https://geome7ric.com",
+      "startDate": "02-2020",
+      "endDate": "PRESENTE",
+      "summary": "En estos días, mi rol principal es guiar descubrimientos y desarrollo. Especializado en aplicaciones personalizadas usando Quasar Framework y NestJS. Enfocado en aplicaciones modernas y adaptadas para diversos clientes.",
+      "highlights": [
+        "Co-fundé Geome7ric, guiando descubrimientos de software, procesos de desarrollo y estrategia técnica general.",
+        "Lideré el diseño y desarrollo de aplicaciones personalizadas para diversos clientes usando stacks modernos como Quasar (Vue.js) para frontend y NestJS (Node.js, TypeScript) para backend.",
+        "Gestioné ciclos completos de proyectos, incluyendo presupuestos, relaciones con clientes, gestión de proyectos y liderazgo de equipos.",
+        "Implementé y desplegué soluciones usando Next.js, Laravel, PostgreSQL, MySQL y Docker.",
+        "Desarrollé e integré soluciones de comercio electrónico con WooCommerce.",
+        "Responsable de la adquisición de clientes, recopilación de requisitos y asegurar la entrega exitosa de proyectos."
+      ],
+      "icon": "sell"
+    },
+    {
+      "name": "Kalkomey",
+      "position": "Ingeniero de Software",
+      "url": "https://kalkomey.com",
+      "startDate": "09-2022",
+      "endDate": "12-2024",
+      "summary": "Backend Lead en HuntWise, una aplicación líder de caza, donde implementé soluciones backend para mejorar la confiabilidad del sistema e impulsar el crecimiento del mercado. Colaboré con equipos de producto, marketing y desarrollo para alinear soluciones técnicas con objetivos empresariales. Anteriormente gestioné el desarrollo backend para Cargill, entregando consistentemente hitos y fortaleciendo relaciones con clientes. Reconocido por liderazgo, planificación estratégica y contribuciones técnicas con una promoción.",
+      "highlights": [
+        "Lideré el desarrollo backend para la aplicación HuntWise, implementando soluciones con Node.js, Express y PostgreSQL para mejorar la confiabilidad del sistema y apoyar el crecimiento del mercado.",
+        "Diseñé y mantuve servicios backend robustos usando Python y Ruby on Rails, contribuyendo a funcionalidades principales del producto.",
+        "Gestioné el desarrollo backend para proyectos clave de clientes como Cargill, entregando consistentemente hitos y fortaleciendo relaciones con clientes.",
+        "Colaboré con equipos de producto, marketing y desarrollo para alinear soluciones técnicas con objetivos empresariales, utilizando AWS, Docker y pipelines CI/CD (GitHub Actions).",
+        "Lideré la adopción de Prisma para ORM, mejorando la productividad del desarrollador y patrones de acceso a datos.",
+        "Reconocido con una promoción por liderazgo, planificación estratégica y contribuciones técnicas significativas a la plataforma."
+      ]
+    },
+    {
+      "name": "Nuqlea",
+      "position": "Desarrollador Fullstack",
+      "url": "https://nuqlea.com",
+      "startDate": "06-2021",
+      "endDate": "08-2022",
+      "summary": "Lideré el desarrollo de aplicaciones móviles, contribuí al diseño de plataformas usando Quasar Framework, Laravel. Transición de la aplicación de beta a producción en Apple, Google. Mejoré la aplicación B2C, abordé problemas a nivel de sistema, mejoré UX/UI. Aprendí agilidad de startup, cumpliendo plazos.",
+      "highlights": [
+        "Lideré el desarrollo full-stack de una aplicación móvil híbrida usando Quasar Framework (Vue.js) y un backend Laravel.",
+        "Transicioné exitosamente la aplicación móvil de beta a producción, gestionando despliegues en Apple App Store y Google Play Store.",
+        "Contribuí significativamente al diseño y arquitectura de la plataforma, mejorando funcionalidades para una aplicación B2C.",
+        "Mejoré el rendimiento de la aplicación y UX/UI abordando problemas a nivel de sistema y refactorizando componentes clave.",
+        "Operé efectivamente en un entorno de startup ágil, cumpliendo consistentemente plazos ajustados y adaptándome a requisitos en evolución.",
+        "Utilicé MySQL para gestión de bases de datos y JavaScript (ES6+) para lógica frontend y backend."
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Inglés",
+      "fluency": "Competencia profesional de trabajo"
+    }
+  ],
+  "footer": "<p>Basado en el diseño de <a href=\"https://brittanychiang.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-[#00ee90] dark:text-gray-400 dark:hover:text-[#00ee90] transition-colors duration-300\" clickable>Brittany Chiang</a>, construido con <a href=\"https://nextjs.org\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-[#00ee90] dark:text-gray-400 dark:hover:text-[#00ee90] transition-colors duration-300\" clickable>NextJS 15</a> y desplegado con <a href=\"https://vercel.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-[#00ee90] dark:text-gray-400 dark:hover:text-[#00ee90] transition-colors duration-300\" clickable>Vercel</a>. Todo el texto está en la tipografía <a href=\"https://rsms.me/inter/\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-[#00ee90] dark:text-gray-400 dark:hover:text-[#00ee90] transition-colors duration-300\" clickable>Inter</a>. </p>"
+}

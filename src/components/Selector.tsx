@@ -2,11 +2,22 @@ import React, { useEffect, useState } from "react";
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
 import type { NavItem, SelectorProps } from "@/types";
-import { NAV_ITEMS, INTERSECTION_CONFIG } from "@/constants";
+import { NAV_ITEMS } from "@/constants";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
 
-const Selector: React.FC<SelectorProps> = ({ className }) => {
+const Selector: React.FC<SelectorProps & { lang: Locale }> = ({ className, lang }) => {
   const [selectedSection, setSelectedSection] = useState("about");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+  const [_dict, _setDict] = useState<Dictionary | null>(null);
+
+  useEffect(() => {
+    async function loadDict() {
+      const dictModule = await import(`@/i18n/dictionaries/${lang}.json`);
+      _setDict(dictModule.default);
+    }
+    loadDict();
+  }, [lang]);
 
   const handleSelect = (item: NavItem) => {
     const section = document.getElementById(item.id);

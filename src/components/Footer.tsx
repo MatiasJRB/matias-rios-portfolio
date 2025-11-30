@@ -1,12 +1,20 @@
 import { cn } from "@/utils";
-import resume from "../resume.json";
-const { footer } = resume;
+import { useState, useEffect } from "react";
+import type { Locale } from "@/i18n/config";
 
 interface FooterProps {
   className?: string;
+  lang: Locale;
 }
 
-const Footer: React.FC<FooterProps> = ({ className }) => {
+const Footer: React.FC<FooterProps> = ({ className, lang }) => {
+  const [footer, setFooter] = useState<string>("");
+
+  useEffect(() => {
+    import(`@/data/resume/${lang}.json`).then((data) => {
+      setFooter(data.default.footer);
+    });
+  }, [lang]);
   return (
     <footer
       id="footer"

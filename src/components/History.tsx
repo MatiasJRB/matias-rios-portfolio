@@ -20,18 +20,25 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { SkeletonHistoryCard } from "./SkeletonLoader";
 import type { Job, HistoryProps } from "@/types";
-import { COMPANY_LOGOS, THEME_COLORS } from "@/constants";
+import { COMPANY_LOGOS } from "@/constants";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
 
-const History: React.FC<HistoryProps> = ({ className, id = "history" }) => {
+const History: React.FC<HistoryProps & { lang: Locale }> = ({ className, id = "history", lang }) => {
   const [work, setWork] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [_dict, _setDict] = useState<Dictionary | null>(null);
 
   useEffect(() => {
-    import("../resume.json").then((data) => {
-      setWork(data.work);
+    Promise.all([
+      import(`@/data/resume/${lang}.json`),
+      import(`@/i18n/dictionaries/${lang}.json`)
+    ]).then(([resumeData, dictData]) => {
+      setWork(resumeData.default.work);
+      _setDict(dictData.default);
       setIsLoading(false);
     });
-  }, []);
+  }, [lang]);
   // Función para obtener el logo de la empresa
   const getCompanyLogo = (companyName: string) => {
     return COMPANY_LOGOS[companyName] || null;

@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "presentation": {
+    "greeting": "Hi, I'm",
+    "role": "Software Engineer",
+    "cta": "Get in touch",
+    "yearsOfExperience": "years of experience"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Learn more about my background and experience"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "present": "PRESENT",
+    "to": "to"
+  },
+  "projects": {
+    "title": "Projects",
+    "viewProject": "View Project"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "builtWith": "Built with"
+  },
+  "common": {
+    "loading": "Loading...",
+    "skipToContent": "Skip to content",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "toggleTheme": "Toggle theme",
+    "close": "Close",
+    "open": "Open",
+    "menu": "Menu"
+  },
+  "accessibility": {
+    "keyboardHint": "Press Tab to navigate",
+    "focusIndicator": "Keyboard navigation active",
+    "navigationMenu": "Navigation menu"
+  }
+}

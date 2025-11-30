@@ -3,20 +3,27 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
-import resume from "../resume.json";
 import SocialMedia from "./SocialMedia";
 import { cn } from "@/utils";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { NAV_ITEMS } from "@/constants";
+import type { Locale } from "@/i18n/config";
 
-const MobileHeader = () => {
+const MobileHeader = ({ lang }: { lang: Locale }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [_isScrolled, _setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
+  const [_name, _setName] = useState("");
+
+  useEffect(() => {
+    import(`@/data/resume/${lang}.json`).then((data) => {
+      _setName(data.default.basics.name);
+    });
+  }, [lang]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      _setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -101,7 +108,7 @@ const MobileHeader = () => {
               className="px-6 pb-6 pt-2 border-t"
               style={{ borderColor: "var(--color-border)" }}
             >
-              <SocialMedia behavior="justify-start" className="mt-4" />
+              <SocialMedia lang={lang} behavior="justify-start" className="mt-4" />
             </div>
           </motion.div>
         )}

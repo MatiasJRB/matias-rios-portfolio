@@ -5,17 +5,18 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { SkeletonAbout } from "./SkeletonLoader";
 import type { AboutProps, Basics } from "@/types";
+import type { Locale } from "@/i18n/config";
 
-export default function About({ className }: AboutProps) {
+export default function About({ className, lang }: AboutProps & { lang: Locale }) {
   const [about, setAbout] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    import("../resume.json").then((data) => {
-      setAbout((data.basics as Basics).about);
+    import(`@/data/resume/${lang}.json`).then((data) => {
+      setAbout((data.default.basics as Basics).about);
       setIsLoading(false);
     });
-  }, []);
+  }, [lang]);
 
   // Convert HTML string to paragraphs with keyboard navigation support
   const renderNavigableParagraphs = (htmlString: string) => {

@@ -1,7 +1,9 @@
-import resume from "@/resume.json";
 import Script from "next/script";
+import type { Locale } from "@/i18n/config";
 
-export default function JsonLd() {
+export default async function JsonLd({ lang }: { lang: Locale }) {
+  const resume = await import(`@/data/resume/${lang}.json`).then(m => m.default);
+  
   const {
     basics: { name, label, url, summary, location, profiles, email },
     work,
@@ -73,7 +75,7 @@ export default function JsonLd() {
       "@type": "Person",
       name,
     },
-    inLanguage: "en-US",
+    inLanguage: lang === 'es' ? 'es-AR' : 'en-US',
   };
 
   // ProfilePage Schema - Indicates this is a profile page

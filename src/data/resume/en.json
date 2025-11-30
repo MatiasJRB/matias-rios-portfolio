@@ -1,0 +1,110 @@
+{
+  "basics": {
+    "name": "Matias Rios",
+    "label": "Software Engineer",
+    "image": "",
+    "email": "matiasjriosb@gmail.com",
+    "phone": "(291) 645-0794",
+    "url": "https://matiasjrb.com.ar",
+    "summary": "+5 years of experience as a software engineer. I drive business success through visionary leadership and an entrepreneurial mindset.",
+    "about": "<p>In 2013, I pursued a degree in computer engineering, and by 2018, I had sold my first software: an inventory app for a local pet shop. Since then, I've being coding for diverse industries, including building, ecommerce, physical retail, healthcare, distribution, port logistics, and corporate transportation.</p><p>My experience spans from frontend hybrid mobile development to pure backend engineering. My main focus these days is on backend development, excelling in the planning phase with strategic and foresighted solutions. Notable projects include leading a mobile app's journey from beta to app stores at <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a>, and implementing a key integration process at <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a>, driving increased subscriptions and revenue.</p><p>When I'm not at the computer, I’m usually at the gym, playing soccer at the best <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">friend's club</a> of my city, or with friends and family. I also manage projects at <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, my software venture.</p>",
+    "location": {
+      "address": "Corrientes 211",
+      "postalCode": "B8000",
+      "city": "Bahía Blanca",
+      "countryCode": "AR",
+      "region": "Buenos Aires"
+    },
+    "profiles": [
+      {
+        "icon": "fab fa-github",
+        "url": "https://github.com/MatiasJRB"
+      },
+      {
+        "icon": "fab fa-linkedin",
+        "url": "https://www.linkedin.com/in/matiasjriosb/"
+      },
+      {
+        "icon": "email",
+        "url": "mailto:matiasjriosb@gmail.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Mangxo",
+      "position": "Tech Lead",
+      "url": "https://mangxo.com",
+      "startDate": "03-2025",
+      "endDate": "PRESENT",
+      "summary": "I am responsible for technically and operationally leading the development team, ensuring solutions are scalable, maintainable, and aligned with product strategy. I act as the liaison between business vision and technical execution, working closely with the CTO. My focus includes building with a medium and long-term vision, anticipating the evolution of the product, team, and platform.",
+      "highlights": [
+        "Technical leadership in designing architectures for new features and systems.",
+        "Defining and maintaining technical quality standards (tests, CI/CD, PRs, versioning).",
+        "Coordinating the development team (dailies, sprint planning, PR reviews).",
+        "Onboarding and technical mentoring for new developers.",
+        "Aligning technical implementation with product objectives.",
+        "Administering and maintaining technical infrastructure (development, staging, production).",
+        "Supervising and implementing CI/CD tools and monitoring.",
+        "Communicating progress, risks, and technical decisions to the CTO.",
+        "Designing key components with a focus on scalability and future business evolution."
+      ]
+    },
+    {
+      "name": "Geome7ric",
+      "position": "Co-Founder",
+      "url": "https://geome7ric.com",
+      "startDate": "02-2020",
+      "endDate": "PRESENT",
+      "summary": "These days, my primary role is guiding discoveries and development. Specializing in bespoke applications using Quasar Framework and NestJS. Focused on modern, tailored applications for diverse clientele.",
+      "highlights": [
+        "Co-founded Geome7ric, guiding software discoveries, development processes, and overall technical strategy.",
+        "Led the design and development of bespoke applications for diverse clients using modern stacks like Quasar (Vue.js) for frontend and NestJS (Node.js, TypeScript) for backend.",
+        "Managed full project lifecycles, including budgeting, client relations, project management, and team leadership.",
+        "Implemented and deployed solutions using Next.js, Laravel, PostgreSQL, MySQL, and Docker.",
+        "Developed and integrated e-commerce solutions with WooCommerce.",
+        "Responsible for client acquisition, requirements gathering, and ensuring successful project delivery."
+      ],
+      "icon": "sell"
+    },
+    {
+      "name": "Kalkomey",
+      "position": "Software Engineer",
+      "url": "https://kalkomey.com",
+      "startDate": "09-2022",
+      "endDate": "12-2024",
+      "summary": "Backend Lead at HuntWise, a leading hunting app, where I implemented backend solutions to enhance system reliability and drive market growth. Collaborated with product, marketing, and development teams to align technical solutions with business goals. Previously managed backend development for Cargill, consistently delivering milestones and strengthening client relationships. Recognized for leadership, strategic planning, and technical contributions with a promotion.",
+      "highlights": [
+        "Led backend development for the HuntWise app, implementing solutions with Node.js, Express, and PostgreSQL to enhance system reliability and support market growth.",
+        "Engineered and maintained robust backend services using Python and Ruby on Rails, contributing to core product features.",
+        "Managed backend development for key client projects like Cargill, consistently delivering milestones and strengthening client relationships.",
+        "Collaborated with product, marketing, and development teams to align technical solutions with business goals, utilizing AWS, Docker, and CI/CD pipelines (GitHub Actions).",
+        "Spearheaded the adoption of Prisma for ORM, improving developer productivity and data access patterns.",
+        "Recognized with a promotion for leadership, strategic planning, and significant technical contributions to the platform."
+      ]
+    },
+    {
+      "name": "Nuqlea",
+      "position": "Fullstack Developer",
+      "url": "https://nuqlea.com",
+      "startDate": "06-2021",
+      "endDate": "08-2022",
+      "summary": "Led mobile app development, contributed to platform design using Quasar Framework, Laravel. Transitioned app from beta to production on Apple, Google. Enhanced B2C app, tackled system-wide issues, improved UX/UI. Learned startup agility, meeting deadlines.",
+      "highlights": [
+        "Led full-stack development of a hybrid mobile application using Quasar Framework (Vue.js) and a Laravel backend.",
+        "Successfully transitioned the mobile app from beta to production, managing deployments to Apple App Store and Google Play Store.",
+        "Contributed significantly to platform design and architecture, enhancing features for a B2C application.",
+        "Improved application performance and UX/UI by tackling system-wide issues and refactoring key components.",
+        "Operated effectively in an agile startup environment, consistently meeting tight deadlines and adapting to evolving requirements.",
+        "Utilized MySQL for database management and JavaScript (ES6+) for frontend and backend logic."
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Professional working proficiency"
+    }
+  ],
+  "footer": "<p>Based on the design of <a href=\"https://brittanychiang.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-[#00ee90] dark:text-gray-400 dark:hover:text-[#00ee90] transition-colors duration-300\" clickable>Brittany Chiang</a>, built with  <a href=\"https://nextjs.prg\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-[#00ee90] dark:text-gray-400 dark:hover:text-[#00ee90] transition-colors duration-300\" clickable>NextJS 15</a> and deployed with <a href=\"https://vercel.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-[#00ee90] dark:text-gray-400 dark:hover:text-[#00ee90] transition-colors duration-300\" clickable>Vercel</a>. All text is set in the <a href=\"https://rsms.me/inter/\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-[#00ee90] dark:text-gray-400 dark:hover:text-[#00ee90] transition-colors duration-300\" clickable>Inter</a> typeface. </p>"
+}

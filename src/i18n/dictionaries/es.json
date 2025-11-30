@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "presentation": {
+    "greeting": "Hola, soy",
+    "role": "Ingeniero de Software",
+    "cta": "Contactar",
+    "yearsOfExperience": "años de experiencia"
+  },
+  "about": {
+    "title": "Acerca de Mí",
+    "description": "Conoce más sobre mi trayectoria y experiencia"
+  },
+  "experience": {
+    "title": "Experiencia Laboral",
+    "present": "PRESENTE",
+    "to": "a"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "viewProject": "Ver Proyecto"
+  },
+  "contact": {
+    "title": "Contacto",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "location": "Ubicación"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "builtWith": "Creado con"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "skipToContent": "Saltar al contenido",
+    "darkMode": "Modo oscuro",
+    "lightMode": "Modo claro",
+    "toggleTheme": "Cambiar tema",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "menu": "Menú"
+  },
+  "accessibility": {
+    "keyboardHint": "Presiona Tab para navegar",
+    "focusIndicator": "Navegación por teclado activa",
+    "navigationMenu": "Menú de navegación"
+  }
+}

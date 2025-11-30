@@ -1,13 +1,17 @@
 "use client";
 
+import type { Locale } from "@/i18n/config";
+
 interface KeyboardNavigationHintProps {
   isKeyboardMode?: boolean;
   actionHint?: string | null;
+  lang: Locale;
 }
 
 export const KeyboardNavigationHint = ({
   isKeyboardMode = false,
   actionHint = null,
+  lang: _lang,
 }: KeyboardNavigationHintProps) => {
   return (
     <div

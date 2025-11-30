@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import resume from "../resume.json";
 import { cn } from "@/utils";
 import { motion } from "framer-motion";
 import type { SocialMediaProps } from "@/types";
+import type { Locale } from "@/i18n/config";
 
 const iconMap: Record<string, React.ElementType> = {
   "fab fa-github": FaGithub,
@@ -17,10 +17,20 @@ interface Profile {
   url: string;
 }
 
-const SocialMedia: React.FC<SocialMediaProps & { behavior?: string }> = ({
+const SocialMedia: React.FC<SocialMediaProps & { behavior?: string; lang: Locale }> = ({
   behavior = "justify-start",
   className,
+  lang,
 }) => {
+  const [profiles, setProfiles] = useState<Profile[]>([]);
+
+  useEffect(() => {
+    async function loadResume() {
+      const resumeModule = await import(`@/data/resume/${lang}.json`);
+      setProfiles(resumeModule.default.basics.profiles);
+    }
+    loadResume();
+  }, [lang]);
   const handleURL = (url: string) => {
     if (url.startsWith("https://")) {
       window.open(url, "_blank");
@@ -28,8 +38,6 @@ const SocialMedia: React.FC<SocialMediaProps & { behavior?: string }> = ({
       window.location.href = url;
     }
   };
-
-  const profiles = resume.basics.profiles as Profile[];
 
   const getAriaLabel = (url: string) => {
     if (url.includes("github")) return "GitHub Profile";

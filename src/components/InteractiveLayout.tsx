@@ -6,13 +6,16 @@ import { SkipToContent } from "@/components/SkipToContent";
 import { KeyboardNavigationHint } from "@/components/KeyboardNavigationHint";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MobileHeader from "@/components/MobileHeader";
+import type { Locale } from "@/i18n/config";
 
 interface InteractiveLayoutProps {
   children: React.ReactNode;
+  lang: Locale;
 }
 
 export default function InteractiveLayout({
   children,
+  lang,
 }: InteractiveLayoutProps) {
   const [mobile, setMobile] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -88,13 +91,14 @@ export default function InteractiveLayout({
 
   return (
     <>
-      <SkipToContent />
+      <SkipToContent lang={lang} />
       <ParallaxBackground />
       <KeyboardNavigationHint
         isKeyboardMode={isKeyboardMode}
         actionHint={currentActionHint}
+        lang={lang}
       />
-      <MobileHeader />
+      <MobileHeader lang={lang} />
       <div
         className="min-h-screen overflow-y-hidden grid grid-cols-1 lg:grid-cols-2 w-full
          px-5 max-w-screen-xl mx-auto md:px-16 lg:px-24 transition-colors duration-300"

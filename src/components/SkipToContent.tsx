@@ -1,8 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import type { Locale } from "@/i18n/config";
 
-export const SkipToContent = () => {
+export const SkipToContent = ({ lang }: { lang: Locale }) => {
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    import(`@/i18n/dictionaries/${lang}.json`).then((dict) => {
+      setText(dict.default.common.skipToContent);
+    });
+  }, [lang]);
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Skip to main content with Tab key on page load
@@ -40,7 +48,7 @@ export const SkipToContent = () => {
         color: "var(--color-background)",
       }}
     >
-      Skip to main content
+      {text || "Skip to main content"}
     </a>
   );
 };

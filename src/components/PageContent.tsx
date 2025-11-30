@@ -6,8 +6,10 @@ import Selector from "@/components/Selector";
 import SocialMedia from "@/components/SocialMedia";
 import History from "@/components/History";
 import Footer from "@/components/Footer";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import type { Locale } from "@/i18n/config";
 
-export default function PageContent() {
+export default function PageContent({ lang }: { lang: Locale }) {
   const [mobile, setMobile] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
@@ -31,14 +33,15 @@ export default function PageContent() {
           id="presentation"
           className="pt-16 md:pt-24 mb-6 md:mb-16 px-0 md:px-4 scroll-mt-24"
         >
-          <Presentation />
+          <Presentation lang={lang} />
           {!mobile && (
             <nav aria-label="Section navigation" className="mt-8 lg:mt-16">
-              <Selector className="" />
+              <Selector lang={lang} className="" />
             </nav>
           )}
           <div className="lg:fixed lg:bottom-16 w-full flex justify-between items-center mt-8">
-            <SocialMedia />
+            <SocialMedia lang={lang} />
+            <LanguageSwitcher currentLocale={lang} />
           </div>
         </header>
       </aside>
@@ -59,11 +62,11 @@ export default function PageContent() {
             className="text-xs font-bold mb-2 uppercase tracking-wider"
             style={{ color: "var(--color-muted)" }}
           >
-            About
+            {lang === 'en' ? 'About' : 'Acerca de'}
           </h2>
         )}
         <section id="about" aria-labelledby="about-heading">
-          <About className="mt-8" />
+          <About lang={lang} className="mt-8" />
         </section>
 
         {/* History/Experience Section */}
@@ -72,14 +75,14 @@ export default function PageContent() {
             className="mt-8 text-xs font-bold mb-2 uppercase tracking-wider"
             style={{ color: "var(--color-muted)" }}
           >
-            History
+            {lang === 'en' ? 'History' : 'Experiencia'}
           </h2>
         )}
         <section id="history" aria-labelledby="history-heading">
-          <History className="mt-8" />
+          <History lang={lang} className="mt-8" />
         </section>
 
-        <Footer className="my-8" />
+        <Footer lang={lang} className="my-8" />
       </main>
     </>
   );
