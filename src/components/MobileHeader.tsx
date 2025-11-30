@@ -108,7 +108,11 @@ const MobileHeader = ({ lang }: { lang: Locale }) => {
               className="px-6 pb-6 pt-2 border-t"
               style={{ borderColor: "var(--color-border)" }}
             >
-              <SocialMedia lang={lang} behavior="justify-start" className="mt-4" />
+              <SocialMedia
+                lang={lang}
+                behavior="justify-start"
+                className="mt-4"
+              />
             </div>
           </motion.div>
         )}

@@ -1,3 +1,3 @@
-import type enDict from './dictionaries/en.json'
+import type enDict from "./dictionaries/en.json";
 
-export type Dictionary = typeof enDict
+export type Dictionary = typeof enDict;
