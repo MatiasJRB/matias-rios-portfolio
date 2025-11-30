@@ -78,7 +78,11 @@ export const useKeyboardNavigation = ({
 
   // Apply the same hover styles that onMouseEnter applies + green dot for paragraphs
   const applyHoverStyles = useCallback(
-    (element: HTMLElement | null, isHover: boolean, animated: boolean = false) => {
+    (
+      element: HTMLElement | null,
+      isHover: boolean,
+      animated: boolean = false
+    ) => {
       if (!element) return;
 
       // Check element type
@@ -120,7 +124,8 @@ export const useKeyboardNavigation = ({
 
       // Add smooth transition and animation properties
       if (animated) {
-        element.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)";
+        element.style.transition =
+          "all 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)";
       } else {
         element.style.transition = "all 0.3s ease-out";
       }
@@ -129,9 +134,12 @@ export const useKeyboardNavigation = ({
         if (isHover) {
           element.style.backgroundColor = "var(--color-background)";
           element.style.borderColor = "var(--color-primary)";
-          element.style.transform = animated ? "translateX(6px) scale(1.02)" : "translateX(4px)";
+          element.style.transform = animated
+            ? "translateX(6px) scale(1.02)"
+            : "translateX(4px)";
           if (animated) {
-            element.style.boxShadow = "0 0 20px rgba(0, 238, 144, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)";
+            element.style.boxShadow =
+              "0 0 20px rgba(0, 238, 144, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)";
           }
         } else {
           element.style.backgroundColor = "var(--color-surface)";
@@ -143,7 +151,8 @@ export const useKeyboardNavigation = ({
         // Show/hide green dot indicator with animation
         const indicator = element.querySelector(".keyboard-indicator");
         if (indicator) {
-          (indicator as HTMLElement).style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+          (indicator as HTMLElement).style.transition =
+            "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
           (indicator as HTMLElement).style.opacity = isHover ? "1" : "0";
           if (isHover && animated) {
             (indicator as HTMLElement).style.transform = "scale(1.3)";
@@ -173,7 +182,8 @@ export const useKeyboardNavigation = ({
             (arrow as HTMLElement).style.color = "var(--color-accent)";
             if (animated) {
               (arrow as HTMLElement).style.transform = "translateX(4px)";
-              (arrow as HTMLElement).style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+              (arrow as HTMLElement).style.transition =
+                "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
             }
           }
         } else {
