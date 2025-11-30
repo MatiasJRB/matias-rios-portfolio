@@ -106,7 +106,12 @@ export default function JsonLd() {
   // Combine all schemas into one array
   const schemas = {
     "@context": "https://schema.org",
-    "@graph": [personSchema, websiteSchema, profilePageSchema, breadcrumbSchema],
+    "@graph": [
+      personSchema,
+      websiteSchema,
+      profilePageSchema,
+      breadcrumbSchema,
+    ],
   };
 
   return (

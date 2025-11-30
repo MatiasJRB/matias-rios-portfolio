@@ -11,7 +11,9 @@ interface InteractiveLayoutProps {
   children: React.ReactNode;
 }
 
-export default function InteractiveLayout({ children }: InteractiveLayoutProps) {
+export default function InteractiveLayout({
+  children,
+}: InteractiveLayoutProps) {
   const [mobile, setMobile] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
