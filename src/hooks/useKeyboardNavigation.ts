@@ -25,11 +25,12 @@ export const useKeyboardNavigation = ({
 
     // Get main sections
     const presentation = document.getElementById("presentation");
-    
+
     // Get About section paragraphs
     const aboutSection = document.getElementById("about");
     if (aboutSection) {
-      const paragraphs = aboutSection.querySelectorAll<HTMLElement>('[data-paragraph]');
+      const paragraphs =
+        aboutSection.querySelectorAll<HTMLElement>("[data-paragraph]");
       paragraphs.forEach((p) => {
         elements.push(p);
       });
@@ -41,11 +42,11 @@ export const useKeyboardNavigation = ({
     );
     jobCards.forEach((job) => {
       // Get summary paragraph
-      const summary = job.querySelector<HTMLElement>('[data-job-summary]');
+      const summary = job.querySelector<HTMLElement>("[data-job-summary]");
       if (summary) {
         elements.push(summary);
       }
-      
+
       // Get ALL tasks for this job in order
       const tasks = job.querySelectorAll<HTMLElement>(
         '[id^="' + job.id + '-task-"]'
@@ -58,11 +59,13 @@ export const useKeyboardNavigation = ({
     // View resume button
     const viewResume = document.getElementById("view-resume");
     if (viewResume) elements.push(viewResume);
-    
+
     // Footer paragraph
     const footer = document.getElementById("footer");
     if (footer) {
-      const footerParagraph = footer.querySelector<HTMLElement>('[data-footer-paragraph]');
+      const footerParagraph = footer.querySelector<HTMLElement>(
+        "[data-footer-paragraph]"
+      );
       if (footerParagraph) {
         elements.push(footerParagraph);
       }
@@ -80,10 +83,10 @@ export const useKeyboardNavigation = ({
 
       // Check element type
       const isTask = element.id.includes("-task-");
-      const isParagraph = element.hasAttribute('data-paragraph');
-      const isJobSummary = element.hasAttribute('data-job-summary');
-      const isFooterParagraph = element.hasAttribute('data-footer-paragraph');
-      const isViewResume = element.id === 'view-resume';
+      const isParagraph = element.hasAttribute("data-paragraph");
+      const isJobSummary = element.hasAttribute("data-job-summary");
+      const isFooterParagraph = element.hasAttribute("data-footer-paragraph");
+      const isViewResume = element.id === "view-resume";
 
       if (isTask) {
         if (isHover) {
@@ -97,20 +100,20 @@ export const useKeyboardNavigation = ({
         }
       } else if (isParagraph || isJobSummary || isFooterParagraph) {
         // Show/hide green dot indicator
-        const indicator = element.querySelector('.keyboard-indicator');
+        const indicator = element.querySelector(".keyboard-indicator");
         if (indicator) {
-          (indicator as HTMLElement).style.opacity = isHover ? '1' : '0';
+          (indicator as HTMLElement).style.opacity = isHover ? "1" : "0";
         }
       } else if (isViewResume) {
         if (isHover) {
           element.style.color = "var(--color-accent)";
-          const arrow = element.querySelector('.resume-arrow');
+          const arrow = element.querySelector(".resume-arrow");
           if (arrow) {
             (arrow as HTMLElement).style.color = "var(--color-accent)";
           }
         } else {
           element.style.color = "var(--color-text)";
-          const arrow = element.querySelector('.resume-arrow');
+          const arrow = element.querySelector(".resume-arrow");
           if (arrow) {
             (arrow as HTMLElement).style.color = "var(--color-text)";
           }

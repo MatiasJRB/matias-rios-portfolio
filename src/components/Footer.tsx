@@ -14,13 +14,13 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
       style={{ color: "var(--color-muted)" }}
     >
       {/* footer from resume is html, insert here with keyboard navigation */}
-      <div 
+      <div
         data-footer-paragraph
         className="relative scroll-mt-24"
-        style={{ paddingLeft: '24px' }}
+        style={{ paddingLeft: "24px" }}
       >
         {/* Green dot indicator */}
-        <div 
+        <div
           className="keyboard-indicator absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-green-500 transition-opacity duration-200"
           style={{ opacity: 0 }}
         />

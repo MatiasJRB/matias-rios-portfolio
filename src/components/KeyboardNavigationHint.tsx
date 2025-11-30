@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 interface KeyboardNavigationHintProps {
   isKeyboardMode?: boolean;
 }
@@ -9,21 +7,6 @@ interface KeyboardNavigationHintProps {
 export const KeyboardNavigationHint = ({
   isKeyboardMode = false,
 }: KeyboardNavigationHintProps) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  // Don't show on mobile
-  if (isMobile) return null;
-
   return (
     <div
       className="fixed right-6 bottom-6 z-40 pointer-events-none"
