@@ -7,7 +7,10 @@ import { SkeletonAbout } from "./SkeletonLoader";
 import type { AboutProps, Basics } from "@/types";
 import type { Locale } from "@/i18n/config";
 
-export default function About({ className, lang }: AboutProps & { lang: Locale }) {
+export default function About({
+  className,
+  lang,
+}: AboutProps & { lang: Locale }) {
   const [about, setAbout] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
 

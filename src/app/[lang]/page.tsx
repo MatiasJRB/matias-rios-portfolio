@@ -14,7 +14,7 @@ export default async function Page({
 }: {
   params: Promise<{ lang: Locale }>;
 }) {
-  const { lang } = await params
+  const { lang } = await params;
 
   return (
     <InteractiveLayout lang={lang}>

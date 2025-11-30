@@ -7,6 +7,7 @@ Este plan detalla la implementación de internacionalización en el portfolio ut
 ## 1. Configuración Inicial
 
 ### 1.1 Idiomas a Soportar
+
 - **Inglés (en)**: Idioma predeterminado para alcance global
 - **Español (es)**: Para mercado hispano y origen del desarrollador
 
@@ -18,6 +19,7 @@ npm install --save-dev @types/negotiator
 ```
 
 **Alternativa con librería especializada** (recomendado para proyectos grandes):
+
 ```bash
 npm install next-intl
 ```
@@ -59,67 +61,70 @@ src/
 #### 3.1 Crear archivo de configuración i18n
 
 **Archivo: `src/i18n/config.ts`**
+
 ```typescript
 export const i18n = {
-  defaultLocale: 'en',
-  locales: ['en', 'es'],
-} as const
+  defaultLocale: "en",
+  locales: ["en", "es"],
+} as const;
 
-export type Locale = (typeof i18n)['locales'][number]
+export type Locale = (typeof i18n)["locales"][number];
 ```
 
 #### 3.2 Crear middleware para detección de locale
 
 **Archivo: `src/middleware.ts`**
+
 ```typescript
-import { NextRequest, NextResponse } from 'next/server'
-import { match } from '@formatjs/intl-localematcher'
-import Negotiator from 'negotiator'
-import { i18n } from './i18n/config'
+import { NextRequest, NextResponse } from "next/server";
+import { match } from "@formatjs/intl-localematcher";
+import Negotiator from "negotiator";
+import { i18n } from "./i18n/config";
 
 function getLocale(request: NextRequest): string {
-  const negotiatorHeaders: Record<string, string> = {}
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value))
+  const negotiatorHeaders: Record<string, string> = {};
+  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages()
-  return match(languages, i18n.locales, i18n.defaultLocale)
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
+  return match(languages, i18n.locales, i18n.defaultLocale);
 }
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+  const { pathname } = request.nextUrl;
 
   // Ignorar archivos estáticos y API routes
   if (
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/api') ||
-    pathname.includes('.') ||
-    pathname.startsWith('/icons') ||
-    pathname.startsWith('/images')
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.includes(".") ||
+    pathname.startsWith("/icons") ||
+    pathname.startsWith("/images")
   ) {
-    return
+    return;
   }
 
   // Verificar si ya tiene un locale en el path
   const pathnameHasLocale = i18n.locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  )
+  );
 
-  if (pathnameHasLocale) return
+  if (pathnameHasLocale) return;
 
   // Redirigir con locale
-  const locale = getLocale(request)
-  request.nextUrl.pathname = `/${locale}${pathname}`
-  return NextResponse.redirect(request.nextUrl)
+  const locale = getLocale(request);
+  request.nextUrl.pathname = `/${locale}${pathname}`;
+  return NextResponse.redirect(request.nextUrl);
 }
 
 export const config = {
-  matcher: ['/((?!_next|api|icons|images).*)'],
-}
+  matcher: ["/((?!_next|api|icons|images).*)"],
+};
 ```
 
 #### 3.3 Crear diccionarios de traducciones
 
 **Archivo: `src/i18n/dictionaries/en.json`**
+
 ```json
 {
   "nav": {
@@ -172,6 +177,7 @@ export const config = {
 ```
 
 **Archivo: `src/i18n/dictionaries/es.json`**
+
 ```json
 {
   "nav": {
@@ -226,17 +232,18 @@ export const config = {
 #### 3.4 Función para obtener diccionarios
 
 **Archivo: `src/i18n/get-dictionary.ts`**
+
 ```typescript
-import 'server-only'
-import type { Locale } from './config'
+import "server-only";
+import type { Locale } from "./config";
 
 const dictionaries = {
-  en: () => import('./dictionaries/en.json').then((module) => module.default),
-  es: () => import('./dictionaries/es.json').then((module) => module.default),
-}
+  en: () => import("./dictionaries/en.json").then((module) => module.default),
+  es: () => import("./dictionaries/es.json").then((module) => module.default),
+};
 
 export const getDictionary = async (locale: Locale) =>
-  dictionaries[locale]?.() ?? dictionaries.en()
+  dictionaries[locale]?.() ?? dictionaries.en();
 ```
 
 ### Fase 2: Reestructuración de Rutas (3-4 horas)
@@ -252,6 +259,7 @@ export const getDictionary = async (locale: Locale) =>
 #### 3.6 Actualizar Root Layout
 
 **Archivo: `src/app/[lang]/layout.tsx`**
+
 ```typescript
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -269,19 +277,19 @@ const inter = Inter({
 });
 
 export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }))
+  return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ lang: Locale }>
+  params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
-  const { lang } = await params
-  const dict = await getDictionary(lang)
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
   const {
     basics: { name, summary: description },
-  } = resume
+  } = resume;
 
   return {
     title: name,
@@ -290,12 +298,12 @@ export async function generateMetadata({
     alternates: {
       canonical: "https://matiasjrb.com.ar",
       languages: {
-        'en': '/en',
-        'es': '/es',
+        en: "/en",
+        es: "/es",
       },
     },
     // ... resto de metadata
-  }
+  };
 }
 
 export default async function RootLayout({
@@ -305,7 +313,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ lang: Locale }>;
 }>) {
-  const { lang } = await params
+  const { lang } = await params;
 
   return (
     <html lang={lang} suppressHydrationWarning>
@@ -329,24 +337,21 @@ export default async function RootLayout({
 #### 3.7 Actualizar componentes para usar traducciones
 
 **Ejemplo: `src/components/Presentation.tsx`**
-```typescript
-import { getDictionary } from '@/i18n/get-dictionary'
-import type { Locale } from '@/i18n/config'
 
-export default async function Presentation({ 
-  lang 
-}: { 
-  lang: Locale 
-}) {
-  const dict = await getDictionary(lang)
-  
+```typescript
+import { getDictionary } from "@/i18n/get-dictionary";
+import type { Locale } from "@/i18n/config";
+
+export default async function Presentation({ lang }: { lang: Locale }) {
+  const dict = await getDictionary(lang);
+
   return (
     <section>
       <h1>{dict.presentation.greeting} Matias Rios</h1>
       <p>{dict.presentation.role}</p>
       <button>{dict.presentation.cta}</button>
     </section>
-  )
+  );
 }
 ```
 
@@ -366,6 +371,7 @@ export default async function Presentation({
 #### 3.9 Crear versiones multiidioma del resume
 
 **Estructura propuesta:**
+
 ```
 src/
 ├── data/
@@ -375,6 +381,7 @@ src/
 ```
 
 **Archivo: `src/data/resume/en.json`**
+
 ```json
 {
   "basics": {
@@ -394,6 +401,7 @@ src/
 ```
 
 **Archivo: `src/data/resume/es.json`**
+
 ```json
 {
   "basics": {
@@ -415,17 +423,18 @@ src/
 #### 3.10 Función helper para obtener resume
 
 **Archivo: `src/data/get-resume.ts`**
+
 ```typescript
-import 'server-only'
-import type { Locale } from '@/i18n/config'
+import "server-only";
+import type { Locale } from "@/i18n/config";
 
 const resumes = {
-  en: () => import('./resume/en.json').then((module) => module.default),
-  es: () => import('./resume/es.json').then((module) => module.default),
-}
+  en: () => import("./resume/en.json").then((module) => module.default),
+  es: () => import("./resume/es.json").then((module) => module.default),
+};
 
 export const getResume = async (locale: Locale) =>
-  resumes[locale]?.() ?? resumes.en()
+  resumes[locale]?.() ?? resumes.en();
 ```
 
 ### Fase 5: Selector de Idioma (2-3 horas)
@@ -433,27 +442,28 @@ export const getResume = async (locale: Locale) =>
 #### 3.11 Crear componente Language Switcher
 
 **Archivo: `src/components/LanguageSwitcher.tsx`**
+
 ```typescript
-'use client'
+"use client";
 
-import { usePathname, useRouter } from 'next/navigation'
-import { i18n, type Locale } from '@/i18n/config'
+import { usePathname, useRouter } from "next/navigation";
+import { i18n, type Locale } from "@/i18n/config";
 
-export default function LanguageSwitcher({ 
-  currentLocale 
-}: { 
-  currentLocale: Locale 
+export default function LanguageSwitcher({
+  currentLocale,
+}: {
+  currentLocale: Locale;
 }) {
-  const pathname = usePathname()
-  const router = useRouter()
+  const pathname = usePathname();
+  const router = useRouter();
 
   const switchLocale = (newLocale: Locale) => {
-    if (!pathname) return
-    
-    const segments = pathname.split('/')
-    segments[1] = newLocale
-    router.push(segments.join('/'))
-  }
+    if (!pathname) return;
+
+    const segments = pathname.split("/");
+    segments[1] = newLocale;
+    router.push(segments.join("/"));
+  };
 
   return (
     <div className="language-switcher">
@@ -461,14 +471,14 @@ export default function LanguageSwitcher({
         <button
           key={locale}
           onClick={() => switchLocale(locale)}
-          className={currentLocale === locale ? 'active' : ''}
+          className={currentLocale === locale ? "active" : ""}
           aria-label={`Switch to ${locale}`}
         >
           {locale.toUpperCase()}
         </button>
       ))}
     </div>
-  )
+  );
 }
 ```
 
@@ -477,49 +487,52 @@ export default function LanguageSwitcher({
 #### 3.12 Actualizar Sitemap
 
 **Archivo: `src/app/sitemap.ts`**
+
 ```typescript
-import { MetadataRoute } from 'next'
-import { i18n } from '@/i18n/config'
+import { MetadataRoute } from "next";
+import { i18n } from "@/i18n/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://matiasjrb.com.ar'
-  
+  const baseUrl = "https://matiasjrb.com.ar";
+
   return i18n.locales.flatMap((locale) => [
     {
       url: `${baseUrl}/${locale}`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 1,
       alternates: {
         languages: Object.fromEntries(
-          i18n.locales.map(l => [l, `${baseUrl}/${l}`])
+          i18n.locales.map((l) => [l, `${baseUrl}/${l}`])
         ),
       },
     },
-  ])
+  ]);
 }
 ```
 
 #### 3.13 Actualizar robots.txt
 
 **Archivo: `src/app/robots.ts`**
+
 ```typescript
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
+      userAgent: "*",
+      allow: "/",
     },
-    sitemap: 'https://matiasjrb.com.ar/sitemap.xml',
-  }
+    sitemap: "https://matiasjrb.com.ar/sitemap.xml",
+  };
 }
 ```
 
 #### 3.14 Actualizar JSON-LD
 
 **Archivo: `src/components/JsonLd.tsx`**
+
 ```typescript
 import resume from "@/resume.json";
 
@@ -528,7 +541,7 @@ export default function JsonLd({ lang }: { lang?: string }) {
     "@context": "https://schema.org",
     "@type": "Person",
     name: resume.basics.name,
-    inLanguage: lang || 'en',
+    inLanguage: lang || "en",
     // ... resto del schema
   };
 
@@ -578,21 +591,21 @@ npm run start
 
 ```typescript
 // src/middleware.ts
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers";
 
 function getLocale(request: NextRequest): string {
   // 1. Verificar cookie
-  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
+  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
   if (cookieLocale && i18n.locales.includes(cookieLocale as Locale)) {
-    return cookieLocale
+    return cookieLocale;
   }
 
   // 2. Verificar Accept-Language header
-  const negotiatorHeaders: Record<string, string> = {}
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value))
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages()
-  
-  return match(languages, i18n.locales, i18n.defaultLocale)
+  const negotiatorHeaders: Record<string, string> = {};
+  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
+
+  return match(languages, i18n.locales, i18n.defaultLocale);
 }
 ```
 
@@ -600,16 +613,16 @@ function getLocale(request: NextRequest): string {
 
 ```typescript
 // En layout.tsx
-import { getDictionary } from '@/i18n/get-dictionary'
+import { getDictionary } from "@/i18n/get-dictionary";
 
 export default async function Layout({ params }) {
-  const { lang } = await params
+  const { lang } = await params;
   // Preload both dictionaries in parallel
   const [dict, resume] = await Promise.all([
     getDictionary(lang),
-    getResume(lang)
-  ])
-  
+    getResume(lang),
+  ]);
+
   // ...
 }
 ```
@@ -618,10 +631,10 @@ export default async function Layout({ params }) {
 
 ```typescript
 // src/i18n/types.ts
-import type enDict from './dictionaries/en.json'
+import type enDict from "./dictionaries/en.json";
 
-export type Dictionary = typeof enDict
-export type DictionaryKey = keyof Dictionary
+export type Dictionary = typeof enDict;
+export type DictionaryKey = keyof Dictionary;
 ```
 
 ## 6. Alternativa: Usando next-intl (Recomendado)
@@ -633,6 +646,7 @@ npm install next-intl
 ```
 
 **Ventajas:**
+
 - Manejo automático de plurales
 - Formateo de fechas y números
 - Mensajes interpolados
@@ -643,56 +657,60 @@ npm install next-intl
 
 ```typescript
 // src/i18n/request.ts
-import { getRequestConfig } from 'next-intl/server'
-import { routing } from './routing'
+import { getRequestConfig } from "next-intl/server";
+import { routing } from "./routing";
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  let locale = await requestLocale
-  
+  let locale = await requestLocale;
+
   if (!locale || !routing.locales.includes(locale as any)) {
-    locale = routing.defaultLocale
+    locale = routing.defaultLocale;
   }
 
   return {
     locale,
-    messages: (await import(`./dictionaries/${locale}.json`)).default
-  }
-})
+    messages: (await import(`./dictionaries/${locale}.json`)).default,
+  };
+});
 ```
 
 ## 7. Cronograma Estimado
 
-| Fase | Descripción | Tiempo | Prioridad |
-|------|-------------|--------|-----------|
-| 1 | Configuración base | 2-3h | Alta |
-| 2 | Reestructuración rutas | 3-4h | Alta |
-| 3 | Actualización componentes | 4-6h | Alta |
-| 4 | Contenido dinámico | 3-4h | Media |
-| 5 | Selector de idioma | 2-3h | Media |
-| 6 | SEO y metadatos | 2-3h | Alta |
-| Testing | Validación completa | 2-3h | Alta |
+| Fase    | Descripción               | Tiempo | Prioridad |
+| ------- | ------------------------- | ------ | --------- |
+| 1       | Configuración base        | 2-3h   | Alta      |
+| 2       | Reestructuración rutas    | 3-4h   | Alta      |
+| 3       | Actualización componentes | 4-6h   | Alta      |
+| 4       | Contenido dinámico        | 3-4h   | Media     |
+| 5       | Selector de idioma        | 2-3h   | Media     |
+| 6       | SEO y metadatos           | 2-3h   | Alta      |
+| Testing | Validación completa       | 2-3h   | Alta      |
 
 **Total estimado: 18-26 horas**
 
 ## 8. Consideraciones Importantes
 
 ### 8.1 Performance
+
 - Las traducciones se cargan solo en el servidor
 - Zero impact en bundle de JavaScript del cliente
 - Static generation para ambos idiomas
 
 ### 8.2 SEO
+
 - URLs únicas por idioma
 - Hreflang tags automáticos
 - Sitemap multiidioma
 - Metadata localizada
 
 ### 8.3 Accesibilidad
+
 - Atributo lang correcto en HTML
 - Traducciones de aria-labels
 - Navegación por teclado mantiene idioma
 
 ### 8.4 Mantenimiento
+
 - Centralized translations
 - Type-safe con TypeScript
 - Fácil agregar nuevos idiomas

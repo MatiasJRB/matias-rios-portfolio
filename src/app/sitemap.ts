@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       alternates: {
         languages: Object.fromEntries(
-          i18n.locales.map(l => [l, `${baseUrl}/${l}`])
+          i18n.locales.map((l) => [l, `${baseUrl}/${l}`])
         ),
       },
     },

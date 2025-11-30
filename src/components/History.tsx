@@ -24,7 +24,11 @@ import { COMPANY_LOGOS } from "@/constants";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
-const History: React.FC<HistoryProps & { lang: Locale }> = ({ className, id = "history", lang }) => {
+const History: React.FC<HistoryProps & { lang: Locale }> = ({
+  className,
+  id = "history",
+  lang,
+}) => {
   const [work, setWork] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [_dict, _setDict] = useState<Dictionary | null>(null);
@@ -32,7 +36,7 @@ const History: React.FC<HistoryProps & { lang: Locale }> = ({ className, id = "h
   useEffect(() => {
     Promise.all([
       import(`@/data/resume/${lang}.json`),
-      import(`@/i18n/dictionaries/${lang}.json`)
+      import(`@/i18n/dictionaries/${lang}.json`),
     ]).then(([resumeData, dictData]) => {
       setWork(resumeData.default.work);
       _setDict(dictData.default);

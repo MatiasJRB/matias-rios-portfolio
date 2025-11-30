@@ -62,22 +62,27 @@ Todos los componentes principales fueron actualizados para soportar i18n:
 ### 🚀 Características Implementadas
 
 #### 1. Detección Automática de Idioma
+
 El middleware detecta automáticamente el idioma preferido del usuario mediante:
+
 - Headers `Accept-Language` del navegador
 - Redirección automática a `/en/` o `/es/`
 
 #### 2. URLs Limpias y SEO-Friendly
+
 ```
 https://matiasjrb.com.ar/en/    # Versión en inglés
 https://matiasjrb.com.ar/es/    # Versión en español
 ```
 
 #### 3. Selector de Idioma
+
 - Componente `LanguageSwitcher` visible en la interfaz
 - Ubicado en el footer de la columna izquierda
 - Cambio instantáneo entre idiomas
 
 #### 4. SEO Optimizado
+
 - ✅ Sitemap con alternativas de idioma
 - ✅ Metadatos `alternates.languages` en cada página
 - ✅ Atributo `lang` correcto en `<html>`
@@ -85,6 +90,7 @@ https://matiasjrb.com.ar/es/    # Versión en español
 - ✅ JSON-LD con `inLanguage` según locale
 
 #### 5. Generación Estática
+
 - Ambos idiomas se generan estáticamente en build time
 - `generateStaticParams()` crea rutas para `/en` y `/es`
 - Zero impacto en bundle de JavaScript del cliente
@@ -116,6 +122,7 @@ Route (app)                              Size     First Load JS
 ### 🔄 Cómo Funciona la Traducción
 
 #### Textos de UI (botones, labels, etc.)
+
 ```typescript
 // Cargar diccionario
 const dict = await getDictionary(lang)
@@ -125,6 +132,7 @@ const dict = await getDictionary(lang)
 ```
 
 #### Contenido Dinámico (resume)
+
 ```typescript
 // Cargar resume según idioma
 const resume = await getResume(lang)
@@ -136,6 +144,7 @@ const resume = await getResume(lang)
 ### 📝 Archivos de Traducción
 
 #### `src/i18n/dictionaries/en.json`
+
 ```json
 {
   "nav": { "home": "Home", "about": "About", ... },
@@ -145,6 +154,7 @@ const resume = await getResume(lang)
 ```
 
 #### `src/i18n/dictionaries/es.json`
+
 ```json
 {
   "nav": { "home": "Inicio", "about": "Acerca de", ... },
@@ -156,6 +166,7 @@ const resume = await getResume(lang)
 ### 🧪 Testing
 
 El proyecto compila exitosamente con:
+
 ```bash
 npm run build  # ✅ Build exitoso
 npm run dev    # ✅ Servidor de desarrollo
@@ -175,16 +186,19 @@ npm run dev    # ✅ Servidor de desarrollo
 Si deseas expandir la funcionalidad:
 
 1. **Agregar más idiomas**:
+
    - Crear `pt.json` (Portugués)
    - Crear `resume/pt.json`
    - Agregar `'pt'` a `i18n.locales`
 
 2. **Mejorar traducciones**:
+
    - Traducir labels de navegación dinámicamente
    - Traducir highlights de experiencia laboral
    - Traducir skills y tecnologías
 
 3. **Cookie de preferencia**:
+
    - Guardar idioma seleccionado en cookie
    - Respetar preferencia en siguientes visitas
 

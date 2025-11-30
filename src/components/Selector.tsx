@@ -6,7 +6,10 @@ import { NAV_ITEMS } from "@/constants";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
-const Selector: React.FC<SelectorProps & { lang: Locale }> = ({ className, lang }) => {
+const Selector: React.FC<SelectorProps & { lang: Locale }> = ({
+  className,
+  lang,
+}) => {
   const [selectedSection, setSelectedSection] = useState("about");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
   const [_dict, _setDict] = useState<Dictionary | null>(null);

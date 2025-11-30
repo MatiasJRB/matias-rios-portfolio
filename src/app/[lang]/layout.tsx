@@ -13,20 +13,20 @@ const inter = Inter({
 });
 
 export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }))
+  return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ lang: Locale }>
+  params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
-  const { lang } = await params
-  const resume = await getResume(lang)
+  const { lang } = await params;
+  const resume = await getResume(lang);
   const {
     basics: { name, summary: description },
-  } = resume
-  
+  } = resume;
+
   return {
     title: name,
     description,
@@ -54,8 +54,8 @@ export async function generateMetadata({
     alternates: {
       canonical: "https://matiasjrb.com.ar",
       languages: {
-        'en': '/en',
-        'es': '/es',
+        en: "/en",
+        es: "/es",
       },
     },
     robots: {
@@ -75,7 +75,7 @@ export async function generateMetadata({
       description,
       url: "https://matiasjrb.com.ar",
       siteName: name,
-      locale: lang === 'es' ? 'es_AR' : 'en_US',
+      locale: lang === "es" ? "es_AR" : "en_US",
       type: "website",
       images: [
         {
@@ -129,7 +129,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ lang: Locale }>;
 }>) {
-  const { lang } = await params
+  const { lang } = await params;
 
   return (
     <html lang={lang} suppressHydrationWarning>

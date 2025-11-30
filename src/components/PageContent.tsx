@@ -62,7 +62,7 @@ export default function PageContent({ lang }: { lang: Locale }) {
             className="text-xs font-bold mb-2 uppercase tracking-wider"
             style={{ color: "var(--color-muted)" }}
           >
-            {lang === 'en' ? 'About' : 'Acerca de'}
+            {lang === "en" ? "About" : "Acerca de"}
           </h2>
         )}
         <section id="about" aria-labelledby="about-heading">
@@ -75,7 +75,7 @@ export default function PageContent({ lang }: { lang: Locale }) {
             className="mt-8 text-xs font-bold mb-2 uppercase tracking-wider"
             style={{ color: "var(--color-muted)" }}
           >
-            {lang === 'en' ? 'History' : 'Experiencia'}
+            {lang === "en" ? "History" : "Experiencia"}
           </h2>
         )}
         <section id="history" aria-labelledby="history-heading">

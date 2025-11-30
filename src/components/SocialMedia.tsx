@@ -17,11 +17,9 @@ interface Profile {
   url: string;
 }
 
-const SocialMedia: React.FC<SocialMediaProps & { behavior?: string; lang: Locale }> = ({
-  behavior = "justify-start",
-  className,
-  lang,
-}) => {
+const SocialMedia: React.FC<
+  SocialMediaProps & { behavior?: string; lang: Locale }
+> = ({ behavior = "justify-start", className, lang }) => {
   const [profiles, setProfiles] = useState<Profile[]>([]);
 
   useEffect(() => {
