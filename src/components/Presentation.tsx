@@ -39,24 +39,19 @@ const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
         </a>
       </div>
       <div
-        className="mt-4 text-xl md:text-2xl lg:text-3xl font-bold tracking-tight"
-        style={{
-          background: "var(--gradient-primary)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        }}
+        className="mt-2 text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight"
+        style={{ color: "var(--color-text)" }}
       >
         {basics.label}
       </div>
       <p
-        className="mt-6 lg:mt-10 text-lg md:text-xl leading-relaxed max-w-xs md:max-w-md lg:max-w-lg font-medium"
+        className="mt-4 lg:mt-6 text-lg md:text-xl leading-relaxed max-w-xs md:max-w-md lg:max-w-lg font-medium"
         style={{ color: "var(--color-muted)" }}
       >
         {basics.summary}
       </p>
       <p
-        className="mt-6 lg:mt-8 text-base md:text-lg leading-relaxed max-w-xs md:max-w-md lg:max-w-lg"
+        className="mt-4 lg:mt-6 text-base md:text-lg leading-relaxed max-w-xs md:max-w-md lg:max-w-lg"
         style={{ color: "var(--color-muted)" }}
       >
         {dictionary.cta.lookingForOpportunities}

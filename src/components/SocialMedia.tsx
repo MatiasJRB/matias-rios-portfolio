@@ -7,7 +7,8 @@ import type { SocialMediaProps, Profile } from "@/types";
 import type { Dictionary } from "@/i18n/types";
 import { MagneticButton } from "./AdvancedEffects";
 
-const iconMap: Record<string, React.ElementType> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const iconMap: Record<string, any> = {
   "fab fa-github": FaGithub,
   "fab fa-linkedin": FaLinkedin,
   email: MdEmail,

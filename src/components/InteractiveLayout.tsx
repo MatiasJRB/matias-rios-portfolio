@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useKeyboardNavigation } from "@/hooks/useKeyboardNavigation";
-import { ParallaxBackground } from "@/components/ParallaxBackground";
+import HeroBackground from "@/components/HeroBackground";
 import { SkipToContent } from "@/components/SkipToContent";
 import { KeyboardNavigationHint } from "@/components/KeyboardNavigationHint";
 import ThemeSwitch from "@/components/ThemeSwitch";
@@ -15,7 +14,7 @@ interface InteractiveLayoutProps {
   lang: Locale;
   dictionary: Dictionary;
   profiles: Profile[];
-  scrollAreaRef: React.RefObject<HTMLDivElement | null>;
+  scrollAreaRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function InteractiveLayout({
@@ -23,25 +22,12 @@ export default function InteractiveLayout({
   lang,
   dictionary,
   profiles,
-  scrollAreaRef,
 }: InteractiveLayoutProps) {
-  const [mobile, setMobile] = useState(false);
 
   // Keyboard navigation setup - auto-discovers navigable elements
   const { isKeyboardMode, currentActionHint } = useKeyboardNavigation({
     smooth: true,
   });
-
-  // Detectar si es mobile
-  useEffect(() => {
-    const updateMobile = () => {
-      setMobile(window.innerWidth < 1024);
-    };
-
-    updateMobile();
-    window.addEventListener("resize", updateMobile);
-    return () => window.removeEventListener("resize", updateMobile);
-  }, []);
 
   // Scroll nativo del navegador para mejor UX y compatibilidad con MagneticButtons
   // La columna izquierda será sticky y la derecha fluirá con el documento.
@@ -49,7 +35,6 @@ export default function InteractiveLayout({
   return (
     <>
       <SkipToContent lang={lang} />
-      <ParallaxBackground />
       <KeyboardNavigationHint
         isKeyboardMode={isKeyboardMode}
         actionHint={currentActionHint}

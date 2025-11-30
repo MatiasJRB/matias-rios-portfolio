@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 import GlowingCursor from "@/components/GlowingCursor";
 import Firebase from "@/components/Firebase";
 import JsonLd from "@/components/JsonLd";
@@ -137,6 +138,7 @@ export default async function RootLayout({
         className={`${inter.className} antialiased transition-colors duration-300`}
       >
         <ThemeProvider>
+          <SmoothScroll />
           <GlowingCursor />
           <Firebase />
           <JsonLd lang={lang} />

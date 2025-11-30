@@ -172,7 +172,7 @@ const History: React.FC<
               >
                 {/* FECHAS */}
                 <div
-                  className="text-sm font-semibold"
+                  className="text-base font-semibold"
                   style={{ color: "var(--color-muted)" }}
                 >
                   {job.startDate}{" "}
@@ -257,7 +257,7 @@ const History: React.FC<
                       )}{" "}
                       <div className="flex items-center">
                         {" "}
-                        <span className="font-bold">
+                        <span className="font-bold text-xl">
                           <span
                             className="job-text-span transition-colors duration-200"
                             style={{ color: "var(--color-text)" }}
@@ -302,7 +302,7 @@ const History: React.FC<
                     style={{ opacity: 0 }}
                   />
                   <p
-                    className="mt-2 text-sm"
+                    className="mt-2 text-base"
                     style={{ color: "var(--color-muted)" }}
                   >
                     {job.summary}
@@ -312,7 +312,7 @@ const History: React.FC<
                 <div className="mt-4">
                   {" "}
                   <h4
-                    className="text-xs font-semibold uppercase tracking-wider mb-3"
+                    className="text-sm font-semibold uppercase tracking-wider mb-3"
                     style={{ color: "var(--color-muted)" }}
                   >
                     {dictionary.history.keyResponsibilities}
@@ -358,7 +358,7 @@ const History: React.FC<
                           </div>
                         </div>{" "}
                         <p
-                          className="text-sm leading-relaxed flex-1 font-medium"
+                          className="text-base leading-relaxed flex-1 font-medium"
                           style={{ color: "var(--color-muted)" }}
                         >
                           {task}
