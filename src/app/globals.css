@@ -1,34 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  /* Light mode colors */
-  --color-primary: #00ee90; /* Verde accent geome7ric */
-  --color-primary-hover: #00d580; /* Verde accent hover */
-  --color-secondary: #64748b; /* Texto secundario, subtítulos */
-  --color-accent: #00ee90; /* Color de éxito, etiquetas "activo" */
-  --color-background: #ffffff; /* Fondo principal */
-  --color-surface: #f8fafc; /* Fondo secundario, cards */
-  --color-card: #f1f5f9; /* Fondo de cards */
-  --color-card-hover: #e2e8f0; /* Fondo de cards hover */
-  --color-text: #0f172a; /* Texto principal */
-  --color-text-secondary: #475569; /* Texto secundario */
-  --color-muted: #64748b; /* Texto terciario */
-  --color-success: #10b981; /* Etiquetas "activo", "completo" */
-  --color-warning: #f59e0b; /* Alertas suaves */
-  --color-error: #ef4444; /* Mensajes de error */
-  --color-border: #e2e8f0; /* Líneas separadoras */
-  --color-border-accent: #00ee90; /* Borde con accent */
-  --shadow: rgba(0, 0, 0, 0.05); /* Sombras de tarjetas */
-  --shadow-hover: rgba(0, 238, 144, 0.15); /* Sombra con accent */
+  /* Light mode colors - Paleta vibrante 2025 */
+  --color-primary: #00ff94; /* Verde neón vibrante */
+  --color-primary-hover: #00e685; /* Verde hover intenso */
+  --color-secondary: #ff006e; /* Magenta vibrante - contraste audaz */
+  --color-tertiary: #8338ec; /* Púrpura eléctrico */
+  --color-accent: #ffbe0b; /* Amarillo dorado */
+  --color-accent-blue: #3a86ff; /* Azul vibrante */
+  --color-background: #fafafa; /* Fondo off-white suave */
+  --color-surface: #ffffff; /* Superficie blanca pura */
+  --color-card: #ffffff; /* Cards con contraste */
+  --color-card-hover: #f0f0f0; /* Hover sutil */
+  --color-text: #0a0a0a; /* Negro intenso */
+  --color-text-secondary: #2d2d2d; /* Gris oscuro */
+  --color-muted: #6b6b6b; /* Gris medio */
+  --color-success: #06ffa5; /* Verde éxito neón */
+  --color-warning: #ffbe0b; /* Amarillo warning */
+  --color-error: #ff006e; /* Magenta error */
+  --color-border: #e0e0e0; /* Borde sutil */
+  --color-border-accent: #00ff94; /* Borde accent vibrante */
+  --shadow: rgba(0, 0, 0, 0.08); /* Sombras más pronunciadas */
+  --shadow-hover: rgba(0, 255, 148, 0.25); /* Glow effect */
+  --gradient-primary: linear-gradient(135deg, #00ff94 0%, #00e0ff 100%);
+  --gradient-secondary: linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
+  --gradient-accent: linear-gradient(135deg, #ffbe0b 0%, #ff006e 100%);
 
-  /* Dark mode colors */
-  --color-background-dark: #0f172a;
-  --color-foreground-dark: #f1f5f9;
-  --color-text-primary-dark: #f1f5f9;
-  --color-text-secondary-dark: #cbd5e1;
-  --color-text-muted-dark: #94a3b8;
-  --color-card-dark: #1e293b;
-  --color-card-hover-dark: #334155;
+  /* Dark mode colors - Modo oscuro moderno 2025 */
+  --color-background-dark: #0a0a0a;
+  --color-foreground-dark: #fafafa;
+  --color-text-primary-dark: #fafafa;
+  --color-text-secondary-dark: #d4d4d4;
+  --color-text-muted-dark: #a3a3a3;
+  --color-card-dark: #1a1a1a;
+  --color-card-hover-dark: #242424;
+  --gradient-dark-primary: linear-gradient(135deg, #00ff94 0%, #00e0ff 100%);
+  --gradient-dark-secondary: linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
 }
 
 /* Root theme variables for smooth transitions */
@@ -39,29 +46,34 @@
 }
 
 .dark {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
   color-scheme: dark;
 
-  /* Dark mode color overrides */
-  --color-primary: #00ee90;
-  --color-primary-hover: #00d580;
-  --color-secondary: #94a3b8;
-  --color-accent: #00ee90;
-  --color-background: #0f172a;
-  --color-surface: #1e293b;
-  --color-card: #1e293b;
-  --color-card-hover: #334155;
-  --color-text: #f1f5f9;
-  --color-text-secondary: #cbd5e1;
-  --color-muted: #94a3b8;
-  --color-success: #34d399;
-  --color-warning: #fbbf24;
-  --color-error: #f87171;
-  --color-border: #334155;
-  --color-border-accent: #00ee90;
-  --shadow: rgba(0, 0, 0, 0.3);
-  --shadow-hover: rgba(0, 238, 144, 0.2);
+  /* Dark mode color overrides - Vibrante 2025 */
+  --color-primary: #00ff94;
+  --color-primary-hover: #00e685;
+  --color-secondary: #ff006e;
+  --color-tertiary: #8338ec;
+  --color-accent: #ffbe0b;
+  --color-accent-blue: #3a86ff;
+  --color-background: #0a0a0a;
+  --color-surface: #1a1a1a;
+  --color-card: #1a1a1a;
+  --color-card-hover: #242424;
+  --color-text: #fafafa;
+  --color-text-secondary: #d4d4d4;
+  --color-muted: #a3a3a3;
+  --color-success: #06ffa5;
+  --color-warning: #ffbe0b;
+  --color-error: #ff006e;
+  --color-border: #2a2a2a;
+  --color-border-accent: #00ff94;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow-hover: rgba(0, 255, 148, 0.3);
+  --gradient-primary: linear-gradient(135deg, #00ff94 0%, #00e0ff 100%);
+  --gradient-secondary: linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
+  --gradient-accent: linear-gradient(135deg, #ffbe0b 0%, #ff006e 100%);
 }
 
 html {
@@ -157,20 +169,15 @@ html.dark body {
 }
 
 .right-column {
-  scrollbar-width: thin;
-  -ms-overflow-style: auto;
+  /* Native scroll behavior */
 }
 
-/* En desktop (lg y superior), hacer scroll dentro de la columna */
+/* En desktop (lg y superior), layout sticky para la columna izquierda */
 @media (min-width: 1024px) {
+  /* Eliminamos el scroll container de la columna derecha para usar el scroll nativo del body */
   .right-column {
-    overflow-y: auto;
-    max-height: 100vh;
-    scrollbar-width: thin;
-  }
-
-  .right-column::-webkit-scrollbar {
-    width: 4px;
+    overflow: visible;
+    height: auto;
   }
 }
 
@@ -333,6 +340,225 @@ a:focus-visible {
   scroll-behavior: smooth;
 }
 
+/* ===== ANIMACIONES MODERNAS 2025 ===== */
+
+/* Glow effect para elementos interactivos */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--color-primary)30, 0 0 40px var(--color-primary)15;
+  }
+  50% {
+    box-shadow: 0 0 30px var(--color-primary)50, 0 0 60px var(--color-primary)25;
+  }
+}
+
+/* Gradient animation para texto */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Hover lift effect */
+@keyframes hover-lift {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+/* Shimmer effect para loading */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Rotate gradient */
+@keyframes rotate-gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== UTILITY CLASSES 2025 ===== */
+
+/* Gradient text */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.gradient-text-secondary {
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Glow cards */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.4, 0.25, 1);
+}
+
+.glow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px var(--shadow-hover);
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-primary);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: -1;
+}
+
+.glow-card:hover::before {
+  opacity: 0.3;
+  animation: rotate-gradient 3s linear infinite;
+}
+
+/* Interactive buttons */
+.btn-modern {
+  position: relative;
+  padding: 0.75rem 2rem;
+  font-weight: 700;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.4, 0.25, 1);
+  background: var(--gradient-primary);
+  color: #0a0a0a;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-modern:hover::before {
+  left: 100%;
+}
+
+.btn-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px var(--shadow-hover);
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Enhanced skill tags */
+.skill {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  text-align: center;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.25, 0.4, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.skill:hover {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px var(--shadow-hover);
+}
+
+.skill:hover::before {
+  left: 0;
+  opacity: 0.1;
+}
+
+/* Smooth page transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Loading shimmer */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-card) 0%,
+    var(--color-card-hover) 50%,
+    var(--color-card) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
 /* Smooth scroll container */
 .right-column {
   scroll-behavior: smooth;

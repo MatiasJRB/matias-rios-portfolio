@@ -26,24 +26,34 @@ const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       style={{ willChange: "transform, opacity" }}
     >
-      <div className="mb-1">
+      <div className="mb-2">
         <a
-          className="text-4xl lg:text-6xl cursor-pointer font-bold"
+          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl cursor-pointer font-black tracking-tighter leading-tight"
           href="#about"
-          style={{ color: "var(--color-text)" }}
+          style={{ 
+            color: "var(--color-text)",
+            textShadow: "0 0 40px rgba(0, 255, 148, 0.1)"
+          }}
         >
           {basics.name}
         </a>
       </div>
-      <div className="mt-2 text-lg lg:text-xl">{basics.label}</div>
+      <div className="mt-4 text-xl md:text-2xl lg:text-3xl font-bold tracking-tight" style={{
+        background: "var(--gradient-primary)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+      }}>
+        {basics.label}
+      </div>
       <p
-        className="mt-4 lg:mt-8 text-base leading-relaxed max-w-xs md:max-w-sm lg:max-w-sm"
+        className="mt-6 lg:mt-10 text-lg md:text-xl leading-relaxed max-w-xs md:max-w-md lg:max-w-lg font-medium"
         style={{ color: "var(--color-muted)" }}
       >
         {basics.summary}
       </p>
       <p
-        className="mt-4 lg:mt-8 text-base leading-relaxed max-w-xs md:max-w-sm lg:max-w-sm"
+        className="mt-6 lg:mt-8 text-base md:text-lg leading-relaxed max-w-xs md:max-w-md lg:max-w-lg"
         style={{ color: "var(--color-muted)" }}
       >
         {dictionary.cta.lookingForOpportunities}

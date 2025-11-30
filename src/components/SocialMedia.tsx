@@ -5,6 +5,7 @@ import { cn } from "@/utils";
 import { motion } from "framer-motion";
 import type { SocialMediaProps, Profile } from "@/types";
 import type { Dictionary } from "@/i18n/types";
+import { MagneticButton } from "./AdvancedEffects";
 
 const iconMap: Record<string, React.ElementType> = {
   "fab fa-github": FaGithub,
@@ -41,27 +42,42 @@ const SocialMedia: React.FC<
         return IconComponent ? (
           <motion.div
             key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.4 + index * 0.15,
+              ease: [0.25, 0.4, 0.25, 1]
+            }}
           >
-            <IconComponent
-              size={24}
-              className="cursor-pointer transition-colors duration-300 mr-6"
-              style={{
-                color: "var(--color-muted)",
-              }}
-              onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
-                e.currentTarget.style.color = "var(--color-text)";
-              }}
-              onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
-                e.currentTarget.style.color = "var(--color-muted)";
-              }}
-              onClick={() => handleURL(profile.url)}
-              aria-label={getAriaLabel(profile.url)}
-              role="button"
-              tabIndex={0}
-            />
+            <MagneticButton strength={0.4}>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative mr-6"
+              >
+                <IconComponent
+                  size={28}
+                  className="cursor-pointer transition-all duration-300"
+                  style={{
+                    color: "var(--color-muted)",
+                    filter: "drop-shadow(0 0 0px transparent)",
+                  }}
+                  onMouseEnter={(e: React.MouseEvent<SVGElement>) => {
+                    e.currentTarget.style.color = "var(--color-primary)";
+                    e.currentTarget.style.filter = "drop-shadow(0 0 8px var(--color-primary))";
+                  }}
+                  onMouseLeave={(e: React.MouseEvent<SVGElement>) => {
+                    e.currentTarget.style.color = "var(--color-muted)";
+                    e.currentTarget.style.filter = "drop-shadow(0 0 0px transparent)";
+                  }}
+                  onClick={() => handleURL(profile.url)}
+                  aria-label={getAriaLabel(profile.url)}
+                  role="button"
+                  tabIndex={0}
+                />
+              </motion.div>
+            </MagneticButton>
           </motion.div>
         ) : null;
       })}

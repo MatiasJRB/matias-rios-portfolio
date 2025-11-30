@@ -43,49 +43,8 @@ export default function InteractiveLayout({
     return () => window.removeEventListener("resize", updateMobile);
   }, []);
 
-  useEffect(() => {
-    // En desktop, evitar scroll en el body (el scroll lo maneja .right-column)
-    // En mobile, permitir scroll normal en el body
-    document.body.style.overflow = mobile ? "auto" : "hidden";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [mobile]);
-
-  // Scroll global controla la columna derecha en desktop
-  useEffect(() => {
-    const handleScroll = (event: WheelEvent) => {
-      if (mobile) {
-        // En mobile, permitir scroll normal del body
-        return;
-      }
-
-      // Prevenir scroll del body en desktop
-      event.preventDefault();
-
-      // Aplicar el scroll a la columna derecha
-      const scrollArea = scrollAreaRef.current;
-      if (!scrollArea) return;
-
-      const deltaY = event.deltaY;
-      const scrollHeight = scrollArea.scrollHeight;
-      const height = scrollArea.clientHeight;
-      const maxScroll = scrollHeight - height;
-
-      scrollArea.scrollTop += deltaY;
-
-      // Evitar que se quede pegado en los extremos
-      if (scrollArea.scrollTop === 0) {
-        scrollArea.scrollTop = 1;
-      } else if (scrollArea.scrollTop === maxScroll) {
-        scrollArea.scrollTop = maxScroll - 1;
-      }
-    };
-
-    window.addEventListener("wheel", handleScroll, { passive: false });
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, [mobile, scrollAreaRef]);
+  // Scroll nativo del navegador para mejor UX y compatibilidad con MagneticButtons
+  // La columna izquierda será sticky y la derecha fluirá con el documento.
 
   return (
     <>
