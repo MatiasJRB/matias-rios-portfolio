@@ -2,8 +2,9 @@
 
 // Resume.json types
 export interface Profile {
-  network: string;
-  username: string;
+  icon?: string;
+  network?: string;
+  username?: string;
   url: string;
 }
 

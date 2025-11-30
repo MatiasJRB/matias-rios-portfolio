@@ -3,41 +3,20 @@ import Script from "next/script";
 
 export default function JsonLd() {
   const {
-    basics: { name, label, url, summary, location, profiles },
+    basics: { name, label, url, summary, location, profiles, email },
     work,
   } = resume;
-  // Create the schema object
-  interface Profile {
-    url: string;
-  }
 
-  interface Work {
-    name: string;
-  }
-
-  const schema: {
-    "@context": string;
-    "@type": string;
-    name: string;
-    jobTitle: string;
-    description: string;
-    url: string;
-    address: {
-      "@type": string;
-      addressLocality: string;
-      addressRegion: string;
-      addressCountry: string;
-      postalCode: string;
-    };
-    sameAs: string[];
-    worksFor: { "@type": string; name: string }[];
-  } = {
+  // Person Schema - Main schema for the portfolio owner
+  const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name,
     jobTitle: label,
     description: summary,
     url,
+    email,
+    image: `${url}/images/profile.jpg`,
     address: {
       "@type": "PostalAddress",
       addressLocality: location.city,
@@ -45,17 +24,94 @@ export default function JsonLd() {
       addressCountry: location.countryCode,
       postalCode: location.postalCode,
     },
-    sameAs: profiles.map((profile: Profile) => profile.url),
-    worksFor: work.map((job: Work) => ({
+    sameAs: profiles.map((profile: { url: string }) => profile.url),
+    knowsAbout: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "JavaScript",
+      "Full Stack Development",
+      "Software Engineering",
+      "Backend Development",
+      "Frontend Development",
+      "Mobile Development",
+    ],
+    hasOccupation: {
+      "@type": "Occupation",
+      name: label,
+      occupationalCategory: "15-1252.00", // Software Developers, Applications (SOC Code)
+      description: summary,
+    },
+    worksFor: work.slice(0, 1).map((job: { name: string; url?: string }) => ({
       "@type": "Organization",
       name: job.name,
-    })),
+      url: job.url,
+    }))[0],
+    knowsLanguage: [
+      {
+        "@type": "Language",
+        name: "Spanish",
+        alternateName: "es",
+      },
+      {
+        "@type": "Language",
+        name: "English",
+        alternateName: "en",
+      },
+    ],
   };
 
-  // Using next/script is better for performance than client-side script injection
+  // WebSite Schema - For the portfolio website itself
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: `${name} - Portfolio`,
+    url,
+    description: `Personal portfolio and professional website of ${name}, ${label}`,
+    author: {
+      "@type": "Person",
+      name,
+    },
+    inLanguage: "en-US",
+  };
+
+  // ProfilePage Schema - Indicates this is a profile page
+  const profilePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name,
+      url,
+    },
+    url,
+    description: summary,
+  };
+
+  // BreadcrumbList Schema - For navigation
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: url,
+      },
+    ],
+  };
+
+  // Combine all schemas into one array
+  const schemas = {
+    "@context": "https://schema.org",
+    "@graph": [personSchema, websiteSchema, profilePageSchema, breadcrumbSchema],
+  };
+
   return (
     <Script id="json-ld" type="application/ld+json" strategy="afterInteractive">
-      {JSON.stringify(schema)}
+      {JSON.stringify(schemas)}
     </Script>
   );
 }
