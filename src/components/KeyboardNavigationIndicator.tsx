@@ -32,25 +32,46 @@ export const KeyboardNavigationIndicator = ({
   }, [currentSection]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isActive && currentSection && (
         <motion.div
+          key={currentSection}
           className="fixed left-1/2 top-20 z-50 pointer-events-none"
           style={{
             transform: "translateX(-50%)",
           }}
-          initial={{ opacity: 0, y: -20, scale: 0.8 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -20, scale: 0.8 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          initial={{ opacity: 0, y: -30, scale: 0.7 }}
+          animate={{ 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+          }}
+          exit={{ opacity: 0, y: -30, scale: 0.7 }}
+          transition={{ 
+            duration: 0.5, 
+            ease: [0.34, 1.56, 0.64, 1],
+            opacity: { duration: 0.3 }
+          }}
         >
-          <div
+          <motion.div
             className="px-6 py-3 rounded-full backdrop-blur-xl border-2"
             style={{
               backgroundColor: "rgba(0, 238, 144, 0.15)",
               borderColor: "var(--color-primary)",
               boxShadow:
                 "0 0 30px rgba(0, 238, 144, 0.4), 0 10px 30px rgba(0, 0, 0, 0.3)",
+            }}
+            animate={{
+              boxShadow: [
+                "0 0 30px rgba(0, 238, 144, 0.4), 0 10px 30px rgba(0, 0, 0, 0.3)",
+                "0 0 40px rgba(0, 238, 144, 0.5), 0 10px 35px rgba(0, 0, 0, 0.4)",
+                "0 0 30px rgba(0, 238, 144, 0.4), 0 10px 30px rgba(0, 0, 0, 0.3)",
+              ],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
             }}
           >
             <div className="flex items-center gap-3">
@@ -61,8 +82,8 @@ export const KeyboardNavigationIndicator = ({
                   backgroundColor: "var(--color-primary)",
                 }}
                 animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [1, 0.7, 1],
+                  scale: [1, 1.4, 1],
+                  opacity: [1, 0.6, 1],
                 }}
                 transition={{
                   duration: 1.5,
@@ -76,7 +97,7 @@ export const KeyboardNavigationIndicator = ({
                     backgroundColor: "var(--color-primary)",
                   }}
                   animate={{
-                    scale: [1, 2, 1],
+                    scale: [1, 2.5, 1],
                     opacity: [0.7, 0, 0.7],
                   }}
                   transition={{
@@ -87,18 +108,21 @@ export const KeyboardNavigationIndicator = ({
                 />
               </motion.div>
 
-              {/* Section label */}
-              <span
+              {/* Section label with stagger animation */}
+              <motion.span
                 className="text-sm font-semibold tracking-wide"
                 style={{
                   color: "var(--color-primary)",
                   textShadow: "0 0 10px rgba(0, 238, 144, 0.5)",
                 }}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
               >
                 {sectionLabel}
-              </span>
+              </motion.span>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

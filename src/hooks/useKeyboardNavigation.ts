@@ -26,9 +26,6 @@ export const useKeyboardNavigation = ({
   const collectNavigableElements = useCallback(() => {
     const elements: HTMLElement[] = [];
 
-    // Get main sections
-    const presentation = document.getElementById("presentation");
-
     // Get About section paragraphs
     const aboutSection = document.getElementById("about");
     if (aboutSection) {
@@ -81,7 +78,7 @@ export const useKeyboardNavigation = ({
 
   // Apply the same hover styles that onMouseEnter applies + green dot for paragraphs
   const applyHoverStyles = useCallback(
-    (element: HTMLElement | null, isHover: boolean) => {
+    (element: HTMLElement | null, isHover: boolean, animated: boolean = false) => {
       if (!element) return;
 
       // Check element type
@@ -121,34 +118,72 @@ export const useKeyboardNavigation = ({
         setCurrentActionHint(null);
       }
 
+      // Add smooth transition and animation properties
+      if (animated) {
+        element.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)";
+      } else {
+        element.style.transition = "all 0.3s ease-out";
+      }
+
       if (isTask) {
         if (isHover) {
           element.style.backgroundColor = "var(--color-background)";
           element.style.borderColor = "var(--color-primary)";
-          element.style.transform = "translateX(4px)";
+          element.style.transform = animated ? "translateX(6px) scale(1.02)" : "translateX(4px)";
+          if (animated) {
+            element.style.boxShadow = "0 0 20px rgba(0, 238, 144, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)";
+          }
         } else {
           element.style.backgroundColor = "var(--color-surface)";
           element.style.borderColor = "var(--color-border)";
-          element.style.transform = "translateX(0)";
+          element.style.transform = "translateX(0) scale(1)";
+          element.style.boxShadow = "none";
         }
       } else if (isParagraph || isJobSummary || isFooterParagraph) {
-        // Show/hide green dot indicator
+        // Show/hide green dot indicator with animation
         const indicator = element.querySelector(".keyboard-indicator");
         if (indicator) {
+          (indicator as HTMLElement).style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
           (indicator as HTMLElement).style.opacity = isHover ? "1" : "0";
+          if (isHover && animated) {
+            (indicator as HTMLElement).style.transform = "scale(1.3)";
+            setTimeout(() => {
+              if (indicator) {
+                (indicator as HTMLElement).style.transform = "scale(1)";
+              }
+            }, 200);
+          }
+        }
+        if (isHover && animated) {
+          element.style.transform = "scale(1.01)";
+          element.style.textShadow = "0 0 8px rgba(0, 238, 144, 0.2)";
+        } else {
+          element.style.transform = "scale(1)";
+          element.style.textShadow = "none";
         }
       } else if (isViewResume) {
         if (isHover) {
           element.style.color = "var(--color-accent)";
+          if (animated) {
+            element.style.transform = "scale(1.05)";
+            element.style.textShadow = "0 0 10px rgba(0, 238, 144, 0.4)";
+          }
           const arrow = element.querySelector(".resume-arrow");
           if (arrow) {
             (arrow as HTMLElement).style.color = "var(--color-accent)";
+            if (animated) {
+              (arrow as HTMLElement).style.transform = "translateX(4px)";
+              (arrow as HTMLElement).style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+            }
           }
         } else {
           element.style.color = "var(--color-text)";
+          element.style.transform = "scale(1)";
+          element.style.textShadow = "none";
           const arrow = element.querySelector(".resume-arrow");
           if (arrow) {
             (arrow as HTMLElement).style.color = "var(--color-text)";
+            (arrow as HTMLElement).style.transform = "translateX(0)";
           }
         }
       }
@@ -230,11 +265,11 @@ export const useKeyboardNavigation = ({
         const closestIdx = findClosestElementIndex(elements);
         currentIndex.current = closestIdx;
 
-        // Apply hover to current element
+        // Apply hover to current element with animation
         const currentElement = elements[closestIdx];
         if (currentElement) {
           setCurrentSection(currentElement.id);
-          applyHoverStyles(currentElement, true);
+          applyHoverStyles(currentElement, true, true);
           currentHoveredElement.current = currentElement;
         }
         return; // Don't navigate on first key press, just activate
@@ -252,7 +287,7 @@ export const useKeyboardNavigation = ({
 
       isNavigating.current = true;
 
-      // Remove hover from previous
+      // Remove hover from previous with fade out animation
       clearCurrentHover();
 
       currentIndex.current = nextIndex;
@@ -261,15 +296,17 @@ export const useKeyboardNavigation = ({
       if (targetElement) {
         setCurrentSection(targetElement.id);
 
-        // Apply hover styles directly
-        applyHoverStyles(targetElement, true);
-        currentHoveredElement.current = targetElement;
-
-        // Scroll to element
+        // Smooth scroll with custom easing
         targetElement.scrollIntoView({
           behavior: smooth ? "smooth" : "auto",
           block: "center",
         });
+
+        // Apply hover styles with animation after a small delay for smoother transition
+        setTimeout(() => {
+          applyHoverStyles(targetElement, true, true);
+          currentHoveredElement.current = targetElement;
+        }, 50);
 
         onNavigate?.(targetElement.id, direction);
 
@@ -277,7 +314,7 @@ export const useKeyboardNavigation = ({
           () => {
             isNavigating.current = false;
           },
-          smooth ? 100 : 50
+          smooth ? 200 : 50
         );
       }
     };
