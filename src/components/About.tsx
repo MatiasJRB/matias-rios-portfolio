@@ -8,7 +8,6 @@ export default function About({
   className,
   about,
 }: AboutProps & { about: string }) {
-
   // Convert HTML string to paragraphs with keyboard navigation support
   const renderNavigableParagraphs = (htmlString: string) => {
     const tempDiv = document.createElement("div");

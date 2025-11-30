@@ -10,7 +10,13 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import type { Locale } from "@/i18n/config";
 import type { Resume } from "@/types";
 
-export default function PageContent({ lang, resume }: { lang: Locale; resume: Resume }) {
+export default function PageContent({
+  lang,
+  resume,
+}: {
+  lang: Locale;
+  resume: Resume;
+}) {
   const [mobile, setMobile] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
