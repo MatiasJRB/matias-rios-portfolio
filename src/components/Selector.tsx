@@ -19,17 +19,17 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
     if (section) {
       setSelectedSection(id);
       setIsUserScrolling(true);
-      
+
       // Limpiar timeout anterior
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
-      
+
       // Después de 1 segundo, permitir que el observer tome control nuevamente
       scrollTimeoutRef.current = setTimeout(() => {
         setIsUserScrolling(false);
       }, 1000);
-      
+
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -47,7 +47,7 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
 
           // Debounce para evitar actualizaciones excesivas
           clearTimeout(timeoutId);
-          
+
           timeoutId = setTimeout(() => {
             // Encuentra todas las secciones visibles
             const visibleSections = entries
