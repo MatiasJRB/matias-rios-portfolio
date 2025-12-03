@@ -11,44 +11,69 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
 }) => {
   const [selectedSection, setSelectedSection] = useState("about");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
+  const scrollTimeoutRef = React.useRef<NodeJS.Timeout>();
 
   const handleSelect = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
       setSelectedSection(id);
+      setIsUserScrolling(true);
+      
+      // Limpiar timeout anterior
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // Después de 1 segundo, permitir que el observer tome control nuevamente
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, 1000);
+      
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      let timeoutId: NodeJS.Timeout;
+
       const observer = new IntersectionObserver(
         (entries) => {
-          let visibleSection: string | null = null;
-
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              if (
-                !visibleSection ||
-                Math.abs(entry.boundingClientRect.top) <
-                  Math.abs(
-                    document
-                      .getElementById(visibleSection)
-                      ?.getBoundingClientRect().top || 0
-                  )
-              ) {
-                visibleSection = entry.target.id;
-              }
-            }
-          });
-
-          if (visibleSection) {
-            setSelectedSection(visibleSection);
+          // No actualizar si el usuario acaba de hacer clic
+          if (isUserScrolling) {
+            return;
           }
+
+          // Debounce para evitar actualizaciones excesivas
+          clearTimeout(timeoutId);
+          
+          timeoutId = setTimeout(() => {
+            // Encuentra todas las secciones visibles
+            const visibleSections = entries
+              .filter((entry) => entry.isIntersecting)
+              .map((entry) => ({
+                id: entry.target.id,
+                ratio: entry.intersectionRatio,
+                top: entry.boundingClientRect.top,
+              }))
+              .sort((a, b) => {
+                // Primero por ratio de intersección (más visible)
+                if (Math.abs(b.ratio - a.ratio) > 0.1) {
+                  return b.ratio - a.ratio;
+                }
+                // Luego por cercanía al top de la ventana
+                return Math.abs(a.top) - Math.abs(b.top);
+              });
+
+            if (visibleSections.length > 0) {
+              setSelectedSection(visibleSections[0].id);
+            }
+          }, 100);
         },
         {
-          threshold: 0.5,
-          rootMargin: "0px 0px -50% 0px",
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+          rootMargin: "-10% 0px -60% 0px",
         }
       );
 
@@ -60,6 +85,10 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
       });
 
       return () => {
+        clearTimeout(timeoutId);
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
         NAV_ITEMS.forEach((item) => {
           const section = document.getElementById(item.id);
           if (section) {
@@ -68,7 +97,8 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
         });
       };
     }
-  }, []);
+  }, [isUserScrolling]);
+
   return (
     <motion.div
       className={cn("flex flex-col items-start", className)}
