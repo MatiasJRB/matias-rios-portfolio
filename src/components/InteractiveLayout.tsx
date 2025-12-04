@@ -1,6 +1,5 @@
 "use client";
 import { useKeyboardNavigation } from "@/hooks/useKeyboardNavigation";
-import HeroBackground from "@/components/HeroBackground";
 import { SkipToContent } from "@/components/SkipToContent";
 import { KeyboardNavigationHint } from "@/components/KeyboardNavigationHint";
 import ThemeSwitch from "@/components/ThemeSwitch";

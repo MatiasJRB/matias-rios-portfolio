@@ -30,7 +30,7 @@ export default function HeroBackground({
 
           // Make p5 available globally for Vanta
           if (typeof window !== "undefined") {
-            (window as any).p5 = p5Constructor;
+            (window as typeof window & { p5: typeof p5Constructor }).p5 = p5Constructor;
           }
 
           // @ts-expect-error Vanta.js does not have TypeScript types
