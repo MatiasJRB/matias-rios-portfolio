@@ -28,6 +28,18 @@ const History: React.FC<
   HistoryProps & { lang: Locale; work: Job[]; dictionary: Dictionary }
 > = ({ className, id = "history", lang: _lang, work, dictionary }) => {
   const [isLoading] = useState(false);
+
+  // Función para obtener el color de hover por empresa
+  const getCompanyHoverColor = (companyName: string) => {
+    const colors: Record<string, string> = {
+      Nuqlea: "#000000",
+      Kalkomey: "#ff006e",
+      Mangxo: "#ffa500",
+      Geome7ric: "#00ff94",
+    };
+    return colors[companyName] || "var(--color-accent)";
+  };
+
   // Función para obtener el logo de la empresa
   const getCompanyLogo = (companyName: string) => {
     return COMPANY_LOGOS[companyName] || null;
@@ -151,7 +163,7 @@ const History: React.FC<
               />
 
               <motion.div
-                className="w-full mb-8 p-6 md:pl-10 rounded-lg transition-all duration-300 group"
+                className="w-full mb-12 p-6 md:pl-12 rounded-lg transition-all duration-300 group"
                 style={{
                   backgroundColor: "transparent",
                   willChange: "transform, opacity",
@@ -172,7 +184,7 @@ const History: React.FC<
               >
                 {/* FECHAS */}
                 <div
-                  className="text-base font-semibold"
+                  className="text-sm font-semibold"
                   style={{ color: "var(--color-muted)" }}
                 >
                   {job.startDate}{" "}
@@ -183,7 +195,7 @@ const History: React.FC<
                   {job.endDate}
                 </div>
                 {/* TITULO + LINK */}
-                <div className="mt-2">
+                <div className="mt-3">
                   {" "}
                   <a
                     href={job.url}
@@ -191,22 +203,22 @@ const History: React.FC<
                     rel="noopener noreferrer"
                     className="flex items-center transition-all group"
                     onMouseEnter={(e) => {
+                      const hoverColor = getCompanyHoverColor(job.name);
                       const jobTexts =
                         e.currentTarget.querySelectorAll(".job-text-span");
                       const arrow = e.currentTarget.querySelector(".job-arrow");
                       const logo =
                         e.currentTarget.querySelector(".company-logo");
                       jobTexts.forEach((span) => {
-                        (span as HTMLElement).style.color =
-                          "var(--color-accent)";
+                        (span as HTMLElement).style.color = hoverColor;
                       });
                       if (arrow) {
-                        (arrow as HTMLElement).style.color =
-                          "var(--color-accent)";
+                        (arrow as HTMLElement).style.color = hoverColor;
                       }
                       if (logo) {
-                        (logo as HTMLElement).style.boxShadow =
-                          "0 0 0 2px var(--color-accent)";
+                        (
+                          logo as HTMLElement
+                        ).style.boxShadow = `0 0 0 2px ${hoverColor}`;
                       }
                     }}
                     onMouseLeave={(e) => {
@@ -228,12 +240,10 @@ const History: React.FC<
                       }
                     }}
                   >
-                    {" "}
                     <div className="flex flex-row transform transition-all duration-300">
-                      {/* LOGO DE LA EMPRESA */}{" "}
+                      {/* LOGO DE LA EMPRESA */}
                       {getCompanyLogo(job.name) && (
                         <div className="flex-shrink-0 mr-3">
-                          {" "}
                           <div
                             className="company-logo w-10 h-10 rounded-full border flex items-center justify-center overflow-hidden transition-all duration-200"
                             style={{
@@ -254,26 +264,22 @@ const History: React.FC<
                             />
                           </div>
                         </div>
-                      )}{" "}
+                      )}
                       <div className="flex items-center">
-                        {" "}
-                        <span className="font-bold text-xl">
+                        <span className="font-bold text-lg md:text-xl">
                           <span
                             className="job-text-span transition-colors duration-200"
                             style={{ color: "var(--color-text)" }}
                           >
                             {job.position}
                           </span>
-                          <span style={{ color: "var(--color-muted)" }}>
-                            {" "}
-                            ·{" "}
-                          </span>
+                          <span style={{ color: "var(--color-muted)" }}>·</span>
                           <span
                             className="job-text-span transition-colors duration-200"
                             style={{ color: "var(--color-text)" }}
                           >
                             {job.name}
-                          </span>{" "}
+                          </span>
                         </span>
                         <div
                           className="ml-2 transform transition-all duration-200 ease-in-out
@@ -302,39 +308,39 @@ const History: React.FC<
                     style={{ opacity: 0 }}
                   />
                   <p
-                    className="mt-2 text-base"
+                    className="mt-3 text-sm md:text-base"
                     style={{ color: "var(--color-muted)" }}
                   >
                     {job.summary}
                   </p>
                 </div>
                 {/* HIGHLIGHTS */}
-                <div className="mt-4">
+                <div className="mt-6">
                   {" "}
                   <h4
-                    className="text-sm font-semibold uppercase tracking-wider mb-3"
+                    className="text-xs font-semibold uppercase tracking-wider mb-4"
                     style={{ color: "var(--color-muted)" }}
                   >
                     {dictionary.history.keyResponsibilities}
-                  </h4>{" "}
-                  <div className="space-y-2">
+                  </h4>
+                  <div className="space-y-3">
                     {job.highlights.map((task, taskIndex) => (
                       <div
                         key={task}
                         id={`${jobId}-task-${taskIndex}`}
                         data-job-url={job.url}
                         className="group/item flex items-start space-x-3 
-                  p-4 rounded-lg transition-all duration-200 border scroll-mt-24"
+                  p-3 md:p-4 rounded-lg transition-all duration-200 border scroll-mt-24"
                         style={{
                           backgroundColor: "var(--color-surface)",
                           borderColor: "var(--color-border)",
                           color: "var(--color-muted)",
                         }}
                         onMouseEnter={(e) => {
+                          const hoverColor = getCompanyHoverColor(job.name);
                           e.currentTarget.style.backgroundColor =
                             "var(--color-background)";
-                          e.currentTarget.style.borderColor =
-                            "var(--color-primary)";
+                          e.currentTarget.style.borderColor = hoverColor;
                           e.currentTarget.style.transform = "translateX(4px)";
                         }}
                         onMouseLeave={(e) => {
@@ -345,7 +351,6 @@ const History: React.FC<
                           e.currentTarget.style.transform = "translateX(0)";
                         }}
                       >
-                        {" "}
                         <div className="flex-shrink-0 mt-0.5">
                           <div
                             className="w-8 h-8 rounded-full flex items-center justify-center transition-colors border"
@@ -356,9 +361,9 @@ const History: React.FC<
                           >
                             {getIconForHighlight(task)}
                           </div>
-                        </div>{" "}
+                        </div>
                         <p
-                          className="text-base leading-relaxed flex-1 font-medium"
+                          className="text-sm md:text-base leading-relaxed flex-1 font-medium"
                           style={{ color: "var(--color-muted)" }}
                         >
                           {task}

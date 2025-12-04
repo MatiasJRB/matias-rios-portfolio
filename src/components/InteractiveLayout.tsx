@@ -41,8 +41,8 @@ export default function InteractiveLayout({
       />
       <MobileHeader dictionary={dictionary} profiles={profiles} />
       <div
-        className="min-h-screen grid grid-cols-1 lg:grid-cols-2 w-full
-         px-5 max-w-screen-xl mx-auto md:px-16 lg:px-24 transition-colors duration-300"
+        className="min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-16 w-full
+         px-6 max-w-screen-xl mx-auto md:px-12 lg:px-20 transition-colors duration-300"
         style={{
           backgroundColor: "var(--color-background)",
           color: "var(--color-text)",

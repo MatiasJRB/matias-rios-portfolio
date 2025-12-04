@@ -116,15 +116,15 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
         return (
           <div
             key={item.id}
-            className="mb-4 cursor-pointer flex items-center"
+            className="mb-6 cursor-pointer flex items-center"
             onMouseOver={() => setHoveredSection(item.id)}
             onMouseLeave={() => setHoveredSection(null)}
             onClick={() => handleSelect(item.id)}
           >
             <motion.span
-              className="h-px mr-3"
+              className="h-px mr-4"
               animate={{
-                width: isSelected || isHovered ? "3rem" : "2rem",
+                width: isSelected || isHovered ? "4rem" : "2.5rem",
                 backgroundColor: isSelected
                   ? "var(--color-primary)"
                   : isHovered
