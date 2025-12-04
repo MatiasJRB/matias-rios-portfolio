@@ -12,7 +12,7 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
   const [selectedSection, setSelectedSection] = useState("about");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
   const [isUserScrolling, setIsUserScrolling] = useState(false);
-  const scrollTimeoutRef = React.useRef<NodeJS.Timeout>();
+  const scrollTimeoutRef = React.useRef<NodeJS.Timeout | undefined>(undefined);
 
   const handleSelect = (id: string) => {
     const section = document.getElementById(id);
