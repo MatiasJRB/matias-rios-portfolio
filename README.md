@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/MatiasJRB/matias-rios-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/MatiasJRB/matias-rios-portfolio/actions/workflows/ci.yml)
 
-Source code for [matiasjriosb.com.ar](https://matiasjriosb.com.ar), my bilingual portfolio and resume. It presents the same professional narrative as my GitHub profile: product-minded software engineering, 8+ years shipping production systems, and selected independent work.
+Source code for [matiasjrb.com.ar](https://www.matiasjrb.com.ar), my bilingual portfolio and resume. It presents the same professional narrative as my GitHub profile: product-minded software engineering, 8+ years shipping production systems, and selected independent work.
 
 ## What is included
 
