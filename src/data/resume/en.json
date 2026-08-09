@@ -1,0 +1,274 @@
+{
+  "basics": {
+    "name": "Matias Rios",
+    "label": "Tech Lead & Software Engineer",
+    "image": "/images/profile-headshot-2026.jpg",
+    "email": "matiasjriosb@gmail.com",
+    "phone": "(291) 645-0794",
+    "url": "https://www.matiasjrb.com.ar",
+    "summary": "8+ years of experience building digital products across multiple industries. I lead engineering and product architecture at Mango. Co-founder of Geome7ric.",
+    "about": "<p>In 2013, I pursued a degree in computer engineering, and by 2018, I had sold my first software: an inventory app for a local pet shop. Since then, I've been coding for diverse industries, including building, ecommerce, physical retail, healthcare, distribution, port logistics, and corporate transportation.</p><p>I build at <a href=\"https://mangxo.com\" target=\"_blank\">Mango</a>, a data company with financial products for the construction ecosystem in Latin America. My work focuses on the systems that power the platform: commercial credit, payment workflows and a network of 200+ points of sale. On my own time, I design and ship digital products end to end — from database architecture to payments and deployment. Previously, I led a mobile app from beta to app stores at <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a> and drove a key integration at <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a> that increased subscriptions and revenue.</p><p>When I'm not at the computer, I’m usually at the gym, playing soccer at the best <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">friend's club</a> of my city, or with friends and family. I also manage projects at <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, my software venture.</p>",
+    "location": {
+      "address": "Corrientes 211",
+      "postalCode": "B8000",
+      "city": "Bahía Blanca",
+      "countryCode": "AR",
+      "region": "Buenos Aires"
+    },
+    "profiles": [
+      {
+        "icon": "fab fa-github",
+        "url": "https://github.com/MatiasJRB"
+      },
+      {
+        "icon": "fab fa-linkedin",
+        "url": "https://www.linkedin.com/in/matiasjriosb/"
+      },
+      {
+        "icon": "email",
+        "url": "mailto:matiasjriosb@gmail.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Mango",
+      "position": "Tech Lead",
+      "url": "https://mangxo.com",
+      "startDate": "03-2025",
+      "endDate": "PRESENT",
+      "summary": "I am responsible for technically and operationally leading the development team, ensuring solutions are scalable, maintainable, and aligned with product strategy. I connect product and business priorities with concrete technical decisions to help the team execute with clarity. My focus includes building with a medium and long-term vision, anticipating the evolution of the product, team, and platform.",
+      "highlights": [
+        "Technical leadership in designing architectures for new features and systems.",
+        "Defining and maintaining technical quality standards (tests, CI/CD, PRs, versioning).",
+        "Coordinating the development team (dailies, sprint planning, PR reviews).",
+        "Onboarding and technical mentoring for new developers.",
+        "Aligning technical implementation with product objectives.",
+        "Administering and maintaining technical infrastructure (development, staging, production).",
+        "Supervising and implementing CI/CD tools and monitoring.",
+        "Communicating progress, risks, and technical decisions to leadership and product.",
+        "Designing key components with a focus on scalability and future business evolution."
+      ]
+    },
+    {
+      "name": "Geome7ric",
+      "position": "Co-Founder",
+      "url": "https://geome7ric.com",
+      "startDate": "02-2020",
+      "endDate": "PRESENT",
+      "summary": "Co-founded and run a software venture building products across web, mobile, and AI. Currently focused on shipping custom products and multi-tenant applications using React Native, Next.js, and Supabase.",
+      "highlights": [
+        "Co-founded Geome7ric, leading product strategy, technical architecture, and client relationships.",
+        "Built and shipped multiple custom products end-to-end: AI knowledge assistants, carpooling apps, and multi-tenant platforms.",
+        "Designed and deployed production systems using Next.js, React Native (Expo), Supabase, PostgreSQL, and Mercado Pago.",
+        "Managed full project lifecycles, including budgeting, client relations, project management, and team leadership.",
+        "Implemented CI/CD pipelines, Vercel deployments, and spec-driven development workflows.",
+        "Responsible for client acquisition, requirements gathering, and ensuring successful project delivery."
+      ],
+      "icon": "sell"
+    },
+    {
+      "name": "Kalkomey",
+      "position": "Software Engineer",
+      "url": "https://kalkomey.com",
+      "startDate": "09-2022",
+      "endDate": "12-2024",
+      "summary": "Backend Lead at HuntWise, a leading hunting app, where I implemented backend solutions to enhance system reliability and drive market growth. Collaborated with product, marketing, and development teams to align technical solutions with business goals. Previously managed backend development for Cargill, consistently delivering milestones and strengthening client relationships. Recognized for leadership, strategic planning, and technical contributions with a promotion.",
+      "highlights": [
+        "Led backend development for the HuntWise app, implementing solutions with Node.js, Express, and PostgreSQL to enhance system reliability and support market growth.",
+        "Engineered and maintained robust backend services using Python and Ruby on Rails, contributing to core product features.",
+        "Managed backend development for key client projects like Cargill, consistently delivering milestones and strengthening client relationships.",
+        "Collaborated with product, marketing, and development teams to align technical solutions with business goals, utilizing AWS, Docker, and CI/CD pipelines (GitHub Actions).",
+        "Spearheaded the adoption of Prisma for ORM, improving developer productivity and data access patterns.",
+        "Recognized with a promotion for leadership, strategic planning, and significant technical contributions to the platform."
+      ]
+    },
+    {
+      "name": "Nuqlea",
+      "position": "Fullstack Developer",
+      "url": "https://nuqlea.com",
+      "startDate": "06-2021",
+      "endDate": "08-2022",
+      "summary": "Led mobile app development, contributed to platform design using Quasar Framework, Laravel. Transitioned app from beta to production on Apple, Google. Enhanced B2C app, tackled system-wide issues, improved UX/UI. Learned startup agility, meeting deadlines.",
+      "highlights": [
+        "Led full-stack development of a hybrid mobile application using Quasar Framework (Vue.js) and a Laravel backend.",
+        "Successfully transitioned the mobile app from beta to production, managing deployments to Apple App Store and Google Play Store.",
+        "Contributed significantly to platform design and architecture, enhancing features for a B2C application.",
+        "Improved application performance and UX/UI by tackling system-wide issues and refactoring key components.",
+        "Operated effectively in an agile startup environment, consistently meeting tight deadlines and adapting to evolving requirements.",
+        "Utilized MySQL for database management and JavaScript (ES6+) for frontend and backend logic."
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Professional working proficiency"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Platform v2",
+      "description": "Led the full migration of Mango's platform from Vue 2 to Next.js. 15 feature modules including clients, purchases, sales, suppliers, reservations, and payment workflows.",
+      "impact": "Led the migration of 15 modules from Vue 2 to Next.js across clients, purchases, sales, suppliers, reservations, and payment workflows.",
+      "tech": ["Next.js", "TypeScript", "Supabase"],
+      "role": "Tech Lead",
+      "company": "Mango"
+    },
+    {
+      "name": "Cobros",
+      "description": "Payment reconciliation product for construction material distributors. STP integration for automated transfers, SAT tax validation, CLABE account management, and full audit trail.",
+      "tech": ["Next.js", "Express", "Prisma", "STP API"],
+      "role": "Tech Lead & Architect",
+      "company": "Mango",
+      "featured": true,
+      "featuredRank": 1,
+      "eyebrow": "Tech Lead / Architecture",
+      "headline": "Spec-driven delivery of a financial product for payments, invoices, and reconciliation.",
+      "impact": "I designed Cobros with Spec-Driven Development: technical scope defined upfront, product-to-production tasks broken down granularly, and an MVP delivered in one month with one frontend SE and one backend SE.",
+      "status": "Mango · Internal product",
+      "proof": ["Spec-Driven Development", "1-month MVP", "FE + BE team"],
+      "highlights": [
+        "Defined the technical scope before building: architecture, flows, data models, APIs, integrations, and acceptance criteria.",
+        "Broke the work down into executable tasks to move from product definition to production with minimal rework.",
+        "Coordinated delivery with one frontend SE and one backend SE while keeping technical clarity and MVP focus."
+      ],
+      "visual": {
+        "pattern": "payments",
+        "nodes": [
+          "Technical spec",
+          "Architecture",
+          "Granular tasks",
+          "MVP delivery"
+        ]
+      }
+    },
+    {
+      "name": "./mango-engineering",
+      "description": "Central engineering governance and product/technical planning repo for Mango. I consolidated the cross-repo roadmap and backlog system, SDD templates, shared rules and agents, ADRs, cross-cutting specs, Asana Sprint Board sync, and a local viewer for initiatives.",
+      "impact": "Designed Mango's central engineering governance and planning system, unifying the cross-repo roadmap, ADRs, SDD, agents, and Asana sync.",
+      "tech": ["Markdown", "SDD", "AI Agents", "MCP", "Asana", "Bash/Node.js"],
+      "role": "Creator & Architect",
+      "company": "Mango"
+    },
+    {
+      "name": "Transactions",
+      "description": "Microservice to automate payment processing through STP (Mexican banking network). Handles webhooks, transaction status tracking, and event-driven notifications with Sentry monitoring.",
+      "impact": "Automated STP payment processing with webhooks, transaction status tracking, event-driven notifications, and Sentry monitoring.",
+      "tech": ["Express", "Prisma", "STP API", "Sentry"],
+      "role": "Developer",
+      "company": "Mango"
+    },
+    {
+      "name": "Eagle",
+      "description": "Field service management platform. Technician scheduling, work order tracking, photo evidence capture, and real-time dashboards for operations teams.",
+      "impact": "Built workflows for coordinating technicians, work orders, and field evidence with real-time tracking and operational dashboards.",
+      "tech": ["NestJS", "Vue", "Quasar", "Capacitor", "Firebase"],
+      "role": "Full Stack Developer",
+      "company": "Geome7ric",
+      "url": "https://geome7ric.com"
+    },
+    {
+      "name": "Lemur",
+      "description": "Corporate transport management system with real-time GPS tracking, route optimization, driver assignment, and live map visualization using Socket.io.",
+      "impact": "Implemented GPS tracking, driver assignment, route optimization, and live maps for corporate transportation operations.",
+      "tech": ["NestJS", "Vue", "Quasar", "Google Maps", "Socket.io"],
+      "role": "Full Stack Developer",
+      "company": "Geome7ric",
+      "url": "https://geome7ric.com"
+    },
+    {
+      "name": "Badger",
+      "description": "Industrial inventory management for a manufacturing company. Turborepo monorepo with web dashboard and mobile app for warehouse floor operations.",
+      "tech": ["Turborepo", "Next.js", "Expo", "Supabase"],
+      "role": "Full Stack Developer",
+      "company": "Geome7ric",
+      "url": "https://geome7ric.com",
+      "featured": true,
+      "featuredRank": 2,
+      "eyebrow": "Client delivery",
+      "headline": "Mobile + backoffice platform for industrial inventory operations.",
+      "impact": "We shipped an inventory/assignments platform to production: Android release, production backoffice, health checks, and monitoring.",
+      "status": "Geome7ric · Production",
+      "proof": [
+        "Google Play production",
+        "Backoffice + mobile",
+        "Monitoring & handoff"
+      ],
+      "highlights": [
+        "Monorepo with Expo/React Native mobile app, Next.js backoffice, Supabase, and shared packages.",
+        "Inventory, assignments, rentals, roles, and warehouse-floor operations.",
+        "Documented delivery with Android rollout, health checks, and post go-live support window."
+      ],
+      "visual": {
+        "image": "/images/projects/badger-mobile-home.png",
+        "alt": "Badger/MAPSA mobile screenshot showing the inventory dashboard."
+      }
+    },
+    {
+      "name": "Wolf",
+      "description": "Complete POS and commerce platform with sales, orders, cash management, analytics, team management, and Tienda Nube e-commerce sync.",
+      "impact": "Unified sales, orders, cash management, analytics, and Tienda Nube synchronization in a single commerce platform.",
+      "tech": ["Laravel", "Vue", "Quasar", "Tienda Nube API"],
+      "role": "Full Stack Developer",
+      "company": "Geome7ric",
+      "url": "https://geome7ric.com"
+    },
+    {
+      "name": "Asiento Libre",
+      "description": "Carpooling app for Argentina (BlaBlaCar-style). Search, publish trips, real-time booking, ratings, and payment integration across iOS, Android, and web.",
+      "tech": ["React Native", "Expo", "Supabase", "Gluestack UI"],
+      "role": "Creator & Developer",
+      "url": "https://asientolibre.ar",
+      "featured": true,
+      "featuredRank": 3,
+      "eyebrow": "Own product",
+      "headline": "Mobile-first carpooling product for shared trips in Argentina.",
+      "impact": "I am building an owned product with search, trip publishing, bookings, payments, notifications, and demo distribution.",
+      "status": "Own product · MVP/demo",
+      "proof": ["Expo app", "Supabase + RLS", "Bookings & payments"],
+      "highlights": [
+        "Route/waypoint engine for Argentine corridors and trip search.",
+        "Seat booking with integrated payments plus status and fallback handling.",
+        "Mobile architecture with Expo, Supabase, Edge Functions, push notifications, and Maestro QA."
+      ],
+      "visual": {
+        "image": "/images/projects/asiento-libre-home.png",
+        "alt": "Asiento Libre mobile screenshot showing the app home screen."
+      }
+    },
+    {
+      "name": "Ferret",
+      "description": "AI-powered knowledge assistant. RAG pipeline, Slack integration, multi-tenant payments, and self-serve onboarding for teams.",
+      "impact": "Designed a multi-tenant RAG assistant with Slack, payments, and self-serve onboarding for teams.",
+      "tech": ["Next.js", "Supabase", "OpenAI", "Mercado Pago", "Slack API"],
+      "role": "Creator & Developer",
+      "url": "https://geome7ric.com"
+    },
+    {
+      "name": "Turna",
+      "description": "Online booking for professionals: public booking page, real-time availability, Google Calendar sync, and WhatsApp reminders. Includes an AI assistant to manage the agenda.",
+      "impact": "Built real-time booking, Google Calendar synchronization, WhatsApp reminders, and an AI scheduling assistant for professionals.",
+      "tech": [
+        "Next.js",
+        "Supabase",
+        "OpenAI",
+        "Google Calendar API",
+        "WhatsApp/Twilio"
+      ],
+      "role": "Creator & Developer",
+      "url": "https://turna.ar"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad Nacional del Sur",
+      "area": "Computer Engineering",
+      "studyType": "Engineer",
+      "startDate": "2013",
+      "endDate": "2021",
+      "url": "https://www.uns.edu.ar"
+    }
+  ],
+  "footer": "<p>Based on the design of <a href=\"https://brittanychiang.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>Brittany Chiang</a>, built with <a href=\"https://nextjs.org\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>NextJS 15</a> and deployed with <a href=\"https://vercel.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>Vercel</a>. All text uses Inter.</p>"
+}

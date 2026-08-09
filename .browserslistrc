@@ -1,0 +1,19 @@
+# Browserslist - Target modern browsers only
+# This prevents unnecessary ES5 transpilation and polyfills
+# Addresses PageSpeed recommendation: "JavaScript heredado"
+
+# Production browsers (modern only)
+[production]
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+not IE 11
+not dead
+
+# Development (same as production for consistency)
+[development]
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions

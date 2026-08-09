@@ -1,0 +1,299 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "experience": "Experiencia",
+    "skills": "Skills",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "ask": "Asistente IA"
+  },
+  "presentation": {
+    "greeting": "Hola, soy",
+    "role": "Ingeniero de Software",
+    "cta": "Contactar",
+    "yearsOfExperience": "años de experiencia"
+  },
+  "about": {
+    "title": "Acerca de Mí",
+    "description": "Conoce más sobre mi trayectoria y experiencia"
+  },
+  "experience": {
+    "title": "Experiencia Laboral",
+    "present": "PRESENTE",
+    "to": "a"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "viewProject": "Ver proyecto",
+    "featuredEyebrow": "Proyectos destacados",
+    "featuredIntro": "Tres trabajos seleccionados para mostrar alcance y criterio técnico.",
+    "archiveTitle": "Archivo seleccionado",
+    "archiveIntro": "Un registro de sistemas, decisiones y productos que amplían el trabajo destacado.",
+    "archiveOwnGroup": "Productos propios",
+    "archivePublicLabel": "Ver proyecto",
+    "archivePrivateLabel": "Caso privado",
+    "archiveClosing": "Estos proyectos recorren plataformas financieras, sistemas operativos y productos propios construidos desde arquitectura hasta producción.",
+    "archiveGithubCta": "Ver GitHub",
+    "archiveContactCta": "Escribime",
+    "impactLabel": "Impacto",
+    "proofLabel": "Evidencia",
+    "highlightsLabel": "Highlights"
+  },
+  "contact": {
+    "title": "Contacto",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "location": "Ubicación"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "builtWith": "Creado con"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "skipToContent": "Saltar al contenido",
+    "darkMode": "Modo oscuro",
+    "lightMode": "Modo claro",
+    "toggleTheme": "Cambiar tema",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "menu": "Menú"
+  },
+  "accessibility": {
+    "keyboardHint": "Presiona Tab para navegar",
+    "focusIndicator": "Navegación por teclado activa",
+    "navigationMenu": "Menú de navegación"
+  },
+  "history": {
+    "keyResponsibilities": "Responsabilidades Principales",
+    "viewFullResume": "Ver CV Completo"
+  },
+  "social": {
+    "githubProfile": "Perfil de GitHub",
+    "linkedinProfile": "Perfil de LinkedIn",
+    "emailContact": "Contacto por Email",
+    "socialMediaProfile": "Perfil en Redes Sociales",
+    "cvProfile": "Ver CV"
+  },
+  "keyboard": {
+    "navigate": "navegar",
+    "openCv": "abrir cv",
+    "visit": "visitar",
+    "visitPage": "visitar página"
+  },
+  "sections": {
+    "about": "Acerca de",
+    "skills": "Skills",
+    "history": "Experiencia",
+    "projects": "Proyectos",
+    "education": "Educación",
+    "recruiterBot": "Asistente IA"
+  },
+  "cta": {
+    "lookingForOpportunities": "En Mango, diseño la arquitectura de la plataforma donde constructores compran materiales con crédito comercial a través de +200 puntos de venta en México.",
+    "viewProjects": "Ver proyectos",
+    "contact": "Escribime",
+    "emailCopied": "Email copiado",
+    "contactSubject": "Contacto desde tu portfolio",
+    "contactBody": "Hola Matias,\n\n"
+  },
+  "skills": {
+    "systemDesign": {
+      "label": "Diseño de Sistemas & Arquitectura",
+      "description": "Diseño de sistemas escalables, decisiones de trade-off y planificación de la evolución de productos y plataformas.",
+      "ecosystems": [
+        "Microservicios",
+        "Diseño de REST & API",
+        "Optimización de PostgreSQL / SQL",
+        "Estrategias de caché",
+        "Sistemas event-driven"
+      ]
+    },
+    "productEngineering": {
+      "label": "Ingeniería de Producto",
+      "description": "De la idea a producción en web y mobile. 8+ industrias, múltiples apps publicadas en stores.",
+      "ecosystems": [
+        "Ecosistema React / Next.js",
+        "Ecosistema React Native / Expo",
+        "Supabase / BaaS",
+        "Serverless & edge",
+        "Plataformas de e-commerce"
+      ]
+    },
+    "technicalLeadership": {
+      "label": "Liderazgo Técnico",
+      "description": "Construcción de cultura de equipo a través de estándares de code review, pipelines CI/CD, mentoría y alineación técnica con objetivos de negocio.",
+      "ecosystems": [
+        "Planificación de sprints & delivery",
+        "CI/CD & gestión de releases",
+        "Cultura de code review",
+        "Onboarding & mentoría",
+        "Comunicación con stakeholders"
+      ]
+    },
+    "aiFirstDevelopment": {
+      "label": "Desarrollo AI-First",
+      "description": "Workflow agnóstico al lenguaje y aumentado con herramientas. La sintaxis es un detalle — la arquitectura, las decisiones y el pensamiento de producto son lo que importa.",
+      "ecosystems": [
+        "Programación asistida por IA",
+        "Ingeniería de prompts",
+        "Prototipado rápido",
+        "Fluidez multi-stack",
+        "Mentalidad automation-first"
+      ]
+    }
+  },
+  "cv": {
+    "title": "INGENIERO DE SOFTWARE",
+    "backToHome": "← Volver al inicio",
+    "summary": "Más de 8 años de experiencia ofreciendo soluciones impactantes en industrias como e-commerce, salud y logística. Entre los logros destacados se incluyen liderar el desarrollo técnico en Mango como Tech Lead, implementar integraciones clave que impulsaron suscripciones e ingresos en una empresa consolidada, y liderar la transición de una aplicación móvil de beta a producción en una startup. Especializado en desarrollo backend, planificación estratégica y colaboración multifuncional. Comprometido con entregar sistemas de alta calidad y orientados a resultados que fomenten el crecimiento empresarial mientras se mantiene un entorno de equipo colaborativo y positivo.",
+    "areasOfKnowledge": "Áreas de conocimiento",
+    "areas": {
+      "backend": {
+        "title": "Desarrollo backend:",
+        "description": "amplia experiencia en tecnologías backend, con un fuerte enfoque en la implementación de principios SOLID y programación orientada a objetos. Experiencia comprobada en la optimización de consultas SQL, implementación de soluciones de caché y mejora del rendimiento del sistema. Competente en herramientas de monitoreo y arquitectura de microservicios. JavaScript, TypeScript, Ruby, Python, Node.js, Express, NestJS, Ruby on Rails, Strapi, Sidekiq, Laravel, REST APIs."
+      },
+      "testing": {
+        "title": "Testing & CI/CD:",
+        "description": "experiencia en desarrollo orientado a pruebas (TDD), garantizando código de alta calidad e implementando pipelines de CI/CD eficientes para despliegues fluidos. RSpec, Mocha, Jest, GitHub Actions, Git."
+      },
+      "api": {
+        "title": "Integraciones de API:",
+        "description": "amplia experiencia en el diseño e integración de APIs, permitiendo una comunicación fluida entre sistemas y garantizando un intercambio eficiente de datos en diversas plataformas."
+      },
+      "database": {
+        "title": "Gestión de bases de datos:",
+        "description": "conocimiento avanzado en la optimización y gestión de bases de datos relacionales y NoSQL para garantizar rendimiento y escalabilidad. Prisma, PostgreSQL, MySQL, Redis, Supabase."
+      },
+      "cloud": {
+        "title": "Cloud & DevOps:",
+        "description": "experiencia en la construcción y despliegue de soluciones basadas en la nube con enfoque en confiabilidad y monitoreo. AWS, GitHub Actions, Docker, Sentry, Turbo."
+      },
+      "collaboration": {
+        "title": "Colaboración multifuncional:",
+        "description": "hábil en trabajar estrechamente con gerentes de producto, equipos de marketing y desarrolladores para alinear soluciones técnicas con objetivos comerciales y mejorar el posicionamiento en el mercado."
+      },
+      "leadership": {
+        "title": "Liderazgo de proyectos y equipos:",
+        "description": "experiencia liderando equipos pequeños, mentoría y participación en reclutamiento. Competente en metodologías Agile/Scrum y entrega de soluciones personalizadas en entornos de ritmo acelerado."
+      },
+      "frontend": {
+        "title": "Desarrollo frontend y móvil:",
+        "description": "competencia en la creación de experiencias de usuario fluidas para plataformas web y móviles híbridas. JavaScript, TypeScript, Astro, Quasar, Vue, React, React Native, Next.js, Expo, Tailwind CSS, Zustand, EAS."
+      }
+    },
+    "professionalExperience": "Experiencia profesional",
+    "experiences": [
+      {
+        "position": "Tech Lead",
+        "company": "Mango",
+        "period": "Mar 25 - Presente",
+        "description": "Liderando el equipo de desarrollo técnico y operativo, garantizando soluciones escalables y mantenibles alineadas con la estrategia del producto. Actuando como puente entre la visión del negocio y la ejecución técnica, trabajando estrechamente con el CTO y stakeholders para construir con una visión a mediano y largo plazo.",
+        "highlights": [
+          "Liderazgo técnico en el diseño de arquitecturas para nuevas funcionalidades y sistemas, garantizando escalabilidad y evolución futura del negocio.",
+          "Definí y mantuve estándares de calidad técnica incluyendo prácticas de testing, pipelines de CI/CD, revisiones de código y flujos de control de versiones.",
+          "Coordiné actividades del equipo de desarrollo incluyendo standups diarios, planificación de sprints y revisiones exhaustivas de PRs.",
+          "Lideré onboarding y brindé mentoría técnica a nuevos desarrolladores, fomentando el crecimiento del equipo y el intercambio de conocimientos.",
+          "Alineé la implementación técnica con los objetivos del producto, traduciendo requisitos del negocio en soluciones técnicas accionables.",
+          "Administré y mantuve la infraestructura técnica en entornos de desarrollo, staging y producción.",
+          "Supervisé la implementación de herramientas de CI/CD y sistemas de monitoreo para garantizar la confiabilidad y rendimiento de la plataforma.",
+          "Comuniqué progreso, riesgos técnicos y decisiones estratégicas al CTO y stakeholders de manera efectiva."
+        ]
+      },
+      {
+        "position": "Software Engineer",
+        "company": "Kalkomey (contrato vía RazorTech)",
+        "period": "Feb 23 - Dic 24",
+        "description": "Ingeniero Backend Líder en HuntWise, una aplicación de caza. Promovido por liderazgo efectivo y contribuciones técnicas. Colaboré de manera transversal con varios equipos para mejorar el producto HuntWise.",
+        "highlights": [
+          "Establecí una suite de pruebas completa desde cero para proporcionar pautas claras para escribir tests y configuré un conjunto robusto de herramientas para manejar escenarios de testing comunes, mejorando significativamente la confiabilidad y mantenibilidad del código.",
+          "Mantenimiento de soluciones basadas en AWS Services incluyendo Lambda, API Gateway, S3, Route 53.",
+          "Lideré el desarrollo en API y CMS, garantizando operaciones fluidas y escalabilidad de la plataforma, colaborando con diversos equipos para entregar nuevas funcionalidades y mejorar el rendimiento general.",
+          "Diseñé e implementé soluciones para integrar sin problemas los sistemas internos de Kalkomey, mejorando el rendimiento de la API y habilitando flujos de trabajo de suscripción e ingresos más eficientes.",
+          "Introduje una arquitectura estandarizada para reemplazar el enfoque monolítico anterior del controlador, mejorando la organización del código, escalabilidad y mantenibilidad de la API.",
+          "Participé activamente en la planificación de lanzamientos y revisiones de código, manteniendo altos estándares de calidad del código."
+        ]
+      },
+      {
+        "position": "Software Engineer",
+        "company": "RazorTech",
+        "period": "Sept 22 - Feb 23",
+        "description": "Contribuí al desarrollo backend para varios clientes, incluyendo Cargill. Desempeñé un papel fundamental en impulsar entregas de proyectos exitosas y mejorar los servicios ofrecidos internacionalmente.",
+        "highlights": [
+          "Desarrollé e implementé nuevas funcionalidades, cumpliendo consistentemente con los plazos de sprint.",
+          "Identifiqué cuellos de botella e implementé soluciones basadas en pruebas para abordar bugs y optimizar el rendimiento del sistema.",
+          "Comuniqué con APIs de terceros para sincronizar datos y optimizar procesos.",
+          "Mantuve la calidad del código, adhiriendo a las mejores prácticas de la industria y mejorando la eficiencia del equipo mediante revisiones entre pares.",
+          "Colaboré estrechamente con el equipo para garantizar una ejecución de proyecto fluida y satisfacción del cliente."
+        ]
+      },
+      {
+        "position": "Full Stack Developer",
+        "company": "Nuqlea",
+        "period": "Jun 21 - Ago 22",
+        "description": "Lideré el desarrollo y transición de una aplicación móvil B2C de beta a producción para plataformas Apple y Google. Contribuí a la arquitectura y diseño de la plataforma, enfocándome en la experiencia del usuario y escalabilidad.",
+        "highlights": [
+          "Lideré el desarrollo de la aplicación móvil garantizando una integración fluida entre plataformas; implementé funcionalidades de back-end.",
+          "Colaboré con el equipo para mejorar la experiencia del usuario (UX/UI) y resolver problemas de rendimiento a nivel del sistema.",
+          "Trabajé estrechamente con stakeholders para cumplir con plazos ajustados en un entorno de startup de ritmo rápido, demostrando adaptabilidad y habilidades de resolución de problemas."
+        ]
+      },
+      {
+        "position": "Co-Fundador",
+        "company": "Geome7ric",
+        "period": "Feb 20 - Presente",
+        "description": "Guiando descubrimientos y desarrollo en una empresa de desarrollo de software a medida.",
+        "highlights": [
+          "Entregué 7+ aplicaciones web y móviles personalizadas para clientes en industrias de retail, logística y servicios.",
+          "Especializado en aplicaciones personalizadas utilizando frameworks modernos.",
+          "Lideré gestión de proyectos, relaciones con clientes y desarrollo de soluciones adaptadas para diversas industrias.",
+          "Gestioné ciclos de vida de productos de extremo a extremo, desde la conceptualización hasta la entrega, garantizando alineación con los objetivos del cliente.",
+          "Enfocado en proporcionar software escalable y moderno para plataformas web y móviles."
+        ]
+      },
+      {
+        "position": "Sys Admin",
+        "company": "Profertil S.A.",
+        "period": "Dic 20 - May 21",
+        "description": "Administré la infraestructura de TI de Profertil, garantizando disponibilidad de servidores y redes, seguridad y eficiencia. Desarrollé scripts de automatización, optimicé servidores Windows y bases de datos SQL, y mantuve sitios web internos. Documenté procedimientos, creé manuales de usuario y gestioné inventarios de equipos para transparencia operativa.",
+        "highlights": []
+      }
+    ],
+    "education": "Educación",
+    "educationDetail": "Ingeniero en Computación - Universidad Nacional del Sur, 2021. Buenos Aires, Argentina",
+    "languages": "Idiomas",
+    "languagesList": [
+      "Inglés, nivel intermedio-alto, competencia profesional de trabajo.",
+      "Español, nativo."
+    ],
+    "downloadPdf": "Descargar PDF"
+  },
+  "recruiterBot": {
+    "ariaLabel": "Chat con el asistente del portfolio",
+    "openLabel": "Abrir asistente IA",
+    "closeLabel": "Cerrar asistente IA",
+    "expandLabel": "Expandir chat",
+    "collapseLabel": "Contraer chat",
+    "launcherBubble": "Preguntame sobre Matias",
+    "launcherHint": "JD, ideas, stack, proyectos o dudas puntuales",
+    "title": "Chat del portfolio",
+    "description": "Experiencia, proyectos y roles.",
+    "greeting": "Hola. Te ayudo con experiencia, proyectos y fit para roles. También podés contarme tu proyecto y vemos si Matias puede ayudar.",
+    "suggestionsLabel": "Podés empezar por acá",
+    "suggestions": [
+      "¿Qué experiencia tiene liderando equipos?",
+      "¿Qué proyectos llevó a producción?",
+      "¿Encaja con este rol?"
+    ],
+    "inputLabel": "Pregunta para el asistente del portfolio",
+    "placeholder": "Preguntá o pegá contexto…",
+    "sendButton": "Enviar mensaje",
+    "loading": "Pensando…",
+    "emptyError": "Escribí una pregunta o pegá contexto antes de enviar.",
+    "tooLongError": "El texto es demasiado largo. Recortalo un poco y probá de nuevo.",
+    "rateLimitError": "Demasiadas consultas seguidas. Esperá un minuto y probá de nuevo.",
+    "genericError": "No pude responder ahora. Probá de nuevo en un momento.",
+    "privacyNote": "Los mensajes y el texto de los archivos adjuntos se envían a Google Gemini para generar la respuesta. Este sitio no conserva intencionalmente la conversación."
+  }
+}
