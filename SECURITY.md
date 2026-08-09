@@ -4,7 +4,7 @@
 
 Please do not open a public issue for a suspected vulnerability. Use GitHub's
 private vulnerability reporting for this repository, or contact Matias through
-the email address published at [matiasjriosb.com.ar](https://matiasjriosb.com.ar).
+the email address published at [matiasjrb.com.ar](https://matiasjrb.com.ar).
 
 Include reproduction steps, the affected route or component, and the impact.
 You should receive an acknowledgement within seven days.
