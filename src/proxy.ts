@@ -14,6 +14,15 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (
+    pathname === "/[ENG]_Matias_Rios_CV_Jan_25.pdf" ||
+    pathname === "/%5BENG%5D_Matias_Rios_CV_Jan_25.pdf"
+  ) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/en/cv";
+    return NextResponse.redirect(url, 308);
+  }
+
+  if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.includes(".") ||
@@ -61,5 +70,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|icons|images|.*\\..*).*)"],
+  matcher: ["/((?!_next|api|icons|images).*)"],
 };
