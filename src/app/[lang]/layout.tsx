@@ -86,7 +86,7 @@ export async function generateMetadata({
     },
     category: "technology",
     openGraph: {
-      title: `${name} | Software Engineer | Full-Stack Developer`,
+      title: `${name} | ${resume.basics.label}`,
       description,
       url: getLocalizedUrl(lang),
       siteName: name,
@@ -106,7 +106,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${name} | Software Engineer | Full-Stack Developer`,
+      title: `${name} | ${resume.basics.label}`,
       description,
       creator: "@matiasriosj",
       images: [previewImageUrl],
