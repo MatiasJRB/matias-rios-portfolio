@@ -20,6 +20,7 @@
 # production
 /build
 /output/
+/tmp/
 
 # misc
 .DS_Store
