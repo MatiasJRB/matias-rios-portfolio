@@ -18,7 +18,7 @@ export function proxy(request: NextRequest) {
     pathname === "/%5BENG%5D_Matias_Rios_CV_Jan_25.pdf"
   ) {
     const url = request.nextUrl.clone();
-    url.pathname = "/en/cv";
+    url.pathname = "/cv/matias-rios-en.pdf";
     return NextResponse.redirect(url, 308);
   }
 
