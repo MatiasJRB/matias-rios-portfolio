@@ -30,6 +30,8 @@ export default defineConfig([
     ".impeccable/**",
     "out/**",
     "build/**",
+    // Compiled, immutable snapshots from historical repositories.
+    "public/time-machine/eras/**",
     "next-env.d.ts",
   ]),
 ]);

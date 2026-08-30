@@ -40,6 +40,17 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  // Preserve the 2022 client request shape while serving a local fixture for
+  // its retired Strapi endpoint.
+  async rewrites() {
+    return [
+      {
+        source: "/time-machine/eras/2022/api-v1/articles",
+        destination: "/time-machine/eras/2022/api-v1/articles.json",
+      },
+    ];
+  },
+
   // Configure headers for caching and security
   async headers() {
     return [

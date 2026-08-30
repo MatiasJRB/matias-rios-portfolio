@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "analyze": "ANALYZE=true next build",
+    "archive:time-machine": "node scripts/build-time-machine-archives.mjs",
     "generate:og-image": "node scripts/generate-og-images.mjs",
     "typecheck": "tsc --noEmit"
   },

@@ -8,6 +8,7 @@ import MobileHeader from "@/components/MobileHeader";
 import PortfolioShaderBackdrop from "@/components/PortfolioShaderBackdrop";
 import CinematicEffects from "@/components/CinematicEffects";
 import RecruiterBot from "@/components/RecruiterBot";
+import PortfolioTimeMachine from "@/components/time-machine/PortfolioTimeMachine";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 import type { Profile } from "@/types";
@@ -18,6 +19,7 @@ interface InteractiveLayoutProps {
   dictionary: Dictionary;
   profiles: Profile[];
   scrollAreaRef?: React.RefObject<HTMLDivElement | null>;
+  previewMode?: boolean;
 }
 
 export default function InteractiveLayout({
@@ -25,6 +27,7 @@ export default function InteractiveLayout({
   lang,
   dictionary,
   profiles,
+  previewMode = false,
 }: InteractiveLayoutProps) {
   const pathname = usePathname();
   const isCVPage = pathname?.includes("/cv");
@@ -59,6 +62,12 @@ export default function InteractiveLayout({
       )}
       {mounted && !isCVPage && <PortfolioShaderBackdrop />}
       {mounted && !isCVPage && <CinematicEffects />}
+      <div className="fixed right-5 top-5 z-[300] flex items-center gap-2 md:right-6 md:top-6">
+        {!isCVPage && !previewMode && (
+          <PortfolioTimeMachine lang={lang} dictionary={dictionary} />
+        )}
+        <ThemeSwitch />
+      </div>
       <div
         className="relative z-10 min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-16 w-full
          px-6 max-w-screen-xl mx-auto md:px-12 lg:px-20 transition-colors duration-300"
@@ -67,9 +76,6 @@ export default function InteractiveLayout({
           color: "var(--color-text)",
         }}
       >
-        <div className="fixed right-5 top-5 z-[70] md:right-6 md:top-6">
-          <ThemeSwitch />
-        </div>
         {children}
       </div>
       {!isCVPage && <RecruiterBot lang={lang} dictionary={dictionary} />}

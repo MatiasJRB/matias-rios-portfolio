@@ -918,6 +918,11 @@ a:focus-visible {
 }
 
 /* Print Styles for CV Page */
+@page {
+  size: A4;
+  margin: 11mm 12mm;
+}
+
 @media print {
   html,
   body {
@@ -933,6 +938,9 @@ a:focus-visible {
     display: none !important;
   }
   .cv-page {
+    min-height: 0 !important;
+    background: white !important;
+    color: #111827 !important;
     box-shadow: none !important;
     margin: 0 !important;
     max-width: 100% !important;
@@ -942,6 +950,31 @@ a:focus-visible {
   .cv-container {
     padding: 0 !important;
     background-color: white !important;
+  }
+
+  .cv-sheet {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .cv-sheet:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .cv-page h1,
+  .cv-page h2,
+  .cv-page h3,
+  .cv-page strong {
+    color: #111827 !important;
+  }
+
+  .cv-page p,
+  .cv-page li,
+  .cv-page time,
+  .cv-page a,
+  .cv-page span {
+    color: #374151 !important;
   }
 
   /* Force light mode for print */

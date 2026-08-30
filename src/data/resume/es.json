@@ -1,12 +1,12 @@
 {
   "basics": {
     "name": "Matias Rios",
-    "label": "Tech Lead & Ingeniero de Software",
+    "label": "Tech Lead | Ingeniería de Producto y Plataforma",
     "image": "/images/profile-headshot-2026.jpg",
     "email": "matiasjriosb@gmail.com",
     "phone": "(291) 645-0794",
     "url": "https://www.matiasjrb.com.ar",
-    "summary": "Más de 8 años de experiencia construyendo productos digitales en múltiples industrias. Lidero ingeniería y arquitectura de producto en Mango. Co-fundador de Geome7ric.",
+    "summary": "Construyo software desde 2018 y acumulo más de 5 años en equipos de producto. En Mango lidero ingeniería y arquitectura de producto, combinando ejecución hands-on, diseño de sistemas y delivery. También co-fundé Geome7ric como emprendimiento paralelo.",
     "about": "<p>En 2013, comencé una carrera en ingeniería informática, y para 2018, vendí mi primer software: una aplicación de inventario para una tienda de mascotas local. Desde entonces, he estado programando para diversas industrias, incluyendo construcción, comercio electrónico, retail físico, salud, distribución, logística portuaria y transporte corporativo.</p><p>Construyo en <a href=\"https://mangxo.com\" target=\"_blank\">Mango</a>, una empresa de datos con productos financieros para el ecosistema de la construcción en Latinoamérica. Mi trabajo se centra en los sistemas que impulsan la plataforma: crédito comercial, flujos de pago y la red de +200 puntos de venta. En mi tiempo libre, diseño y lanzo productos digitales de punta a punta — desde arquitectura de base de datos hasta pagos y deploy. Anteriormente, lideré una app móvil desde beta hasta las tiendas de aplicaciones en <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a> e implementé una integración clave en <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a> que impulsó suscripciones e ingresos.</p><p>Cuando no estoy en la computadora, usualmente estoy en el gimnasio, jugando fútbol en el mejor <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">club de amigos</a> de mi ciudad, o con amigos y familia. También gestiono proyectos en <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, mi emprendimiento de software.</p>",
     "location": {
       "address": "Corrientes 211",
@@ -37,26 +37,25 @@
       "url": "https://mangxo.com",
       "startDate": "03-2025",
       "endDate": "PRESENTE",
-      "summary": "Soy responsable de liderar técnica y operacionalmente el equipo de desarrollo, asegurando que las soluciones sean escalables, mantenibles y alineadas con la estrategia del producto. Conecto prioridades de negocio y producto con decisiones técnicas concretas para facilitar la ejecución del equipo. Mi enfoque incluye construir con una visión a mediano y largo plazo, anticipando la evolución del producto, el equipo y la plataforma.",
+      "summary": "Lidero la evolución técnica de una plataforma fintech multi-producto, conectando estrategia de negocio, arquitectura y ejecución. Mi impacto evolucionó desde la implementación directa sobre pagos e integraciones hacia el diseño de productos, estándares y mecanismos de entrega que permiten al equipo operar con mayor calidad, seguridad y previsibilidad.",
       "highlights": [
-        "Liderazgo técnico en el diseño de arquitecturas para nuevas funcionalidades y sistemas.",
-        "Definición y mantenimiento de estándares de calidad técnica (tests, CI/CD, PRs, versionado).",
-        "Coordinación del equipo de desarrollo (dailies, planificación de sprints, revisión de PRs).",
-        "Onboarding y mentoría técnica para nuevos desarrolladores.",
-        "Alineación de la implementación técnica con los objetivos del producto.",
-        "Administración y mantenimiento de infraestructura técnica (desarrollo, staging, producción).",
-        "Supervisión e implementación de herramientas de CI/CD y monitoreo.",
-        "Comunicación de progreso, riesgos y decisiones técnicas a liderazgo y producto.",
-        "Diseño de componentes clave con enfoque en escalabilidad y evolución futura del negocio."
-      ]
+        "Llevé un producto de cobros y conciliación desde specs hasta producción en aproximadamente cinco semanas, coordinando a un ingeniero frontend, uno backend e infraestructura.",
+        "Dirigí la migración de 15 módulos funcionales desde Vue 2 hacia Next.js, preservando flujos críticos y contratos con el backend existente.",
+        "Creé una fuente central de engineering governance para unificar roadmap cross-repo, ADRs, especificaciones y estándares de delivery.",
+        "Fortalecí la confiabilidad de integraciones financieras con observabilidad, health checks, trazabilidad y rollback automatizado.",
+        "Elevé el baseline de seguridad y delivery mediante secret scanning, protección de ramas y required checks en servicios críticos.",
+        "Convertí calidad, observabilidad y deuda técnica en capacidad planificada y medible del equipo.",
+        "Coordiné entregas transversales entre Producto, Tech y Data, incluyendo una superficie de Inteligencia de Cobros."
+      ],
+      "kind": "employment"
     },
     {
       "name": "Geome7ric",
-      "position": "Co-Fundador",
+      "position": "Co-Fundador · Emprendimiento paralelo",
       "url": "https://geome7ric.com",
       "startDate": "02-2020",
       "endDate": "PRESENTE",
-      "summary": "Co-fundé y dirijo un emprendimiento de software que construye productos en web, mobile e IA. Actualmente enfocado en lanzar productos a medida y aplicaciones multi-tenant usando React Native, Next.js y Supabase.",
+      "summary": "Co-fundé y dirijo en paralelo un emprendimiento de software que construye productos web, mobile e IA, incluyendo aplicaciones multi-tenant con React Native, Next.js y Supabase.",
       "highlights": [
         "Co-fundé Geome7ric, liderando estrategia de producto, arquitectura técnica y relaciones con clientes.",
         "Construí y lancé múltiples productos a medida de punta a punta: asistentes de conocimiento con IA, apps de carpooling y plataformas multi-tenant.",
@@ -65,39 +64,73 @@
         "Implementé pipelines CI/CD, deploys en Vercel y workflows de desarrollo guiado por specs.",
         "Responsable de la adquisición de clientes, recopilación de requisitos y asegurar la entrega exitosa de proyectos."
       ],
-      "icon": "sell"
+      "icon": "sell",
+      "kind": "venture"
     },
     {
       "name": "Kalkomey",
-      "position": "Ingeniero de Software",
+      "position": "Ingeniero de Software / Backend Lead",
+      "kind": "contract",
       "url": "https://kalkomey.com",
-      "startDate": "09-2022",
+      "startDate": "02-2023",
       "endDate": "12-2024",
-      "summary": "Backend Lead en HuntWise, una aplicación líder de caza, donde implementé soluciones backend para mejorar la confiabilidad del sistema e impulsar el crecimiento del mercado. Colaboré con equipos de producto, marketing y desarrollo para alinear soluciones técnicas con objetivos empresariales. Anteriormente gestioné el desarrollo backend para Cargill, entregando consistentemente hitos y fortaleciendo relaciones con clientes. Reconocido por liderazgo, planificación estratégica y contribuciones técnicas con una promoción.",
+      "summary": "Trabajé vía RazorTech en HuntWise, producto de Kalkomey, y evolucioné desde ejecución backend hacia liderazgo técnico sobre API y CMS. Coordiné entregas con Producto, Marketing y otros equipos, y fui promovido por liderazgo y contribuciones técnicas.",
       "highlights": [
-        "Lideré el desarrollo backend para la aplicación HuntWise, implementando soluciones con Node.js, Express y PostgreSQL para mejorar la confiabilidad del sistema y apoyar el crecimiento del mercado.",
-        "Diseñé y mantuve servicios backend robustos usando Python y Ruby on Rails, contribuyendo a funcionalidades principales del producto.",
-        "Gestioné el desarrollo backend para proyectos clave de clientes como Cargill, entregando consistentemente hitos y fortaleciendo relaciones con clientes.",
-        "Colaboré con equipos de producto, marketing y desarrollo para alinear soluciones técnicas con objetivos empresariales, utilizando AWS, Docker y pipelines CI/CD (GitHub Actions).",
-        "Lideré la adopción de Prisma para ORM, mejorando la productividad del desarrollador y patrones de acceso a datos.",
-        "Reconocido con una promoción por liderazgo, planificación estratégica y contribuciones técnicas significativas a la plataforma."
-      ]
+        "Diseñé e implementé una integración entre sistemas internos de Kalkomey que habilitó flujos más eficientes de suscripción e ingresos.",
+        "Establecí desde cero una suite de pruebas y herramientas reutilizables para escenarios comunes, mejorando la confiabilidad y mantenibilidad del código.",
+        "Estandaricé la arquitectura de la API para reemplazar controladores monolíticos y mejorar organización, escalabilidad y mantenibilidad.",
+        "Lideré entregas sobre API y CMS y participé en planificación de releases y revisiones de código.",
+        "Mantuve soluciones sobre AWS, incluyendo Lambda, API Gateway, S3 y Route 53."
+      ],
+      "context": "Contrato vía RazorTech · HuntWise"
+    },
+    {
+      "name": "Cargill",
+      "position": "Ingeniero de Software",
+      "kind": "contract",
+      "url": "https://www.cargill.com/",
+      "startDate": "09-2022",
+      "endDate": "02-2023",
+      "summary": "Presté servicios de desarrollo backend para Cargill mediante RazorTech, trabajando en entregas para un cliente internacional y en la evolución de integraciones y servicios existentes.",
+      "highlights": [
+        "Entregué funcionalidades e integraciones con APIs de terceros dentro de los compromisos de sprint.",
+        "Identifiqué cuellos de botella y apliqué soluciones basadas en pruebas para corregir bugs y mejorar rendimiento.",
+        "Sostuve calidad y continuidad de entrega mediante revisiones de código y colaboración cercana con el equipo."
+      ],
+      "context": "Contrato vía RazorTech"
     },
     {
       "name": "Nuqlea",
-      "position": "Desarrollador Fullstack",
+      "position": "Desarrollador Full Stack",
       "url": "https://nuqlea.com",
       "startDate": "06-2021",
       "endDate": "08-2022",
-      "summary": "Lideré el desarrollo de aplicaciones móviles, contribuí al diseño de plataformas usando Quasar Framework, Laravel. Transición de la aplicación de beta a producción en Apple, Google. Mejoré la aplicación B2C, abordé problemas a nivel de sistema, mejoré UX/UI. Aprendí agilidad de startup, cumpliendo plazos.",
+      "summary": "Lideré el desarrollo full stack de una aplicación móvil B2C híbrida y su transición de beta a producción en App Store y Google Play, contribuyendo también a arquitectura, backend y experiencia de usuario.",
       "highlights": [
-        "Lideré el desarrollo full-stack de una aplicación móvil híbrida usando Quasar Framework (Vue.js) y un backend Laravel.",
-        "Transicioné exitosamente la aplicación móvil de beta a producción, gestionando despliegues en Apple App Store y Google Play Store.",
+        "Diseñé y desarrollé flujos mobile y backend con Quasar (Vue.js), Laravel y MySQL, contribuyendo a la evolución de la arquitectura.",
+        "Preparé la aplicación para producción, resolviendo problemas de rendimiento y gestionando publicaciones en App Store y Google Play.",
         "Contribuí significativamente al diseño y arquitectura de la plataforma, mejorando funcionalidades para una aplicación B2C.",
         "Mejoré el rendimiento de la aplicación y UX/UI abordando problemas a nivel de sistema y refactorizando componentes clave.",
         "Operé efectivamente en un entorno de startup ágil, cumpliendo consistentemente plazos ajustados y adaptándome a requisitos en evolución.",
         "Utilicé MySQL para gestión de bases de datos y JavaScript (ES6+) para lógica frontend y backend."
-      ]
+      ],
+      "kind": "employment"
+    },
+    {
+      "name": "Indoscience / Profertil",
+      "position": "Administrador de Sistemas, Práctica Profesional Supervisada",
+      "url": "https://www.profertil.com.ar/",
+      "startDate": "12-2020",
+      "endDate": "05-2021",
+      "summary": "Realicé mi Práctica Profesional Supervisada en Indoscience S.A. prestando servicios para Profertil S.A. Trabajé sobre una operación industrial real, administrando servidores y automatizando tareas de observabilidad, respaldo y mantenimiento para reducir trabajo manual y mejorar la continuidad operativa.",
+      "highlights": [
+        "Administré y monitoreé entornos Windows Server, SQL Server y Aspen InfoPlus.21 utilizados por la operación industrial.",
+        "Automaticé controles diarios y tareas de mantenimiento mediante Python, SQLPlus y PowerShell.",
+        "Diagnostiqué fallas de backups, capacidad de disco, antivirus y recolección de datos, ayudando a disminuir interrupciones del sistema IP.21.",
+        "Implementé altas masivas de tags, displays operativos y migraciones de históricos de alarmas.",
+        "Documenté procedimientos técnicos y operativos para facilitar soporte, trazabilidad y transferencia de conocimiento."
+      ],
+      "kind": "practice"
     }
   ],
   "languages": [
@@ -109,25 +142,25 @@
   "projects": [
     {
       "name": "Platform v2",
-      "description": "Lideré la migración completa de la plataforma de Mango de Vue 2 a Next.js. 15 módulos de funcionalidades incluyendo clientes, compras, ventas, proveedores, reservas y flujos de pago.",
-      "impact": "Lideré la migración de 15 módulos de Vue 2 a Next.js, cubriendo clientes, compras, ventas, proveedores, reservas y flujos de pago.",
-      "tech": ["Next.js", "TypeScript", "Supabase"],
+      "description": "Lideré la migración de 15 módulos funcionales desde una aplicación legacy en Vue 2 hacia Next.js, preservando la paridad en flujos críticos de clientes, compras, ventas, proveedores, pagos, registro y operación.",
+      "impact": "Coordiné la migración de 15 capacidades de negocio hacia una arquitectura Next.js server-first, separando dominios y preservando contratos con el backend existente.",
+      "tech": ["Next.js", "TypeScript", "React", "Playwright"],
       "role": "Tech Lead",
       "company": "Mango"
     },
     {
       "name": "Cobros",
       "description": "Producto de conciliación de pagos para distribuidores de materiales de construcción. Integración STP para transferencias automatizadas, validación fiscal SAT, gestión de cuentas CLABE y trazabilidad completa.",
-      "tech": ["Next.js", "Express", "Prisma", "STP API"],
+      "tech": ["Next.js", "Laravel", "AWS", "STP API"],
       "role": "Tech Lead & Arquitecto",
       "company": "Mango",
       "featured": true,
       "featuredRank": 1,
       "eyebrow": "Tech Lead / Arquitectura",
       "headline": "Spec-driven delivery de un producto financiero para cobros, facturas y conciliación.",
-      "impact": "Diseñé Cobros con Spec-Driven Development: apartado técnico predefinido, tareas granularizadas de producto a producción y entrega del MVP en un mes con un SE frontend y un SE backend.",
+      "impact": "Llevé Cobros desde las primeras specs versionadas hasta producción en aproximadamente cinco semanas, coordinando arquitectura, infraestructura, un ingeniero frontend y uno backend.",
       "status": "Mango · Producto interno",
-      "proof": ["Spec-Driven Development", "MVP en 1 mes", "Equipo FE + BE"],
+      "proof": ["Spec-Driven Development", "Specs → producción ≈5 semanas", "Equipo FE + BE"],
       "highlights": [
         "Definí el alcance técnico antes de construir: arquitectura, flujos, modelos, APIs, integraciones y criterios de aceptación.",
         "Granularicé el trabajo en tareas ejecutables para llevar el producto desde definición hasta producción con poco retrabajo.",
@@ -264,7 +297,7 @@
     {
       "institution": "Universidad Nacional del Sur",
       "area": "Ingeniería en Computación",
-      "studyType": "Ingeniero",
+      "studyType": "Ingeniero en Computación",
       "startDate": "2013",
       "endDate": "2021",
       "url": "https://www.uns.edu.ar"

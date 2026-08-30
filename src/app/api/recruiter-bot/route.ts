@@ -248,8 +248,11 @@ const buildPortfolioContext = (
   resume: Resume,
   dictionary: Awaited<ReturnType<typeof getDictionary>>,
 ) => {
-  const knowledgeAreas = Object.values(dictionary.cv.areas)
-    .map((area) => `- ${area.title} ${area.description}`)
+  const knowledgeAreas = Object.values(dictionary.skills)
+    .map(
+      (area) =>
+        `- ${area.label}: ${area.description} ${area.ecosystems.join(", ")}`,
+    )
     .join("\n");
 
   const work = resume.work
@@ -278,7 +281,13 @@ const buildPortfolioContext = (
             `- ${item.studyType} — ${item.area}, ${item.institution} (${item.startDate} - ${item.endDate})`,
         )
         .join("\n")
-    : dictionary.cv.educationDetail;
+    : "No education listed.";
+
+  const languages = resume.languages?.length
+    ? resume.languages
+        .map((language) => `${language.language}: ${language.fluency}`)
+        .join("; ")
+    : dictionary.cv.nativeLanguage;
 
   return `
 Candidate profile for ${resume.basics.name}
@@ -288,7 +297,7 @@ About: ${stripHtml(resume.basics.about)}
 Location: ${resume.basics.location.city}, ${resume.basics.location.region}, ${resume.basics.location.countryCode}
 Contact:\n${buildContactChannels(resume)}
 Education:\n${education}
-Languages: ${dictionary.cv.languagesList.join(" ")}
+Languages: ${languages}
 
 Knowledge areas:\n${knowledgeAreas}
 

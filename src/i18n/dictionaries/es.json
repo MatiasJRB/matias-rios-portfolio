@@ -142,132 +142,53 @@
         "Fluidez multi-stack",
         "Mentalidad automation-first"
       ]
+    },
+    "backendEngineering": {
+      "label": "Ingeniería Backend & Cloud",
+      "description": "Diseño e implementación de APIs, servicios y plataformas de datos con foco en confiabilidad, rendimiento y operación en producción.",
+      "ecosystems": [
+        "Node.js · TypeScript · NestJS",
+        "Ruby on Rails · Laravel",
+        "AWS · Docker · CI/CD",
+        "PostgreSQL · MySQL · Redis"
+      ]
     }
   },
   "cv": {
-    "title": "INGENIERO DE SOFTWARE",
-    "backToHome": "← Volver al inicio",
-    "summary": "Más de 8 años de experiencia ofreciendo soluciones impactantes en industrias como e-commerce, salud y logística. Entre los logros destacados se incluyen liderar el desarrollo técnico en Mango como Tech Lead, implementar integraciones clave que impulsaron suscripciones e ingresos en una empresa consolidada, y liderar la transición de una aplicación móvil de beta a producción en una startup. Especializado en desarrollo backend, planificación estratégica y colaboración multifuncional. Comprometido con entregar sistemas de alta calidad y orientados a resultados que fomenten el crecimiento empresarial mientras se mantiene un entorno de equipo colaborativo y positivo.",
-    "areasOfKnowledge": "Áreas de conocimiento",
-    "areas": {
-      "backend": {
-        "title": "Desarrollo backend:",
-        "description": "amplia experiencia en tecnologías backend, con un fuerte enfoque en la implementación de principios SOLID y programación orientada a objetos. Experiencia comprobada en la optimización de consultas SQL, implementación de soluciones de caché y mejora del rendimiento del sistema. Competente en herramientas de monitoreo y arquitectura de microservicios. JavaScript, TypeScript, Ruby, Python, Node.js, Express, NestJS, Ruby on Rails, Strapi, Sidekiq, Laravel, REST APIs."
-      },
-      "testing": {
-        "title": "Testing & CI/CD:",
-        "description": "experiencia en desarrollo orientado a pruebas (TDD), garantizando código de alta calidad e implementando pipelines de CI/CD eficientes para despliegues fluidos. RSpec, Mocha, Jest, GitHub Actions, Git."
-      },
-      "api": {
-        "title": "Integraciones de API:",
-        "description": "amplia experiencia en el diseño e integración de APIs, permitiendo una comunicación fluida entre sistemas y garantizando un intercambio eficiente de datos en diversas plataformas."
-      },
-      "database": {
-        "title": "Gestión de bases de datos:",
-        "description": "conocimiento avanzado en la optimización y gestión de bases de datos relacionales y NoSQL para garantizar rendimiento y escalabilidad. Prisma, PostgreSQL, MySQL, Redis, Supabase."
-      },
-      "cloud": {
-        "title": "Cloud & DevOps:",
-        "description": "experiencia en la construcción y despliegue de soluciones basadas en la nube con enfoque en confiabilidad y monitoreo. AWS, GitHub Actions, Docker, Sentry, Turbo."
-      },
-      "collaboration": {
-        "title": "Colaboración multifuncional:",
-        "description": "hábil en trabajar estrechamente con gerentes de producto, equipos de marketing y desarrolladores para alinear soluciones técnicas con objetivos comerciales y mejorar el posicionamiento en el mercado."
-      },
-      "leadership": {
-        "title": "Liderazgo de proyectos y equipos:",
-        "description": "experiencia liderando equipos pequeños, mentoría y participación en reclutamiento. Competente en metodologías Agile/Scrum y entrega de soluciones personalizadas en entornos de ritmo acelerado."
-      },
-      "frontend": {
-        "title": "Desarrollo frontend y móvil:",
-        "description": "competencia en la creación de experiencias de usuario fluidas para plataformas web y móviles híbridas. JavaScript, TypeScript, Astro, Quasar, Vue, React, React Native, Next.js, Expo, Tailwind CSS, Zustand, EAS."
-      }
-    },
+    "backToHome": "← Volver al portfolio",
+    "profile": "Perfil",
+    "coreStrengths": "Habilidades técnicas y liderazgo",
     "professionalExperience": "Experiencia profesional",
-    "experiences": [
-      {
-        "position": "Tech Lead",
-        "company": "Mango",
-        "period": "Mar 25 - Presente",
-        "description": "Liderando el equipo de desarrollo técnico y operativo, garantizando soluciones escalables y mantenibles alineadas con la estrategia del producto. Actuando como puente entre la visión del negocio y la ejecución técnica, trabajando estrechamente con el CTO y stakeholders para construir con una visión a mediano y largo plazo.",
-        "highlights": [
-          "Liderazgo técnico en el diseño de arquitecturas para nuevas funcionalidades y sistemas, garantizando escalabilidad y evolución futura del negocio.",
-          "Definí y mantuve estándares de calidad técnica incluyendo prácticas de testing, pipelines de CI/CD, revisiones de código y flujos de control de versiones.",
-          "Coordiné actividades del equipo de desarrollo incluyendo standups diarios, planificación de sprints y revisiones exhaustivas de PRs.",
-          "Lideré onboarding y brindé mentoría técnica a nuevos desarrolladores, fomentando el crecimiento del equipo y el intercambio de conocimientos.",
-          "Alineé la implementación técnica con los objetivos del producto, traduciendo requisitos del negocio en soluciones técnicas accionables.",
-          "Administré y mantuve la infraestructura técnica en entornos de desarrollo, staging y producción.",
-          "Supervisé la implementación de herramientas de CI/CD y sistemas de monitoreo para garantizar la confiabilidad y rendimiento de la plataforma.",
-          "Comuniqué progreso, riesgos técnicos y decisiones estratégicas al CTO y stakeholders de manera efectiva."
-        ]
-      },
-      {
-        "position": "Software Engineer",
-        "company": "Kalkomey (contrato vía RazorTech)",
-        "period": "Feb 23 - Dic 24",
-        "description": "Ingeniero Backend Líder en HuntWise, una aplicación de caza. Promovido por liderazgo efectivo y contribuciones técnicas. Colaboré de manera transversal con varios equipos para mejorar el producto HuntWise.",
-        "highlights": [
-          "Establecí una suite de pruebas completa desde cero para proporcionar pautas claras para escribir tests y configuré un conjunto robusto de herramientas para manejar escenarios de testing comunes, mejorando significativamente la confiabilidad y mantenibilidad del código.",
-          "Mantenimiento de soluciones basadas en AWS Services incluyendo Lambda, API Gateway, S3, Route 53.",
-          "Lideré el desarrollo en API y CMS, garantizando operaciones fluidas y escalabilidad de la plataforma, colaborando con diversos equipos para entregar nuevas funcionalidades y mejorar el rendimiento general.",
-          "Diseñé e implementé soluciones para integrar sin problemas los sistemas internos de Kalkomey, mejorando el rendimiento de la API y habilitando flujos de trabajo de suscripción e ingresos más eficientes.",
-          "Introduje una arquitectura estandarizada para reemplazar el enfoque monolítico anterior del controlador, mejorando la organización del código, escalabilidad y mantenibilidad de la API.",
-          "Participé activamente en la planificación de lanzamientos y revisiones de código, manteniendo altos estándares de calidad del código."
-        ]
-      },
-      {
-        "position": "Software Engineer",
-        "company": "RazorTech",
-        "period": "Sept 22 - Feb 23",
-        "description": "Contribuí al desarrollo backend para varios clientes, incluyendo Cargill. Desempeñé un papel fundamental en impulsar entregas de proyectos exitosas y mejorar los servicios ofrecidos internacionalmente.",
-        "highlights": [
-          "Desarrollé e implementé nuevas funcionalidades, cumpliendo consistentemente con los plazos de sprint.",
-          "Identifiqué cuellos de botella e implementé soluciones basadas en pruebas para abordar bugs y optimizar el rendimiento del sistema.",
-          "Comuniqué con APIs de terceros para sincronizar datos y optimizar procesos.",
-          "Mantuve la calidad del código, adhiriendo a las mejores prácticas de la industria y mejorando la eficiencia del equipo mediante revisiones entre pares.",
-          "Colaboré estrechamente con el equipo para garantizar una ejecución de proyecto fluida y satisfacción del cliente."
-        ]
-      },
-      {
-        "position": "Full Stack Developer",
-        "company": "Nuqlea",
-        "period": "Jun 21 - Ago 22",
-        "description": "Lideré el desarrollo y transición de una aplicación móvil B2C de beta a producción para plataformas Apple y Google. Contribuí a la arquitectura y diseño de la plataforma, enfocándome en la experiencia del usuario y escalabilidad.",
-        "highlights": [
-          "Lideré el desarrollo de la aplicación móvil garantizando una integración fluida entre plataformas; implementé funcionalidades de back-end.",
-          "Colaboré con el equipo para mejorar la experiencia del usuario (UX/UI) y resolver problemas de rendimiento a nivel del sistema.",
-          "Trabajé estrechamente con stakeholders para cumplir con plazos ajustados en un entorno de startup de ritmo rápido, demostrando adaptabilidad y habilidades de resolución de problemas."
-        ]
-      },
-      {
-        "position": "Co-Fundador",
-        "company": "Geome7ric",
-        "period": "Feb 20 - Presente",
-        "description": "Guiando descubrimientos y desarrollo en una empresa de desarrollo de software a medida.",
-        "highlights": [
-          "Entregué 7+ aplicaciones web y móviles personalizadas para clientes en industrias de retail, logística y servicios.",
-          "Especializado en aplicaciones personalizadas utilizando frameworks modernos.",
-          "Lideré gestión de proyectos, relaciones con clientes y desarrollo de soluciones adaptadas para diversas industrias.",
-          "Gestioné ciclos de vida de productos de extremo a extremo, desde la conceptualización hasta la entrega, garantizando alineación con los objetivos del cliente.",
-          "Enfocado en proporcionar software escalable y moderno para plataformas web y móviles."
-        ]
-      },
-      {
-        "position": "Sys Admin",
-        "company": "Profertil S.A.",
-        "period": "Dic 20 - May 21",
-        "description": "Administré la infraestructura de TI de Profertil, garantizando disponibilidad de servidores y redes, seguridad y eficiencia. Desarrollé scripts de automatización, optimicé servidores Windows y bases de datos SQL, y mantuve sitios web internos. Documenté procedimientos, creé manuales de usuario y gestioné inventarios de equipos para transparencia operativa.",
-        "highlights": []
-      }
-    ],
+    "independentVenture": "Emprendimiento y productos propios",
+    "selectedWork": "Trabajo seleccionado",
     "education": "Educación",
-    "educationDetail": "Ingeniero en Computación - Universidad Nacional del Sur, 2021. Buenos Aires, Argentina",
     "languages": "Idiomas",
-    "languagesList": [
-      "Inglés, nivel intermedio-alto, competencia profesional de trabajo.",
-      "Español, nativo."
-    ],
-    "downloadPdf": "Descargar PDF"
+    "nativeLanguage": "Español: nativo",
+    "careerContinuation": "Trayectoria profesional, continuación",
+    "page": "Página",
+    "downloadPdf": "Descargar PDF",
+    "earlyFoundation": "Fundamentos en sistemas industriales"
+  },
+  "timeMachine": {
+    "launcher": "Explorar la evolución",
+    "openLabel": "Explorar la evolución del portfolio",
+    "title": "Mi portfolio a través del tiempo",
+    "description": "Ocho versiones reales. Elegí un año y mirá cómo fue cambiando.",
+    "closeLabel": "Cerrar la máquina del tiempo",
+    "previousLabel": "Viajar a la era anterior del portfolio",
+    "nextLabel": "Viajar a la era siguiente del portfolio",
+    "current": "Actual",
+    "stackLabel": "Tecnología utilizada en esta era",
+    "instructions": "Elegí una versión",
+    "timelineLabel": "Línea temporal de la evolución del portfolio",
+    "eraLabel": "Viajar a la era del portfolio",
+    "originalSource": "Código de ese momento",
+    "currentSource": "Versión actual",
+    "commitLabel": "Commit",
+    "openFull": "Abrir sin marco",
+    "openFullLabel": "Abrir esta versión del portfolio sin el marco de la máquina del tiempo",
+    "loadingOriginal": "Abriendo esta versión",
+    "previewLabel": "Versión navegable del portfolio"
   },
   "recruiterBot": {
     "ariaLabel": "Chat con el asistente del portfolio",

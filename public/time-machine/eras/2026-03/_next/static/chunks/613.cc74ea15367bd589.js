@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[613],{613:(e,t,u)=>{u.r(t),u.d(t,{default:()=>o});var l=u(2115);function o(){return(0,l.useEffect)(()=>{let e=setTimeout(()=>{document.documentElement.style.scrollBehavior="smooth"},100);return()=>{clearTimeout(e),document.documentElement.style.scrollBehavior="auto"}},[]),null}}}]);

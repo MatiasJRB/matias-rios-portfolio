@@ -30,6 +30,8 @@ export interface Basics {
 export interface Job {
   name: string;
   position: string;
+  kind?: "employment" | "contract" | "venture" | "practice";
+  context?: string;
   startDate: string;
   endDate: string;
   url: string;

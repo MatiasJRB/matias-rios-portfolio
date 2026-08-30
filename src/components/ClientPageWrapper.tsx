@@ -10,12 +10,14 @@ interface ClientPageWrapperProps {
   lang: Locale;
   resume: Resume;
   dictionary: Dictionary;
+  previewMode?: boolean;
 }
 
 export default function ClientPageWrapper({
   lang,
   resume,
   dictionary,
+  previewMode = false,
 }: ClientPageWrapperProps) {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
@@ -25,6 +27,7 @@ export default function ClientPageWrapper({
       dictionary={dictionary}
       profiles={resume.basics.profiles}
       scrollAreaRef={scrollAreaRef}
+      previewMode={previewMode}
     >
       <PageContent
         lang={lang}

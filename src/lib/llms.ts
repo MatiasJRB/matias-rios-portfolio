@@ -233,10 +233,12 @@ export async function generateLlmsFullTxt(): Promise<string> {
 
   sections.push("## Areas of Knowledge");
   sections.push("");
-  sections.push(dictionary.cv.summary);
+  sections.push(basics.summary);
   sections.push("");
-  for (const area of Object.values(dictionary.cv.areas)) {
-    sections.push(`- **${area.title.replace(/:$/, "")}**: ${area.description}`);
+  for (const area of Object.values(dictionary.skills)) {
+    sections.push(
+      `- **${area.label}**: ${area.description} ${area.ecosystems.join(", ")}`,
+    );
   }
   sections.push("");
 

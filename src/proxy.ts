@@ -25,6 +25,7 @@ export function proxy(request: NextRequest) {
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
+    pathname.startsWith("/time-machine") ||
     pathname.includes(".") ||
     pathname.startsWith("/icons") ||
     pathname.startsWith("/images")
@@ -70,5 +71,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|icons|images).*)"],
+  matcher: ["/((?!_next|api|icons|images|time-machine).*)"],
 };

@@ -1,12 +1,12 @@
 {
   "basics": {
     "name": "Matias Rios",
-    "label": "Tech Lead & Software Engineer",
+    "label": "Tech Lead | Product & Platform Engineering",
     "image": "/images/profile-headshot-2026.jpg",
     "email": "matiasjriosb@gmail.com",
     "phone": "(291) 645-0794",
     "url": "https://www.matiasjrb.com.ar",
-    "summary": "8+ years of experience building digital products across multiple industries. I lead engineering and product architecture at Mango. Co-founder of Geome7ric.",
+    "summary": "I have built software since 2018 and bring 5+ years in product engineering teams. At Mango, I lead engineering and product architecture across hands-on delivery, system design, and team execution. I also co-founded Geome7ric as a side venture.",
     "about": "<p>In 2013, I pursued a degree in computer engineering, and by 2018, I had sold my first software: an inventory app for a local pet shop. Since then, I've been coding for diverse industries, including building, ecommerce, physical retail, healthcare, distribution, port logistics, and corporate transportation.</p><p>I build at <a href=\"https://mangxo.com\" target=\"_blank\">Mango</a>, a data company with financial products for the construction ecosystem in Latin America. My work focuses on the systems that power the platform: commercial credit, payment workflows and a network of 200+ points of sale. On my own time, I design and ship digital products end to end — from database architecture to payments and deployment. Previously, I led a mobile app from beta to app stores at <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a> and drove a key integration at <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a> that increased subscriptions and revenue.</p><p>When I'm not at the computer, I’m usually at the gym, playing soccer at the best <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">friend's club</a> of my city, or with friends and family. I also manage projects at <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, my software venture.</p>",
     "location": {
       "address": "Corrientes 211",
@@ -37,26 +37,25 @@
       "url": "https://mangxo.com",
       "startDate": "03-2025",
       "endDate": "PRESENT",
-      "summary": "I am responsible for technically and operationally leading the development team, ensuring solutions are scalable, maintainable, and aligned with product strategy. I connect product and business priorities with concrete technical decisions to help the team execute with clarity. My focus includes building with a medium and long-term vision, anticipating the evolution of the product, team, and platform.",
+      "summary": "I lead the technical evolution of a multi-product fintech platform, connecting business strategy, architecture, and execution. My impact has evolved from hands-on implementation across payments and integrations toward designing products, standards, and delivery mechanisms that help the team operate with greater quality, security, and predictability.",
       "highlights": [
-        "Technical leadership in designing architectures for new features and systems.",
-        "Defining and maintaining technical quality standards (tests, CI/CD, PRs, versioning).",
-        "Coordinating the development team (dailies, sprint planning, PR reviews).",
-        "Onboarding and technical mentoring for new developers.",
-        "Aligning technical implementation with product objectives.",
-        "Administering and maintaining technical infrastructure (development, staging, production).",
-        "Supervising and implementing CI/CD tools and monitoring.",
-        "Communicating progress, risks, and technical decisions to leadership and product.",
-        "Designing key components with a focus on scalability and future business evolution."
-      ]
+        "Took a collections and reconciliation product from versioned specs to production in approximately five weeks, coordinating one frontend engineer, one backend engineer, and infrastructure.",
+        "Directed the migration of 15 functional modules from Vue 2 to Next.js while preserving critical workflows and contracts with the existing backend.",
+        "Created a central engineering governance source to unify cross-repository roadmaps, ADRs, specifications, and delivery standards.",
+        "Strengthened the reliability of financial integrations through observability, health checks, traceability, and automated rollback.",
+        "Raised the security and delivery baseline through secret scanning, protected branches, and required checks across critical services.",
+        "Turned quality, observability, and technical debt into planned and measurable engineering capacity.",
+        "Coordinated cross-functional deliveries across Product, Engineering, and Data, including an operational collections intelligence surface."
+      ],
+      "kind": "employment"
     },
     {
       "name": "Geome7ric",
-      "position": "Co-Founder",
+      "position": "Co-Founder · Side venture",
       "url": "https://geome7ric.com",
       "startDate": "02-2020",
       "endDate": "PRESENT",
-      "summary": "Co-founded and run a software venture building products across web, mobile, and AI. Currently focused on shipping custom products and multi-tenant applications using React Native, Next.js, and Supabase.",
+      "summary": "Co-founded and run a side venture building products across web, mobile, and AI, including multi-tenant applications using React Native, Next.js, and Supabase.",
       "highlights": [
         "Co-founded Geome7ric, leading product strategy, technical architecture, and client relationships.",
         "Built and shipped multiple custom products end-to-end: AI knowledge assistants, carpooling apps, and multi-tenant platforms.",
@@ -65,39 +64,73 @@
         "Implemented CI/CD pipelines, Vercel deployments, and spec-driven development workflows.",
         "Responsible for client acquisition, requirements gathering, and ensuring successful project delivery."
       ],
-      "icon": "sell"
+      "icon": "sell",
+      "kind": "venture"
     },
     {
       "name": "Kalkomey",
-      "position": "Software Engineer",
+      "position": "Software Engineer / Backend Lead",
+      "kind": "contract",
       "url": "https://kalkomey.com",
-      "startDate": "09-2022",
+      "startDate": "02-2023",
       "endDate": "12-2024",
-      "summary": "Backend Lead at HuntWise, a leading hunting app, where I implemented backend solutions to enhance system reliability and drive market growth. Collaborated with product, marketing, and development teams to align technical solutions with business goals. Previously managed backend development for Cargill, consistently delivering milestones and strengthening client relationships. Recognized for leadership, strategic planning, and technical contributions with a promotion.",
+      "summary": "Worked through RazorTech on HuntWise, a Kalkomey product, and progressed from backend execution to technical leadership across its API and CMS. Coordinated delivery with Product, Marketing, and engineering teams, and was promoted for leadership and technical contributions.",
       "highlights": [
-        "Led backend development for the HuntWise app, implementing solutions with Node.js, Express, and PostgreSQL to enhance system reliability and support market growth.",
-        "Engineered and maintained robust backend services using Python and Ruby on Rails, contributing to core product features.",
-        "Managed backend development for key client projects like Cargill, consistently delivering milestones and strengthening client relationships.",
-        "Collaborated with product, marketing, and development teams to align technical solutions with business goals, utilizing AWS, Docker, and CI/CD pipelines (GitHub Actions).",
-        "Spearheaded the adoption of Prisma for ORM, improving developer productivity and data access patterns.",
-        "Recognized with a promotion for leadership, strategic planning, and significant technical contributions to the platform."
-      ]
+        "Designed and implemented an integration between Kalkomey systems that enabled more efficient subscription and revenue workflows.",
+        "Established a test suite and reusable tooling from scratch for common scenarios, improving code reliability and maintainability.",
+        "Standardized the API architecture to replace monolithic controllers and improve organization, scalability, and maintainability.",
+        "Led delivery across the API and CMS and contributed to release planning and code reviews.",
+        "Maintained solutions on AWS, including Lambda, API Gateway, S3, and Route 53."
+      ],
+      "context": "Contract via RazorTech · HuntWise"
+    },
+    {
+      "name": "Cargill",
+      "position": "Software Engineer",
+      "kind": "contract",
+      "url": "https://www.cargill.com/",
+      "startDate": "09-2022",
+      "endDate": "02-2023",
+      "summary": "Provided backend engineering services to Cargill through RazorTech, delivering for an international client and evolving existing integrations and services.",
+      "highlights": [
+        "Delivered features and third-party API integrations within sprint commitments.",
+        "Identified bottlenecks and applied test-driven solutions to fix defects and improve performance.",
+        "Sustained code quality and delivery continuity through peer reviews and close team collaboration."
+      ],
+      "context": "Contract via RazorTech"
     },
     {
       "name": "Nuqlea",
-      "position": "Fullstack Developer",
+      "position": "Full Stack Developer",
       "url": "https://nuqlea.com",
       "startDate": "06-2021",
       "endDate": "08-2022",
-      "summary": "Led mobile app development, contributed to platform design using Quasar Framework, Laravel. Transitioned app from beta to production on Apple, Google. Enhanced B2C app, tackled system-wide issues, improved UX/UI. Learned startup agility, meeting deadlines.",
+      "summary": "Led full-stack development of a hybrid B2C mobile application and its transition from beta to production on the App Store and Google Play, contributing to architecture, backend, and user experience.",
       "highlights": [
-        "Led full-stack development of a hybrid mobile application using Quasar Framework (Vue.js) and a Laravel backend.",
-        "Successfully transitioned the mobile app from beta to production, managing deployments to Apple App Store and Google Play Store.",
+        "Designed and developed mobile and backend workflows with Quasar (Vue.js), Laravel, and MySQL, contributing to the platform's architectural evolution.",
+        "Prepared the application for production by resolving performance issues and managing releases to the App Store and Google Play.",
         "Contributed significantly to platform design and architecture, enhancing features for a B2C application.",
         "Improved application performance and UX/UI by tackling system-wide issues and refactoring key components.",
         "Operated effectively in an agile startup environment, consistently meeting tight deadlines and adapting to evolving requirements.",
         "Utilized MySQL for database management and JavaScript (ES6+) for frontend and backend logic."
-      ]
+      ],
+      "kind": "employment"
+    },
+    {
+      "name": "Indoscience / Profertil",
+      "position": "Systems Administrator, Supervised Professional Practice",
+      "url": "https://www.profertil.com.ar/",
+      "startDate": "12-2020",
+      "endDate": "05-2021",
+      "summary": "Completed my supervised professional practice at Indoscience S.A., providing services to Profertil S.A. I worked in a real industrial operation, administering servers and automating observability, backup, and maintenance tasks to reduce manual work and improve operational continuity.",
+      "highlights": [
+        "Administered and monitored Windows Server, SQL Server, and Aspen InfoPlus.21 environments used by industrial operations.",
+        "Automated daily checks and maintenance tasks with Python, SQLPlus, and PowerShell.",
+        "Diagnosed backup, disk-capacity, antivirus, and data-collection failures, helping reduce IP.21 system interruptions.",
+        "Implemented bulk tag creation, operational displays, and historical alarm migrations.",
+        "Documented technical and operational procedures to improve support, traceability, and knowledge transfer."
+      ],
+      "kind": "practice"
     }
   ],
   "languages": [
@@ -109,25 +142,25 @@
   "projects": [
     {
       "name": "Platform v2",
-      "description": "Led the full migration of Mango's platform from Vue 2 to Next.js. 15 feature modules including clients, purchases, sales, suppliers, reservations, and payment workflows.",
-      "impact": "Led the migration of 15 modules from Vue 2 to Next.js across clients, purchases, sales, suppliers, reservations, and payment workflows.",
-      "tech": ["Next.js", "TypeScript", "Supabase"],
+      "description": "Led the migration of 15 functional modules from a legacy Vue 2 application to Next.js while preserving parity across critical customer, purchasing, sales, supplier, payment, registration, and operational workflows.",
+      "impact": "Coordinated the migration of 15 business capabilities into a server-first Next.js architecture, separating domains while preserving contracts with the existing backend.",
+      "tech": ["Next.js", "TypeScript", "React", "Playwright"],
       "role": "Tech Lead",
       "company": "Mango"
     },
     {
       "name": "Cobros",
       "description": "Payment reconciliation product for construction material distributors. STP integration for automated transfers, SAT tax validation, CLABE account management, and full audit trail.",
-      "tech": ["Next.js", "Express", "Prisma", "STP API"],
+      "tech": ["Next.js", "Laravel", "AWS", "STP API"],
       "role": "Tech Lead & Architect",
       "company": "Mango",
       "featured": true,
       "featuredRank": 1,
       "eyebrow": "Tech Lead / Architecture",
       "headline": "Spec-driven delivery of a financial product for payments, invoices, and reconciliation.",
-      "impact": "I designed Cobros with Spec-Driven Development: technical scope defined upfront, product-to-production tasks broken down granularly, and an MVP delivered in one month with one frontend SE and one backend SE.",
+      "impact": "Took Cobros from the first versioned specifications to production in approximately five weeks, coordinating architecture, infrastructure, one frontend engineer, and one backend engineer.",
       "status": "Mango · Internal product",
-      "proof": ["Spec-Driven Development", "1-month MVP", "FE + BE team"],
+      "proof": ["Spec-Driven Development", "Specs → production ≈5 weeks", "FE + BE team"],
       "highlights": [
         "Defined the technical scope before building: architecture, flows, data models, APIs, integrations, and acceptance criteria.",
         "Broke the work down into executable tasks to move from product definition to production with minimal rework.",
@@ -264,7 +297,7 @@
     {
       "institution": "Universidad Nacional del Sur",
       "area": "Computer Engineering",
-      "studyType": "Engineer",
+      "studyType": "Computer Engineer",
       "startDate": "2013",
       "endDate": "2021",
       "url": "https://www.uns.edu.ar"
