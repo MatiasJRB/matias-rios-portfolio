@@ -1,4 +1,6 @@
+import { match } from "@formatjs/intl-localematcher";
 import { NextRequest, NextResponse } from "next/server";
+import Negotiator from "negotiator";
 import { i18n, type Locale } from "./i18n/config";
 
 function getLocale(request: NextRequest): string {
@@ -7,7 +9,16 @@ function getLocale(request: NextRequest): string {
     return cookieLocale;
   }
 
-  return i18n.defaultLocale;
+  const acceptLanguage = request.headers.get("accept-language");
+  if (!acceptLanguage) {
+    return i18n.defaultLocale;
+  }
+
+  const languages = new Negotiator({
+    headers: { "accept-language": acceptLanguage },
+  }).languages();
+
+  return match(languages, [...i18n.locales], i18n.defaultLocale);
 }
 
 export function proxy(request: NextRequest) {
