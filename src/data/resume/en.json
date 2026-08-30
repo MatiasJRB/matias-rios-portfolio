@@ -39,7 +39,7 @@
       "endDate": "PRESENT",
       "summary": "I lead the technical evolution of a multi-product fintech platform, connecting business strategy, architecture, and execution. My impact has evolved from hands-on implementation across payments and integrations toward designing products, standards, and delivery mechanisms that help the team operate with greater quality, security, and predictability.",
       "highlights": [
-        "Took a collections and reconciliation product from versioned specs to production in approximately five weeks, coordinating one frontend engineer, one backend engineer, and infrastructure.",
+        "Defined and versioned the specifications for Cobros and reconciliation, then coordinated implementation through production in approximately five weeks with one frontend engineer, one backend engineer, and infrastructure.",
         "Directed the migration of 15 functional modules from Vue 2 to Next.js while preserving critical workflows and contracts with the existing backend.",
         "Created a central engineering governance source to unify cross-repository roadmaps, ADRs, specifications, and delivery standards.",
         "Strengthened the reliability of financial integrations through observability, health checks, traceability, and automated rollback.",
