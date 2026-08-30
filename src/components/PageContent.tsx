@@ -87,20 +87,20 @@ export default function PageContent({
             className="mb-8 px-0 pt-20 scroll-mt-24 md:mb-12 md:pt-32 lg:mb-10 lg:pt-20"
           >
             <Presentation basics={resume.basics} dictionary={dictionary} />
+            <div className="mt-8 lg:mt-10">
+              <SocialMedia
+                profiles={resume.basics.profiles}
+                dictionary={dictionary}
+                lang={lang}
+              />
+            </div>
             <nav
               aria-label="Section navigation"
-              className="mt-12 hidden lg:mt-16 lg:block"
+              className="mt-12 hidden lg:block"
             >
               <Selector dictionary={dictionary} className="" />
             </nav>
           </header>
-          <div className="pb-8 lg:pb-10">
-            <SocialMedia
-              profiles={resume.basics.profiles}
-              dictionary={dictionary}
-              lang={lang}
-            />
-          </div>
         </div>
       </aside>
 
