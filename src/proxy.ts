@@ -36,6 +36,7 @@ export function proxy(request: NextRequest) {
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
+    pathname === "/portfolio" ||
     pathname.startsWith("/time-machine") ||
     pathname.includes(".") ||
     pathname.startsWith("/icons") ||
