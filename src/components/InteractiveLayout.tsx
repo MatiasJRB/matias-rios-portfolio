@@ -49,23 +49,25 @@ export default function InteractiveLayout({
 
   return (
     <>
-      <div className="hidden lg:block">
-        <KeyboardNavigationHint
-          isKeyboardMode={isKeyboardMode}
-          actionHint={currentActionHint}
-          actionColor={currentActionColor}
-          dictionary={dictionary}
-        />
-      </div>
       {!isCVPage && (
         <MobileHeader dictionary={dictionary} profiles={profiles} />
       )}
       {mounted && !isCVPage && <PortfolioShaderBackdrop />}
       {mounted && !isCVPage && <CinematicEffects />}
-      <div className="fixed right-5 top-5 z-[300] flex items-center gap-2 md:right-6 md:top-6">
-        {!isCVPage && !previewMode && (
+      {!isCVPage && !previewMode && (
+        <div className="fixed right-[4.75rem] top-5 z-[310] flex items-start gap-2 md:right-20 md:top-6 lg:right-6 lg:bottom-6 lg:top-auto">
           <PortfolioTimeMachine lang={lang} dictionary={dictionary} />
-        )}
+          <div className="hidden lg:block">
+            <KeyboardNavigationHint
+              isKeyboardMode={isKeyboardMode}
+              actionHint={currentActionHint}
+              actionColor={currentActionColor}
+              dictionary={dictionary}
+            />
+          </div>
+        </div>
+      )}
+      <div className="fixed right-5 top-5 z-[300] flex items-center md:right-6 md:top-6">
         <ThemeSwitch />
       </div>
       <div

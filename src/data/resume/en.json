@@ -157,8 +157,8 @@
       "featured": true,
       "featuredRank": 1,
       "eyebrow": "Tech Lead / Architecture",
-      "headline": "Spec-driven delivery of a financial product for payments, invoices, and reconciliation.",
-      "impact": "Took Cobros from the first versioned specifications to production in approximately five weeks, coordinating architecture, infrastructure, one frontend engineer, and one backend engineer.",
+      "headline": "Spec-driven delivery for payments and reconciliation.",
+      "impact": "Took Cobros from versioned specs to production in five weeks, coordinating architecture, infrastructure, frontend, and backend.",
       "status": "Mango · Internal product",
       "proof": ["Spec-Driven Development", "Specs → production ≈5 weeks", "FE + BE team"],
       "highlights": [

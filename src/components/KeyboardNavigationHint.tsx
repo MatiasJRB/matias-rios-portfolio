@@ -76,7 +76,7 @@ export const KeyboardNavigationHint = ({
   return (
     <div
       ref={containerRef}
-      className="fixed right-6 bottom-6 z-40 pointer-events-none"
+      className="pointer-events-none"
       style={{
         opacity: isKeyboardMode ? 0.9 : 0.4,
         transition: "opacity 0.3s ease",

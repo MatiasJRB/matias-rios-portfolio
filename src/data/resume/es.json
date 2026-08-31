@@ -157,8 +157,8 @@
       "featured": true,
       "featuredRank": 1,
       "eyebrow": "Tech Lead / Arquitectura",
-      "headline": "Spec-driven delivery de un producto financiero para cobros, facturas y conciliación.",
-      "impact": "Llevé Cobros desde las primeras specs versionadas hasta producción en aproximadamente cinco semanas, coordinando arquitectura, infraestructura, un ingeniero frontend y uno backend.",
+      "headline": "Entrega guiada por specs para cobros y conciliación.",
+      "impact": "Llevé Cobros de specs versionadas a producción en cinco semanas, coordinando arquitectura, infraestructura y un equipo frontend/backend.",
       "status": "Mango · Producto interno",
       "proof": ["Spec-Driven Development", "Specs → producción ≈5 semanas", "Equipo FE + BE"],
       "highlights": [

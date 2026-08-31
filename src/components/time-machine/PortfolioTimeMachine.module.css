@@ -1,25 +1,31 @@
 .launcher {
   position: relative;
   display: inline-flex;
-  width: 44px;
-  min-height: 44px;
+  width: 1.5rem;
+  min-height: 1.5rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
-  border-radius: 0.75rem;
-  background: color-mix(in srgb, var(--color-background) 90%, transparent);
-  color: var(--color-text);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-muted);
   padding: 0;
-  box-shadow: 0 14px 34px -28px var(--shadow-hover);
-  backdrop-filter: blur(14px) saturate(130%);
+  box-shadow: none;
   cursor: pointer;
-  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.launcher::before {
+  position: absolute;
+  inset: -0.625rem;
+  content: "";
 }
 
 .launcher::after {
   position: absolute;
-  top: calc(100% + 0.55rem);
-  right: 0;
+  right: auto;
+  bottom: calc(100% + 0.65rem);
+  left: 0;
   width: max-content;
   max-width: 12rem;
   border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
@@ -35,7 +41,7 @@
   line-height: 1.2;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-0.25rem);
+  transform: translateY(0.25rem);
   transition: opacity 160ms ease, transform 180ms ease;
   white-space: nowrap;
 }
@@ -43,8 +49,7 @@
 .launcher:hover,
 .launcher:focus-visible {
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border));
-  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-primary);
 }
 
 .launcher:hover::after,
@@ -54,8 +59,8 @@
 }
 
 .timeMachineIcon {
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 1.125rem;
+  height: 1.125rem;
   overflow: visible;
 }
 
