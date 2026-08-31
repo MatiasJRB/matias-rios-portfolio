@@ -5,8 +5,6 @@ export type PortfolioEraId =
   | "2021"
   | "2022"
   | "2024"
-  | "2025-04"
-  | "2025-12"
   | "2026-03"
   | "2026";
 
@@ -61,8 +59,8 @@ export const PORTFOLIO_ERAS: PortfolioEra[] = [
   {
     id: "2021",
     year: "2021",
-    timelineLabel: { en: "2021", es: "2021" },
-    date: { en: "June 2021", es: "Junio de 2021" },
+    timelineLabel: { en: "2021–22", es: "2021–22" },
+    date: { en: "February 2022", es: "Febrero de 2022" },
     name: { en: "My Quasar phase", es: "Mi etapa Quasar" },
     note: {
       en: "I turned the portfolio into an app: more structure, more detail and a lot more yellow.",
@@ -72,7 +70,7 @@ export const PORTFOLIO_ERAS: PortfolioEra[] = [
     accent: "#f2e94e",
     source: {
       kind: "archive",
-      commit: "af3d126",
+      commit: "25bdb97",
       path: "/time-machine/eras/2021/index.html#/",
       localized: false,
     },
@@ -113,44 +111,6 @@ export const PORTFOLIO_ERAS: PortfolioEra[] = [
       commit: "a103447",
       path: "/time-machine/eras/2024/index.html#/",
       localized: false,
-    },
-  },
-  {
-    id: "2025-04",
-    year: "2025",
-    timelineLabel: { en: "Apr 25", es: "Abr 25" },
-    date: { en: "April 2025", es: "Abril de 2025" },
-    name: { en: "The move to Next.js", es: "El salto a Next.js" },
-    note: {
-      en: "The first production React and Next.js version. The stack started to look like today's.",
-      es: "La primera versión productiva en React y Next.js. El stack empezó a parecerse al de hoy.",
-    },
-    stack: ["Next.js 15", "React 19", "Tailwind"],
-    accent: "#879fff",
-    source: {
-      kind: "archive",
-      commit: "08f6d11",
-      path: "/time-machine/eras/2025-04/index.html",
-      localized: false,
-    },
-  },
-  {
-    id: "2025-12",
-    year: "2025",
-    timelineLabel: { en: "Dec 25", es: "Dic 25" },
-    date: { en: "December 2025", es: "Diciembre de 2025" },
-    name: { en: "The interactive portfolio", es: "El portfolio interactivo" },
-    note: {
-      en: "I added languages, motion and more expressive navigation without losing the professional story.",
-      es: "Sumé idiomas, movimiento y una navegación más expresiva sin perder la historia profesional.",
-    },
-    stack: ["Next.js 15", "i18n", "Motion"],
-    accent: "#63d995",
-    source: {
-      kind: "archive",
-      commit: "ed6404f",
-      path: "/time-machine/eras/2025-12",
-      localized: true,
     },
   },
   {

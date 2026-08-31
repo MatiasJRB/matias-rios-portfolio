@@ -4,6 +4,7 @@ import {
   existsSync,
   mkdtempSync,
   mkdirSync,
+  readdirSync,
   readFileSync,
   rmSync,
   writeFileSync,
@@ -31,7 +32,7 @@ const archives = [
     id: "2021",
     kind: "quasar",
     repository: join(githubRoot, "mi-portafolio"),
-    commit: "af3d126",
+    commit: "25bdb97",
   },
   {
     id: "2022",
@@ -44,18 +45,6 @@ const archives = [
     kind: "quasar",
     repository: join(githubRoot, "mi-portafolio"),
     commit: "a103447",
-  },
-  {
-    id: "2025-04",
-    kind: "next",
-    repository: projectRoot,
-    commit: "08f6d11",
-  },
-  {
-    id: "2025-12",
-    kind: "next",
-    repository: projectRoot,
-    commit: "ed6404f",
   },
   {
     id: "2026-03",
@@ -117,6 +106,12 @@ function patchQuasarConfig(workDir, id) {
       )}\n`,
     );
   }
+
+  if (id === "2021") {
+    // Rewrite dead image URLs before Webpack hashes the historical bundle so
+    // browsers cannot keep serving a cached pre-recovery chunk.
+    rewriteArchivedUrls(workDir, get2021ImageReplacements());
+  }
 }
 
 function patchNextConfig(workDir, id) {
@@ -152,6 +147,15 @@ function patchNextConfig(workDir, id) {
     "src/app/llms-full.txt",
   ]) {
     rmSync(join(workDir, relativePath), { recursive: true, force: true });
+  }
+
+  const sourceDirectory = join(workDir, "src");
+  if (existsSync(sourceDirectory)) {
+    // Next's basePath does not rewrite strings that point at public assets.
+    // Make archived exports self-contained instead of leaking to /images.
+    rewriteArchivedUrls(sourceDirectory, [
+      ["/images/", `${mountPath}/images/`],
+    ]);
   }
 }
 
@@ -213,6 +217,158 @@ function writeArchiveMetadata(archive, destination) {
   );
 }
 
+function rewriteArchivedUrls(directory, replacements) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) {
+      rewriteArchivedUrls(path, replacements);
+      continue;
+    }
+
+    if (!/\.(?:css|html|js|json|ts|tsx|vue)$/.test(entry.name)) continue;
+    let source = readFileSync(path, "utf8");
+    let changed = false;
+    for (const [from, to] of replacements) {
+      if (!source.includes(from)) continue;
+      source = source.replaceAll(from, to);
+      changed = true;
+    }
+    if (changed) writeFileSync(path, source);
+  }
+}
+
+const recovered2021Images = [
+  "geome7ric/portada.jpg",
+  "signos/logo.png",
+  "signos/programa1.png",
+  "signos/programa2.png",
+  "signos/programa3.png",
+  "signos/programa4.png",
+  "signos/programa5.png",
+  "budapest/logo.png",
+  "budapest/portada.jpg",
+  "nortebus/logo.jpg",
+  "nortebus/portada.jpg",
+  "eati2020/logo.png",
+  "eati2020/portada.png",
+  "leapmotion.jpeg",
+  "proyectoiap.jpg",
+  "parri.png",
+  "petshop/logo.jpg",
+  "petshop/portada.jpg",
+  "redes/dns.jpg",
+  "eati2019/logo.jpg",
+  "goingbackhome.png",
+];
+
+function get2021ImageReplacements() {
+  const remoteRoot = "https://matiasjrb.com.ar/images";
+  const localRoot = "/time-machine/eras/2021/legacy-assets/images";
+  const replacements = recovered2021Images.map((path) => [
+    `${remoteRoot}/${path}`,
+    `${localRoot}/${path}`,
+  ]);
+
+  replacements.push(
+    [
+      `${remoteRoot}/eati2019/portada.png`,
+      `${localRoot}/eati2019/portada.jpeg`,
+    ],
+    [
+      `${remoteRoot}/sistemaArchivosDistribuido/imagena.jpg`,
+      `${localRoot}/sistemaArchivosDistribuido/imagena.svg`,
+    ],
+  );
+
+  for (const [name, recovered] of [
+    ["android1.jpg", "android.jpg"],
+    ["android2.jpg", "logo.jpg"],
+    ["android3.jpg", "android.jpg"],
+    ["android4.jpg", "logo.jpg"],
+    ["windows1.jpg", "android.jpg"],
+    ["windows2.jpg", "logo.jpg"],
+  ]) {
+    replacements.push([
+      `${remoteRoot}/distribuidoraAmusquibar/${name}`,
+      `${localRoot}/distribuidoraAmusquibar/${recovered}`,
+    ]);
+  }
+
+  return replacements;
+}
+
+function patch2021LegacyImages(destination) {
+  const sourceRoot = join(githubRoot, "MatiasWeb", "images");
+  const assetRoot = join(destination, "legacy-assets", "images");
+
+  const addRecoveredAsset = (path) => {
+    const source = join(sourceRoot, path);
+    if (!existsSync(source)) {
+      throw new Error(`Missing recovered 2021 image: ${source}`);
+    }
+    const target = join(assetRoot, path);
+    mkdirSync(dirname(target), { recursive: true });
+    cpSync(source, target);
+  };
+
+  for (const path of recovered2021Images) addRecoveredAsset(path);
+  addRecoveredAsset("eati2019/portada.jpeg");
+
+  // The six original Amusquibar screenshots were never committed. Preserve
+  // the real project imagery that did survive instead of rendering broken
+  // carousel slides.
+  addRecoveredAsset("distribuidoraAmusquibar/android.jpg");
+  addRecoveredAsset("distribuidoraAmusquibar/logo.jpg");
+
+  // No copy of the original CONAIISI image exists in Git history or the Wayback
+  // Machine, so use a clearly archival reconstruction based on the real paper.
+  const distributedProjectPath = join(
+    assetRoot,
+    "sistemaArchivosDistribuido",
+    "imagena.svg",
+  );
+  mkdirSync(dirname(distributedProjectPath), { recursive: true });
+  writeFileSync(
+    distributedProjectPath,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Sistema de archivos distribuido</title>
+  <desc id="desc">Reconstrucción archivística del proyecto presentado en CONAIISI 2020.</desc>
+  <rect width="1200" height="675" fill="#171a17"/>
+  <g stroke="#f2e94e" stroke-width="8">
+    <path d="M600 185 340 355M600 185l260 170M340 355h520" fill="none"/>
+    <circle cx="600" cy="185" r="72" fill="#171a17"/>
+    <circle cx="340" cy="355" r="58" fill="#171a17"/>
+    <circle cx="860" cy="355" r="58" fill="#171a17"/>
+  </g>
+  <g fill="#f2e94e" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="600" y="177" font-size="24" font-weight="700">COORDINADOR</text>
+    <text x="600" y="209" font-size="18">RPC + NODOS</text>
+    <text x="340" y="363" font-size="22" font-weight="700">NODO A</text>
+    <text x="860" y="363" font-size="22" font-weight="700">NODO B</text>
+    <text x="600" y="505" font-size="62" font-weight="800">SISTEMA DE ARCHIVOS</text>
+    <text x="600" y="570" font-size="62" font-weight="800">DISTRIBUIDO</text>
+    <text x="600" y="625" font-size="22" letter-spacing="7">CONAIISI 2020 · ARCHIVO RECUPERADO</text>
+  </g>
+</svg>\n`,
+  );
+  rewriteArchivedUrls(destination, get2021ImageReplacements());
+  writeFileSync(
+    join(assetRoot, "recovery.json"),
+    `${JSON.stringify(
+      {
+        recoveredFrom: "MatiasWeb Git repository",
+        note: "Original dead-domain URLs were rewritten locally for archival playback.",
+        reconstructed: [
+          "sistemaArchivosDistribuido/imagena.svg",
+          "distribuidoraAmusquibar screenshot sequence",
+        ],
+      },
+      null,
+      2,
+    )}\n`,
+  );
+}
+
 mkdirSync(outputRoot, { recursive: true });
 
 for (const archive of archives.filter(
@@ -241,6 +397,7 @@ for (const archive of archives.filter(
       `${JSON.stringify({ response: { data: [] } })}\n`,
     );
   }
+  if (archive.id === "2021") patch2021LegacyImages(destination);
   // These large source assets were never referenced by the rendered portfolio.
   rmSync(join(destination, "podcast.wav"), { force: true });
   writeArchiveMetadata(archive, destination);

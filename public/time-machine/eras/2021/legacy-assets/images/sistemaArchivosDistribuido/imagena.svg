@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Sistema de archivos distribuido</title>
+  <desc id="desc">Reconstrucción archivística del proyecto presentado en CONAIISI 2020.</desc>
+  <rect width="1200" height="675" fill="#171a17"/>
+  <g stroke="#f2e94e" stroke-width="8">
+    <path d="M600 185 340 355M600 185l260 170M340 355h520" fill="none"/>
+    <circle cx="600" cy="185" r="72" fill="#171a17"/>
+    <circle cx="340" cy="355" r="58" fill="#171a17"/>
+    <circle cx="860" cy="355" r="58" fill="#171a17"/>
+  </g>
+  <g fill="#f2e94e" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="600" y="177" font-size="24" font-weight="700">COORDINADOR</text>
+    <text x="600" y="209" font-size="18">RPC + NODOS</text>
+    <text x="340" y="363" font-size="22" font-weight="700">NODO A</text>
+    <text x="860" y="363" font-size="22" font-weight="700">NODO B</text>
+    <text x="600" y="505" font-size="62" font-weight="800">SISTEMA DE ARCHIVOS</text>
+    <text x="600" y="570" font-size="62" font-weight="800">DISTRIBUIDO</text>
+    <text x="600" y="625" font-size="22" letter-spacing="7">CONAIISI 2020 · ARCHIVO RECUPERADO</text>
+  </g>
+</svg>

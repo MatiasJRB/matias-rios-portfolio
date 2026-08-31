@@ -65,10 +65,6 @@ function TimeMachineIcon() {
 function ArchivePreview({ era, lang, copy }: ArchivePreviewProps) {
   const [loaded, setLoaded] = useState(false);
   const url = getPortfolioEraUrl(era, lang);
-  const sourceLabel =
-    era.source.kind === "current"
-      ? copy.currentSource
-      : `${copy.originalSource} · ${era.source.commit}`;
 
   useEffect(() => {
     setLoaded(false);
@@ -76,23 +72,6 @@ function ArchivePreview({ era, lang, copy }: ArchivePreviewProps) {
 
   return (
     <div className={styles.browserFrame}>
-      <div className={styles.browserBar}>
-        <div className={styles.browserLights} aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </div>
-        <span>{sourceLabel}</span>
-        <a
-          href={url}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`${copy.openFullLabel}: ${era.name[lang]}`}
-        >
-          <TbExternalLink aria-hidden="true" />
-          <span>{copy.openFull}</span>
-        </a>
-      </div>
       <div className={styles.frameViewport}>
         <AnimatePresence>
           {!loaded && (
@@ -135,6 +114,7 @@ export default function PortfolioTimeMachine({
   const selectedTimelineRef = useRef<HTMLButtonElement>(null);
   const copy = dictionary.timeMachine;
   const selectedEra = PORTFOLIO_ERAS[selectedIndex];
+  const previewUrl = getPortfolioEraUrl(selectedEra, lang);
 
   const selectEra = useCallback((index: number) => {
     if (index < 0 || index >= PORTFOLIO_ERAS.length) return;
@@ -277,172 +257,42 @@ export default function PortfolioTimeMachine({
             className={styles.overlay}
             role="dialog"
             aria-modal="true"
-            aria-labelledby="time-machine-title"
+            aria-label={copy.title}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduceMotion ? 0.01 : 0.28 }}
           >
-            <motion.div
-              className={styles.backdrop}
+            <motion.section
+              className={styles.machine}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={close}
-            />
-
-            <motion.section
-              className={styles.machine}
-              initial={
-                reduceMotion
-                  ? { opacity: 0 }
-                  : { opacity: 0, y: 28, scale: 0.985 }
-              }
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={
-                reduceMotion
-                  ? { opacity: 0 }
-                  : { opacity: 0, y: 18, scale: 0.99 }
-              }
               transition={{
-                duration: reduceMotion ? 0.01 : 0.5,
+                duration: reduceMotion ? 0.01 : 0.32,
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
               <header className={styles.machineHeader}>
                 <div className={styles.machineTitle}>
                   <TimeMachineIcon />
-                  <div>
-                    <h2 id="time-machine-title">{copy.title}</h2>
-                    <p>{copy.description}</p>
-                  </div>
-                </div>
-                <div className={styles.headerActions}>
-                  <button
-                    type="button"
-                    onClick={() => selectEra(selectedIndex - 1)}
-                    disabled={selectedIndex === 0}
-                    aria-label={copy.previousLabel}
-                  >
-                    <TbArrowLeft aria-hidden="true" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => selectEra(selectedIndex + 1)}
-                    disabled={selectedIndex === CURRENT_ERA_INDEX}
-                    aria-label={copy.nextLabel}
-                  >
-                    <TbArrowRight aria-hidden="true" />
-                  </button>
-                  <button
-                    ref={closeRef}
-                    type="button"
-                    onClick={close}
-                    aria-label={copy.closeLabel}
-                  >
-                    <TbX aria-hidden="true" />
-                  </button>
-                </div>
-              </header>
-
-              <div className={styles.stageShell}>
-                <div className={styles.eraContext}>
-                  <div className={styles.eraIdentity}>
-                    <h3>{selectedEra.name[lang]}</h3>
-                    <div className={styles.eraDate}>
-                      <span>{selectedEra.date[lang]}</span>
-                      {selectedEra.id === "2026" && <b>{copy.current}</b>}
+                  <div className={styles.eraCopy}>
+                    <div className={styles.eraHeading}>
+                      <h2>{selectedEra.name[lang]}</h2>
+                      <div className={styles.eraDate}>
+                        <span>{selectedEra.date[lang]}</span>
+                        {selectedEra.id === "2026" && <b>{copy.current}</b>}
+                        {selectedEra.source.kind === "archive" && (
+                          <code title={copy.originalSource}>
+                            {selectedEra.source.commit}
+                          </code>
+                        )}
+                      </div>
                     </div>
+                    <p>{selectedEra.note[lang]}</p>
                   </div>
-                  <p>{selectedEra.note[lang]}</p>
-                  <ul aria-label={copy.stackLabel}>
-                    {selectedEra.stack.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
                 </div>
 
-                <div
-                  className={styles.stage}
-                  style={
-                    { "--era-accent": selectedEra.accent } as React.CSSProperties
-                  }
-                >
-                  <AnimatePresence initial={false} custom={direction} mode="sync">
-                    <motion.div
-                      key={selectedEra.id}
-                      className={styles.previewLayer}
-                      custom={direction}
-                      variants={previewVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      transition={{
-                        duration: reduceMotion ? 0.01 : 0.72,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                    >
-                      <ArchivePreview
-                        era={selectedEra}
-                        lang={lang}
-                        copy={copy}
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-
-                  <AnimatePresence initial={false}>
-                    <motion.div
-                      key={`year-${selectedEra.id}`}
-                      className={styles.yearFlash}
-                      initial={
-                        reduceMotion
-                          ? { opacity: 0 }
-                          : {
-                              opacity: 0,
-                              scale: 1.16,
-                              filter: "blur(12px)",
-                            }
-                      }
-                      animate={
-                        reduceMotion
-                          ? { opacity: 0 }
-                          : {
-                              opacity: [0, 0.62, 0],
-                              scale: [1.16, 1, 0.92],
-                              filter: [
-                                "blur(12px)",
-                                "blur(0px)",
-                                "blur(4px)",
-                              ],
-                            }
-                      }
-                      transition={{
-                        duration: 0.82,
-                        times: [0, 0.4, 1],
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                      aria-hidden="true"
-                    >
-                      {selectedEra.year}
-                    </motion.div>
-                  </AnimatePresence>
-                  {!reduceMotion && (
-                    <motion.div
-                      key={`scan-${selectedEra.id}`}
-                      className={styles.scanLine}
-                      initial={{ x: direction >= 0 ? "-110%" : "110%" }}
-                      animate={{ x: direction >= 0 ? "110%" : "-110%" }}
-                      transition={{
-                        duration: 0.78,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                    />
-                  )}
-                </div>
-              </div>
-
-              <footer className={styles.timeline}>
-                <p>{copy.instructions}</p>
                 <div
                   ref={timelineRef}
                   className={styles.timelineRail}
@@ -470,7 +320,114 @@ export default function PortfolioTimeMachine({
                     );
                   })}
                 </div>
-              </footer>
+
+                <div className={styles.headerActions}>
+                  <a
+                    className={styles.openOriginal}
+                    href={previewUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${copy.openFullLabel}: ${selectedEra.name[lang]}`}
+                  >
+                    <TbExternalLink aria-hidden="true" />
+                    <span>{copy.openFull}</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => selectEra(selectedIndex - 1)}
+                    disabled={selectedIndex === 0}
+                    aria-label={copy.previousLabel}
+                  >
+                    <TbArrowLeft aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => selectEra(selectedIndex + 1)}
+                    disabled={selectedIndex === CURRENT_ERA_INDEX}
+                    aria-label={copy.nextLabel}
+                  >
+                    <TbArrowRight aria-hidden="true" />
+                  </button>
+                  <button
+                    ref={closeRef}
+                    type="button"
+                    onClick={close}
+                    aria-label={copy.closeLabel}
+                  >
+                    <TbX aria-hidden="true" />
+                  </button>
+                </div>
+              </header>
+
+              <div
+                className={styles.stage}
+                style={
+                  { "--era-accent": selectedEra.accent } as React.CSSProperties
+                }
+              >
+                <AnimatePresence initial={false} custom={direction} mode="sync">
+                  <motion.div
+                    key={selectedEra.id}
+                    className={styles.previewLayer}
+                    custom={direction}
+                    variants={previewVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      duration: reduceMotion ? 0.01 : 0.72,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    <ArchivePreview era={selectedEra} lang={lang} copy={copy} />
+                  </motion.div>
+                </AnimatePresence>
+
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={`year-${selectedEra.id}`}
+                    className={styles.yearFlash}
+                    initial={
+                      reduceMotion
+                        ? { opacity: 0 }
+                        : {
+                            opacity: 0,
+                            scale: 1.16,
+                            filter: "blur(12px)",
+                          }
+                    }
+                    animate={
+                      reduceMotion
+                        ? { opacity: 0 }
+                        : {
+                            opacity: [0, 0.62, 0],
+                            scale: [1.16, 1, 0.92],
+                            filter: ["blur(12px)", "blur(0px)", "blur(4px)"],
+                          }
+                    }
+                    transition={{
+                      duration: 0.82,
+                      times: [0, 0.4, 1],
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    aria-hidden="true"
+                  >
+                    {selectedEra.year}
+                  </motion.div>
+                </AnimatePresence>
+                {!reduceMotion && (
+                  <motion.div
+                    key={`scan-${selectedEra.id}`}
+                    className={styles.scanLine}
+                    initial={{ x: direction >= 0 ? "-110%" : "110%" }}
+                    animate={{ x: direction >= 0 ? "110%" : "-110%" }}
+                    transition={{
+                      duration: 0.78,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  />
+                )}
+              </div>
 
               <p className={styles.srOnly} aria-live="polite">
                 {selectedEra.date[lang]}. {selectedEra.name[lang]}.{" "}
