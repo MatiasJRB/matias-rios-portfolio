@@ -1438,6 +1438,58 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
   max-width: none !important;
 }
 
+/* Mobile navigation (MobileHeader) — CSS-driven transitions.
+   Deliberately not a JS animation library: a CSS transition/animation always
+   settles on its target value, so an interrupted React render can never strand
+   the nav off-screen or leave the menu half-faded (the failure mode that hid
+   the whole mobile nav before). */
+.mobile-nav-header {
+  animation: mobile-nav-header-in 0.3s ease both;
+}
+
+@keyframes mobile-nav-header-in {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mobile-nav-menu {
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    visibility 0s linear 0.22s;
+}
+
+.mobile-nav-menu[data-open="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav-header {
+    animation: none;
+  }
+
+  .mobile-nav-menu,
+  .mobile-nav-menu[data-open="true"] {
+    transition: none;
+  }
+}
+
 .assistant-launcher-bubble__tail {
   position: absolute;
   right: -8px;

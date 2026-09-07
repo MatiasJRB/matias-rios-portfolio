@@ -31,7 +31,7 @@ const MobileHeader = ({ dictionary, profiles }: MobileHeaderProps) => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[60] lg:hidden pointer-events-none",
+        "mobile-nav-header fixed top-0 left-0 right-0 z-[60] lg:hidden pointer-events-none",
       )}
       style={{
         backgroundColor: "transparent",
@@ -53,15 +53,18 @@ const MobileHeader = ({ dictionary, profiles }: MobileHeaderProps) => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div
-          className="pointer-events-auto absolute top-full left-0 right-0 border-t"
-          style={{
-            backgroundColor: "var(--color-background)",
-            borderColor: "var(--color-border)",
-          }}
-        >
+      {/* Mobile Menu — always mounted; CSS transitions drive open/close so an
+          interrupted render can never leave it stranded (unlike the previous
+          Framer entrance/exit). */}
+      <div
+        className="mobile-nav-menu absolute top-full left-0 right-0 border-t"
+        data-open={isOpen}
+        aria-hidden={!isOpen}
+        style={{
+          backgroundColor: "var(--color-background)",
+          borderColor: "var(--color-border)",
+        }}
+      >
             <nav className="px-6 py-4 space-y-4">
               {NAV_ITEMS.map((item) => {
                 const label =
@@ -100,8 +103,7 @@ const MobileHeader = ({ dictionary, profiles }: MobileHeaderProps) => {
                 className="mt-4"
               />
             </div>
-        </div>
-      )}
+      </div>
     </header>
   );
 };
