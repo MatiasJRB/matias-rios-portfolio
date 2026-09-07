@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import SocialMedia from "./SocialMedia";
 import { cn } from "@/utils";
@@ -30,46 +29,39 @@ const MobileHeader = ({ dictionary, profiles }: MobileHeaderProps) => {
   };
 
   return (
-    <motion.header
+    <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[60] lg:hidden transition-[background-color,box-shadow,transform,opacity] duration-300 pointer-events-none",
+        "fixed top-0 left-0 right-0 z-[60] lg:hidden pointer-events-none",
       )}
       style={{
         backgroundColor: "transparent",
       }}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
     >
       <div className="flex items-center justify-start px-5 py-4">
         {/* Hamburger Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="pointer-events-auto p-2 rounded-lg transition-colors duration-200"
+          className="pointer-events-auto flex h-[38px] w-[38px] items-center justify-center rounded-full border shadow-sm transition-colors duration-200"
           style={{
             color: "var(--color-text)",
-            backgroundColor: isOpen ? "var(--color-surface)" : "transparent",
+            backgroundColor: "var(--color-surface)",
+            borderColor: "var(--color-border)",
           }}
           aria-label="Toggle menu"
         >
-          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          {isOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="pointer-events-auto absolute top-full left-0 right-0 border-t"
-            style={{
-              backgroundColor: "var(--color-background)",
-              borderColor: "var(--color-border)",
-            }}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-          >
+      {isOpen && (
+        <div
+          className="pointer-events-auto absolute top-full left-0 right-0 border-t"
+          style={{
+            backgroundColor: "var(--color-background)",
+            borderColor: "var(--color-border)",
+          }}
+        >
             <nav className="px-6 py-4 space-y-4">
               {NAV_ITEMS.map((item) => {
                 const label =
@@ -108,10 +100,9 @@ const MobileHeader = ({ dictionary, profiles }: MobileHeaderProps) => {
                 className="mt-4"
               />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+        </div>
+      )}
+    </header>
   );
 };
 

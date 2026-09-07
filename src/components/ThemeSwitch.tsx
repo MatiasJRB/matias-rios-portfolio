@@ -14,7 +14,7 @@ export default function ThemeSwitch() {
   if (!mounted) {
     return (
       <div
-        className="w-32 h-9 rounded-full animate-pulse"
+        className="w-[6.625rem] h-9 rounded-full animate-pulse"
         style={{ backgroundColor: "var(--color-surface)" }}
       />
     );

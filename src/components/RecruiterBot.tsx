@@ -739,7 +739,7 @@ export default function RecruiterBot({
           isExpanded &&
           "assistant-bot-shell--open assistant-bot-shell--expanded fixed inset-0 w-full max-w-none",
         !isOpen &&
-          "assistant-bot-shell--closed relative mb-8 ml-auto mr-4 w-[calc(100vw-2rem)] max-w-[440px] sm:fixed sm:mb-0 sm:mr-0 sm:right-4 md:right-6",
+          "assistant-bot-shell--closed fixed right-4 ml-auto w-[calc(100vw-2rem)] max-w-[440px] sm:mr-0 md:right-6",
         className,
       )}
     >
@@ -843,7 +843,6 @@ export default function RecruiterBot({
                     "color-mix(in srgb, var(--color-surface) 46%, transparent)",
                 }}
               >
-                <PixelAssistantAvatar size="header" />
                 <div className="min-w-0 flex-1">
                   <h2
                     className="text-sm font-bold leading-tight text-balance"

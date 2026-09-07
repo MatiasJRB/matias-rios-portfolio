@@ -58,6 +58,19 @@
   transform: translateY(0);
 }
 
+/* On mobile/tablet the launcher lives at the top of the screen, so the tooltip
+   must open downward and anchor to the right edge — otherwise it is clipped by
+   the top (and right) edge of the page. On lg+ it sits at the bottom → keep the
+   default upward tooltip. */
+@media (max-width: 1023px) {
+  .launcher::after {
+    top: calc(100% + 0.65rem);
+    bottom: auto;
+    left: auto;
+    right: 0;
+  }
+}
+
 .timeMachineIcon {
   width: 1.125rem;
   height: 1.125rem;

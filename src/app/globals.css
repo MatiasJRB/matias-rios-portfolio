@@ -1396,7 +1396,7 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
 }
 
 .assistant-bot-shell--closed {
-  bottom: auto;
+  bottom: 1.25rem;
 }
 
 .assistant-bot-shell--open {

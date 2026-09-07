@@ -55,7 +55,7 @@ export default function InteractiveLayout({
       {mounted && !isCVPage && <PortfolioShaderBackdrop />}
       {mounted && !isCVPage && <CinematicEffects />}
       {!isCVPage && !previewMode && (
-        <div className="fixed right-[4.75rem] top-5 z-[310] flex items-start gap-2 md:right-20 md:top-6 lg:right-6 lg:bottom-6 lg:top-auto">
+        <div className="fixed right-[8.5rem] top-5 z-[310] flex h-[38px] items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 shadow-sm md:right-[9rem] md:top-6 lg:right-6 lg:bottom-6 lg:top-auto lg:h-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:shadow-none">
           <PortfolioTimeMachine lang={lang} dictionary={dictionary} />
           <div className="hidden lg:block">
             <KeyboardNavigationHint
