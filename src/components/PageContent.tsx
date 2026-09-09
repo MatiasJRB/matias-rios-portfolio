@@ -29,6 +29,9 @@ const Projects = dynamic(() => import("@/components/Projects"), {
     <div className="h-48 animate-pulse bg-gray-200/10 rounded-lg" />
   ),
 });
+const NotesPreview = dynamic(
+  () => import("@/components/notes/NotesPreview"),
+);
 const Footer = dynamic(() => import("@/components/Footer"));
 
 function SectionHeading({
@@ -58,11 +61,13 @@ export default function PageContent({
   resume,
   dictionary,
   scrollAreaRef,
+  showNotes = false,
 }: {
   lang: Locale;
   resume: Resume;
   dictionary: Dictionary;
   scrollAreaRef: React.RefObject<HTMLDivElement | null>;
+  showNotes?: boolean;
 }) {
   const githubUrl = resume.basics.profiles.find((profile) =>
     (profile.icon || "").toLowerCase().includes("github"),
@@ -91,7 +96,11 @@ export default function PageContent({
               aria-label="Section navigation"
               className="mt-8 hidden lg:block"
             >
-              <Selector dictionary={dictionary} className="" />
+              <Selector
+                dictionary={dictionary}
+                className=""
+                showNotes={showNotes}
+              />
             </nav>
             <div className="mt-8 lg:mt-6">
               <SocialMedia
@@ -218,6 +227,23 @@ export default function PageContent({
             githubUrl={githubUrl}
             contactUrl={contactUrl}
             className="mt-8 lg:mt-10"
+          />
+        </section>
+      )}
+
+      {showNotes && (
+        <section
+          id="notes"
+          aria-labelledby="notes-heading"
+          className="mt-20 scroll-mt-24 lg:col-span-2 lg:mt-28"
+        >
+          <SectionHeading id="notes-heading">
+            {dictionary.sections.notes}
+          </SectionHeading>
+          <NotesPreview
+            lang={lang}
+            dictionary={dictionary}
+            includeDrafts
           />
         </section>
       )}

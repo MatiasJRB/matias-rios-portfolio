@@ -20,6 +20,7 @@ interface InteractiveLayoutProps {
   profiles: Profile[];
   scrollAreaRef?: React.RefObject<HTMLDivElement | null>;
   previewMode?: boolean;
+  showNotes?: boolean;
 }
 
 export default function InteractiveLayout({
@@ -28,6 +29,7 @@ export default function InteractiveLayout({
   dictionary,
   profiles,
   previewMode = false,
+  showNotes = false,
 }: InteractiveLayoutProps) {
   const pathname = usePathname();
   const isCVPage = pathname?.includes("/cv");
@@ -50,7 +52,11 @@ export default function InteractiveLayout({
   return (
     <>
       {!isCVPage && (
-        <MobileHeader dictionary={dictionary} profiles={profiles} />
+        <MobileHeader
+          dictionary={dictionary}
+          profiles={profiles}
+          showNotes={showNotes}
+        />
       )}
       {mounted && !isCVPage && <PortfolioShaderBackdrop />}
       {mounted && !isCVPage && <CinematicEffects />}

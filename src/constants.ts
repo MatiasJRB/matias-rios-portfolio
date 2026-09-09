@@ -6,6 +6,11 @@ export const NAV_ITEMS = [
   { id: "projects", labelKey: "projects" },
 ] as const;
 
+export const NAV_ITEMS_WITH_NOTES = [
+  ...NAV_ITEMS,
+  { id: "notes", labelKey: "notes" },
+] as const;
+
 // Mapeo de logos de empresas
 export const COMPANY_LOGOS: Record<string, string> = {
   Mango: "/images/work/mango.png",

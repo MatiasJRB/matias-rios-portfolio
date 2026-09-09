@@ -5,18 +5,24 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import SocialMedia from "./SocialMedia";
 import { cn } from "@/utils";
 import { useIsMobile } from "@/hooks/useMediaQuery";
-import { NAV_ITEMS } from "@/constants";
+import { NAV_ITEMS, NAV_ITEMS_WITH_NOTES } from "@/constants";
 import type { Dictionary } from "@/i18n/types";
 import type { Profile } from "@/types";
 
 interface MobileHeaderProps {
   dictionary: Dictionary;
   profiles: Profile[];
+  showNotes?: boolean;
 }
 
-const MobileHeader = ({ dictionary, profiles }: MobileHeaderProps) => {
+const MobileHeader = ({
+  dictionary,
+  profiles,
+  showNotes = false,
+}: MobileHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
+  const navItems = showNotes ? NAV_ITEMS_WITH_NOTES : NAV_ITEMS;
 
   if (!isMobile) return null;
 
@@ -66,7 +72,7 @@ const MobileHeader = ({ dictionary, profiles }: MobileHeaderProps) => {
         }}
       >
             <nav className="px-6 py-4 space-y-4">
-              {NAV_ITEMS.map((item) => {
+              {navItems.map((item) => {
                 const label =
                   dictionary.nav[item.labelKey as keyof typeof dictionary.nav];
                 return (

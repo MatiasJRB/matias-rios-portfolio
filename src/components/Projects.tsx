@@ -343,8 +343,34 @@ function FeaturedProjectCard({
             {summary}
           </p>
         ) : null}
+
+        {project.proof && project.proof.length > 0 ? (
+          <ul
+            className="mt-5 grid gap-2 border-t pt-4"
+            style={{
+              borderColor:
+                "color-mix(in srgb, var(--color-border) 72%, transparent)",
+            }}
+          >
+            {project.proof.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-2 text-xs font-semibold leading-relaxed"
+                style={{ color: "var(--color-muted)" }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-[0.45rem] h-1.5 w-1.5 flex-none rounded-full"
+                  style={{ backgroundColor: accentColor }}
+                />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
         <p
-          className="mt-6 border-t pt-4 text-xs font-semibold leading-relaxed"
+          className="mt-auto border-t pt-4 text-xs font-semibold leading-relaxed"
           style={{
             color: accentColor,
             borderColor:

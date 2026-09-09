@@ -174,6 +174,12 @@ export default async function RootLayout({
           href={`${SITE_URL}/llms-full.txt`}
           title="LLM Full Content"
         />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href={`${SITE_URL}/rss.xml`}
+          title="Notas de Matias Rios"
+        />
       </head>
       <body
         className={`${inter.className} ${inter.variable} antialiased`}

@@ -97,6 +97,7 @@ export interface HistoryProps {
 
 export interface SelectorProps {
   className?: string;
+  showNotes?: boolean;
 }
 
 export interface SocialMediaProps {
