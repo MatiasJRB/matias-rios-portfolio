@@ -28,7 +28,7 @@ export default function NotesPreview({
           <article key={note.slug}>
             <Link
               href={preview.href}
-              className="group grid gap-4 px-4 py-6 outline-none transition-colors duration-200 hover:bg-[color-mix(in_srgb,var(--color-primary)_4%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--color-primary)_4%,transparent)] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-primary)] md:grid-cols-[9rem_minmax(0,1fr)_auto] md:items-start md:gap-6 md:px-6 md:py-7"
+              className="archive-row-link group grid gap-4 px-0 py-6 outline-none md:grid-cols-[9rem_minmax(0,1fr)_auto] md:items-start md:gap-6 md:py-7"
             >
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)]">
                 <span className="text-[var(--color-primary)]">
@@ -81,7 +81,7 @@ export default function NotesPreview({
         );
       })}
 
-      <div className="border-t border-[var(--color-border)] px-4 py-3 md:px-6">
+      <div className="border-t border-[var(--color-border)] py-3">
         <Link
           href={`/${lang}/notes`}
           className="inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-4 transition-colors hover:text-[var(--color-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-background)]"
