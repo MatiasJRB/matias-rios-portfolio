@@ -92,16 +92,6 @@ export default function PageContent({
             className="mb-8 px-0 pt-20 scroll-mt-24 md:mb-12 md:pt-32 lg:mb-10 lg:pt-20"
           >
             <Presentation basics={resume.basics} dictionary={dictionary} />
-            <nav
-              aria-label="Section navigation"
-              className="mt-8 hidden lg:block"
-            >
-              <Selector
-                dictionary={dictionary}
-                className=""
-                showNotes={showNotes}
-              />
-            </nav>
             <div className="mt-8 lg:mt-6">
               <SocialMedia
                 profiles={resume.basics.profiles}
@@ -109,6 +99,16 @@ export default function PageContent({
                 lang={lang}
               />
             </div>
+            <nav
+              aria-label="Section navigation"
+              className="mt-8 hidden lg:block lg:mt-6"
+            >
+              <Selector
+                dictionary={dictionary}
+                className=""
+                showNotes={showNotes}
+              />
+            </nav>
           </header>
         </div>
       </aside>
