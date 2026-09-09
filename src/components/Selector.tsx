@@ -5,11 +5,9 @@ import { NAV_ITEMS, NAV_ITEMS_WITH_NOTES } from "@/constants";
 import type { Dictionary } from "@/i18n/types";
 import { getSlideInAnimation } from "@/hooks/useSlideInAnimation";
 
-const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
-  className,
-  dictionary,
-  showNotes = false,
-}) => {
+const Selector: React.FC<
+  SelectorProps & { dictionary: Dictionary; compact?: boolean }
+> = ({ className, compact = false, dictionary, showNotes = false }) => {
   const navItems = showNotes ? NAV_ITEMS_WITH_NOTES : NAV_ITEMS;
   const [selectedSection, setSelectedSection] = useState("about");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
@@ -103,7 +101,11 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
 
   return (
     <div
-      className={cn("flex flex-col items-start", className)}
+      className={cn(
+        "flex flex-col items-start",
+        compact && "gap-2",
+        className,
+      )}
       style={{ color: "var(--color-text)" }}
     >
       {navItems.map((item, index) => {
@@ -116,7 +118,11 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
         return (
           <div
             key={item.id}
-            className={`mb-6 cursor-pointer flex items-center group ${animation.className}`}
+            className={cn(
+              "cursor-pointer flex items-center group",
+              compact ? "mb-0" : "mb-6",
+              animation.className,
+            )}
             style={animation.style}
             onMouseEnter={() => setHoveredSection(item.id)}
             onMouseLeave={() => setHoveredSection(null)}

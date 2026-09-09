@@ -53,7 +53,7 @@ const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
   return (
     <div className="w-full scroll-mt-24">
       <div
-        className="mb-7 flex items-center gap-5 animate-slide-in opacity-0"
+        className="mb-7 flex items-center gap-5 animate-slide-in opacity-0 lg:mb-5"
         style={getSlideInAnimation(0).style}
       >
         {basics.image && (
@@ -90,19 +90,19 @@ const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
         {basics.label}
       </div>
       <p
-        className="mt-7 max-w-[58ch] animate-slide-in text-base font-normal leading-[1.75] opacity-0"
+        className="mt-7 max-w-[58ch] animate-slide-in text-base font-normal leading-[1.75] opacity-0 lg:mt-5"
         style={{ color: "var(--color-muted)", ...getSlideInAnimation(2).style }}
       >
         {basics.summary}
       </p>
       <p
-        className="mt-5 max-w-[58ch] animate-slide-in text-base font-normal leading-[1.75] opacity-0"
+        className="mt-5 max-w-[58ch] animate-slide-in text-base font-normal leading-[1.75] opacity-0 lg:mt-3"
         style={{ color: "var(--color-muted)", ...getSlideInAnimation(3).style }}
       >
         {dictionary.cta.lookingForOpportunities}
       </p>
       <div
-        className="mt-8 flex flex-wrap gap-3 animate-slide-in opacity-0"
+        className="mt-8 flex flex-wrap gap-3 animate-slide-in opacity-0 lg:mt-5"
         style={getSlideInAnimation(4).style}
       >
         <a
