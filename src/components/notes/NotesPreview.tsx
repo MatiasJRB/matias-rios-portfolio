@@ -28,7 +28,7 @@ export default function NotesPreview({
           <article key={note.slug}>
             <Link
               href={preview.href}
-              className="group grid gap-5 py-7 outline-none transition-colors duration-200 hover:bg-[color-mix(in_srgb,var(--color-primary)_4%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--color-primary)_4%,transparent)] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-primary)] md:grid-cols-[10rem_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-9"
+              className="group grid gap-4 py-6 outline-none transition-colors duration-200 hover:bg-[color-mix(in_srgb,var(--color-primary)_4%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--color-primary)_4%,transparent)] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-primary)] md:grid-cols-[9rem_minmax(0,1fr)_auto] md:items-start md:gap-6 md:py-7"
             >
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)]">
                 <span className="text-[var(--color-primary)]">
@@ -49,10 +49,10 @@ export default function NotesPreview({
               </div>
 
               <div>
-                <h3 className="max-w-[24ch] text-2xl font-semibold leading-[1.08] tracking-[-0.025em] text-[var(--color-text)] transition-colors duration-200 group-hover:text-[var(--color-primary)] md:text-3xl">
+                <h3 className="max-w-[32ch] text-2xl font-semibold leading-[1.08] tracking-[-0.025em] text-[var(--color-text)] transition-colors duration-200 group-hover:text-[var(--color-primary)] md:text-3xl">
                   {preview.title}
                 </h3>
-                <p className="mt-4 max-w-[68ch] text-base leading-7 text-[var(--color-muted)]">
+                <p className="mt-3 max-w-[68ch] text-base leading-7 text-[var(--color-muted)]">
                   {preview.description}
                 </p>
                 {!preview.isSourceLocale && (
@@ -62,7 +62,7 @@ export default function NotesPreview({
                 )}
                 <ul
                   aria-label={dictionary.notes.tagsLabel}
-                  className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]"
+                  className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]"
                 >
                   {note.tags.map((tag) => (
                     <li key={tag}>{tag}</li>
@@ -81,7 +81,7 @@ export default function NotesPreview({
         );
       })}
 
-      <div className="border-t border-[var(--color-border)] py-5">
+      <div className="border-t border-[var(--color-border)] py-3">
         <Link
           href={`/${lang}/notes`}
           className="inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-4 transition-colors hover:text-[var(--color-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-background)]"
