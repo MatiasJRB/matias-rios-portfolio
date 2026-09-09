@@ -89,21 +89,20 @@ export default function PageContent({
         <div className="flex flex-col lg:sticky lg:top-0 lg:h-screen">
           <header
             id="presentation"
-            className="mb-8 px-0 pt-20 scroll-mt-24 md:mb-12 md:pt-32 lg:mb-10 lg:pt-8"
+            className="mb-8 px-0 pt-20 scroll-mt-24 md:mb-12 md:pt-32 lg:mb-10 lg:pt-20"
           >
             <Presentation basics={resume.basics} dictionary={dictionary} />
             <nav
               aria-label="Section navigation"
-              className="mt-8 hidden lg:block lg:mt-5"
+              className="mt-8 hidden lg:block"
             >
               <Selector
                 dictionary={dictionary}
                 className=""
                 showNotes={showNotes}
-                compact
               />
             </nav>
-            <div className="mt-8 lg:mt-3">
+            <div className="mt-8 lg:mt-6">
               <SocialMedia
                 profiles={resume.basics.profiles}
                 dictionary={dictionary}
