@@ -231,10 +231,14 @@ Borders are usually one pixel and warm, often mixed toward transparency. Full-bl
 - **Corner Style:** featured project cards are softly framed (`card-featured`); archive entries are border-separated ledger rows with no container radius (`card-archive`).
 - **Background:** featured work uses a translucent paper surface; archive work begins transparent and only public rows receive a subtle primary-tinted hover/focus layer.
 - **Shadow Strategy:** only featured evidence receives the ambient card shadow and a 4px hover/focus lift.
+- **Featured Evidence Ledger:** place a compact proof list after the featured-card summary and before the technology footer. Separate it with the shared hairline, use 0.75rem semibold muted text, 0.5rem row gaps, and 6px project-accent dots. Keep each line concise and verifiable; the ledger inherits the card surface and never gains its own radius, background, or shadow.
 - **Archive Structure:** desktop rows use `index | project + impact | role + stack`; mobile rows collapse to one column. Impact copy follows `scope → decision → result`, stays near 65ch, and outranks technology metadata.
 - **Archive Affordance:** public work makes the complete row a link and labels the destination; private work stays visually static and is explicitly labeled as a private case.
+- **Confidential Evidence:** internal or restricted work exposes only generalized scope, method, evidence limits, and outcomes. Remove client, project, and account identifiers plus exact financial or private-topology details; keep the item unlinked, explicitly private, and in the archive rather than promoting it to featured proof.
 - **Border:** mix the project accent lightly into featured borders. Archive groups use shared hairlines with 1.5–1.75rem vertical row padding.
 - **Signature Artifact:** each featured card begins with a project-specific inline SVG diagram in a 16:9 frame. It may scale to 1.035 and rise 2px over 420ms on card hover or focus-within; it must remain non-photographic and relevant to the project.
+
+**The Confidential Evidence Rule.** Credibility comes from bounded, verifiable disclosure: anonymize restricted source material, state evidence limits, and never imply a public destination for a private case.
 
 ### Inputs / Fields
 

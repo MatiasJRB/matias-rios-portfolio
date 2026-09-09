@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils";
 import type { SelectorProps } from "@/types";
-import { NAV_ITEMS } from "@/constants";
+import { NAV_ITEMS, NAV_ITEMS_WITH_NOTES } from "@/constants";
 import type { Dictionary } from "@/i18n/types";
 import { getSlideInAnimation } from "@/hooks/useSlideInAnimation";
 
 const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
   className,
   dictionary,
+  showNotes = false,
 }) => {
+  const navItems = showNotes ? NAV_ITEMS_WITH_NOTES : NAV_ITEMS;
   const [selectedSection, setSelectedSection] = useState("about");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
   const [isUserScrolling, setIsUserScrolling] = useState(false);
@@ -77,7 +79,7 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
         },
       );
 
-      NAV_ITEMS.forEach((item) => {
+      navItems.forEach((item) => {
         const section = document.getElementById(item.id);
         if (section) {
           observer.observe(section);
@@ -89,7 +91,7 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
         if (scrollTimeoutRef.current) {
           clearTimeout(scrollTimeoutRef.current);
         }
-        NAV_ITEMS.forEach((item) => {
+        navItems.forEach((item) => {
           const section = document.getElementById(item.id);
           if (section) {
             observer.unobserve(section);
@@ -97,14 +99,14 @@ const Selector: React.FC<SelectorProps & { dictionary: Dictionary }> = ({
         });
       };
     }
-  }, [isUserScrolling]);
+  }, [isUserScrolling, navItems]);
 
   return (
     <div
       className={cn("flex flex-col items-start", className)}
       style={{ color: "var(--color-text)" }}
     >
-      {NAV_ITEMS.map((item, index) => {
+      {navItems.map((item, index) => {
         const isSelected = selectedSection === item.id;
         const isHovered = hoveredSection === item.id;
         const label =

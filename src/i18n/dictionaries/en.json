@@ -5,6 +5,7 @@
     "experience": "Experience",
     "skills": "Skills",
     "projects": "Projects",
+    "notes": "Notes",
     "contact": "Contact",
     "ask": "AI Assistant"
   },
@@ -87,8 +88,23 @@
     "skills": "Skills",
     "history": "History",
     "projects": "Projects",
+    "notes": "Notes",
     "education": "Education",
     "recruiterBot": "AI Assistant"
+  },
+  "notes": {
+    "draft": "Draft",
+    "minutes": "min read",
+    "daysToBuild": "days to build",
+    "viewAll": "View all notes",
+    "backToPortfolio": "Back to portfolio",
+    "fullArticleSpanish": "The full article is currently available in Spanish.",
+    "readInSpanish": "Read in Spanish",
+    "tagsLabel": "Note topics",
+    "beforePublishing": "Before publishing",
+    "indexTitle": "Notes",
+    "indexDescription": "Lessons about product, software, operations, and turning real-world problems into systems that work.",
+    "empty": "There are no published notes yet."
   },
   "cta": {
     "lookingForOpportunities": "At Mango, I architect the platform where builders purchase construction materials with commercial credit through 200+ points of sale in Mexico.",

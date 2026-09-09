@@ -6,8 +6,8 @@
     "email": "matiasjriosb@gmail.com",
     "phone": "(291) 645-0794",
     "url": "https://www.matiasjrb.com.ar",
-    "summary": "I have built software since 2018 and bring 5+ years in product engineering teams. At Mango, I lead engineering and product architecture across hands-on delivery, system design, and team execution. I also co-founded Geome7ric as a side venture.",
-    "about": "<p>In 2013, I pursued a degree in computer engineering, and by 2018, I had sold my first software: an inventory app for a local pet shop. Since then, I've been coding for diverse industries, including building, ecommerce, physical retail, healthcare, distribution, port logistics, and corporate transportation.</p><p>I build at <a href=\"https://mangxo.com\" target=\"_blank\">Mango</a>, a data company with financial products for the construction ecosystem in Latin America. My work focuses on the systems that power the platform: commercial credit, payment workflows and a network of 200+ points of sale. On my own time, I design and ship digital products end to end — from database architecture to payments and deployment. Previously, I helped take a mobile app from beta to the app stores at <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a> and drove a key integration at <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a> that increased subscriptions and revenue.</p><p>When I'm not at the computer, I’m usually at the gym, playing soccer at the best <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">friend's club</a> of my city, or with friends and family. I also manage projects at <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, my software venture.</p>",
+    "summary": "I started programming at university and have shipped software for clients since 2019. I bring 5+ years in product engineering teams. At Mango, I lead engineering and product architecture across hands-on delivery, system design, and team execution. I also co-founded Geome7ric as a side venture.",
+    "about": "<p>In 2014, I started a degree in computer engineering. While still at university, in 2019 I spent 40 days building and sold my first software: an inventory app for a local pet shop. Since then, I've been coding for diverse industries, including building, ecommerce, physical retail, healthcare, distribution, port logistics, and corporate transportation.</p><p>I build at <a href=\"https://mangxo.com\" target=\"_blank\">Mango</a>, a data company with financial products for the construction ecosystem in Latin America. My work focuses on the systems that power the platform: commercial credit, payment workflows and a network of 200+ points of sale. On my own time, I design and ship digital products end to end — from database architecture to payments and deployment. Previously, I helped take a mobile app from beta to the app stores at <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a> and drove a key integration at <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a> that increased subscriptions and revenue.</p><p>When I'm not at the computer, I’m usually at the gym, playing soccer at the best <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">friend's club</a> of my city, or with friends and family. I also manage projects at <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, my software venture.</p>",
     "location": {
       "address": "Corrientes 211",
       "postalCode": "B8000",
@@ -248,22 +248,34 @@
       "url": "https://geome7ric.com"
     },
     {
+      "name": "Infrastructure audit",
+      "description": "A reproducible audit of a multi-platform ecosystem to determine what remained active, what it actually cost, and which conclusions still had limited evidence.",
+      "impact": "Inventoried 100+ projects, ran health checks, and separated verified cost, estimates, and evidence limits to create a trustworthy technical and financial decision baseline.",
+      "tech": ["Multi-cloud", "FinOps", "Health checks", "Cost governance"],
+      "role": "Technical direction",
+      "company": "Geome7ric"
+    },
+    {
       "name": "Asiento Libre",
       "description": "Carpooling app for Argentina (BlaBlaCar-style). Search, publish trips, real-time booking, ratings, and payment integration across iOS, Android, and web.",
-      "tech": ["React Native", "Expo", "Supabase", "Gluestack UI"],
+      "tech": ["React Native", "Expo", "Supabase", "Mercado Pago"],
       "role": "Creator & Developer",
       "url": "https://asientolibre.ar",
       "featured": true,
       "featuredRank": 3,
       "eyebrow": "Own product",
-      "headline": "Mobile-first carpooling product for shared trips in Argentina.",
-      "impact": "I am building an owned product with search, trip publishing, bookings, payments, notifications, and demo distribution.",
+      "headline": "Mobile-first carpooling with end-to-end validated payments.",
+      "impact": "Closed Android v80 with a controlled payment, cancellation, and refund test, reconciling the app, Mercado Pago, and backend without enabling broad financial processing.",
       "status": "Own product · MVP/demo",
-      "proof": ["Expo app", "Supabase + RLS", "Bookings & payments"],
+      "proof": [
+        "Payment → cancellation → refund: PASS",
+        "Provider ↔ backend reconciled",
+        "Zero payouts; global controls locked"
+      ],
       "highlights": [
         "Route/waypoint engine for Argentine corridors and trip search.",
-        "Seat booking with integrated payments plus status and fallback handling.",
-        "Mobile architecture with Expo, Supabase, Edge Functions, push notifications, and Maestro QA."
+        "Defined acceptance criteria and safety rails for validating a financial flow without widening its risk surface.",
+        "Reconciled app, Mercado Pago, and Supabase evidence before approving the Android release."
       ],
       "visual": {
         "image": "/images/projects/asiento-libre-home.png",
@@ -298,7 +310,7 @@
       "institution": "Universidad Nacional del Sur",
       "area": "Computer Engineering",
       "studyType": "Computer Engineer",
-      "startDate": "2013",
+      "startDate": "2014",
       "endDate": "2021",
       "url": "https://www.uns.edu.ar"
     }

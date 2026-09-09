@@ -11,6 +11,7 @@ interface ClientPageWrapperProps {
   resume: Resume;
   dictionary: Dictionary;
   previewMode?: boolean;
+  showNotes?: boolean;
 }
 
 export default function ClientPageWrapper({
@@ -18,6 +19,7 @@ export default function ClientPageWrapper({
   resume,
   dictionary,
   previewMode = false,
+  showNotes = false,
 }: ClientPageWrapperProps) {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
@@ -28,12 +30,14 @@ export default function ClientPageWrapper({
       profiles={resume.basics.profiles}
       scrollAreaRef={scrollAreaRef}
       previewMode={previewMode}
+      showNotes={showNotes}
     >
       <PageContent
         lang={lang}
         resume={resume}
         dictionary={dictionary}
         scrollAreaRef={scrollAreaRef}
+        showNotes={showNotes}
       />
     </InteractiveLayout>
   );

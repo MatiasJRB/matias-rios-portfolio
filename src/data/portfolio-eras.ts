@@ -44,8 +44,8 @@ export const PORTFOLIO_ERAS: PortfolioEra[] = [
     date: { en: "December 2019", es: "Diciembre de 2019" },
     name: { en: "The first version", es: "La primera versión" },
     note: {
-      en: "A hand-built introduction in HTML, CSS and JavaScript. This is where it all started.",
-      es: "Una presentación hecha a mano en HTML, CSS y JavaScript. Todo arrancó acá.",
+      en: "A hand-built introduction in HTML, CSS and JavaScript. It documented the software I had built in 40 days for my first client while I was still at university.",
+      es: "Una presentación hecha a mano en HTML, CSS y JavaScript. Ahí documenté el software que había construido en 40 días para mi primer cliente mientras todavía cursaba la universidad.",
     },
     stack: ["HTML", "CSS", "JavaScript"],
     accent: "#ffffff",

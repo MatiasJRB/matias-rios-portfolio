@@ -5,6 +5,7 @@
     "experience": "Experiencia",
     "skills": "Skills",
     "projects": "Proyectos",
+    "notes": "Notas",
     "contact": "Contacto",
     "ask": "Asistente IA"
   },
@@ -87,8 +88,23 @@
     "skills": "Skills",
     "history": "Experiencia",
     "projects": "Proyectos",
+    "notes": "Notas",
     "education": "Educación",
     "recruiterBot": "Asistente IA"
+  },
+  "notes": {
+    "draft": "Borrador",
+    "minutes": "min de lectura",
+    "daysToBuild": "días de desarrollo",
+    "viewAll": "Ver todas las notas",
+    "backToPortfolio": "Volver al portfolio",
+    "fullArticleSpanish": "El artículo completo está disponible en español.",
+    "readInSpanish": "Leer en español",
+    "tagsLabel": "Temas de la nota",
+    "beforePublishing": "Antes de publicar",
+    "indexTitle": "Notas",
+    "indexDescription": "Aprendizajes sobre producto, software, operaciones y el trabajo de convertir problemas reales en sistemas que funcionan.",
+    "empty": "Todavía no hay notas publicadas."
   },
   "cta": {
     "lookingForOpportunities": "En Mango, diseño la arquitectura de la plataforma donde constructores compran materiales con crédito comercial a través de +200 puntos de venta en México.",

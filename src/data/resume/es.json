@@ -6,8 +6,8 @@
     "email": "matiasjriosb@gmail.com",
     "phone": "(291) 645-0794",
     "url": "https://www.matiasjrb.com.ar",
-    "summary": "Construyo software desde 2018 y acumulo más de 5 años en equipos de producto. En Mango lidero ingeniería y arquitectura de producto, combinando ejecución hands-on, diseño de sistemas y delivery. También co-fundé Geome7ric como emprendimiento paralelo.",
-    "about": "<p>En 2013, comencé una carrera en ingeniería informática, y para 2018, vendí mi primer software: una aplicación de inventario para una tienda de mascotas local. Desde entonces, he estado programando para diversas industrias, incluyendo construcción, comercio electrónico, retail físico, salud, distribución, logística portuaria y transporte corporativo.</p><p>Construyo en <a href=\"https://mangxo.com\" target=\"_blank\">Mango</a>, una empresa de datos con productos financieros para el ecosistema de la construcción en Latinoamérica. Mi trabajo se centra en los sistemas que impulsan la plataforma: crédito comercial, flujos de pago y la red de +200 puntos de venta. En mi tiempo libre, diseño y lanzo productos digitales de punta a punta — desde arquitectura de base de datos hasta pagos y deploy. Anteriormente, contribuí a llevar una app móvil desde beta hasta las tiendas de aplicaciones en <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a> e implementé una integración clave en <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a> que impulsó suscripciones e ingresos.</p><p>Cuando no estoy en la computadora, usualmente estoy en el gimnasio, jugando fútbol en el mejor <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">club de amigos</a> de mi ciudad, o con amigos y familia. También gestiono proyectos en <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, mi emprendimiento de software.</p>",
+    "summary": "Programo desde la universidad y entrego software para clientes desde 2019. Acumulo más de 5 años en equipos de producto. En Mango lidero ingeniería y arquitectura de producto, combinando ejecución hands-on, diseño de sistemas y delivery. También co-fundé Geome7ric como emprendimiento paralelo.",
+    "about": "<p>En 2014, comencé Ingeniería en Computación. Mientras cursaba, en 2019 desarrollé durante 40 días y vendí mi primer software: una aplicación de inventario para una tienda de mascotas local. Desde entonces, he estado programando para diversas industrias, incluyendo construcción, comercio electrónico, retail físico, salud, distribución, logística portuaria y transporte corporativo.</p><p>Construyo en <a href=\"https://mangxo.com\" target=\"_blank\">Mango</a>, una empresa de datos con productos financieros para el ecosistema de la construcción en Latinoamérica. Mi trabajo se centra en los sistemas que impulsan la plataforma: crédito comercial, flujos de pago y la red de +200 puntos de venta. En mi tiempo libre, diseño y lanzo productos digitales de punta a punta — desde arquitectura de base de datos hasta pagos y deploy. Anteriormente, contribuí a llevar una app móvil desde beta hasta las tiendas de aplicaciones en <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a> e implementé una integración clave en <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a> que impulsó suscripciones e ingresos.</p><p>Cuando no estoy en la computadora, usualmente estoy en el gimnasio, jugando fútbol en el mejor <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">club de amigos</a> de mi ciudad, o con amigos y familia. También gestiono proyectos en <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, mi emprendimiento de software.</p>",
     "location": {
       "address": "Corrientes 211",
       "postalCode": "B8000",
@@ -160,7 +160,11 @@
       "headline": "Entrega guiada por specs para cobros y conciliación.",
       "impact": "Llevé Cobros de specs versionadas a producción en cinco semanas, coordinando arquitectura, infraestructura y un equipo frontend/backend.",
       "status": "Mango · Producto interno",
-      "proof": ["Spec-Driven Development", "Specs → producción ≈5 semanas", "Equipo FE + BE"],
+      "proof": [
+        "Desarrollo guiado por especificaciones",
+        "Especificaciones → producción ≈5 semanas",
+        "Equipo frontend + backend"
+      ],
       "highlights": [
         "Definí el alcance técnico antes de construir: arquitectura, flujos, modelos, APIs, integraciones y criterios de aceptación.",
         "Granularicé el trabajo en tareas ejecutables para llevar el producto desde definición hasta producción con poco retrabajo.",
@@ -224,9 +228,9 @@
       "impact": "Llevamos una plataforma de inventario/asignaciones a producción: Android publicado, backoffice productivo, health checks y monitoreo.",
       "status": "Geome7ric · Producción",
       "proof": [
-        "Google Play production",
-        "Backoffice + mobile",
-        "Monitoring & handoff"
+        "Producción en Google Play",
+        "Backoffice + aplicación móvil",
+        "Monitoreo y transferencia operativa"
       ],
       "highlights": [
         "Monorepo con app Expo/React Native, backoffice Next.js, Supabase y paquetes compartidos.",
@@ -248,22 +252,34 @@
       "url": "https://geome7ric.com"
     },
     {
+      "name": "Auditoría de infraestructura",
+      "description": "Auditoría reproducible de un ecosistema multi-plataforma para determinar qué seguía activo, cuánto costaba realmente y qué conclusiones todavía tenían evidencia limitada.",
+      "impact": "Inventarié más de 100 proyectos, ejecuté controles de salud y separé costos verificados, estimaciones y límites de evidencia para dejar una base confiable de decisión técnica y financiera.",
+      "tech": ["Multi-cloud", "FinOps", "Health checks", "Cost governance"],
+      "role": "Dirección técnica",
+      "company": "Geome7ric"
+    },
+    {
       "name": "Asiento Libre",
       "description": "App de carpooling para Argentina (estilo BlaBlaCar). Búsqueda y publicación de viajes, reservas en tiempo real, calificaciones e integración de pagos en iOS, Android y web.",
-      "tech": ["React Native", "Expo", "Supabase", "Gluestack UI"],
+      "tech": ["React Native", "Expo", "Supabase", "Mercado Pago"],
       "role": "Creador & Desarrollador",
       "url": "https://asientolibre.ar",
       "featured": true,
       "featuredRank": 3,
       "eyebrow": "Producto propio",
-      "headline": "Carpooling mobile-first para viajes compartidos en Argentina.",
-      "impact": "Estoy construyendo un producto propio con búsqueda, publicación, reservas, pagos, notificaciones y distribución demo.",
+      "headline": "Carpooling mobile-first con pagos validados de punta a punta.",
+      "impact": "Cerré Android v80 con una prueba controlada de pago, cancelación y reintegro, conciliando app, Mercado Pago y backend sin habilitar procesamiento financiero global.",
       "status": "Producto propio · MVP/demo",
-      "proof": ["Expo app", "Supabase + RLS", "Bookings & payments"],
+      "proof": [
+        "Pago → cancelación → reintegro: aprobado",
+        "Proveedor ↔ backend conciliados",
+        "Cero pagos salientes; controles globales cerrados"
+      ],
       "highlights": [
         "Motor de rutas/waypoints para corredores argentinos y búsqueda de viajes.",
-        "Reserva de asientos con pagos integrados y manejo de estados/fallbacks.",
-        "Arquitectura mobile con Expo, Supabase, Edge Functions, push notifications y QA con Maestro."
+        "Definí los criterios de aceptación y las barandas para validar un circuito financiero sin ampliar el radio de riesgo.",
+        "Concilié la evidencia de la app, Mercado Pago y Supabase antes de aprobar la versión Android."
       ],
       "visual": {
         "image": "/images/projects/asiento-libre-home.png",
@@ -298,7 +314,7 @@
       "institution": "Universidad Nacional del Sur",
       "area": "Ingeniería en Computación",
       "studyType": "Ingeniero en Computación",
-      "startDate": "2013",
+      "startDate": "2014",
       "endDate": "2021",
       "url": "https://www.uns.edu.ar"
     }

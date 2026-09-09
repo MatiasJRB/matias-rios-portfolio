@@ -11,6 +11,7 @@
     "archive:time-machine": "node scripts/build-time-machine-archives.mjs",
     "generate:cv-pdfs": "node scripts/generate-cv-pdfs.mjs",
     "generate:og-image": "node scripts/generate-og-images.mjs",
+    "test:publication": "node scripts/test-publication.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -2,11 +2,12 @@
 
 [![CI](https://github.com/MatiasJRB/matias-rios-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/MatiasJRB/matias-rios-portfolio/actions/workflows/ci.yml)
 
-Source code for [matiasjrb.com.ar](https://www.matiasjrb.com.ar), my bilingual portfolio and resume. It presents the same professional narrative as my GitHub profile: product-minded software engineering, 8+ years shipping production systems, and selected independent work.
+Source code for [matiasjrb.com.ar](https://www.matiasjrb.com.ar), my bilingual portfolio and resume. It presents the same professional narrative as my GitHub profile: product-minded software engineering, shipping software for clients since 2019, and selected independent work.
 
 ## What is included
 
 - Spanish and English portfolio and printable CV routes
+- Spanish-first public notes with bilingual discovery, SEO metadata and RSS
 - Structured resume content under `src/data/resume`
 - Project history, skills, accessibility and SEO metadata
 - `llms.txt` and `llms-full.txt` machine-readable profile routes
