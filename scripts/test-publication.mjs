@@ -6,6 +6,8 @@ const root = new URL("..", import.meta.url).pathname;
 const host = "127.0.0.1";
 const slug =
   "la-primera-vez-que-alguien-dependio-de-que-mi-software-funcionara";
+const migrationLinterSlug =
+  "el-framework-no-podia-actualizarse-pero-las-migraciones-igual-tenian-que-ser-seguras";
 
 function availablePort() {
   return new Promise((resolve, reject) => {
@@ -63,6 +65,12 @@ async function expectResponse(baseUrl, path, expected) {
       throw new Error(`${path}: missing expected text ${JSON.stringify(text)}.`);
     }
   }
+
+  for (const text of expected.excludes ?? []) {
+    if (body.includes(text)) {
+      throw new Error(`${path}: found excluded text ${JSON.stringify(text)}.`);
+    }
+  }
 }
 
 const port = await availablePort();
@@ -79,7 +87,11 @@ try {
 
   await expectResponse(baseUrl, "/es", {
     status: 200,
-    includes: ["Notas", "La primera vez que alguien dependió"],
+    includes: [
+      "Notas",
+      "La primera vez que alguien dependió",
+      "El framework no podía actualizarse",
+    ],
   });
   await expectResponse(baseUrl, "/es/notes", {
     status: 200,
@@ -89,6 +101,15 @@ try {
     status: 200,
     includes: ["El código ya no terminaba en mí", "Programa entregado"],
   });
+  await expectResponse(baseUrl, `/es/notes/${migrationLinterSlug}`, {
+    status: 200,
+    includes: [
+      "La librería que necesitaba no existía",
+      "Lo que me da orgullo es el conjunto",
+      "https://github.com/MatiasJRB/laravel-migration-linter",
+    ],
+    excludes: ["Antes de publicar", ">Borrador<"],
+  });
   await expectResponse(baseUrl, "/en/notes", {
     status: 200,
     includes: ["The first time someone depended on my software working"],
@@ -97,13 +118,18 @@ try {
   await expectResponse(baseUrl, "/rss.xml", {
     status: 200,
     contentType: "application/rss+xml",
-    includes: ["<rss version=\"2.0\"", `<link>https://www.matiasjrb.com.ar/es/notes/${slug}</link>`],
+    includes: [
+      "<rss version=\"2.0\"",
+      `<link>https://www.matiasjrb.com.ar/es/notes/${slug}</link>`,
+      `<link>https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}</link>`,
+    ],
   });
   await expectResponse(baseUrl, "/sitemap.xml", {
     status: 200,
     includes: [
       "https://www.matiasjrb.com.ar/es/notes",
       `https://www.matiasjrb.com.ar/es/notes/${slug}`,
+      `https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}`,
       "https://www.matiasjrb.com.ar/rss.xml",
     ],
   });

@@ -2,6 +2,8 @@ import type { Locale } from "@/i18n/config";
 
 export const FIRST_SOFTWARE_NOTE_SLUG =
   "la-primera-vez-que-alguien-dependio-de-que-mi-software-funcionara";
+export const MIGRATION_LINTER_NOTE_SLUG =
+  "el-framework-no-podia-actualizarse-pero-las-migraciones-igual-tenian-que-ser-seguras";
 
 export interface NoteSection {
   heading?: string;
@@ -14,16 +16,20 @@ export interface Note {
   draft: boolean;
   publishedAt: string;
   originYear: number;
-  buildDays: number;
+  context: Record<Locale, string>;
   readingMinutes: number;
   title: string;
   description: string;
   englishTitle: string;
   englishDescription: string;
   tags: string[];
-  heroImage: string;
+  heroImage?: string;
   heroAlt: string;
   heroCaption: string;
+  source?: {
+    label: string;
+    url: string;
+  };
   sections: NoteSection[];
   pendingChecks: string[];
 }
@@ -35,7 +41,10 @@ const notes: Note[] = [
     draft: false,
     publishedAt: "2026-09-08",
     originYear: 2019,
-    buildDays: 40,
+    context: {
+      es: "40 días de desarrollo",
+      en: "40 days to build",
+    },
     readingMinutes: 4,
     title: "La primera vez que alguien dependió de que mi software funcionara",
     description:
@@ -83,10 +92,92 @@ const notes: Note[] = [
     ],
     pendingChecks: [],
   },
+  {
+    slug: MIGRATION_LINTER_NOTE_SLUG,
+    locale: "es",
+    draft: false,
+    publishedAt: "2026-09-10",
+    originYear: 2026,
+    context: {
+      es: "4 versiones publicadas",
+      en: "4 releases published",
+    },
+    readingMinutes: 6,
+    title:
+      "El framework no podía actualizarse, pero las migraciones igual tenían que ser seguras",
+    description:
+      "Cuando el roadmap necesitó una librería que no existía, convertí una restricción de compatibilidad en una herramienta open source y un proceso de adopción gradual.",
+    englishTitle:
+      "The framework could not be upgraded, but migrations still had to be safe",
+    englishDescription:
+      "When the roadmap needed a library that did not exist, I turned a compatibility constraint into an open-source tool and a gradual adoption process.",
+    tags: ["Open source", "Laravel", "Migraciones"],
+    heroAlt: "",
+    heroCaption: "",
+    source: {
+      label: "Ver Laravel Migration Linter en GitHub",
+      url: "https://github.com/MatiasJRB/laravel-migration-linter",
+    },
+    sections: [
+      {
+        paragraphs: [
+          "Llegué a una parte del roadmap en la que necesitaba responder una pregunta antes de cada deploy: ¿esta migración es segura para convivir con el código que ya está en producción?",
+          "La aplicación era un proyecto Laravel establecido. Actualizar el framework y todo su grafo de dependencias no era una tarea que pudiera agregar como condición previa. El roadmap necesitaba avanzar y las migraciones igual tenían que ser revisadas con una vara mejor.",
+          "Busqué una librería que resolviera ese problema. Había referencias muy buenas en otros ecosistemas: strong_migrations en Rails, herramientas para Django y analizadores que trabajaban sobre SQL. Pero no encontré una que encajara con la combinación concreta que tenía delante: leer migraciones escritas con la API de Laravel, funcionar con el stack de análisis existente y poder entrar gradualmente en un CI que ya tenía otros controles.",
+          "La librería que necesitaba no existía. Así que tuve que crearla.",
+        ],
+      },
+      {
+        heading: "El problema no era solamente detectar un drop",
+        paragraphs: [
+          "Marcar una eliminación de tabla como peligrosa es relativamente fácil. Las migraciones difíciles son las que parecen inocentes en desarrollo, pero cambian de significado cuando hay datos, tráfico y dos versiones de la aplicación conviviendo durante un despliegue.",
+          "Agregar una columna obligatoria sin valor por defecto puede fallar sobre filas existentes. Crear un índice puede bloquear escrituras. Un change() puede ocultar una operación más costosa de lo que su sintaxis sugiere. Una migración puede aplicar correctamente en una base vacía y seguir siendo una mala idea para producción.",
+          "Tampoco alcanzaba con una lista de expresiones regulares. Necesitaba distinguir el método up() de down(), seguir las llamadas sobre Blueprint, reconocer callbacks y ubicar cada hallazgo en el archivo. Si aparecía una construcción dinámica que la herramienta no entendía, prefería pedir revisión antes que producir un verde falso.",
+          "Ese fue el paso desde una política local hacia Laravel Migration Linter: un analizador basado en AST que lee el PHP de la migración sin iniciar Laravel ni conectarse a una base de datos.",
+        ],
+      },
+      {
+        heading: "Diseñarlo para el sistema que existía",
+        paragraphs: [
+          "Una herramienta que obliga a modernizar primero todo el proyecto no resuelve el problema de hoy. Por eso la compatibilidad no era un detalle de empaquetado: era parte del producto.",
+          "El linter debía convivir con PHP-Parser 4 y 5. Esa decisión requirió iteraciones específicas, pruebas contra ambas ramas y un contrato de dependencias más amplio que el que habría elegido para una aplicación nueva. El objetivo no era defender que el stack quedara viejo para siempre. Era evitar que la seguridad de las migraciones quedara postergada hasta que terminara otra iniciativa mucho mayor.",
+          "También decidí mantenerlo independiente de Laravel. Eso reduce lo que puede saber, pero hace que el análisis sea determinista y permite instalarlo como dependencia de desarrollo sin cambiar el runtime de la aplicación.",
+        ],
+      },
+      {
+        heading: "Un linter no conoce la base de datos",
+        paragraphs: [
+          "El resultado está limitado a lo que puede inferir del código fuente. No conoce el tamaño real de una tabla, la distribución de sus datos, el motor exacto ni el tráfico del momento. Tampoco demuestra que una migración aplique y revierta correctamente.",
+          "Por eso nunca debía presentarse como reemplazo de una prueba real, un preview de SQL o una revisión humana. Su trabajo era otro: detectar intención riesgosa temprano y convertirla en una conversación concreta dentro del pull request.",
+          "Esa diferencia también cambió la forma de adoptarlo. En vez de darle autoridad para bloquear desde el primer día, entró como una segunda opinión. Primero sobre migraciones nuevas o modificadas. Primero mostrando hallazgos. Primero midiendo si la señal era útil y dónde aparecían falsos positivos.",
+          "Un control de seguridad también necesita ganarse la confianza. Que una herramienta pueda fallar un CI no significa que ya tenga evidencia suficiente para hacerlo.",
+        ],
+      },
+      {
+        heading: "Extraerlo también fue parte de la solución",
+        paragraphs: [
+          "Podría haber dejado estas reglas dentro de una sola aplicación. Habría sido más rápido en el corto plazo. Pero quería que el resultado fuera personal y open source: algo que pudiera leerse, instalarse, probarse y discutirse fuera del lugar donde nació.",
+          "Eso obligó a separar lo portable de lo específico. Las reglas generales podían vivir en el paquete. El conocimiento de qué tablas eran críticas, qué excepciones aceptaba un equipo o qué otros controles acompañaban al linter debía quedarse en cada consumidor.",
+          "Esa frontera volvió mejor a la herramienta. También evitó fingir que una política de un sistema particular era una verdad universal sobre todas las aplicaciones Laravel.",
+        ],
+      },
+      {
+        heading: "Lo que me da orgullo es el conjunto",
+        paragraphs: [
+          "No hay una sola parte que concentre la historia. No es únicamente haber escrito el parser, agregado compatibilidad o publicado un repositorio.",
+          "Lo que me da orgullo es el recorrido completo: llegar a una necesidad real del roadmap, comprobar que la pieza que necesitaba no existía, investigar otros modelos, construirla, extraerla como open source, hacerla compatible con un stack establecido y después introducirla con suficiente prudencia como para no confundir una herramienta nueva con una garantía.",
+          "La lección que me queda es que modernización y seguridad no siempre tienen que avanzar en el mismo paquete. A veces la decisión responsable es diseñar una mejora que pueda entrar en el sistema que existe hoy, hacer explícito todo lo que todavía no sabe y darle autoridad solamente a medida que la evidencia lo justifica.",
+        ],
+      },
+    ],
+    pendingChecks: [],
+  },
 ];
 
 export function getNotes({ includeDrafts = false } = {}): Note[] {
-  return notes.filter((note) => includeDrafts || !note.draft);
+  return notes
+    .filter((note) => includeDrafts || !note.draft)
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
 
 export function getNote(slug: string): Note | undefined {
