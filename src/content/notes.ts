@@ -201,7 +201,7 @@ const notes: Note[] = [
         paragraphs: [
           "Empecé con una pregunta que parecía financiera: ¿cuánto me cuesta mantener toda la infraestructura que fui acumulando entre productos, pruebas y proyectos viejos?",
           "Esperaba que el trabajo principal fuera revisar facturas y encontrar gasto para recortar. Antes de poder hacerlo apareció una pregunta más básica: ¿qué era exactamente todo lo que seguía vivo?",
-          "Dirigí una auditoría de mi infraestructura no vinculada a Mango, asistida por Codex. Definí un límite explícito, exigí separar hechos de estimaciones y fui convirtiendo cada hallazgo en una decisión posible. Lo que parecía un inventario de proveedores terminó siendo un mapa de años de decisiones técnicas.",
+          "Para ordenar el problema armé una auditoría asistida por Codex. Definí el alcance, exigí separar hechos de estimaciones y fui convirtiendo cada hallazgo en una decisión posible. Lo que parecía un inventario de proveedores terminó siendo un mapa de años de decisiones técnicas.",
         ],
       },
       {
