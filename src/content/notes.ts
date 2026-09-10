@@ -177,7 +177,7 @@ const notes: Note[] = [
   {
     slug: INFRASTRUCTURE_AUDIT_NOTE_SLUG,
     locale: "es",
-    draft: true,
+    draft: false,
     publishedAt: "2026-09-10",
     originYear: 2026,
     context: {
@@ -259,11 +259,7 @@ const notes: Note[] = [
         ],
       },
     ],
-    pendingChecks: [
-      "Hacer una pasada final de seguridad para asegurar que los ejemplos agregados no revelen proyectos ni operaciones sensibles.",
-      "Confirmar que el protagonismo del trabajo con agentes representa la experiencia de Matías sin convertir la nota en una promesa exagerada sobre IA.",
-      "Hacer una última pasada de voz antes de sacar la pieza del modo borrador.",
-    ],
+    pendingChecks: [],
   },
 ];
 
