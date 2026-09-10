@@ -47,7 +47,7 @@ export async function generateMetadata({
     note.locale,
     `/notes/${note.slug}`,
   );
-  const imageUrl = `${SITE_URL}${note.heroImage}`;
+  const imageUrl = `${SITE_URL}${note.heroImage ?? "/images/og-image.png"}`;
 
   return {
     title: `${title} | Matias Rios`,

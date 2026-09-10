@@ -91,7 +91,7 @@ export default async function NotesPage({ params }: NotesPageProps) {
                         {note.originYear}
                       </p>
                       <p className="normal-case tracking-normal">
-                        {note.buildDays} {dictionary.notes.daysToBuild}
+                        {note.context[lang]}
                       </p>
                       {note.draft && includeDrafts && (
                         <p className="text-[var(--color-secondary)]">

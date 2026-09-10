@@ -44,6 +44,16 @@ export default function NoteArticle({
             <p className="mt-6 max-w-[65ch] text-lg leading-8 text-[var(--color-muted)] md:mt-7 md:text-xl md:leading-9">
               {isSourceLocale ? note.description : note.englishDescription}
             </p>
+            {note.source && isSourceLocale && (
+              <a
+                href={note.source.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex min-h-11 items-center border-b border-[var(--color-border)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-background)]"
+              >
+                {note.source.label} ↗
+              </a>
+            )}
           </header>
 
           <aside className="mt-10 grid grid-cols-[minmax(0,1fr)_auto] gap-x-8 gap-y-5 border-y border-[var(--color-border)] py-5 lg:sticky lg:top-24 lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:mt-0 lg:block lg:self-start">
@@ -52,7 +62,7 @@ export default function NoteArticle({
                 {note.originYear}
               </p>
               <p className="mt-2 text-sm text-[var(--color-muted)]">
-                {note.buildDays} {dictionary.notes.daysToBuild}
+                {note.context[lang]}
               </p>
             </div>
 
@@ -95,24 +105,28 @@ export default function NoteArticle({
               </div>
             ) : (
               <>
-                <figure className="mt-10 md:mt-12">
-                  <div className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-2 shadow-[0_18px_45px_-34px_var(--shadow-hover)] md:p-3">
-                    <Image
-                      src={note.heroImage}
-                      alt={note.heroAlt}
-                      width={849}
-                      height={692}
-                      sizes="(max-width: 768px) calc(100vw - 3rem), 760px"
-                      className="h-auto w-full rounded-lg"
-                      priority
-                    />
-                  </div>
-                  <figcaption className="mt-3 max-w-[68ch] text-sm leading-6 text-[var(--color-muted)]">
-                    {note.heroCaption}
-                  </figcaption>
-                </figure>
+                {note.heroImage && (
+                  <figure className="mt-10 md:mt-12">
+                    <div className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-2 shadow-[0_18px_45px_-34px_var(--shadow-hover)] md:p-3">
+                      <Image
+                        src={note.heroImage}
+                        alt={note.heroAlt}
+                        width={849}
+                        height={692}
+                        sizes="(max-width: 768px) calc(100vw - 3rem), 760px"
+                        className="h-auto w-full rounded-lg"
+                        priority
+                      />
+                    </div>
+                    <figcaption className="mt-3 max-w-[68ch] text-sm leading-6 text-[var(--color-muted)]">
+                      {note.heroCaption}
+                    </figcaption>
+                  </figure>
+                )}
 
-                <div className="mt-12 max-w-[68ch] md:mt-14">
+                <div
+                  className={`${note.heroImage ? "mt-12 md:mt-14" : "mt-10 md:mt-12"} max-w-[68ch]`}
+                >
                   {note.sections.map((section, sectionIndex) => (
                     <section
                       key={section.heading ?? `opening-${sectionIndex}`}

@@ -35,7 +35,7 @@ export default function NotesPreview({
                   {note.originYear}
                 </span>
                 <span className="normal-case tracking-normal">
-                  {note.buildDays} {dictionary.notes.daysToBuild}
+                  {note.context[lang]}
                 </span>
                 {note.draft && includeDrafts && (
                   <span className="text-[var(--color-secondary)]">
