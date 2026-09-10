@@ -7,7 +7,7 @@ export const MIGRATION_LINTER_NOTE_SLUG =
 export const INFRASTRUCTURE_AUDIT_NOTE_SLUG =
   "audite-113-proyectos-el-costo-no-era-el-principal-problema";
 export const PERSONAL_ASSISTANT_NOTE_SLUG =
-  "un-asistente-personal-no-sirve-si-todo-termina-dentro-del-chat";
+  "yo-seguia-siendo-la-api-entre-la-ia-y-mi-vida";
 
 export interface NoteSection {
   heading?: string;
@@ -266,7 +266,7 @@ const notes: Note[] = [
   {
     slug: PERSONAL_ASSISTANT_NOTE_SLUG,
     locale: "es",
-    draft: true,
+    draft: false,
     publishedAt: "2026-09-10",
     originYear: 2026,
     context: {
@@ -366,10 +366,7 @@ const notes: Note[] = [
         ],
       },
     ],
-    pendingChecks: [
-      "Confirmar que los ejemplos reales quedaron suficientemente anonimizados.",
-      "Hacer una pasada de voz y seguridad con Matías directamente sobre esta vista.",
-    ],
+    pendingChecks: [],
   },
 ];
 
