@@ -5,7 +5,7 @@ export const FIRST_SOFTWARE_NOTE_SLUG =
 export const MIGRATION_LINTER_NOTE_SLUG =
   "el-framework-no-podia-actualizarse-pero-las-migraciones-igual-tenian-que-ser-seguras";
 export const INFRASTRUCTURE_AUDIT_NOTE_SLUG =
-  "la-auditoria-empezo-con-106-proyectos-el-costo-no-era-el-principal-problema";
+  "audite-113-proyectos-el-costo-no-era-el-principal-problema";
 
 export interface NoteSection {
   heading?: string;
@@ -181,83 +181,88 @@ const notes: Note[] = [
     publishedAt: "2026-09-10",
     originYear: 2026,
     context: {
-      es: "113 proyectos reconciliados",
-      en: "113 projects reconciled",
+      es: "113 proyectos relevados",
+      en: "113 projects audited",
     },
     readingMinutes: 7,
-    title:
-      "La auditoría empezó con 106 proyectos. El costo no era el principal problema",
+    title: "Audité 113 proyectos. El costo no era el principal problema",
     description:
-      "Quise entender cuánto costaba mantener años de proyectos. Antes de mirar facturas, tuve que reconstruir qué seguía vivo, quién se hacía cargo y por qué.",
-    englishTitle:
-      "The audit started with 106 projects. Cost was not the main problem",
+      "Una tarea que siempre quedaba postergada se volvió posible cuando aprendí a trabajar con agentes para investigar, contrastar evidencia y convertir infraestructura dispersa en un plan.",
+    englishTitle: "I audited 113 projects. Cost was not the main problem",
     englishDescription:
-      "I wanted to understand the cost of years of accumulated projects. Before looking at invoices, I had to reconstruct what was still alive, who owned it, and why.",
-    tags: ["Infraestructura", "Operaciones", "Ownership"],
+      "A task that was always postponed became possible when I learned to work with agents to investigate, compare evidence, and turn scattered infrastructure into a plan.",
+    tags: ["Agentes", "Infraestructura", "Operaciones"],
     heroAlt: "",
     heroCaption: "",
     sections: [
       {
         paragraphs: [
-          "Empecé con una pregunta que parecía financiera: ¿cuánto me cuesta mantener toda la infraestructura que fui acumulando entre productos, pruebas y proyectos viejos?",
-          "Esperaba que el trabajo principal fuera revisar facturas y encontrar gasto para recortar. Antes de poder hacerlo apareció una pregunta más básica: ¿qué era exactamente todo lo que seguía vivo?",
-          "Para ordenar el problema armé una auditoría asistida por Codex. Definí el alcance, exigí separar hechos de estimaciones y fui convirtiendo cada hallazgo en una decisión posible. Lo que parecía un inventario de proveedores terminó siendo un mapa de años de decisiones técnicas.",
+          "Durante años fui dejando proyectos desplegados detrás de cada etapa. Algunos eran productos activos. Otros eran landing pages, backoffices, APIs, portfolios, demos, pruebas o versiones anteriores de algo que había seguido evolucionando. Cada uno había tenido sentido en su momento; el conjunto ya no era fácil de explicar.",
+          "La pregunta aparecía cada tanto: ¿qué sigue vivo y cuánto cuesta mantenerlo? Nunca era urgente frente al producto que estaba construyendo ese día. Responderla bien implicaba entrar a varias cuentas, reconstruir relaciones, probar servicios, revisar facturas y distinguir un sistema abandonado de uno silencioso pero necesario. Era trabajo importante y, al mismo tiempo, muy fácil de postergar.",
+          "Lo que cambió fue que aprendí a organizar ese trabajo con agentes. En vez de reservar días para abrir todo a mano, podía dividir la investigación, poner límites claros y producir evidencia que yo pudiera revisar antes de tomar decisiones.",
         ],
       },
       {
-        heading: "El número cambió mientras lo estaba contando",
+        heading: "No eran 113 productos",
         paragraphs: [
-          "El primer cierre reunió 106 proyectos de Vercel distribuidos en cuatro espacios. Había 32 que podían considerarse actuales, 45 proyectos legacy todavía accesibles, 19 rotos y 10 sin producción.",
-          "Pero el número no sobrevivió intacto a la propia auditoría. Al reconciliar cuentas y ownership aparecieron siete proyectos más. El corte final llegó a 113: los actuales, rotos y sin producción se mantuvieron; los legacy accesibles pasaron de 45 a 52.",
-          "Que el inventario cambiara mientras intentaba cerrarlo no era solamente una corrección estadística. Era parte del problema. No tenía una fuente única que pudiera responder qué existía, qué seguía operativo y por qué debía conservarse.",
+          "El inventario reconciliado terminó con 113 proyectos en Vercel. El número necesita contexto: no eran 113 negocios ni 113 aplicaciones independientes. Había interfaces de productos vigentes, sitios institucionales, herramientas internas, experimentos, demos, copias de una misma idea, despliegues legacy y proyectos que nunca habían llegado a producción.",
+          "Alrededor de esos proyectos también aparecían bases de datos, dominios, servicios de monitoreo, repositorios y otras cuentas cloud. Un producto podía estar repartido entre varios proveedores; un proveedor podía contener rastros de muchas etapas distintas.",
+          "El primer corte había dado 106. Al cruzarlo con otras fuentes aparecieron siete más. No tenía sentido elegir la cifra más linda ni aceptar la primera respuesta: había que explicar la diferencia. Esa corrección confirmó que no existía una fuente única capaz de decir qué había construido, qué seguía funcionando y por qué debía conservarse.",
+        ],
+      },
+      {
+        heading: "Trabajar con agentes no es pedir un reporte",
+        paragraphs: [
+          "El trabajo no consistió en escribir un prompt largo y aceptar la primera respuesta. Tuve que definir el universo, separar tareas que podían ejecutarse en paralelo y establecer reglas: no borrar nada, no cambiar producción, no mezclar evidencia con estimaciones y no presentar una cifra incompleta como si fuera un total.",
+          "Los agentes podían recorrer inventarios, contrastar fuentes, probar endpoints y producir artefactos reproducibles. Mi trabajo era decidir qué pregunta estábamos contestando, detectar conclusiones demasiado fuertes, exigir trazabilidad y convertir los hallazgos en prioridades.",
+          "Así, el tiempo dejó de irse en abrir manualmente cada proyecto. Pude usarlo para revisar excepciones, discutir riesgos y tomar las decisiones que no convenía delegar.",
         ],
       },
       {
         heading: "Existir, responder y tener dueño no son lo mismo",
         paragraphs: [
-          "La auditoría terminó probando 140 endpoints. Ciento uno respondieron o mostraron una barrera de acceso válida. Pero una respuesta HTTP no prueba que un producto esté sano, que alguien lo use ni que exista una persona tomando decisiones sobre él.",
-          "Tuve que separar preguntas que los dashboards suelen presentar como si fueran una sola: ¿existe?, ¿está desplegado?, ¿responde?, ¿está saludable?, ¿alguien lo usa?, ¿quién decide su ciclo de vida?, ¿está asociado a una factura?, ¿ese cargo llegó efectivamente a pagarse?",
-          "Esa separación evitó dos errores opuestos. El primero era considerar vivo todo lo que respondiera. El segundo era asumir que algo viejo o roto podía eliminarse sin entender antes para quién existía.",
+          "La auditoría probó 140 endpoints. Ciento uno respondieron o mostraron una barrera de acceso válida. Pero una respuesta HTTP no demuestra que un producto esté sano, que alguien lo use ni que exista una persona tomando decisiones sobre él.",
+          "Tuve que separar preguntas que los dashboards suelen mezclar: ¿existe?, ¿está desplegado?, ¿responde?, ¿está saludable?, ¿alguien lo usa?, ¿quién decide su ciclo de vida?, ¿está asociado a una factura?, ¿ese cargo llegó efectivamente a pagarse?",
+          "Esa separación evitó dos errores opuestos. El primero era considerar vigente todo lo que respondiera. El segundo era asumir que algo viejo o roto podía eliminarse sin entender antes qué dependía de él.",
         ],
       },
       {
-        heading: "El costo no estaba donde esperaba",
+        heading: "El costo era sólo una de las capas",
         paragraphs: [
-          "Para un período cerrado, el piso mensual que pude defender quedó alrededor de 38 dólares. Era una cifra mucho menor de la que el tamaño del inventario sugería, pero no podía llamarla costo total: todavía había superficies de facturación sin acceso suficiente y cargos que no podían vincularse con certeza.",
-          "Encontrar un gasto bajo no resolvía la auditoría. Seguían existiendo 52 proyectos legacy accesibles, dependencias antiguas, dominios, alertas y servicios que requerían volver a investigar cada vez que algo fallaba.",
-          "La deuda más importante era explicativa. Podía encontrar un deployment y hasta comprobar que respondía, pero no siempre decir quién quería conservarlo, qué necesidad seguía resolviendo o cuándo debía retirarse.",
-          "Una factura baja puede dar una falsa sensación de control. La infraestructura abandonada también cuesta atención, superficie de ataque y tiempo para reconstruir decisiones que nunca quedaron registradas.",
+          "La auditoría había empezado como una pregunta de costos, pero el gasto visible no resultó ser el problema más grande. Había servicios gratuitos, otros con consumo real y superficies donde todavía faltaba evidencia para cerrar una conclusión. Publicar un único total habría ocultado esas diferencias.",
+          "Lo que sí apareció con claridad fue que no podía explicar bien el conjunto: había proyectos accesibles sin una decisión de ciclo de vida, dependencias antiguas, monitoreos apuntando a destinos que ya habían cambiado y componentes cuyo ownership necesitaba confirmación.",
+          "Una factura baja puede dar una falsa sensación de control. La infraestructura también cuesta atención, actualizaciones, superficie de ataque y tiempo para reconstruir decisiones que nunca quedaron registradas.",
         ],
       },
       {
-        heading: "Cambiar la unidad de análisis",
+        heading: "La auditoría abrió más trabajo del que cerró",
         paragraphs: [
-          "Dejé de usar la cuenta del proveedor como unidad principal. Un mismo producto podía cruzar hosting, base de datos, dominio, monitoreo y servicios externos. Mirar cada dashboard por separado permitía sumar cargos, pero no explicar sistemas.",
-          "La unidad útil pasó a ser el activo: qué función cumplía, qué recursos lo sostenían, quién podía decidir sobre él y cuál era su siguiente acción. Para cada afirmación separé hechos verificados, estimaciones con su supuesto y brechas que impedían cerrar una conclusión.",
-          "También dejé de tratar live como una decisión de ciclo de vida. Cada elemento necesitaba una salida explícita: conservar, verificar, asignar ownership o retirar. No inferí una baja sólo porque algo pareciera viejo o roto.",
+          "El resultado no fue solamente un inventario. Salieron 45 acciones concretas. Algunas eran operativas: corregir monitores, confirmar responsables o decidir qué hacer con proyectos legacy. Otras eran de plataforma: actualizar runtimes y ordenar caminos de deploy.",
+          "También aparecieron líneas de seguridad. Había dependencias vulnerables, permisos de base de datos que necesitaban revisión y controles sobre secretos que podían fortalecerse. La auditoría no resolvió automáticamente esos problemas, pero los convirtió en trabajos acotados, con evidencia, prioridad y una condición clara antes de tocar producción.",
+          "Ese cambio importa. Antes tenía una sensación difusa de infraestructura acumulada. Después tenía un registro que distinguía qué estaba comprobado, qué era una estimación, qué seguía bloqueado y cuál era el siguiente movimiento seguro.",
         ],
       },
       {
-        heading: "Una secuencia que puedo volver a usar",
+        heading: "Lo que hizo posible terminarla",
         paragraphs: [
-          "Primero, definir exactamente qué cuentas y organizaciones entran en el alcance. Sin ese límite, cualquier total mezcla mundos que no pertenecen a la misma decisión.",
-          "Después, exportar inventarios, reconciliar duplicados y separar deployment, reachability, salud, uso y ownership. Recién entonces tiene sentido conectar cada activo con facturas y cargos de períodos cerrados.",
-          "Por último, asignar una decisión de ciclo de vida y conservar evidencia suficiente para repetir la auditoría. El resultado útil no es una planilla congelada, sino un sistema que permita detectar cuándo el mapa vuelve a separarse de la realidad.",
+          "Había llegado a este punto precisamente por el tiempo que consumen estas tareas. Cuando cada revisión compite con construir el producto siguiente, lo sistémico pierde frente a lo urgente. Los agentes no eliminaron el trabajo ni reemplazaron el criterio, pero desbloquearon una investigación que de otra forma habría seguido esperando.",
+          "La diferencia estuvo en saber dirigirlos: dividir el problema, limitar permisos, pedir evidencia verificable, hacer explícitas las brechas y reservar las decisiones irreversibles para una persona. Sin esa disciplina, los agentes sólo habrían producido más texto y una falsa sensación de avance.",
+          "Usados de esa manera, me permitieron pasar de una pregunta que siempre quedaba pendiente a un sistema que podía revisar. No hicieron que 113 proyectos fueran simples. Hicieron posible observarlos como un conjunto sin perder semanas en el intento.",
         ],
       },
       {
-        heading: "Lo que encontré detrás de la cifra",
+        heading: "Después de verlo entero",
         paragraphs: [
-          "Entré buscando cuánto costaba mi infraestructura y terminé construyendo una explicación de lo que había acumulado. El ahorro dejó de ser la primera pregunta. Antes necesitaba saber qué estaba pagando, qué estaba manteniendo y qué compromiso representaba cada cosa.",
-          "La lección no es que el costo no importe. Es que una cifra sólo se vuelve accionable cuando está conectada con ownership y ciclo de vida. De otro modo, incluso un total preciso describe facturación, no un sistema.",
-          "Esta fue una foto de septiembre de 2026 sobre una cartera personal y de un estudio pequeño. No representa la economía de una empresa SaaS con tráfico significativo. Tampoco voy a publicar el inventario original: contiene proyectos, cuentas, dominios y facturas que no hacen falta para sostener el aprendizaje.",
+          "El costo importa, pero una cifra sólo se vuelve accionable cuando está conectada con ownership, riesgo y ciclo de vida. De otro modo describe facturación, no un sistema.",
+          "La auditoría fue una foto de septiembre de 2026 y el universo va a seguir cambiando. Tampoco pienso publicar el inventario original: los nombres, cuentas, dominios y detalles operativos no hacen falta para sostener el aprendizaje.",
+          "Lo que sí quiero conservar es el método. Una cartera grande deja de ser una acumulación invisible cuando cada elemento puede explicarse, tiene evidencia y termina en una decisión. Aprender a trabajar con agentes hizo posible llegar hasta ahí; saber qué no delegar fue lo que volvió útil el resultado.",
         ],
       },
     ],
     pendingChecks: [
-      "Confirmar si el título debe conservar el corte inicial de 106 o usar el inventario reconciliado de 113.",
-      "Aprobar la publicación del gasto mensual agregado y su formulación como piso, no como costo total.",
-      "Hacer una pasada final de voz y seguridad antes de sacar la pieza del modo borrador.",
+      "Hacer una pasada final de seguridad para asegurar que los ejemplos agregados no revelen proyectos ni operaciones sensibles.",
+      "Confirmar que el protagonismo del trabajo con agentes representa la experiencia de Matías sin convertir la nota en una promesa exagerada sobre IA.",
+      "Hacer una última pasada de voz antes de sacar la pieza del modo borrador.",
     ],
   },
 ];
