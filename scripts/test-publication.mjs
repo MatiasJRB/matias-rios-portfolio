@@ -8,6 +8,8 @@ const slug =
   "la-primera-vez-que-alguien-dependio-de-que-mi-software-funcionara";
 const migrationLinterSlug =
   "el-framework-no-podia-actualizarse-pero-las-migraciones-igual-tenian-que-ser-seguras";
+const infrastructureAuditSlug =
+  "audite-113-proyectos-el-costo-no-era-el-principal-problema";
 
 function availablePort() {
   return new Promise((resolve, reject) => {
@@ -91,6 +93,7 @@ try {
       "Notas",
       "La primera vez que alguien dependió",
       "El framework no podía actualizarse",
+      "Audité 113 proyectos",
     ],
   });
   await expectResponse(baseUrl, "/es/notes", {
@@ -110,6 +113,21 @@ try {
     ],
     excludes: ["Antes de publicar", ">Borrador<"],
   });
+  await expectResponse(baseUrl, `/es/notes/${infrastructureAuditSlug}`, {
+    status: 200,
+    includes: [
+      "No eran 113 productos",
+      "Salieron 45 acciones concretas",
+      "Lo que hizo posible terminarla",
+    ],
+    excludes: [
+      "Antes de publicar",
+      ">Borrador<",
+      "38 dólares",
+      "no vinculada a Mango",
+      "todo lo que no es trabajo",
+    ],
+  });
   await expectResponse(baseUrl, "/en/notes", {
     status: 200,
     includes: ["The first time someone depended on my software working"],
@@ -122,6 +140,7 @@ try {
       "<rss version=\"2.0\"",
       `<link>https://www.matiasjrb.com.ar/es/notes/${slug}</link>`,
       `<link>https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}</link>`,
+      `<link>https://www.matiasjrb.com.ar/es/notes/${infrastructureAuditSlug}</link>`,
     ],
   });
   await expectResponse(baseUrl, "/sitemap.xml", {
@@ -130,6 +149,7 @@ try {
       "https://www.matiasjrb.com.ar/es/notes",
       `https://www.matiasjrb.com.ar/es/notes/${slug}`,
       `https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}`,
+      `https://www.matiasjrb.com.ar/es/notes/${infrastructureAuditSlug}`,
       "https://www.matiasjrb.com.ar/rss.xml",
     ],
   });

@@ -4,6 +4,8 @@ export const FIRST_SOFTWARE_NOTE_SLUG =
   "la-primera-vez-que-alguien-dependio-de-que-mi-software-funcionara";
 export const MIGRATION_LINTER_NOTE_SLUG =
   "el-framework-no-podia-actualizarse-pero-las-migraciones-igual-tenian-que-ser-seguras";
+export const INFRASTRUCTURE_AUDIT_NOTE_SLUG =
+  "audite-113-proyectos-el-costo-no-era-el-principal-problema";
 
 export interface NoteSection {
   heading?: string;
@@ -167,6 +169,93 @@ const notes: Note[] = [
           "No hay una sola parte que concentre la historia. No es únicamente haber escrito el parser, agregado compatibilidad o publicado un repositorio.",
           "Lo que me da orgullo es el recorrido completo: llegar a una necesidad real del roadmap, comprobar que la pieza que necesitaba no existía, investigar otros modelos, construirla, extraerla como open source, hacerla compatible con un stack establecido y después introducirla con suficiente prudencia como para no confundir una herramienta nueva con una garantía.",
           "La lección que me queda es que modernización y seguridad no siempre tienen que avanzar en el mismo paquete. A veces la decisión responsable es diseñar una mejora que pueda entrar en el sistema que existe hoy, hacer explícito todo lo que todavía no sabe y darle autoridad solamente a medida que la evidencia lo justifica.",
+        ],
+      },
+    ],
+    pendingChecks: [],
+  },
+  {
+    slug: INFRASTRUCTURE_AUDIT_NOTE_SLUG,
+    locale: "es",
+    draft: false,
+    publishedAt: "2026-09-10",
+    originYear: 2026,
+    context: {
+      es: "113 proyectos relevados",
+      en: "113 projects audited",
+    },
+    readingMinutes: 7,
+    title: "Audité 113 proyectos. El costo no era el principal problema",
+    description:
+      "Una tarea que siempre quedaba postergada se volvió posible cuando aprendí a trabajar con agentes para investigar, contrastar evidencia y convertir infraestructura dispersa en un plan.",
+    englishTitle: "I audited 113 projects. Cost was not the main problem",
+    englishDescription:
+      "A task that was always postponed became possible when I learned to work with agents to investigate, compare evidence, and turn scattered infrastructure into a plan.",
+    tags: ["Agentes", "Infraestructura", "Operaciones"],
+    heroAlt: "",
+    heroCaption: "",
+    sections: [
+      {
+        paragraphs: [
+          "Durante años fui dejando proyectos desplegados detrás de cada etapa. Algunos eran productos activos. Otros eran landing pages, backoffices, APIs, portfolios, demos, pruebas o versiones anteriores de algo que había seguido evolucionando. Cada uno había tenido sentido en su momento; el conjunto ya no era fácil de explicar.",
+          "La pregunta aparecía cada tanto: ¿qué sigue vivo y cuánto cuesta mantenerlo? Nunca era urgente frente al producto que estaba construyendo ese día. Responderla bien implicaba entrar a varias cuentas, reconstruir relaciones, probar servicios, revisar facturas y distinguir un sistema abandonado de uno silencioso pero necesario. Era trabajo importante y, al mismo tiempo, muy fácil de postergar.",
+          "Lo que cambió fue que aprendí a organizar ese trabajo con agentes. En vez de reservar días para abrir todo a mano, podía dividir la investigación, poner límites claros y producir evidencia que yo pudiera revisar antes de tomar decisiones.",
+        ],
+      },
+      {
+        heading: "No eran 113 productos",
+        paragraphs: [
+          "El inventario reconciliado terminó con 113 proyectos en Vercel. El número necesita contexto: no eran 113 negocios ni 113 aplicaciones independientes. Había interfaces de productos vigentes, sitios institucionales, herramientas internas, experimentos, demos, copias de una misma idea, despliegues legacy y proyectos que nunca habían llegado a producción.",
+          "Alrededor de esos proyectos también aparecían bases de datos, dominios, servicios de monitoreo, repositorios y otras cuentas cloud. Un producto podía estar repartido entre varios proveedores; un proveedor podía contener rastros de muchas etapas distintas.",
+          "El primer corte había dado 106. Al cruzarlo con otras fuentes aparecieron siete más. No tenía sentido elegir la cifra más linda ni aceptar la primera respuesta: había que explicar la diferencia. Esa corrección confirmó que no existía una fuente única capaz de decir qué había construido, qué seguía funcionando y por qué debía conservarse.",
+        ],
+      },
+      {
+        heading: "Trabajar con agentes no es pedir un reporte",
+        paragraphs: [
+          "El trabajo no consistió en escribir un prompt largo y aceptar la primera respuesta. Tuve que definir el universo, separar tareas que podían ejecutarse en paralelo y establecer reglas: no borrar nada, no cambiar producción, no mezclar evidencia con estimaciones y no presentar una cifra incompleta como si fuera un total.",
+          "Los agentes podían recorrer inventarios, contrastar fuentes, probar endpoints y producir artefactos reproducibles. Mi trabajo era decidir qué pregunta estábamos contestando, detectar conclusiones demasiado fuertes, exigir trazabilidad y convertir los hallazgos en prioridades.",
+          "Así, el tiempo dejó de irse en abrir manualmente cada proyecto. Pude usarlo para revisar excepciones, discutir riesgos y tomar las decisiones que no convenía delegar.",
+        ],
+      },
+      {
+        heading: "Existir, responder y tener dueño no son lo mismo",
+        paragraphs: [
+          "La auditoría probó 140 endpoints. Ciento uno respondieron o mostraron una barrera de acceso válida. Pero una respuesta HTTP no demuestra que un producto esté sano, que alguien lo use ni que exista una persona tomando decisiones sobre él.",
+          "Tuve que separar preguntas que los dashboards suelen mezclar: ¿existe?, ¿está desplegado?, ¿responde?, ¿está saludable?, ¿alguien lo usa?, ¿quién decide su ciclo de vida?, ¿está asociado a una factura?, ¿ese cargo llegó efectivamente a pagarse?",
+          "Esa separación evitó dos errores opuestos. El primero era considerar vigente todo lo que respondiera. El segundo era asumir que algo viejo o roto podía eliminarse sin entender antes qué dependía de él.",
+        ],
+      },
+      {
+        heading: "El costo era sólo una de las capas",
+        paragraphs: [
+          "La auditoría había empezado como una pregunta de costos, pero el gasto visible no resultó ser el problema más grande. Había servicios gratuitos, otros con consumo real y superficies donde todavía faltaba evidencia para cerrar una conclusión. Publicar un único total habría ocultado esas diferencias.",
+          "Lo que sí apareció con claridad fue que no podía explicar bien el conjunto: había proyectos accesibles sin una decisión de ciclo de vida, dependencias antiguas, monitoreos apuntando a destinos que ya habían cambiado y componentes cuyo ownership necesitaba confirmación.",
+          "Una factura baja puede dar una falsa sensación de control. La infraestructura también cuesta atención, actualizaciones, superficie de ataque y tiempo para reconstruir decisiones que nunca quedaron registradas.",
+        ],
+      },
+      {
+        heading: "La auditoría abrió más trabajo del que cerró",
+        paragraphs: [
+          "El resultado no fue solamente un inventario. Salieron 45 acciones concretas. Algunas eran operativas: corregir monitores, confirmar responsables o decidir qué hacer con proyectos legacy. Otras eran de plataforma: actualizar runtimes y ordenar caminos de deploy.",
+          "También aparecieron líneas de seguridad. Había dependencias vulnerables, permisos de base de datos que necesitaban revisión y controles sobre secretos que podían fortalecerse. La auditoría no resolvió automáticamente esos problemas, pero los convirtió en trabajos acotados, con evidencia, prioridad y una condición clara antes de tocar producción.",
+          "Ese cambio importa. Antes tenía una sensación difusa de infraestructura acumulada. Después tenía un registro que distinguía qué estaba comprobado, qué era una estimación, qué seguía bloqueado y cuál era el siguiente movimiento seguro.",
+        ],
+      },
+      {
+        heading: "Lo que hizo posible terminarla",
+        paragraphs: [
+          "Había llegado a este punto precisamente por el tiempo que consumen estas tareas. Cuando cada revisión compite con construir el producto siguiente, lo sistémico pierde frente a lo urgente. Los agentes no eliminaron el trabajo ni reemplazaron el criterio, pero desbloquearon una investigación que de otra forma habría seguido esperando.",
+          "La diferencia estuvo en saber dirigirlos: dividir el problema, limitar permisos, pedir evidencia verificable, hacer explícitas las brechas y reservar las decisiones irreversibles para una persona. Sin esa disciplina, los agentes sólo habrían producido más texto y una falsa sensación de avance.",
+          "Usados de esa manera, me permitieron pasar de una pregunta que siempre quedaba pendiente a un sistema que podía revisar. No hicieron que 113 proyectos fueran simples. Hicieron posible observarlos como un conjunto sin perder semanas en el intento.",
+        ],
+      },
+      {
+        heading: "Después de verlo entero",
+        paragraphs: [
+          "El costo importa, pero una cifra sólo se vuelve accionable cuando está conectada con ownership, riesgo y ciclo de vida. De otro modo describe facturación, no un sistema.",
+          "La auditoría fue una foto de septiembre de 2026 y el universo va a seguir cambiando. Tampoco pienso publicar el inventario original: los nombres, cuentas, dominios y detalles operativos no hacen falta para sostener el aprendizaje.",
+          "Lo que sí quiero conservar es el método. Una cartera grande deja de ser una acumulación invisible cuando cada elemento puede explicarse, tiene evidencia y termina en una decisión. Aprender a trabajar con agentes hizo posible llegar hasta ahí; saber qué no delegar fue lo que volvió útil el resultado.",
         ],
       },
     ],
