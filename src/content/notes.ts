@@ -6,6 +6,8 @@ export const MIGRATION_LINTER_NOTE_SLUG =
   "el-framework-no-podia-actualizarse-pero-las-migraciones-igual-tenian-que-ser-seguras";
 export const INFRASTRUCTURE_AUDIT_NOTE_SLUG =
   "audite-113-proyectos-el-costo-no-era-el-principal-problema";
+export const PERSONAL_ASSISTANT_NOTE_SLUG =
+  "un-asistente-personal-no-sirve-si-todo-termina-dentro-del-chat";
 
 export interface NoteSection {
   heading?: string;
@@ -260,6 +262,90 @@ const notes: Note[] = [
       },
     ],
     pendingChecks: [],
+  },
+  {
+    slug: PERSONAL_ASSISTANT_NOTE_SLUG,
+    locale: "es",
+    draft: true,
+    publishedAt: "2026-09-10",
+    originYear: 2026,
+    context: {
+      es: "Estado, decisiones y acciones",
+      en: "State, decisions, and actions",
+    },
+    readingMinutes: 7,
+    title: "Un asistente personal no sirve si todo termina dentro del chat",
+    description:
+      "Una conversación puede ordenar una idea. Un asistente empieza a ser útil cuando también conserva estado, detecta qué cambió y cruza hacia acciones reales sin saltearse mi autorización.",
+    englishTitle:
+      "A personal assistant is not useful if everything ends inside the chat",
+    englishDescription:
+      "A conversation can organize an idea. An assistant becomes useful when it also preserves state, detects change, and crosses into real actions without bypassing my authorization.",
+    tags: ["Agentes", "Automatización", "Sistemas personales"],
+    heroAlt: "",
+    heroCaption: "",
+    sections: [
+      {
+        paragraphs: [
+          "Muchas conversaciones con IA terminan con una lista de cosas que todavía tengo que hacer yo. La respuesta puede ser buena, pero después tengo que copiar una fecha al calendario, revisar si alguien contestó, actualizar un pendiente, preparar un mensaje o acordarme de poner una alarma.",
+          "Empecé a notar ese límite mientras intentaba ordenar trámites, turnos, arreglos, compras y seguimientos personales. El chat podía ayudarme a pensar cada caso. El último tramo seguía dependiendo de que yo tradujera esa conversación en acciones y mantuviera todo sincronizado.",
+          "Si al cerrar la ventana el sistema pierde el estado o me devuelve todas las tareas, no tengo un asistente. Tengo una conversación útil que además debo administrar.",
+        ],
+      },
+      {
+        heading: "El chat es una interfaz, no una memoria",
+        paragraphs: [
+          "El primer cambio fue sacar los pendientes de la conversación. Cada asunto necesitaba un estado persistente: qué falta, de quién depende, cuándo conviene revisarlo y cuál es el próximo movimiento posible.",
+          "Eso permitió que una respuesta nueva no empezara otra conversación desde cero. El sistema podía relacionarla con un seguimiento existente, cambiar su estado y proponer la siguiente acción sin obligarme a reconstruir todo el contexto.",
+          "El chat siguió siendo el lugar donde veo, decido y corrijo. Pero la fuente de verdad pasó a vivir fuera de él. Esa separación fue más importante que cualquier mejora en la forma de redactar respuestas.",
+        ],
+      },
+      {
+        heading: "No todas las acciones necesitan el mismo permiso",
+        paragraphs: [
+          "Leer una respuesta, actualizar mi lista o preparar el día siguiente no tiene el mismo impacto que escribirle a otra persona. Tampoco es lo mismo crear un recordatorio para mí que confirmar un turno, completar un formulario o borrar información.",
+          "Por eso el sistema no tiene un único modo automático. Puede investigar y preparar sin interrumpirme. Cuando una acción me representa frente a otra persona, debe mostrar el destinatario, el canal y el texto exacto, y esperar mi aprobación final.",
+          "La autorización no es una molestia agregada al final. Es parte de la arquitectura. Un asistente que puede actuar sin distinguir consecuencias no es más útil: sólo distribuye el riesgo más rápido.",
+        ],
+      },
+      {
+        heading: "Cruzar la frontera del chat",
+        paragraphs: [
+          "Con esas reglas, el sistema empezó a conectar piezas reales. Puede revisar calendarios y pendientes persistentes, detectar respuestas en mensajería, proponer seguimientos y ejecutar un envío cuando apruebo su versión exacta.",
+          "También construí un puente local para convertir una alarma aprobada en una acción sobre el reloj del teléfono. La primera versión intentaba enviar una hora fija y no era confiable con valores dinámicos. La solución fue calcular una demora relativa, limitar el horizonte y validar únicamente los parámetros necesarios.",
+          "Ese puente quedó probado como software, aunque la integración completa con el dispositivo todavía necesitaba configuración y verificación manual. La distinción importa: tener código y tests no equivale a haber cerrado el recorrido en el mundo real.",
+        ],
+      },
+      {
+        heading: "La confiabilidad aparece en los detalles aburridos",
+        paragraphs: [
+          "Conectar herramientas es la parte visible. Lo difícil es decidir qué pasa cuando la misma información llega dos veces, cuando cambia una fecha, cuando un servicio no responde o cuando una acción sólo tiene sentido durante cierto período.",
+          "Los puentes necesitan ser idempotentes, los secretos no deben terminar en conversaciones ni documentos compartidos y cada integración requiere una forma de comprobar qué ocurrió. Las alertas también deben filtrar ruido: recordar todo todo el tiempo es otra manera de no ayudar.",
+          "En un sistema personal, un falso positivo cuesta atención y una acción incorrecta puede involucrar a otra persona. Por eso prefiero una automatización parcial con límites visibles antes que una promesa de autonomía que no puedo auditar.",
+        ],
+      },
+      {
+        heading: "Cerrar el ciclo cambia la utilidad",
+        paragraphs: [
+          "La diferencia se nota en recorridos pequeños. Una respuesta puede actualizar el estado de un pendiente. Un compromiso aceptado puede aparecer en el calendario. Un seguimiento puede volver cuando realmente hay algo nuevo, no sólo porque pasó otro día.",
+          "Ninguna de esas acciones es impresionante por separado. Juntas evitan que la conversación produzca otra lista mental que debo conservar. El asistente deja de ser solamente una superficie para pensar y empieza a participar en el sistema que sostiene mis decisiones.",
+          "Eso también cambia la vara con la que lo evalúo. Ya no alcanza con preguntar si respondió bien. Necesito saber si conservó el contexto correcto, si eligió el nivel de autorización adecuado y si el resultado quedó registrado donde voy a encontrarlo después.",
+        ],
+      },
+      {
+        heading: "Lo que todavía no delego",
+        paragraphs: [
+          "No toda recomendación necesita convertirse en una acción. Algunas decisiones personales requieren conversación, ambigüedad o simplemente tiempo. Integrar más superficies también agrega mantenimiento, permisos y nuevos modos de fallo.",
+          "Por eso no busco un sistema que haga todo sin preguntarme. Busco uno que sepa avanzar solo cuando el riesgo es bajo, preparar bien cuando falta una decisión y detenerse en el punto exacto donde debe devolverme el control.",
+          "Para mí, ésa es la frontera entre un chatbot y un asistente personal: no cuántas cosas puede decir, sino cuántos ciclos puede ayudarme a cerrar sin hacerme perder el control sobre mi propia vida.",
+        ],
+      },
+    ],
+    pendingChecks: [
+      "Confirmar qué recorridos reales conviene mencionar sin exponer información personal ni conversaciones.",
+      "Revalidar el estado actual del puente de alarmas antes de convertirlo en evidencia de punta a punta.",
+      "Hacer una pasada de voz y seguridad con Matías directamente sobre esta vista.",
+    ],
   },
 ];
 
