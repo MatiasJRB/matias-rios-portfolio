@@ -6,6 +6,8 @@ export const MIGRATION_LINTER_NOTE_SLUG =
   "el-framework-no-podia-actualizarse-pero-las-migraciones-igual-tenian-que-ser-seguras";
 export const INFRASTRUCTURE_AUDIT_NOTE_SLUG =
   "audite-113-proyectos-el-costo-no-era-el-principal-problema";
+export const PERSONAL_ASSISTANT_NOTE_SLUG =
+  "yo-seguia-siendo-la-api-entre-la-ia-y-mi-vida";
 
 export interface NoteSection {
   heading?: string;
@@ -256,6 +258,111 @@ const notes: Note[] = [
           "El costo importa, pero una cifra sólo se vuelve accionable cuando está conectada con ownership, riesgo y ciclo de vida. De otro modo describe facturación, no un sistema.",
           "La auditoría fue una foto de septiembre de 2026 y el universo va a seguir cambiando. Tampoco pienso publicar el inventario original: los nombres, cuentas, dominios y detalles operativos no hacen falta para sostener el aprendizaje.",
           "Lo que sí quiero conservar es el método. Una cartera grande deja de ser una acumulación invisible cuando cada elemento puede explicarse, tiene evidencia y termina en una decisión. Aprender a trabajar con agentes hizo posible llegar hasta ahí; saber qué no delegar fue lo que volvió útil el resultado.",
+        ],
+      },
+    ],
+    pendingChecks: [],
+  },
+  {
+    slug: PERSONAL_ASSISTANT_NOTE_SLUG,
+    locale: "es",
+    draft: false,
+    publishedAt: "2026-09-10",
+    originYear: 2026,
+    context: {
+      es: "Codex, OpenClaw y WhatsApp",
+      en: "Codex, OpenClaw, and WhatsApp",
+    },
+    readingMinutes: 8,
+    title: "Yo seguía siendo la API entre la IA y mi vida",
+    description:
+      "La IA podía ayudarme a pensar, pero yo seguía trasladando contexto, fechas y acciones entre herramientas. El cambio fue construir dos planos: Codex para decidir y OpenClaw para sostener la operación.",
+    englishTitle:
+      "I was still the API between AI and my life",
+    englishDescription:
+      "AI could help me think, but I was still moving context, dates, and actions between tools. The shift was building two planes: Codex for decisions and OpenClaw for ongoing operations.",
+    tags: ["Agentes", "Automatización", "Sistemas personales"],
+    heroAlt: "",
+    heroCaption: "",
+    sections: [
+      {
+        paragraphs: [
+          "Durante un tiempo confundí una conversación útil con un asistente personal.",
+          "Le pedía que me ayudara con un trámite, un turno, una compra o un arreglo y la respuesta era buena: pasos claros, un mensaje preparado y una fecha sugerida. Después cerraba el chat y empezaba mi trabajo.",
+          "Copiar la fecha. Mandar el mensaje. Acordarme de revisar si habían respondido. Actualizar el pendiente. Volver días después con todo el contexto.",
+          "La IA había pensado conmigo, pero yo seguía siendo la API entre esa conversación y mi vida. Cada respuesta resolvía una pregunta y me creaba una pequeña tarea de coordinación.",
+        ],
+      },
+      {
+        heading: "La respuesta era buena. El sistema, no.",
+        paragraphs: [
+          "El problema no era que la IA respondiera mal. Era que la conversación no sabía qué seguía abierto, de quién dependía una respuesta ni cuándo convenía volver a mirar el tema.",
+          "Podía escribir un mensaje perfecto y olvidarlo al cerrar la ventana. Podía recomendar una fecha sin saber después si había cambiado. Podía enumerar los próximos pasos sin hacerse cargo de que alguno ocurriera.",
+          "Seguir mejorando el prompt no resolvía esa discontinuidad. Necesitaba sacar el estado del chat y darle a cada asunto un lugar persistente: qué falta, quién tiene la pelota, cuándo revisarlo y cuál es el próximo movimiento posible.",
+          "El salto no fue encontrar un modelo más inteligente. Fue empezar a construir alrededor del modelo: estado, procesos, canales y reglas capaces de sobrevivir a una conversación.",
+        ],
+      },
+      {
+        heading: "Dos planos en vez de un superagente",
+        paragraphs: [
+          "La solución no terminó siendo un agente gigante con acceso a todo. Construí dos planos con responsabilidades diferentes.",
+          "Codex es el plano de control. Ahí converso, investigo, corrijo y tomo decisiones. También mantiene la fuente operativa de los pendientes: estado, responsable, próxima acción, fecha de revisión y condición de cierre.",
+          "OpenClaw es el plano que permanece encendido. Corre en Railway, usa WhatsApp como canal principal y ejecuta procesos programados aunque yo no tenga una conversación abierta.",
+          "Los dos planos no fingen compartir una memoria mágica. Cuando Codex necesita apoyarse en OpenClaw, prepara un paquete autocontenido con la agenda, las preferencias y los pendientes necesarios para esa acción. Menos contexto, pero mejor elegido.",
+        ],
+      },
+      {
+        heading: "Lo que ya funciona mientras no estoy mirando",
+        paragraphs: [
+          "OpenClaw ya entrega por WhatsApp tres resúmenes diarios. Reúne señales de correo, calendario, GitHub y un resumen financiero de sólo lectura; las ordena y trata de mostrar lo que puede cambiar una decisión, no todo lo que encontró.",
+          "Cada quince minutos también corre un detector reactivo. Sólo deja pasar señales nuevas de prioridad alta, deduplica lo que ya avisó y responde en silencio cuando no hay nada accionable. Además prepara el clima del día siguiente y agendas semanales y mensuales de eventos en Bahía Blanca.",
+          "Antes de reescribir esta nota volví a comprobar el sistema en producción: el gateway estaba sano, OpenClaw corría en su versión actual y esos trabajos programados terminaban correctamente.",
+          "Lo que me interesa no es la cantidad de automatizaciones. Es que el comportamiento por defecto sea callarse. Un secretario que informa constantemente todo lo que revisó vuelve a convertirme en su operador.",
+        ],
+      },
+      {
+        heading: "Un audio ya puede convertirse en un pendiente",
+        paragraphs: [
+          "El recorrido más interesante empieza en WhatsApp. Puedo mandar texto o un audio directo al Secretario. Si es audio, Gemini lo transcribe; después el sistema separa una captura en una o más intenciones: bitácora, pendiente, idea, consulta, acción o algo ambiguo que todavía necesita revisión.",
+          "El resultado se guarda en una base SQLite privada. El audio original no queda acumulado y las respuestas operativas no exponen la transcripción completa. Si el mensaje contiene un pendiente, un puente lo incorpora a la fuente de verdad de Codex.",
+          "Ese puente está diseñado para poder fallar y reintentarse. Escribe de forma atómica, usa un marcador estable y recién después confirma el traspaso. Si una ejecución se corta a mitad de camino, la siguiente puede terminarla sin crear dos pendientes iguales.",
+          "En producción ya existe actividad real en esa base y el primer traspaso fue probado. La conversación dejó de ser un lugar donde una idea podía perderse y pasó a ser una entrada durable al sistema.",
+        ],
+      },
+      {
+        heading: "El sistema también sabe esperar",
+        paragraphs: [
+          "Del lado de Codex hay un heartbeat activo que no abre WhatsApp o el correo porque sí. Primero revisa el estado local. Sólo consulta un canal cuando existe un asunto esperando a un tercero y su fecha de control ya venció.",
+          "También distingue una espera externa de algo bloqueado por mí. Si falta una foto, una decisión o una autorización, revisar cinco veces el chat no agrega información. El próximo movimiento tiene que volver a mí, no convertirse en polling inútil.",
+          "Ese mecanismo ya sostuvo recorridos reales. Una respuesta entrante actualizó un pendiente; el sistema preparó la contestación exacta; yo aprobé destinatario, canal y texto; el mensaje salió y el asunto volvió a quedar en espera con una nueva fecha de control.",
+          "Lo valioso no es que una IA haya redactado el mensaje. Es que el proceso recordó qué venía después.",
+        ],
+      },
+      {
+        heading: "Actuar cambia las reglas",
+        paragraphs: [
+          "Cruzar la frontera del chat vuelve al sistema más útil, pero también cambia el riesgo. Leer una respuesta o actualizar una lista no tiene el mismo impacto que escribirle a otra persona. Preparar una compra tampoco es pagarla.",
+          "Por eso la autonomía no es un interruptor general. El sistema puede investigar, ordenar, clasificar y preparar cuando el impacto es bajo. Si una acción me representa frente a alguien, tiene que mostrarme exactamente qué va a hacer y esperar mi aprobación final.",
+          "La autorización no es una traba agregada al final. Es parte de la arquitectura. Un asistente que no distingue consecuencias no distribuye autonomía: distribuye riesgo.",
+        ],
+      },
+      {
+        heading: "Las tecnologías y el trabajo de cada una",
+        paragraphs: [
+          "Codex Desktop es la interfaz de control y el espacio de razonamiento. Archivos Markdown y JSON mantienen preferencias, pendientes y estado de monitoreo de una forma que puedo leer y corregir sin depender del historial de un chat.",
+          "OpenClaw aporta el runtime siempre encendido, sus agentes y los trabajos programados. Railway le da proceso, red y un volumen persistente. WhatsApp funciona como entrada rápida y canal de entrega.",
+          "Gemini se ocupa de tareas costo-first como redacción de resúmenes y transcripción de audio. SQLite conserva el intake privado. Node.js y Express envuelven el gateway y los colectores; pequeños puentes en Python sincronizan el estado con Codex.",
+          "Gmail, Google Calendar, GitHub y Norte Financiero entran como fuentes de sólo lectura. No forman una base nueva: cada sistema conserva su propia autoridad y el asistente trabaja con una proyección mínima de lo que necesita.",
+          "La arquitectura no es interesante por la lista de nombres. Es interesante porque cada pieza tiene un límite claro y porque ninguna necesita fingir que puede hacerlo todo.",
+        ],
+      },
+      {
+        heading: "Lo que realmente quiero delegar",
+        paragraphs: [
+          "No estoy construyendo un sistema para que tome todas mis decisiones. Hay conversaciones, compromisos y asuntos personales que necesitan ambigüedad, tiempo o simplemente mi criterio.",
+          "Lo que quiero delegar es la continuidad: conservar el estado correcto, notar qué cambió, traer de vuelta lo que necesita atención y preparar el próximo movimiento sin obligarme a reconstruir cada historia.",
+          "Cuando el riesgo es bajo, el sistema puede avanzar. Cuando una acción tiene consecuencias, debe detenerse en el punto exacto donde necesito recuperar el control.",
+          "No quiero un asistente que viva mi vida por mí. Quiero dejar de gastar atención siendo el pegamento manual entre herramientas que ya deberían entenderse entre sí.",
         ],
       },
     ],

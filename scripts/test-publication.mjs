@@ -10,6 +10,8 @@ const migrationLinterSlug =
   "el-framework-no-podia-actualizarse-pero-las-migraciones-igual-tenian-que-ser-seguras";
 const infrastructureAuditSlug =
   "audite-113-proyectos-el-costo-no-era-el-principal-problema";
+const personalAssistantSlug =
+  "yo-seguia-siendo-la-api-entre-la-ia-y-mi-vida";
 
 function availablePort() {
   return new Promise((resolve, reject) => {
@@ -91,14 +93,18 @@ try {
     status: 200,
     includes: [
       "Notas",
-      "La primera vez que alguien dependió",
       "El framework no podía actualizarse",
       "Audité 113 proyectos",
+      "Yo seguía siendo la API entre la IA y mi vida",
     ],
+    excludes: ["La primera vez que alguien dependió"],
   });
   await expectResponse(baseUrl, "/es/notes", {
     status: 200,
-    includes: ["La primera vez que alguien dependió"],
+    includes: [
+      "La primera vez que alguien dependió",
+      "Yo seguía siendo la API entre la IA y mi vida",
+    ],
   });
   await expectResponse(baseUrl, `/es/notes/${slug}`, {
     status: 200,
@@ -128,6 +134,15 @@ try {
       "todo lo que no es trabajo",
     ],
   });
+  await expectResponse(baseUrl, `/es/notes/${personalAssistantSlug}`, {
+    status: 200,
+    includes: [
+      "Dos planos en vez de un superagente",
+      "Un audio ya puede convertirse en un pendiente",
+      "Las tecnologías y el trabajo de cada una",
+    ],
+    excludes: ["Antes de publicar", ">Borrador<", "MacroDroid", "alarma"],
+  });
   await expectResponse(baseUrl, "/en/notes", {
     status: 200,
     includes: ["The first time someone depended on my software working"],
@@ -141,6 +156,7 @@ try {
       `<link>https://www.matiasjrb.com.ar/es/notes/${slug}</link>`,
       `<link>https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}</link>`,
       `<link>https://www.matiasjrb.com.ar/es/notes/${infrastructureAuditSlug}</link>`,
+      `<link>https://www.matiasjrb.com.ar/es/notes/${personalAssistantSlug}</link>`,
     ],
   });
   await expectResponse(baseUrl, "/sitemap.xml", {
@@ -150,6 +166,7 @@ try {
       `https://www.matiasjrb.com.ar/es/notes/${slug}`,
       `https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}`,
       `https://www.matiasjrb.com.ar/es/notes/${infrastructureAuditSlug}`,
+      `https://www.matiasjrb.com.ar/es/notes/${personalAssistantSlug}`,
       "https://www.matiasjrb.com.ar/rss.xml",
     ],
   });
