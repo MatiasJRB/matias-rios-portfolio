@@ -4,6 +4,7 @@ import { getResume } from "@/data/get-resume";
 import type { Locale } from "@/i18n/config";
 import type { Resume } from "@/types";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { getLocalizedNotePreview, getNotes } from "@/content/notes";
 
 export const runtime = "nodejs";
 
@@ -247,6 +248,7 @@ const normalizeFileContexts = (fileContexts: unknown) => {
 const buildPortfolioContext = (
   resume: Resume,
   dictionary: Awaited<ReturnType<typeof getDictionary>>,
+  lang: Locale,
 ) => {
   const knowledgeAreas = Object.values(dictionary.skills)
     .map(
@@ -289,6 +291,17 @@ const buildPortfolioContext = (
         .join("; ")
     : dictionary.cv.nativeLanguage;
 
+  const notes = getNotes()
+    .map((note) => {
+      const preview = getLocalizedNotePreview(note, lang);
+      const sourceLanguage = preview.isSourceLocale
+        ? ""
+        : ` Source language: ${note.locale}.`;
+
+      return `- ${preview.title} (${note.publishedAt}): ${preview.description} Tags: ${note.tags.join(", ")}. URL: ${preview.href}.${sourceLanguage}`;
+    })
+    .join("\n");
+
   return `
 Candidate profile for ${resume.basics.name}
 Headline: ${resume.basics.label}
@@ -304,6 +317,8 @@ Knowledge areas:\n${knowledgeAreas}
 Work experience:\n${work}
 
 Projects:\n${projects}
+
+Published notes written by Matias:\n${notes || "No published notes."}
 `.trim();
 };
 
@@ -447,7 +462,7 @@ export async function POST(request: Request) {
       messages: normalizeHistory(body.messages),
       fileContexts,
       lang,
-      portfolioContext: buildPortfolioContext(resume, dictionary),
+      portfolioContext: buildPortfolioContext(resume, dictionary, lang),
     });
 
     const model = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
