@@ -9,6 +9,9 @@ export const INFRASTRUCTURE_AUDIT_NOTE_SLUG =
 export const PERSONAL_ASSISTANT_NOTE_SLUG =
   "yo-seguia-siendo-la-api-entre-la-ia-y-mi-vida";
 
+export const AI_BOTTLENECK_NOTE_SLUG =
+  "la-ia-acelero-la-escritura-de-codigo-pero-traslado-el-cuello-de-botella";
+
 export interface NoteSection {
   heading?: string;
   paragraphs: string[];
@@ -368,12 +371,114 @@ const notes: Note[] = [
     ],
     pendingChecks: [],
   },
+  {
+    slug: AI_BOTTLENECK_NOTE_SLUG,
+    locale: "es",
+    draft: false,
+    publishedAt: "2026-09-10",
+    originYear: 2026,
+    context: {
+      es: "Del código al criterio",
+      en: "From code to judgment",
+    },
+    readingMinutes: 7,
+    title: "La IA aceleró la escritura de código, pero trasladó el cuello de botella",
+    description:
+      "Puedo producir más cambios y exploraciones en menos tiempo. El trabajo difícil no desapareció: se movió hacia especificar, repartir contexto, revisar, integrar y decidir qué merece llegar a producción.",
+    englishTitle:
+      "AI accelerated code writing, but moved the bottleneck elsewhere",
+    englishDescription:
+      "I can produce more changes and explorations in less time. The hard work did not disappear; it moved to specification, context, review, integration, and deciding what deserves to ship.",
+    tags: ["Agentes", "Ingeniería", "Delivery"],
+    heroAlt: "",
+    heroCaption: "",
+    sections: [
+      {
+        paragraphs: [
+          "Durante mucho tiempo podía explicar con bastante precisión por qué una tarea llevaba varios días: había que escribir el código. Entender el problema seguía importando, pero la implementación ocupaba una parte visible y difícil de comprimir.",
+          "Hoy puedo pedir varias exploraciones en paralelo, recibir una implementación completa, ejecutar pruebas y tener un pull request preparado antes de lo que antes me llevaba construir la primera versión. Eso es una mejora real. También creó un problema nuevo: puedo producir cambios más rápido de lo que puedo entenderlos con confianza.",
+          "La IA no eliminó el cuello de botella de la ingeniería. Lo trasladó. Escribir dejó de ser siempre la parte lenta; ahora muchas veces lo son especificar qué debe pasar, distribuir el contexto correcto, revisar decisiones, integrar resultados y determinar qué merece llegar a producción.",
+        ],
+      },
+      {
+        heading: "No fue una herramienta más rápida: cambió la unidad de trabajo",
+        paragraphs: [
+          "Con trabajo manual, la unidad era una modificación que yo mismo escribía. Con Copilot, seguía conduciendo línea por línea, pero completaba más rápido. Con un chat, podía delegar una explicación o un fragmento y después trasladarlo al repositorio.",
+          "Los agentes cambiaron algo más profundo. Ya no delego solamente texto: puedo delegar una misión acotada dentro de un repositorio, con acceso al código, herramientas para verificarlo y una condición de finalización. Incluso puedo hacer que varias investigaciones avancen al mismo tiempo.",
+          "Eso aumenta la superficie que puedo cubrir, pero también separa producción de comprensión. Que exista un diff, una batería de tests o una respuesta convincente no significa que yo haya tomado todavía una buena decisión.",
+        ],
+      },
+      {
+        heading: "El nuevo cuello de botella empieza antes del código",
+        paragraphs: [
+          "Un pedido ambiguo hecho a una persona suele abrir una conversación. El mismo pedido enviado a varios agentes puede producir varias interpretaciones completas antes de que yo note que la pregunta estaba mal formulada.",
+          "Por eso empecé a invertir más tiempo en especificaciones, criterios de aceptación y límites. Qué sistema es la fuente de verdad. Qué se puede modificar. Qué debe permanecer intacto. Cómo se demuestra que el resultado funciona. Qué decisión requiere volver a una persona.",
+          "La especificación no necesita describir cada línea. Su trabajo es reducir el espacio de respuestas plausibles pero equivocadas. Cuanto más barata se vuelve la implementación, más caro resulta descubrir tarde que resolvimos con precisión el problema incorrecto.",
+        ],
+      },
+      {
+        heading: "Trabajar en paralelo no paraleliza las decisiones",
+        paragraphs: [
+          "Los agentes son muy buenos para separar investigaciones independientes: recorrer repositorios, comparar alternativas, ejecutar pruebas o preparar cambios aislados. El problema aparece cuando dos tareas comparten supuestos, archivos o una decisión de arquitectura que todavía no está cerrada.",
+          "Ahí el paralelismo puede producir velocidad local y conflicto global. Dos ramas pueden estar verdes por separado y seguir siendo incompatibles. Un agente puede optimizar una pieza mientras otro cambia el contrato que esa pieza daba por estable.",
+          "Aprendí a trabajar por olas: primero resolver las decisiones que bloquean el resto; después abrir tareas verdaderamente independientes; finalmente integrar de manera deliberada. Más agentes no siempre reducen el tiempo. A veces sólo permiten equivocarse en paralelo.",
+        ],
+      },
+      {
+        heading: "Revisar ya no es solamente leer el diff",
+        paragraphs: [
+          "Cuando el volumen de cambios crece, una revisión puramente línea por línea deja huecos. Necesito comprobar también la intención, las fuentes usadas, los caminos que quedaron fuera y la evidencia producida por el propio trabajo.",
+          "En la auditoría de infraestructura, por ejemplo, los agentes hicieron viable recorrer inventarios, probar endpoints y contrastar proveedores. Mi trabajo no desapareció: tuve que definir el universo, prohibir cambios sobre producción, separar datos verificados de estimaciones y pedir una explicación cuando el primer corte de 106 proyectos terminó convirtiéndose en 113.",
+          "El resultado correcto no era un reporte largo. Era una cadena que permitiera volver desde una conclusión hasta su evidencia y distinguir qué seguía necesitando criterio humano.",
+        ],
+      },
+      {
+        heading: "Los gates pasaron a ser parte del diseño",
+        paragraphs: [
+          "Si producir un cambio es barato, descartar un cambio malo también debería serlo. Para eso necesito gates que no dependan de recordar una checklist distinta en cada entrega: tipos, lint, tests, builds, revisión visual, controles de seguridad y verificación después del deploy cuando corresponde.",
+          "Un check verde no demuestra que el producto sea correcto. Pero una secuencia de controles bien elegida reduce la cantidad de dudas que tienen que resolverse con atención humana. El objetivo no es automatizar el juicio, sino reservarlo para las decisiones que realmente lo necesitan.",
+          "También cambió mi relación con el rollback. Cuando el sistema puede generar otra versión rápidamente, reconocer que una dirección no sirve deja de ser una derrota costosa. Lo peligroso es integrar por inercia sólo porque ya existe una implementación convincente.",
+        ],
+      },
+      {
+        heading: "Mi trabajo produce menos respuestas y más condiciones",
+        paragraphs: [
+          "Una parte creciente de mi trabajo ya no consiste en escribir la solución final. Consiste en definir el terreno donde una solución puede construirse sin perder coherencia: specs, ADRs, reglas compartidas, ownership, criterios de aceptación y mecanismos de revisión.",
+          "Eso puede verse como menos producción porque no siempre termina en un commit funcional. En realidad es lo que permite que la producción de varios agentes y personas llegue al mismo sistema sin convertir la velocidad en entropía.",
+          "El cambio también exige una habilidad incómoda: frenar. Si aparecen demasiados resultados para revisar bien, lanzar otro agente no aumenta la capacidad. Sólo agranda la cola.",
+        ],
+      },
+      {
+        heading: "No tengo un multiplicador universal",
+        paragraphs: [
+          "Puedo reconstruir etapas de mi trabajo manual, con Copilot, con ChatGPT y con agentes. También puedo contar commits, sesiones, pull requests o worktrees. Ninguna de esas comparaciones es un experimento controlado: cambiaron los proyectos, mi experiencia, mis responsabilidades y la complejidad de lo que estaba construyendo.",
+          "Por eso no puedo sostener que los agentes me hicieron una cantidad exacta de veces más productivo. Sí puedo sostener algo más útil: ahora puedo explorar y producir muchas más alternativas, y eso desplazó una proporción mayor del trabajo hacia la dirección y la verificación.",
+          "La métrica que me interesa ya no es cuánto código apareció. Es cuánto tiempo pasa desde una pregunta hasta una decisión defendible y cuánto del resultado puedo integrar sin crear una deuda que todavía no entiendo.",
+        ],
+      },
+      {
+        heading: "La ventaja no está en generar más",
+        paragraphs: [
+          "Cuando escribir código era caro, producir más podía parecer casi siempre una ventaja. Cuando producir se vuelve abundante, la escasez cambia de lugar.",
+          "Ahora lo escaso es el contexto bien elegido, una especificación que elimine ambigüedad, una revisión capaz de detectar conflictos y el criterio para decidir qué no integrar. La ingeniería sigue estando ahí; simplemente dejó de coincidir tanto con el acto de tipear.",
+          "La diferencia no la hará quien pueda generar la mayor cantidad de cambios. La hará quien pueda convertir esa capacidad en un sistema que conserve dirección, evidencia y responsabilidad mientras se mueve más rápido.",
+        ],
+      },
+    ],
+    pendingChecks: [],
+  },
 ];
 
 export function getNotes({ includeDrafts = false } = {}): Note[] {
   return notes
-    .filter((note) => includeDrafts || !note.draft)
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+    .map((note, sourceIndex) => ({ note, sourceIndex }))
+    .filter(({ note }) => includeDrafts || !note.draft)
+    .sort(
+      (a, b) =>
+        b.note.publishedAt.localeCompare(a.note.publishedAt) ||
+        b.sourceIndex - a.sourceIndex,
+    )
+    .map(({ note }) => note);
 }
 
 export function getNote(slug: string): Note | undefined {

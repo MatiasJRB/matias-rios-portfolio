@@ -12,6 +12,8 @@ const infrastructureAuditSlug =
   "audite-113-proyectos-el-costo-no-era-el-principal-problema";
 const personalAssistantSlug =
   "yo-seguia-siendo-la-api-entre-la-ia-y-mi-vida";
+const aiBottleneckSlug =
+  "la-ia-acelero-la-escritura-de-codigo-pero-traslado-el-cuello-de-botella";
 
 function availablePort() {
   return new Promise((resolve, reject) => {
@@ -93,17 +95,21 @@ try {
     status: 200,
     includes: [
       "Notas",
-      "El framework no podía actualizarse",
+      "La IA aceleró la escritura de código",
       "Audité 113 proyectos",
       "Yo seguía siendo la API entre la IA y mi vida",
     ],
-    excludes: ["La primera vez que alguien dependió"],
+    excludes: [
+      "La primera vez que alguien dependió",
+      "El framework no podía actualizarse",
+    ],
   });
   await expectResponse(baseUrl, "/es/notes", {
     status: 200,
     includes: [
       "La primera vez que alguien dependió",
       "Yo seguía siendo la API entre la IA y mi vida",
+      "La IA aceleró la escritura de código",
     ],
   });
   await expectResponse(baseUrl, `/es/notes/${slug}`, {
@@ -143,6 +149,15 @@ try {
     ],
     excludes: ["Antes de publicar", ">Borrador<", "MacroDroid", "alarma"],
   });
+  await expectResponse(baseUrl, `/es/notes/${aiBottleneckSlug}`, {
+    status: 200,
+    includes: [
+      "El nuevo cuello de botella empieza antes del código",
+      "Trabajar en paralelo no paraleliza las decisiones",
+      "No tengo un multiplicador universal",
+    ],
+    excludes: ["Antes de publicar", ">Borrador<", "10 veces más productivo"],
+  });
   await expectResponse(baseUrl, "/en/notes", {
     status: 200,
     includes: ["The first time someone depended on my software working"],
@@ -157,6 +172,7 @@ try {
       `<link>https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}</link>`,
       `<link>https://www.matiasjrb.com.ar/es/notes/${infrastructureAuditSlug}</link>`,
       `<link>https://www.matiasjrb.com.ar/es/notes/${personalAssistantSlug}</link>`,
+      `<link>https://www.matiasjrb.com.ar/es/notes/${aiBottleneckSlug}</link>`,
     ],
   });
   await expectResponse(baseUrl, "/sitemap.xml", {
@@ -167,6 +183,7 @@ try {
       `https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}`,
       `https://www.matiasjrb.com.ar/es/notes/${infrastructureAuditSlug}`,
       `https://www.matiasjrb.com.ar/es/notes/${personalAssistantSlug}`,
+      `https://www.matiasjrb.com.ar/es/notes/${aiBottleneckSlug}`,
       "https://www.matiasjrb.com.ar/rss.xml",
     ],
   });
