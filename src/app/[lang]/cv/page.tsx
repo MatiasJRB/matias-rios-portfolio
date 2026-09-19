@@ -5,6 +5,8 @@ import CVDownloadButton from "@/components/CVDownloadButton";
 import CVHeader from "@/components/CVHeader";
 import CVWorkExperience from "@/components/CVWorkExperience";
 import { getResume } from "@/data/get-resume";
+import CompanyLinkedText from "@/components/CompanyLinkedText";
+import { buildCompanyUrls, getCompanyUrl } from "@/lib/companies";
 import { type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import {
@@ -92,6 +94,7 @@ export default async function CVPage({
     getDictionary(lang),
     getResume(lang),
   ]);
+  const companyUrls = buildCompanyUrls(resume);
   const employment = resume.work.filter(
     (job) => job.kind !== "venture" && job.kind !== "practice",
   );
@@ -128,7 +131,11 @@ export default async function CVPage({
             <section className="mb-6 print:mb-4">
               <SectionTitle>{dictionary.cv.profile}</SectionTitle>
               <p className="max-w-[72ch] text-base leading-[1.55] text-gray-700 dark:text-gray-300 print:text-[8.8pt] print:leading-[1.45]">
-                {resume.basics.summary}
+                <CompanyLinkedText
+                  text={resume.basics.summary}
+                  urls={companyUrls}
+                  linkClassName="underline decoration-1 underline-offset-2"
+                />
               </p>
             </section>
 
@@ -220,7 +227,17 @@ export default async function CVPage({
                       </h3>
                       {project.company && (
                         <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--color-primary)] print:text-[7pt]">
-                          {project.company}
+                          {getCompanyUrl(companyUrls, project.company) ? (
+                            <a
+                              href={getCompanyUrl(companyUrls, project.company)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {project.company}
+                            </a>
+                          ) : (
+                            project.company
+                          )}
                         </span>
                       )}
                     </div>

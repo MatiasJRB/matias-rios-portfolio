@@ -32,16 +32,6 @@ export const useKeyboardNavigation = ({
   const collectNavigableElements = useCallback(() => {
     const elements: HTMLElement[] = [];
 
-    // Get About section paragraphs
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      const paragraphs =
-        aboutSection.querySelectorAll<HTMLElement>("[data-paragraph]");
-      paragraphs.forEach((p) => {
-        elements.push(p);
-      });
-    }
-
     // Get Skills capability areas
     const skillsSection = document.getElementById("skills");
     if (skillsSection) {

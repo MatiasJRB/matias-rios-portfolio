@@ -34,7 +34,7 @@ export default function About({
           style={animation.style}
         >
           <p
-            className="max-w-[68ch] text-base font-normal leading-[1.75]"
+            className="max-w-[68ch] text-base font-normal leading-[1.75] [&_a]:underline [&_a]:decoration-[color-mix(in_srgb,var(--color-primary)_50%,transparent)] [&_a]:decoration-1 [&_a]:underline-offset-4 [&_a]:transition-[color,text-decoration-color] hover:[&_a]:decoration-[var(--color-primary)]"
             style={{ color: "var(--color-muted)" }}
             dangerouslySetInnerHTML={{ __html: content }}
           />

@@ -38,7 +38,13 @@ export default function CVWorkExperience({
             {job.position}
           </h3>
           <p className="text-sm font-semibold text-[var(--color-primary)] print:text-[8.5pt]">
-            {job.name}
+            {job.url ? (
+              <a href={job.url} target="_blank" rel="noopener noreferrer">
+                {job.name}
+              </a>
+            ) : (
+              job.name
+            )}
             {job.context ? ` · ${job.context}` : ""}
           </p>
         </div>

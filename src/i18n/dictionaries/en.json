@@ -17,7 +17,42 @@
   },
   "about": {
     "title": "About Me",
-    "description": "Learn more about my background and experience"
+    "description": "Learn more about my background and experience",
+    "backToPortfolio": "Back to portfolio",
+    "storyTitle": "What I'm up to",
+    "timelineTitle": "Timeline",
+    "milestones": [
+      {
+        "year": "2014",
+        "title": "Started Computer Engineering",
+        "description": "Universidad Nacional del Sur, Bahía Blanca, Argentina.",
+        "href": "https://www.uns.edu.ar"
+      },
+      {
+        "year": "2019",
+        "title": "Sold my first software",
+        "description": "An inventory app for a local pet store, built in 40 days while still studying.",
+        "href": ""
+      },
+      {
+        "year": "2020",
+        "title": "Co-founded Geome7ric",
+        "description": "Where I take on my own projects end to end, alongside my day job.",
+        "href": "https://geome7ric.com"
+      },
+      {
+        "year": "2021",
+        "title": "Finished my degree",
+        "description": "By graduation I was already building product full-time at Nuqlea.",
+        "href": "https://nuqlea.com"
+      },
+      {
+        "year": "2025",
+        "title": "Tech Lead at Mango",
+        "description": "From code to team: architecture, delivery, and technical decisions — hands still on the platform.",
+        "href": "https://mangxo.com"
+      }
+    ]
   },
   "experience": {
     "title": "Work Experience",
@@ -107,12 +142,13 @@
     "empty": "There are no published notes yet."
   },
   "cta": {
-    "lookingForOpportunities": "At Mango, I architect the platform where builders purchase construction materials with commercial credit through 200+ points of sale in Mexico.",
+    "lookingForOpportunities": "I architect the platform where builders purchase construction materials with commercial credit through 200+ points of sale in Mexico.",
     "viewProjects": "View projects",
     "contact": "Contact me",
     "emailCopied": "Email copied",
     "contactSubject": "Portfolio inquiry",
-    "contactBody": "Hi Matias,\n\n"
+    "contactBody": "Hi Matias,\n\n",
+    "moreAboutMe": "More about me"
   },
   "skills": {
     "systemDesign": {
