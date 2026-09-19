@@ -30,6 +30,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: getLocalizedUrl(locale, "/about"),
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      alternates: {
+        languages: Object.fromEntries(
+          i18n.locales.map((l) => [l, getLocalizedUrl(l, "/about")])
+        ),
+      },
+    },
+    {
       url: getLocalizedUrl(locale, "/notes"),
       lastModified: currentDate,
       changeFrequency: "monthly" as const,

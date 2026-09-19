@@ -5,6 +5,7 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import type { Project } from "@/types";
 import type { Dictionary } from "@/i18n/types";
+import { getCompanyUrl } from "@/lib/companies";
 import { getSlideInAnimation } from "@/hooks/useSlideInAnimation";
 
 const COMPANY_COLORS: Record<string, string> = {
@@ -31,10 +32,13 @@ const sortFeatured = (a: Project, b: Project) =>
 function ProjectArtifact({
   project,
   accentColor,
+  companyUrls = {},
 }: {
   project: Project;
   accentColor: string;
+  companyUrls?: Record<string, string>;
 }) {
+  const companyUrl = getCompanyUrl(companyUrls, project.company);
   const normalizedName = project.name.toLowerCase();
 
   return (
@@ -264,7 +268,13 @@ function ProjectArtifact({
             "color-mix(in srgb, var(--color-background) 82%, transparent)",
         }}
       >
-        {project.company || project.role}
+        {project.company && companyUrl ? (
+          <a href={companyUrl} target="_blank" rel="noopener noreferrer">
+            {project.company}
+          </a>
+        ) : (
+          project.company || project.role
+        )}
       </div>
     </div>
   );
@@ -273,9 +283,11 @@ function ProjectArtifact({
 function FeaturedProjectCard({
   project,
   index,
+  companyUrls = {},
 }: {
   project: Project;
   index: number;
+  companyUrls?: Record<string, string>;
 }) {
   const accentColor = getAccentColor(project, index);
   const animation = getSlideInAnimation(index);
@@ -295,7 +307,11 @@ function FeaturedProjectCard({
         boxShadow: "0 14px 34px -26px var(--shadow-hover)",
       }}
     >
-      <ProjectArtifact project={project} accentColor={accentColor} />
+      <ProjectArtifact
+        project={project}
+        accentColor={accentColor}
+        companyUrls={companyUrls}
+      />
       <div className="flex min-w-0 flex-1 flex-col">
         <div>
           {project.url ? (
@@ -494,7 +510,15 @@ const Projects: React.FC<{
   githubUrl?: string;
   contactUrl?: string;
   className?: string;
-}> = ({ projects, dictionary, githubUrl, contactUrl, className }) => {
+  companyUrls?: Record<string, string>;
+}> = ({
+  projects,
+  dictionary,
+  githubUrl,
+  contactUrl,
+  className,
+  companyUrls = {},
+}) => {
 
   const featuredProjects = projects
     .filter((project) => project.featured)
@@ -541,6 +565,7 @@ const Projects: React.FC<{
                 key={project.name}
                 project={project}
                 index={index}
+                companyUrls={companyUrls}
               />
             ))}
           </div>
@@ -581,7 +606,18 @@ const Projects: React.FC<{
                     className="text-xs font-semibold uppercase tracking-[0.18em]"
                     style={{ color: groupColor }}
                   >
-                    {group.label}
+                    {getCompanyUrl(companyUrls, group.key) ? (
+                      <a
+                        href={getCompanyUrl(companyUrls, group.key)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "inherit" }}
+                      >
+                        {group.label}
+                      </a>
+                    ) : (
+                      group.label
+                    )}
                   </h4>
                 </div>
 

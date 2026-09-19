@@ -17,7 +17,42 @@
   },
   "about": {
     "title": "Acerca de Mí",
-    "description": "Conoce más sobre mi trayectoria y experiencia"
+    "description": "Conoce más sobre mi trayectoria y experiencia",
+    "backToPortfolio": "Volver al portfolio",
+    "storyTitle": "En qué ando",
+    "timelineTitle": "Línea de tiempo",
+    "milestones": [
+      {
+        "year": "2014",
+        "title": "Empecé Ingeniería en Computación",
+        "description": "Universidad Nacional del Sur, Bahía Blanca.",
+        "href": "https://www.uns.edu.ar"
+      },
+      {
+        "year": "2019",
+        "title": "Vendí mi primer software",
+        "description": "Una aplicación de inventario para una tienda de mascotas local, construida en 40 días mientras cursaba.",
+        "href": ""
+      },
+      {
+        "year": "2020",
+        "title": "Co-fundé Geome7ric",
+        "description": "Desde ahí tomo proyectos propios de punta a punta, en paralelo al trabajo.",
+        "href": "https://geome7ric.com"
+      },
+      {
+        "year": "2021",
+        "title": "Terminé la carrera",
+        "description": "Con el título recién sacado ya estaba construyendo producto full-time en Nuqlea.",
+        "href": "https://nuqlea.com"
+      },
+      {
+        "year": "2025",
+        "title": "Tech Lead en Mango",
+        "description": "Del código al equipo: arquitectura, delivery y decisiones técnicas, con las manos todavía en la plataforma.",
+        "href": "https://mangxo.com"
+      }
+    ]
   },
   "experience": {
     "title": "Experiencia Laboral",
@@ -107,12 +142,13 @@
     "empty": "Todavía no hay notas publicadas."
   },
   "cta": {
-    "lookingForOpportunities": "En Mango, diseño la arquitectura de la plataforma donde constructores compran materiales con crédito comercial a través de +200 puntos de venta en México.",
+    "lookingForOpportunities": "Diseño la arquitectura de la plataforma donde constructores compran materiales con crédito comercial a través de +200 puntos de venta en México.",
     "viewProjects": "Ver proyectos",
     "contact": "Escribime",
     "emailCopied": "Email copiado",
     "contactSubject": "Contacto desde tu portfolio",
-    "contactBody": "Hola Matias,\n\n"
+    "contactBody": "Hola Matias,\n\n",
+    "moreAboutMe": "Más sobre mí"
   },
   "skills": {
     "systemDesign": {

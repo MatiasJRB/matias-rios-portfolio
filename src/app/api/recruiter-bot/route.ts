@@ -307,6 +307,8 @@ Candidate profile for ${resume.basics.name}
 Headline: ${resume.basics.label}
 Summary: ${resume.basics.summary}
 About: ${stripHtml(resume.basics.about)}
+Milestones:
+${dictionary.about.milestones.map((milestone) => `- ${milestone.year}: ${milestone.title}. ${milestone.description}`).join("\n")}
 Location: ${resume.basics.location.city}, ${resume.basics.location.region}, ${resume.basics.location.countryCode}
 Contact:\n${buildContactChannels(resume)}
 Education:\n${education}

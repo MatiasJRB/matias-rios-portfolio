@@ -4,14 +4,10 @@ import type { Locale } from "@/i18n/config";
 import type { Resume } from "@/types";
 import type { Dictionary } from "@/i18n/types";
 import SocialMedia from "@/components/SocialMedia";
+import { buildCompanyUrls } from "@/lib/companies";
 import { getSlideInAnimation } from "@/hooks/useSlideInAnimation";
 
 // Lazy load heavy components with prefetching
-const About = dynamic(() => import("@/components/About"), {
-  loading: () => (
-    <div className="h-24 animate-pulse bg-gray-200/10 rounded-lg" />
-  ),
-});
 const Presentation = dynamic(() => import("@/components/Presentation"));
 const Selector = dynamic(() => import("@/components/Selector"));
 const History = dynamic(() => import("@/components/History"), {
@@ -69,6 +65,7 @@ export default function PageContent({
   scrollAreaRef: React.RefObject<HTMLDivElement | null>;
   showNotes?: boolean;
 }) {
+  const companyUrls = buildCompanyUrls(resume);
   const githubUrl = resume.basics.profiles.find((profile) =>
     (profile.icon || "").toLowerCase().includes("github"),
   )?.url;
@@ -91,7 +88,12 @@ export default function PageContent({
             id="presentation"
             className="mb-8 px-0 pt-20 scroll-mt-24 md:mb-12 md:pt-32 lg:mb-10 lg:pt-20"
           >
-            <Presentation basics={resume.basics} dictionary={dictionary} />
+            <Presentation
+              basics={resume.basics}
+              dictionary={dictionary}
+              lang={lang}
+              companyUrls={companyUrls}
+            />
             <nav
               aria-label="Section navigation"
               className="mt-8 hidden lg:block"
@@ -121,20 +123,8 @@ export default function PageContent({
         tabIndex={-1}
         aria-label="Main content"
       >
-        {/* About Section */}
-        <section id="about" aria-labelledby="about-heading">
-          <SectionHeading id="about-heading">
-            {dictionary.sections.about}
-          </SectionHeading>
-          <About about={resume.basics.about} className="mt-7" />
-        </section>
-
         {/* Skills Section */}
-        <section
-          id="skills"
-          aria-labelledby="skills-heading"
-          className="mt-20 lg:mt-24"
-        >
+        <section id="skills" aria-labelledby="skills-heading">
           <SectionHeading id="skills-heading">
             {dictionary.sections.skills}
           </SectionHeading>
@@ -224,6 +214,7 @@ export default function PageContent({
           <Projects
             projects={resume.projects}
             dictionary={dictionary}
+            companyUrls={companyUrls}
             githubUrl={githubUrl}
             contactUrl={contactUrl}
             className="mt-8 lg:mt-10"

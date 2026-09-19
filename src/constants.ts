@@ -1,6 +1,5 @@
 // Constantes de navegación
 export const NAV_ITEMS = [
-  { id: "about", labelKey: "about" },
   { id: "skills", labelKey: "skills" },
   { id: "history", labelKey: "experience" },
   { id: "projects", labelKey: "projects" },

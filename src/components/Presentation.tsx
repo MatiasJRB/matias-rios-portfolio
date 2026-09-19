@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Dictionary } from "@/i18n/types";
+import type { Locale } from "@/i18n/config";
+import CompanyLinkedText from "@/components/CompanyLinkedText";
 import { getSlideInAnimation } from "@/hooks/useSlideInAnimation";
 
 interface Basics {
@@ -16,9 +19,16 @@ interface Basics {
 interface PresentationProps {
   basics: Basics;
   dictionary: Dictionary;
+  lang: Locale;
+  companyUrls: Record<string, string>;
 }
 
-const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
+const Presentation: React.FC<PresentationProps> = ({
+  basics,
+  dictionary,
+  lang,
+  companyUrls,
+}) => {
   const [emailCopied, setEmailCopied] = useState(false);
   const resetCopyTimer = useRef<number | null>(null);
   const mailtoHref = `mailto:${basics.email}?subject=${encodeURIComponent(dictionary.cta.contactSubject)}&body=${encodeURIComponent(dictionary.cta.contactBody)}`;
@@ -74,13 +84,13 @@ const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
           />
         )}
         <h1 className="font-display text-4xl font-bold leading-tight tracking-[-0.03em] md:text-5xl lg:text-5xl xl:text-6xl">
-          <a
+          <Link
             className="cursor-pointer rounded-sm outline-none transition-colors duration-200 hover:text-[color:var(--color-primary)] focus-visible:text-[color:var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"
-            href="#about"
+            href={`/${lang}/about`}
             style={{ color: "var(--color-text)" }}
           >
             {basics.name}
-          </a>
+          </Link>
         </h1>
       </div>
       <div
@@ -93,7 +103,7 @@ const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
         className="mt-7 max-w-[58ch] animate-slide-in text-base font-normal leading-[1.75] opacity-0"
         style={{ color: "var(--color-muted)", ...getSlideInAnimation(2).style }}
       >
-        {basics.summary}
+        <CompanyLinkedText text={basics.summary} urls={companyUrls} />
       </p>
       <p
         className="mt-5 max-w-[58ch] animate-slide-in text-base font-normal leading-[1.75] opacity-0"
@@ -130,6 +140,13 @@ const Presentation: React.FC<PresentationProps> = ({ basics, dictionary }) => {
             {emailCopied ? dictionary.cta.emailCopied : dictionary.cta.contact}
           </span>
         </a>
+        <Link
+          href={`/${lang}/about`}
+          className="inline-flex min-h-11 items-center justify-center rounded-xl px-1 text-sm font-semibold underline-offset-4 outline-none transition-colors hover:text-[color:var(--color-text)] hover:underline focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"
+          style={{ color: "var(--color-muted)" }}
+        >
+          {dictionary.cta.moreAboutMe}
+        </Link>
       </div>
     </div>
   );

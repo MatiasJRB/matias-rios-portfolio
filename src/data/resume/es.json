@@ -6,8 +6,8 @@
     "email": "matiasjriosb@gmail.com",
     "phone": "(291) 645-0794",
     "url": "https://www.matiasjrb.com.ar",
-    "summary": "Programo desde la universidad y entrego software para clientes desde 2019. Acumulo más de 5 años en equipos de producto. En Mango lidero ingeniería y arquitectura de producto, combinando ejecución hands-on, diseño de sistemas y delivery. También co-fundé Geome7ric como emprendimiento paralelo.",
-    "about": "<p>En 2014, comencé Ingeniería en Computación. Mientras cursaba, en 2019 desarrollé durante 40 días y vendí mi primer software: una aplicación de inventario para una tienda de mascotas local. Desde entonces, he estado programando para diversas industrias, incluyendo construcción, comercio electrónico, retail físico, salud, distribución, logística portuaria y transporte corporativo.</p><p>Construyo en <a href=\"https://mangxo.com\" target=\"_blank\">Mango</a>, una empresa de datos con productos financieros para el ecosistema de la construcción en Latinoamérica. Mi trabajo se centra en los sistemas que impulsan la plataforma: crédito comercial, flujos de pago y la red de +200 puntos de venta. En mi tiempo libre, diseño y lanzo productos digitales de punta a punta — desde arquitectura de base de datos hasta pagos y deploy. Anteriormente, contribuí a llevar una app móvil desde beta hasta las tiendas de aplicaciones en <a href=\"https://nuqlea.com\" target=\"_blank\">Nuqlea</a> e implementé una integración clave en <a href=\"https://kalkomey.com\" target=\"_blank\">Kalkomey</a> que impulsó suscripciones e ingresos.</p><p>Cuando no estoy en la computadora, usualmente estoy en el gimnasio, jugando fútbol en el mejor <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\">club de amigos</a> de mi ciudad, o con amigos y familia. También gestiono proyectos en <a href=\"https://geome7ric.com\" target=\"_blank\">Geome7ric</a>, mi emprendimiento de software.</p>",
+    "summary": "Entregué mi primer software para un cliente en 2019, durante la universidad. Acumulo más de 5 años en equipos de producto y hoy lidero ingeniería y arquitectura en Mango, combinando ejecución hands-on, diseño de sistemas y delivery. También co-fundé Geome7ric como emprendimiento paralelo.",
+    "about": "<p>Construyo en <a href=\"https://mangxo.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mango</a>, una empresa de datos con productos financieros para el ecosistema de la construcción en Latinoamérica. Mi trabajo se centra en los sistemas que impulsan la plataforma: crédito comercial, flujos de pago y la red de +200 puntos de venta. En mi tiempo libre, diseño y lanzo productos digitales de punta a punta — desde arquitectura de base de datos hasta pagos y deploy. Anteriormente, contribuí a llevar una app móvil desde beta hasta las tiendas de aplicaciones en <a href=\"https://nuqlea.com\" target=\"_blank\" rel=\"noopener noreferrer\">Nuqlea</a> e implementé una integración clave en <a href=\"https://kalkomey.com\" target=\"_blank\" rel=\"noopener noreferrer\">Kalkomey</a> que impulsó suscripciones e ingresos.</p><p>Cuando no estoy en la computadora, usualmente estoy en el gimnasio, jugando fútbol en el mejor <a href=\"https://www.instagram.com/sincontratofc\" target=\"_blank\" rel=\"noopener noreferrer\">club de amigos</a> de mi ciudad, o con amigos y familia. También gestiono proyectos en <a href=\"https://geome7ric.com\" target=\"_blank\" rel=\"noopener noreferrer\">Geome7ric</a>, mi emprendimiento de software.</p>",
     "location": {
       "address": "Corrientes 211",
       "postalCode": "B8000",
@@ -144,14 +144,24 @@
       "name": "Platform v2",
       "description": "Lideré la migración de 15 módulos funcionales desde una aplicación legacy en Vue 2 hacia Next.js, preservando la paridad en flujos críticos de clientes, compras, ventas, proveedores, pagos, registro y operación.",
       "impact": "Coordiné la migración de 15 capacidades de negocio hacia una arquitectura Next.js server-first, separando dominios y preservando contratos con el backend existente.",
-      "tech": ["Next.js", "TypeScript", "React", "Playwright"],
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Playwright"
+      ],
       "role": "Tech Lead",
       "company": "Mango"
     },
     {
       "name": "Cobros",
       "description": "Producto de conciliación de pagos para distribuidores de materiales de construcción. Integración STP para transferencias automatizadas, validación fiscal SAT, gestión de cuentas CLABE y trazabilidad completa.",
-      "tech": ["Next.js", "Laravel", "AWS", "STP API"],
+      "tech": [
+        "Next.js",
+        "Laravel",
+        "AWS",
+        "STP API"
+      ],
       "role": "Tech Lead & Arquitecto",
       "company": "Mango",
       "featured": true,
@@ -184,7 +194,14 @@
       "name": "./mango-engineering",
       "description": "Repositorio central de governance de ingeniería y planificación técnica/producto para Mango. Consolidé roadmap y backlog cross-repo, templates SDD, reglas y agentes compartidos, ADRs, specs transversales, sync con Asana Sprint Board y un viewer local para visualizar iniciativas.",
       "impact": "Diseñé el sistema central de governance y planificación de Mango, unificando roadmap cross-repo, ADRs, SDD, agentes y sincronización con Asana.",
-      "tech": ["Markdown", "SDD", "AI Agents", "MCP", "Asana", "Bash/Node.js"],
+      "tech": [
+        "Markdown",
+        "SDD",
+        "AI Agents",
+        "MCP",
+        "Asana",
+        "Bash/Node.js"
+      ],
       "role": "Creador & Arquitecto",
       "company": "Mango"
     },
@@ -192,7 +209,12 @@
       "name": "Transactions",
       "description": "Microservicio para automatizar el procesamiento de pagos a través de STP (red bancaria mexicana). Manejo de webhooks, seguimiento de estado de transacciones y notificaciones event-driven con monitoreo Sentry.",
       "impact": "Automaticé el procesamiento de pagos vía STP con webhooks, seguimiento de estado, notificaciones event-driven y monitoreo en Sentry.",
-      "tech": ["Express", "Prisma", "STP API", "Sentry"],
+      "tech": [
+        "Express",
+        "Prisma",
+        "STP API",
+        "Sentry"
+      ],
       "role": "Desarrollador",
       "company": "Mango"
     },
@@ -200,7 +222,13 @@
       "name": "Eagle",
       "description": "Plataforma de gestión de servicios en campo. Programación de técnicos, seguimiento de órdenes de trabajo, captura de evidencia fotográfica y dashboards en tiempo real.",
       "impact": "Construí flujos para coordinar técnicos, órdenes de trabajo y evidencia de campo con seguimiento y dashboards en tiempo real.",
-      "tech": ["NestJS", "Vue", "Quasar", "Capacitor", "Firebase"],
+      "tech": [
+        "NestJS",
+        "Vue",
+        "Quasar",
+        "Capacitor",
+        "Firebase"
+      ],
       "role": "Desarrollador Full Stack",
       "company": "Geome7ric",
       "url": "https://geome7ric.com"
@@ -209,7 +237,13 @@
       "name": "Lemur",
       "description": "Sistema de gestión de transporte corporativo con tracking GPS en tiempo real, optimización de rutas, asignación de conductores y visualización en mapa en vivo con Socket.io.",
       "impact": "Implementé tracking GPS, asignación de conductores, optimización de rutas y mapas en vivo para operaciones de transporte corporativo.",
-      "tech": ["NestJS", "Vue", "Quasar", "Google Maps", "Socket.io"],
+      "tech": [
+        "NestJS",
+        "Vue",
+        "Quasar",
+        "Google Maps",
+        "Socket.io"
+      ],
       "role": "Desarrollador Full Stack",
       "company": "Geome7ric",
       "url": "https://geome7ric.com"
@@ -217,7 +251,12 @@
     {
       "name": "Badger",
       "description": "Gestión de inventario industrial para una empresa manufacturera. Monorepo Turborepo con dashboard web y app móvil para operaciones de depósito.",
-      "tech": ["Turborepo", "Next.js", "Expo", "Supabase"],
+      "tech": [
+        "Turborepo",
+        "Next.js",
+        "Expo",
+        "Supabase"
+      ],
       "role": "Desarrollador Full Stack",
       "company": "Geome7ric",
       "url": "https://geome7ric.com",
@@ -246,7 +285,12 @@
       "name": "Wolf",
       "description": "Plataforma completa de punto de venta y comercio con ventas, pedidos, gestión de caja, analytics, equipos y sincronización con Tienda Nube.",
       "impact": "Integré ventas, pedidos, caja, analytics y sincronización con Tienda Nube en una plataforma unificada de comercio.",
-      "tech": ["Laravel", "Vue", "Quasar", "Tienda Nube API"],
+      "tech": [
+        "Laravel",
+        "Vue",
+        "Quasar",
+        "Tienda Nube API"
+      ],
       "role": "Desarrollador Full Stack",
       "company": "Geome7ric",
       "url": "https://geome7ric.com"
@@ -255,14 +299,24 @@
       "name": "Auditoría de infraestructura",
       "description": "Auditoría reproducible de un ecosistema multi-plataforma para determinar qué seguía activo, cuánto costaba realmente y qué conclusiones todavía tenían evidencia limitada.",
       "impact": "Inventarié más de 100 proyectos, ejecuté controles de salud y separé costos verificados, estimaciones y límites de evidencia para dejar una base confiable de decisión técnica y financiera.",
-      "tech": ["Multi-cloud", "FinOps", "Health checks", "Cost governance"],
+      "tech": [
+        "Multi-cloud",
+        "FinOps",
+        "Health checks",
+        "Cost governance"
+      ],
       "role": "Dirección técnica",
       "company": "Geome7ric"
     },
     {
       "name": "Asiento Libre",
       "description": "App de carpooling para Argentina (estilo BlaBlaCar). Búsqueda y publicación de viajes, reservas en tiempo real, calificaciones e integración de pagos en iOS, Android y web.",
-      "tech": ["React Native", "Expo", "Supabase", "Mercado Pago"],
+      "tech": [
+        "React Native",
+        "Expo",
+        "Supabase",
+        "Mercado Pago"
+      ],
       "role": "Creador & Desarrollador",
       "url": "https://asientolibre.ar",
       "featured": true,
@@ -290,7 +344,13 @@
       "name": "Ferret",
       "description": "Asistente de conocimiento con IA. Pipeline RAG, integración con Slack, pagos multi-tenant y onboarding self-serve para equipos.",
       "impact": "Diseñé un asistente RAG multi-tenant con Slack, pagos y onboarding self-serve para equipos.",
-      "tech": ["Next.js", "Supabase", "OpenAI", "Mercado Pago", "Slack API"],
+      "tech": [
+        "Next.js",
+        "Supabase",
+        "OpenAI",
+        "Mercado Pago",
+        "Slack API"
+      ],
       "role": "Creador & Desarrollador",
       "url": "https://geome7ric.com"
     },
