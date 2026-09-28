@@ -1,0 +1,61 @@
+import type { CSSProperties } from "react";
+import { cn } from "@/utils";
+import {
+  toPaths,
+  WOLF_BASE,
+  WOLF_COLUMNS,
+  WOLF_FRAMES,
+  WOLF_ROWS,
+  type WolfPaint,
+} from "@/lib/pixel-wolf-sprite";
+
+const basePaths = toPaths(WOLF_BASE);
+const framePaths = Object.entries(WOLF_FRAMES).map(
+  ([name, layer]) => [name, toPaths(layer)] as const,
+);
+
+// Grid proportions for globals.css, derived from the sprite itself.
+const gridStyle = {
+  "--pixel-wolf-columns": WOLF_COLUMNS,
+  "--pixel-wolf-rows": WOLF_ROWS,
+} as CSSProperties;
+
+const renderPaths = (paths: [WolfPaint, string][]) =>
+  paths.map(([paint, d]) => (
+    <path key={paint} d={d} className={`pixel-wolf__paint--${paint}`} />
+  ));
+
+export default function PixelWolfAvatar({
+  isThinking = false,
+  size = "launcher",
+}: {
+  isThinking?: boolean;
+  size?: "launcher" | "header" | "composer";
+}) {
+  return (
+    <span
+      className={cn(
+        "pixel-assistant-avatar",
+        `pixel-assistant-avatar--${size}`,
+        isThinking && "pixel-assistant-avatar--thinking",
+      )}
+      style={gridStyle}
+      aria-hidden="true"
+    >
+      <svg
+        className="pixel-wolf__sprite"
+        viewBox={`0 0 ${WOLF_COLUMNS} ${WOLF_ROWS}`}
+        shapeRendering="crispEdges"
+        focusable="false"
+      >
+        {renderPaths(basePaths)}
+        {framePaths.map(([name, paths]) => (
+          <g key={name} className={`pixel-wolf__frame pixel-wolf__frame--${name}`}>
+            {renderPaths(paths)}
+          </g>
+        ))}
+      </svg>
+      <span className="pixel-wolf__shadow" />
+    </span>
+  );
+}

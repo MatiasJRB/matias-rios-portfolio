@@ -25,6 +25,7 @@ import {
 } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/utils";
+import PixelWolfAvatar from "@/components/PixelWolfAvatar";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
@@ -238,61 +239,6 @@ const FormattedMessage = ({ content }: { content: string }) => {
 
   return <>{blocks}</>;
 };
-
-const CAT_PIXEL_ROWS = [
-  ".............",
-  "...M.....M...",
-  "..MOM...MOM..",
-  ".MOOOMMMOOOM.",
-  "MOOOOOMOOOOOM",
-  "OOOEOOOOOEOOO",
-  "OOOOOOOOOOOOO",
-  ".OOOOOOOOOOOT",
-  "..OO.O.O.OTTT",
-  "...O.O.O.OTT.",
-  ".............",
-] as const;
-
-const pixelCatClassByToken: Record<string, string> = {
-  S: "shadow",
-  O: "orange",
-  E: "eye",
-  M: "initial-m",
-  T: "tail",
-};
-
-const PixelAssistantAvatar = ({
-  isThinking = false,
-  size = "launcher",
-}: {
-  isThinking?: boolean;
-  size?: "launcher" | "header" | "composer";
-}) => (
-  <span
-    className={cn(
-      "pixel-assistant-avatar",
-      `pixel-assistant-avatar--${size}`,
-      isThinking && "pixel-assistant-avatar--thinking",
-    )}
-    aria-hidden="true"
-  >
-    <span className="pixel-cat__sprite">
-      {CAT_PIXEL_ROWS.map((row, rowIndex) =>
-        [...row].map((token, columnIndex) => (
-          <span
-            key={`${rowIndex}-${columnIndex}`}
-            className={cn(
-              "pixel-cat__pixel",
-              token !== "." &&
-                `pixel-cat__pixel--${pixelCatClassByToken[token]}`,
-            )}
-          />
-        )),
-      )}
-    </span>
-    <span className="pixel-cat__shadow" />
-  </span>
-);
 
 export default function RecruiterBot({
   lang,
@@ -766,7 +712,7 @@ export default function RecruiterBot({
               </span>
             </span>
             <span className="control-hover relative inline-block rounded-2xl p-2">
-              <PixelAssistantAvatar />
+              <PixelWolfAvatar />
             </span>
           </motion.button>
         ) : (
@@ -1008,7 +954,7 @@ export default function RecruiterBot({
                     isExpanded && "assistant-composer-avatar-row--expanded",
                   )}
                 >
-                  <PixelAssistantAvatar
+                  <PixelWolfAvatar
                     isThinking={isSubmitting}
                     size="composer"
                   />

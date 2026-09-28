@@ -1101,46 +1101,55 @@ html:not(.dark) .cinematic-spotlight {
   z-index: 1;
 }
 
-/* Sticky portfolio assistant — 8-bit MR cat avatar */
+/* Sticky portfolio assistant — 8-bit wolf avatar (SVG, see PixelWolfAvatar).
+   Sizes are multiples of the 16-column sprite so every pixel stays square. */
 .pixel-assistant-avatar {
-  --avatar-size: 58.5px;
-  --pixel-cat-body: color-mix(
+  --avatar-size: 64px;
+  --pixel-wolf-body: color-mix(
     in srgb,
     var(--color-primary) 88%,
     var(--color-surface)
   );
-  --pixel-cat-body-shadow: color-mix(
+  --pixel-wolf-body-shadow: color-mix(
     in srgb,
     var(--color-primary) 56%,
     var(--color-background)
   );
-  --pixel-cat-mark: var(--pixel-cat-body-shadow);
-  --pixel-cat-mark-lit: color-mix(
+  --pixel-wolf-mark: var(--pixel-wolf-body-shadow);
+  --pixel-wolf-mark-lit: color-mix(
     in srgb,
     var(--color-primary) 82%,
     var(--color-text)
   );
-  --pixel-cat-eye: var(--color-background);
-  --pixel-cat-eye-blink: color-mix(
+  --pixel-wolf-eye: var(--color-background);
+  --pixel-wolf-eye-blink: color-mix(
     in srgb,
     var(--color-background) 62%,
     var(--color-primary)
   );
-  --pixel-cat-eye-glint: var(--color-text);
-  --pixel-cat-initial-m: var(--pixel-cat-mark);
-  --pixel-cat-initial-lit: color-mix(
+  --pixel-wolf-eye-glint: var(--color-text);
+  --pixel-wolf-muzzle: color-mix(
+    in srgb,
+    var(--color-primary) 28%,
+    var(--color-surface)
+  );
+  --pixel-wolf-initial-m: var(--pixel-wolf-mark);
+  --pixel-wolf-initial-lit: color-mix(
     in srgb,
     var(--color-primary) 88%,
-    var(--pixel-cat-body)
+    var(--pixel-wolf-body)
   );
-  --pixel-cat-glow: color-mix(in srgb, var(--color-primary) 18%, transparent);
-  --pixel-cat-drop-shadow: var(--shadow-hover);
-  --pixel-cat-drop-shadow-small: var(--shadow);
-  --pixel-cat-floor-shadow: var(--shadow-hover);
+  --pixel-wolf-glow: color-mix(in srgb, var(--color-primary) 18%, transparent);
+  --pixel-wolf-drop-shadow: var(--shadow-hover);
+  --pixel-wolf-drop-shadow-small: var(--shadow);
+  --pixel-wolf-floor-shadow: var(--shadow-hover);
   position: relative;
   display: inline-flex;
   width: var(--avatar-size);
-  height: calc(var(--avatar-size) * 0.8461538 + 8px);
+  height: calc(
+    var(--avatar-size) * var(--pixel-wolf-rows) / var(--pixel-wolf-columns) +
+      8px
+  );
   align-items: flex-start;
   justify-content: center;
   flex-shrink: 0;
@@ -1148,174 +1157,210 @@ html:not(.dark) .cinematic-spotlight {
 
 html:not(.dark) .pixel-assistant-avatar,
 .light .pixel-assistant-avatar {
-  --pixel-cat-body-shadow: color-mix(
+  --pixel-wolf-body-shadow: color-mix(
     in srgb,
     var(--color-primary) 68%,
     var(--color-text)
   );
-  --pixel-cat-mark: var(--pixel-cat-body-shadow);
-  --pixel-cat-mark-lit: color-mix(
+  --pixel-wolf-mark: var(--pixel-wolf-body-shadow);
+  --pixel-wolf-mark-lit: color-mix(
     in srgb,
     var(--color-primary) 78%,
     var(--color-surface)
   );
-  --pixel-cat-eye: var(--color-background);
-  --pixel-cat-eye-blink: color-mix(
+  --pixel-wolf-eye: var(--color-background);
+  --pixel-wolf-eye-blink: color-mix(
     in srgb,
     var(--color-background) 58%,
     var(--color-primary)
   );
-  --pixel-cat-eye-glint: var(--color-text);
-  --pixel-cat-initial-m: var(--pixel-cat-mark);
-  --pixel-cat-initial-lit: color-mix(
+  --pixel-wolf-eye-glint: var(--color-text);
+  --pixel-wolf-initial-m: var(--pixel-wolf-mark);
+  --pixel-wolf-initial-lit: color-mix(
     in srgb,
     var(--color-primary) 82%,
     var(--color-surface)
   );
-  --pixel-cat-glow: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  --pixel-wolf-glow: color-mix(in srgb, var(--color-primary) 14%, transparent);
 }
 
 .dark .pixel-assistant-avatar {
-  --pixel-cat-body-shadow: color-mix(
+  --pixel-wolf-body-shadow: color-mix(
     in srgb,
     var(--color-primary) 58%,
     var(--color-background)
   );
-  --pixel-cat-mark: var(--pixel-cat-body-shadow);
-  --pixel-cat-mark-lit: color-mix(
+  --pixel-wolf-mark: var(--pixel-wolf-body-shadow);
+  --pixel-wolf-mark-lit: color-mix(
     in srgb,
     var(--color-primary) 88%,
-    var(--pixel-cat-mark)
+    var(--pixel-wolf-mark)
   );
-  --pixel-cat-eye: var(--color-background);
-  --pixel-cat-eye-blink: color-mix(
+  --pixel-wolf-eye: var(--color-background);
+  --pixel-wolf-eye-blink: color-mix(
     in srgb,
     var(--color-background) 72%,
     var(--color-primary)
   );
-  --pixel-cat-eye-glint: var(--color-text);
-  --pixel-cat-initial-m: var(--pixel-cat-mark);
-  --pixel-cat-initial-lit: color-mix(
+  --pixel-wolf-eye-glint: var(--color-text);
+  --pixel-wolf-muzzle: color-mix(
+    in srgb,
+    var(--color-primary) 35%,
+    var(--color-text)
+  );
+  --pixel-wolf-initial-m: var(--pixel-wolf-mark);
+  --pixel-wolf-initial-lit: color-mix(
     in srgb,
     var(--color-primary) 90%,
-    var(--pixel-cat-body)
+    var(--pixel-wolf-body)
   );
-  --pixel-cat-glow: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  --pixel-wolf-glow: color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
 
 .pixel-assistant-avatar--header,
 .pixel-assistant-avatar--composer {
-  --avatar-size: 35.1px;
-  height: calc(var(--avatar-size) * 0.8461538 + 6px);
+  --avatar-size: 32px;
+  height: calc(
+    var(--avatar-size) * var(--pixel-wolf-rows) / var(--pixel-wolf-columns) +
+      6px
+  );
 }
 
 .pixel-assistant-avatar--composer {
-  --avatar-size: 39px;
+  --avatar-size: 48px;
 }
 
-.pixel-cat__sprite {
+/* Keep the floating launcher from covering the single-column mobile layout. */
+@media (max-width: 639px) {
+  .pixel-assistant-avatar--launcher {
+    --avatar-size: 48px;
+  }
+}
+
+.pixel-wolf__sprite {
   position: relative;
   z-index: 1;
-  display: grid;
+  display: block;
   width: var(--avatar-size);
-  aspect-ratio: 13 / 11;
-  grid-template-columns: repeat(13, 1fr);
-  grid-template-rows: repeat(11, 1fr);
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  height: calc(
+    var(--avatar-size) * var(--pixel-wolf-rows) / var(--pixel-wolf-columns)
+  );
+  overflow: visible;
   transform-origin: 50% 88%;
-  filter: drop-shadow(0 14px 22px var(--pixel-cat-drop-shadow))
-    drop-shadow(0 0 16px var(--pixel-cat-glow));
+  filter: drop-shadow(0 14px 22px var(--pixel-wolf-drop-shadow))
+    drop-shadow(0 0 16px var(--pixel-wolf-glow));
 }
 
-.pixel-cat__pixel {
-  width: 100%;
-  height: 100%;
-  transition: background-color 320ms ease-in-out;
+.pixel-wolf__sprite path {
+  transition: fill 320ms ease-in-out;
 }
 
-.pixel-cat__pixel--eye {
-  background: var(--pixel-cat-eye);
-  animation-name: pixel-cat-blink;
-  animation-duration: var(--pixel-cat-eye-duration, 3.4s);
-  animation-timing-function: step-end;
-  animation-iteration-count: infinite;
+.pixel-wolf__paint--body {
+  fill: var(--pixel-wolf-body);
 }
 
-.pixel-cat__pixel--shadow {
-  background: var(--pixel-cat-body-shadow);
+.pixel-wolf__paint--muzzle {
+  fill: var(--pixel-wolf-muzzle);
 }
 
-.pixel-cat__pixel--orange {
-  background: var(--pixel-cat-body);
+.pixel-wolf__paint--shadow {
+  fill: var(--pixel-wolf-body-shadow);
 }
 
-.pixel-cat__pixel--initial-m {
-  background: var(--pixel-cat-initial-m);
-  animation: pixel-cat-mark-color var(--pixel-cat-mark-duration, 4.2s)
+.pixel-wolf__paint--mark {
+  fill: var(--pixel-wolf-initial-m);
+  animation: pixel-wolf-mark-color var(--pixel-wolf-mark-duration, 4.2s)
     ease-in-out infinite;
 }
 
-.pixel-cat__pixel--tail {
-  background: var(--pixel-cat-mark);
-  transform-origin: -140% 60%;
-  will-change: transform;
-  transition:
-    background-color 320ms ease-in-out,
-    transform 220ms ease-out;
-  animation-name: pixel-cat-tail-wag, pixel-cat-mark-color;
-  animation-duration:
-    var(--pixel-cat-tail-duration, 1.85s), var(--pixel-cat-mark-duration, 4.2s);
-  animation-timing-function: steps(3, end), ease-in-out;
-  animation-iteration-count: infinite, infinite;
+.pixel-wolf__paint--eye {
+  fill: var(--pixel-wolf-eye);
+  animation: pixel-wolf-blink var(--pixel-wolf-eye-duration, 3.4s) step-end
+    infinite;
 }
 
-.pixel-assistant-avatar--header .pixel-cat__sprite,
-.pixel-assistant-avatar--composer .pixel-cat__sprite {
-  filter: drop-shadow(0 10px 16px var(--pixel-cat-drop-shadow-small))
-    drop-shadow(0 0 9px var(--pixel-cat-glow));
+/* Frame-by-frame poses: the tail wags mid → up → mid → down and the right
+   ear twitches once per cycle. Only one frame per part is visible at a time. */
+.pixel-wolf__frame {
+  opacity: 0;
+}
+
+.pixel-wolf__frame--tail-mid {
+  opacity: 1;
+  animation: pixel-wolf-tail-mid var(--pixel-wolf-tail-duration, 1.85s)
+    step-end infinite;
+}
+
+.pixel-wolf__frame--tail-up {
+  animation: pixel-wolf-tail-up var(--pixel-wolf-tail-duration, 1.85s)
+    step-end infinite;
+}
+
+.pixel-wolf__frame--tail-down {
+  animation: pixel-wolf-tail-down var(--pixel-wolf-tail-duration, 1.85s)
+    step-end infinite;
+}
+
+.pixel-wolf__frame--ear-rest {
+  opacity: 1;
+  animation: pixel-wolf-ear-rest var(--pixel-wolf-ear-duration, 5.6s) step-end
+    infinite;
+}
+
+.pixel-wolf__frame--ear-twitch {
+  animation: pixel-wolf-ear-twitch var(--pixel-wolf-ear-duration, 5.6s)
+    step-end infinite;
+}
+
+.pixel-assistant-avatar--header .pixel-wolf__sprite,
+.pixel-assistant-avatar--composer .pixel-wolf__sprite {
+  filter: drop-shadow(0 10px 16px var(--pixel-wolf-drop-shadow-small))
+    drop-shadow(0 0 9px var(--pixel-wolf-glow));
 }
 
 .pixel-assistant-avatar--composer {
-  height: calc(var(--avatar-size) * 0.8461538);
+  height: calc(
+    var(--avatar-size) * var(--pixel-wolf-rows) / var(--pixel-wolf-columns)
+  );
 }
 
-.pixel-assistant-avatar--composer .pixel-cat__shadow {
+.pixel-assistant-avatar--composer .pixel-wolf__shadow {
   display: none;
 }
 
-.pixel-cat__shadow {
+.pixel-wolf__shadow {
   position: absolute;
   left: 20%;
   right: 16%;
   bottom: 0;
   height: 7px;
   border-radius: 999px;
-  background: var(--pixel-cat-floor-shadow);
+  background: var(--pixel-wolf-floor-shadow);
   filter: blur(4px);
   opacity: 0.42;
 }
 
-.pixel-assistant-avatar--header .pixel-cat__shadow {
+.pixel-assistant-avatar--header .pixel-wolf__shadow {
   height: 5px;
   filter: blur(3px);
 }
 
 .pixel-assistant-avatar--thinking {
-  --pixel-cat-eye-duration: 1.35s;
-  --pixel-cat-mark-duration: 1.15s;
-  --pixel-cat-tail-duration: 0.95s;
+  --pixel-wolf-eye-duration: 1.35s;
+  --pixel-wolf-mark-duration: 1.15s;
+  --pixel-wolf-tail-duration: 0.95s;
+  --pixel-wolf-ear-duration: 2.4s;
 }
 
 html:not(.dark) .pixel-assistant-avatar--thinking,
 .light .pixel-assistant-avatar--thinking {
-  --pixel-cat-glow: color-mix(in srgb, var(--color-primary) 18%, transparent);
-  --pixel-cat-mark-lit: color-mix(
+  --pixel-wolf-glow: color-mix(in srgb, var(--color-primary) 18%, transparent);
+  --pixel-wolf-mark-lit: color-mix(
     in srgb,
     var(--color-primary) 82%,
     var(--color-surface)
   );
-  --pixel-cat-initial-lit: color-mix(
+  --pixel-wolf-initial-lit: color-mix(
     in srgb,
     var(--color-primary) 78%,
     var(--color-surface)
@@ -1323,16 +1368,16 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
 }
 
 .dark .pixel-assistant-avatar--thinking {
-  --pixel-cat-glow: color-mix(in srgb, var(--color-primary) 24%, transparent);
-  --pixel-cat-mark-lit: color-mix(
+  --pixel-wolf-glow: color-mix(in srgb, var(--color-primary) 24%, transparent);
+  --pixel-wolf-mark-lit: color-mix(
     in srgb,
     var(--color-primary) 88%,
-    var(--pixel-cat-body-shadow)
+    var(--pixel-wolf-body-shadow)
   );
-  --pixel-cat-initial-lit: color-mix(
+  --pixel-wolf-initial-lit: color-mix(
     in srgb,
     var(--color-primary) 82%,
-    var(--pixel-cat-body)
+    var(--pixel-wolf-body)
   );
 }
 
@@ -1545,7 +1590,7 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
 }
 
 .assistant-composer-avatar-row--expanded .pixel-assistant-avatar--composer {
-  --avatar-size: 44px;
+  --avatar-size: 64px;
 }
 
 .assistant-composer {
@@ -1600,42 +1645,84 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
     0 10px 28px color-mix(in srgb, var(--color-warning) 8%, transparent);
 }
 
-@keyframes pixel-cat-blink {
+@keyframes pixel-wolf-blink {
   0%,
   72%,
   100% {
-    background-color: var(--pixel-cat-eye);
+    fill: var(--pixel-wolf-eye);
   }
   77%,
   83% {
-    background-color: var(--pixel-cat-eye-blink);
+    fill: var(--pixel-wolf-eye-blink);
   }
   88% {
-    background-color: var(--pixel-cat-eye-glint);
+    fill: var(--pixel-wolf-eye-glint);
   }
 }
 
-@keyframes pixel-cat-mark-color {
+@keyframes pixel-wolf-mark-color {
   0%,
   100% {
-    background-color: var(--pixel-cat-mark);
+    fill: var(--pixel-wolf-mark);
   }
   46%,
   58% {
-    background-color: var(--pixel-cat-mark-lit);
+    fill: var(--pixel-wolf-mark-lit);
   }
 }
 
-@keyframes pixel-cat-tail-wag {
+@keyframes pixel-wolf-tail-mid {
   0%,
+  50% {
+    opacity: 1;
+  }
+  25%,
+  75%,
   100% {
-    transform: translate(0, 0);
+    opacity: 0;
   }
-  28% {
-    transform: translate(1px, -1px);
+}
+
+@keyframes pixel-wolf-tail-up {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
   }
-  58% {
-    transform: translate(-1px, 1px);
+  25% {
+    opacity: 1;
+  }
+}
+
+@keyframes pixel-wolf-tail-down {
+  0% {
+    opacity: 0;
+  }
+  75%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pixel-wolf-ear-rest {
+  0%,
+  92%,
+  100% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 0;
+  }
+}
+
+@keyframes pixel-wolf-ear-twitch {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+  }
+  88% {
+    opacity: 1;
   }
 }
 
@@ -1644,9 +1731,9 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
     display: none;
   }
 
-  .pixel-cat__pixel--eye,
-  .pixel-cat__pixel--initial-m,
-  .pixel-cat__pixel--tail {
+  .pixel-wolf__paint--eye,
+  .pixel-wolf__paint--mark,
+  .pixel-wolf__frame {
     animation: none;
   }
 }
