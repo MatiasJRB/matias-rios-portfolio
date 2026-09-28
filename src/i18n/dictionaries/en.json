@@ -144,8 +144,7 @@
   "cta": {
     "lookingForOpportunities": "I architect the platform where builders purchase construction materials with commercial credit through 200+ points of sale in Mexico.",
     "viewProjects": "View projects",
-    "contact": "Contact me",
-    "emailCopied": "Email copied",
+    "contact": "Send email",
     "contactSubject": "Portfolio inquiry",
     "contactBody": "Hi Matias,\n\n",
     "moreAboutMe": "More about me"
@@ -185,14 +184,14 @@
       ]
     },
     "aiFirstDevelopment": {
-      "label": "AI-First Development",
-      "description": "Language-agnostic, tool-augmented workflow. The syntax is a detail — the architecture, the decisions, and the product thinking are what matter.",
+      "label": "Agent-assisted engineering",
+      "description": "I bring agents into engineering workflows: turn specs, decisions, and standards into versioned context, automate repeatable work, and review results before shipping.",
       "ecosystems": [
-        "AI-assisted coding",
-        "Prompt engineering",
-        "Rapid prototyping",
-        "Cross-stack fluency",
-        "Automation-first mindset"
+        "Versioned agents and skills",
+        "Specs and ADRs as context",
+        "Cross-repo automation",
+        "Human review and tests",
+        "MCP and tooling"
       ]
     },
     "backendEngineering": {
@@ -257,7 +256,7 @@
     "suggestions": [
       "What experience does he have leading teams?",
       "Which projects has he taken to production?",
-      "Is he a fit for this role?"
+      "Paste a job post to assess fit"
     ],
     "followUpLabel": "Keep exploring",
     "followUps": {
@@ -275,6 +274,8 @@
     "tooLongError": "The text is too long. Trim it a bit and try again.",
     "rateLimitError": "Too many requests in a row. Wait a minute and try again.",
     "genericError": "I could not answer right now. Please try again in a moment.",
-    "privacyNote": "Chat and files go to Gemini; they are not stored here."
+    "privacyNote": "Chat and files go to Gemini; they are not stored here.",
+    "rolePastePlaceholder": "Paste the role description or requirements here…",
+    "rolePasteHint": "Paste the full job post; I’ll compare its requirements with portfolio evidence."
   }
 }

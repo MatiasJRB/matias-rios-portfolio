@@ -179,7 +179,11 @@
         "Canonical roadmap and backlog for cross-repo initiatives.",
         "Portable agent layer with rules, agents, and skills as the source of truth.",
         "Versioned sync to consumer repos through PRs."
-      ]
+      ],
+      "visual": {
+        "image": "/images/projects/mango-engineering-agentic.webp",
+        "alt": "Editorial image of engineering plans connected to a modular routing board in paper and brass tones."
+      }
     },
     {
       "name": "Transactions",
@@ -192,6 +196,19 @@
         "Sentry"
       ],
       "role": "Developer",
+      "company": "Mango"
+    },
+    {
+      "name": "Mango Credit Health",
+      "description": "Operational dashboard of credit and payment invariants to detect issues in the financial platform.",
+      "impact": "Defined the scope and criteria with the team for a health dashboard that turns credit and payment rules into actionable engineering signals.",
+      "tech": [
+        "Grafana",
+        "SQL",
+        "Docker",
+        "Mango Credits"
+      ],
+      "role": "Technical direction",
       "company": "Mango"
     },
     {
@@ -253,8 +270,8 @@
         "Documented delivery with Android rollout, health checks, and post go-live support window."
       ],
       "visual": {
-        "image": "/images/projects/badger-mobile-home.png",
-        "alt": "Badger/MAPSA mobile screenshot showing the inventory dashboard."
+        "image": "/images/projects/badger-editorial.webp",
+        "alt": "Editorial image of inventoried industrial parts with a scanner and stock ledger."
       }
     },
     {
@@ -299,9 +316,10 @@
         "Reconciled app, Mercado Pago, and Supabase evidence before approving the Android release."
       ],
       "visual": {
-        "image": "/images/projects/asiento-libre-home.png",
-        "alt": "Asiento Libre mobile screenshot showing the app home screen."
-      }
+        "image": "/images/projects/asiento-libre-editorial.webp",
+        "alt": "Editorial image of an intercity route map connecting two points, with a car key."
+      },
+      "showInArchive": true
     },
     {
       "name": "Turna",
@@ -328,5 +346,5 @@
       "url": "https://www.uns.edu.ar"
     }
   ],
-  "footer": "<p>Based on the design of <a href=\"https://brittanychiang.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>Brittany Chiang</a>, built with <a href=\"https://nextjs.org\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>Next.js 16</a> and deployed with <a href=\"https://vercel.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>Vercel</a>. All text uses Inter.</p>"
+  "footer": "<p>Designed and built by Matias Rios. Built with <a href=\"https://nextjs.org\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold hover:text-primary transition-colors\">Next.js</a> and deployed on <a href=\"https://vercel.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold hover:text-primary transition-colors\">Vercel</a>.</p>"
 }

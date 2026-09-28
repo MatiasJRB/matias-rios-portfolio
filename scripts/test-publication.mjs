@@ -95,14 +95,41 @@ try {
     status: 200,
     includes: [
       "Notas",
+      "Ingeniería con agentes",
+      "Salud de Mango Créditos",
+      "Enviar email",
+      "Diseñado y construido por Matias Rios",
       "La IA aceleró la escritura de código",
       "Audité 113 proyectos",
       "Yo seguía siendo la API entre la IA y mi vida",
     ],
     excludes: [
+      "Brittany Chiang",
+      "Desarrollo AI-First",
       "La primera vez que alguien dependió",
       "El framework no podía actualizarse",
     ],
+  });
+  await expectResponse(baseUrl, "/en", {
+    status: 200,
+    includes: ["Agent-assisted engineering", "Mango Credit Health", "Send email"],
+    excludes: ["Brittany Chiang"],
+  });
+  await expectResponse(baseUrl, "/images/projects/mango-engineering-agentic.webp", {
+    status: 200,
+    contentType: "image/webp",
+  });
+  await expectResponse(baseUrl, "/images/projects/badger-editorial.webp", {
+    status: 200,
+    contentType: "image/webp",
+  });
+  await expectResponse(baseUrl, "/images/projects/asiento-libre-editorial.webp", {
+    status: 200,
+    contentType: "image/webp",
+  });
+  await expectResponse(baseUrl, "/images/work/profertil-symbol.svg", {
+    status: 200,
+    contentType: "image/svg+xml",
   });
   await expectResponse(baseUrl, "/es/notes", {
     status: 200,

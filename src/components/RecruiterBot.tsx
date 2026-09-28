@@ -255,6 +255,7 @@ export default function RecruiterBot({
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
+  const [rolePasteMode, setRolePasteMode] = useState(false);
   const [fileContexts, setFileContexts] = useState<ContextFile[]>([]);
   const [fileError, setFileError] = useState<string | null>(null);
   const [isDraggingFile, setIsDraggingFile] = useState(false);
@@ -292,10 +293,17 @@ export default function RecruiterBot({
     fileContexts.length === 0;
   const suggestions =
     messages.length === 1
-      ? copy.suggestions
+      ? rolePasteMode
+        ? []
+        : copy.suggestions
       : showFollowUps && askedQuestions.length > 0
         ? getChatFollowUps(askedQuestions, copy.followUps)
         : [];
+  const composerPlaceholder = rolePasteMode
+    ? copy.rolePastePlaceholder
+    : fileContexts.length
+      ? `${copy.placeholder} ${contextFileCopy.contextHint}`
+      : copy.placeholder;
 
   useEffect(() => {
     const shouldOpenFromHash = ["#recruiter-bot", "#assistant", "#ai"].includes(
@@ -636,6 +644,7 @@ export default function RecruiterBot({
     );
 
     setInput("");
+    setRolePasteMode(false);
     setFileContexts([]);
     setFileError(null);
     setIsSubmitting(true);
@@ -952,7 +961,16 @@ export default function RecruiterBot({
                           key={suggestion}
                           type="button"
                           onClick={() => {
-                            setInput(suggestion);
+                            if (
+                              messages.length === 1 &&
+                              suggestion === copy.suggestions[2]
+                            ) {
+                              setInput("");
+                              setRolePasteMode(true);
+                            } else {
+                              setInput(suggestion);
+                              setRolePasteMode(false);
+                            }
                             textareaRef.current?.focus();
                           }}
                           className="min-h-11 rounded-xl border px-3 py-2 text-left text-xs font-semibold leading-snug transition-[background-color,border-color,color] duration-200 hover:border-[color:var(--color-primary)] hover:bg-[color:var(--color-card-hover)]"
@@ -1115,11 +1133,7 @@ export default function RecruiterBot({
                       onChange={(event) => setInput(event.target.value)}
                       onKeyDown={handleComposerKeyDown}
                       onPaste={handleComposerPaste}
-                      placeholder={
-                        fileContexts.length
-                          ? `${copy.placeholder} ${contextFileCopy.contextHint}`
-                          : copy.placeholder
-                      }
+                      placeholder={composerPlaceholder}
                       rows={2}
                       maxLength={MAX_CHARS}
                       name="portfolio-assistant-question"
@@ -1143,6 +1157,14 @@ export default function RecruiterBot({
                       <FaPaperPlane aria-hidden="true" size={14} />
                     </button>
                   </div>
+                  {rolePasteMode ? (
+                    <p
+                      className="px-2 pt-1 text-xs font-medium"
+                      style={{ color: "var(--color-muted)" }}
+                    >
+                      {copy.rolePasteHint}
+                    </p>
+                  ) : null}
                   <div
                     className="mt-1 flex items-center justify-between gap-3 px-2 text-xs font-semibold"
                     style={{ color: "var(--color-muted)" }}

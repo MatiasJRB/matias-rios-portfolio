@@ -141,7 +141,28 @@ const History: React.FC<
         work.map((job, index) => {
           const jobId = `job-${job.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
           const animation = getSlideInAnimation(index);
-          const logo = getCompanyLogo(job.name);
+          const isRazorTech = job.name === "Cargill";
+          const isProfertil = job.name.includes("Indoscience");
+          const logo = isRazorTech
+            ? getCompanyLogo("RazorTech")
+            : isProfertil
+              ? getCompanyLogo("Profertil")
+              : getCompanyLogo(job.name);
+          const secondaryCompany = isRazorTech
+            ? {
+                label: "C",
+                name: "Cargill",
+                color: "#1f6e43",
+                background: "#d9ecdc",
+              }
+            : isProfertil
+              ? {
+                  label: "IN",
+                  name: "Indoscience",
+                  color: "#2b5970",
+                  background: "#dcebf0",
+                }
+              : null;
           const monogram = job.name
             .split(/\s*\/\s*|\s+/)
             .filter(Boolean)
@@ -197,28 +218,42 @@ const History: React.FC<
                 >
                   <span
                     aria-hidden="true"
-                    className="company-logo flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border transition-[border-color,transform] duration-200"
-                    style={{
-                      backgroundColor: "var(--color-surface)",
-                      borderColor: "var(--color-border)",
-                      color: getCompanyHoverColor(job.name),
-                    }}
+                    className={`relative inline-flex h-9 flex-shrink-0 items-start ${secondaryCompany ? "w-12" : "w-8"}`}
                   >
-                    {logo ? (
-                      <Image
-                        src={logo}
-                        alt=""
-                        width={26}
-                        height={26}
-                        className="object-contain"
-                        style={{ width: "auto", height: "auto" }}
-                        loading="lazy"
-                      />
-                    ) : (
-                      <span className="text-[0.6rem] font-bold tracking-[-0.02em]">
-                        {monogram}
+                    {secondaryCompany ? (
+                      <span
+                        title={secondaryCompany.name}
+                        className="absolute bottom-0 right-0 z-0 flex h-6 w-6 items-center justify-center rounded-full border border-white text-xs font-extrabold leading-none tracking-[-0.05em] shadow-sm"
+                        style={{
+                          color: secondaryCompany.color,
+                          backgroundColor: secondaryCompany.background,
+                        }}
+                      >
+                        {secondaryCompany.label}
                       </span>
-                    )}
+                    ) : null}
+                    <span
+                      className="company-logo relative z-10 flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border bg-white shadow-sm transition-[border-color,transform] duration-200"
+                      style={{
+                        borderColor: "var(--color-border)",
+                        color: getCompanyHoverColor(job.name),
+                      }}
+                    >
+                      {logo ? (
+                        <Image
+                          src={logo}
+                          alt=""
+                          width={26}
+                          height={26}
+                          className="h-[26px] w-[26px] object-contain"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <span className="text-[0.6rem] font-bold tracking-[-0.02em]">
+                          {monogram}
+                        </span>
+                      )}
+                    </span>
                   </span>
                   <span>
                     <span

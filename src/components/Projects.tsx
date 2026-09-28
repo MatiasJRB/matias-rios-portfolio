@@ -2,6 +2,7 @@
 
 import { cn } from "@/utils";
 import React from "react";
+import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import type { Project } from "@/types";
 import type { Dictionary } from "@/i18n/types";
@@ -39,237 +40,39 @@ function ProjectArtifact({
   companyUrls?: Record<string, string>;
 }) {
   const companyUrl = getCompanyUrl(companyUrls, project.company);
-  const normalizedName = project.name.toLowerCase();
 
   return (
     <div
       className="project-artifact relative mb-6 aspect-[16/9] overflow-hidden rounded-xl border"
       style={{
-        color: accentColor,
         borderColor: `color-mix(in srgb, ${accentColor} 24%, var(--color-border))`,
         background: `color-mix(in srgb, ${accentColor} 8%, var(--color-background))`,
       }}
     >
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 320 180"
-        className="h-full w-full"
-        fill="none"
-      >
-        <path
-          d="M0 24H320M0 90H320M0 156H320"
-          stroke="currentColor"
-          strokeOpacity="0.09"
+      {project.visual?.image ? (
+        <Image
+          src={project.visual.image}
+          alt={project.visual.alt || ""}
+          fill
+          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+          className="object-cover"
         />
-        <path
-          d="M40 0V180M160 0V180M280 0V180"
-          stroke="currentColor"
-          strokeOpacity="0.09"
-        />
-
-        {normalizedName.includes("mango engineering") ? (
-          <>
-            <rect
-              x="24"
-              y="30"
-              width="116"
-              height="120"
-              rx="10"
-              fill="currentColor"
-              fillOpacity="0.07"
-              stroke="currentColor"
-              strokeOpacity="0.45"
-            />
-            <text x="38" y="50" fill="currentColor" fontSize="9" fontWeight="700" letterSpacing="1.1">
-              ENGINEERING
-            </text>
-            <path
-              d="M39 66H115M39 81H101M39 96H110M39 111H91M39 126H106"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeOpacity="0.46"
-            />
-            <path
-              d="M144 90H183M173 83L183 90L173 97"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeOpacity="0.7"
-            />
-            <rect
-              x="188"
-              y="30"
-              width="108"
-              height="120"
-              rx="10"
-              fill="currentColor"
-              fillOpacity="0.12"
-              stroke="currentColor"
-              strokeOpacity="0.62"
-            />
-            <text x="202" y="50" fill="currentColor" fontSize="9" fontWeight="700" letterSpacing="1.1">
-              AGENTIC
-            </text>
-            <path
-              d="M242 70V118M218 92H266"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeOpacity="0.6"
-            />
-            <circle cx="242" cy="70" r="6" fill="currentColor" fillOpacity="0.72" />
-            <circle cx="216" cy="92" r="5" fill="currentColor" fillOpacity="0.5" />
-            <circle cx="268" cy="92" r="5" fill="currentColor" fillOpacity="0.5" />
-            <circle cx="242" cy="120" r="6" fill="currentColor" fillOpacity="0.72" />
-            <text x="202" y="139" fill="currentColor" fontSize="8" fontWeight="600" letterSpacing="0.8" opacity="0.7">
-              VERSIONED SYNC
-            </text>
-          </>
-        ) : normalizedName.includes("badger") ? (
-          <>
-            {[0, 1, 2].map((row) =>
-              [0, 1, 2, 3].map((column) => (
-                <rect
-                  key={`${row}-${column}`}
-                  x={28 + column * 45}
-                  y={40 + row * 34}
-                  width="31"
-                  height="22"
-                  rx="5"
-                  fill="currentColor"
-                  fillOpacity={(row + column) % 3 === 0 ? 0.24 : 0.08}
-                  stroke="currentColor"
-                  strokeOpacity="0.34"
-                />
-              )),
-            )}
-            <rect
-              x="224"
-              y="28"
-              width="66"
-              height="124"
-              rx="16"
-              fill="currentColor"
-              fillOpacity="0.12"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="M242 54H272M242 68H263M242 105H272"
-              stroke="currentColor"
-              strokeWidth="5"
-              strokeLinecap="round"
-              strokeOpacity="0.62"
-            />
-            <path
-              d="M244 122V136M251 118V136M258 124V136M265 116V136M272 121V136"
-              stroke="currentColor"
-              strokeWidth="3"
-            />
-          </>
-        ) : normalizedName.includes("asiento") ? (
-          <>
-            <path
-              d="M42 125C88 42 186 159 278 55"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeDasharray="8 9"
-              strokeOpacity="0.66"
-            />
-            <circle
-              cx="42"
-              cy="125"
-              r="12"
-              fill="currentColor"
-              fillOpacity="0.18"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <circle
-              cx="278"
-              cy="55"
-              r="12"
-              fill="currentColor"
-              fillOpacity="0.18"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <circle cx="42" cy="125" r="4" fill="currentColor" />
-            <circle cx="278" cy="55" r="4" fill="currentColor" />
-            <rect
-              x="118"
-              y="57"
-              width="86"
-              height="54"
-              rx="12"
-              fill="currentColor"
-              fillOpacity="0.12"
-              stroke="currentColor"
-              strokeOpacity="0.48"
-            />
-            <circle
-              cx="139"
-              cy="78"
-              r="8"
-              fill="currentColor"
-              fillOpacity="0.36"
-            />
-            <path
-              d="M156 72H187M156 85H178M132 99H190"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeOpacity="0.6"
-            />
-          </>
-        ) : (
-          <>
-            <circle
-              cx="78"
-              cy="90"
-              r="34"
-              fill="currentColor"
-              fillOpacity="0.1"
-              stroke="currentColor"
-              strokeOpacity="0.4"
-            />
-            <circle
-              cx="242"
-              cy="58"
-              r="25"
-              fill="currentColor"
-              fillOpacity="0.14"
-              stroke="currentColor"
-              strokeOpacity="0.46"
-            />
-            <circle
-              cx="230"
-              cy="130"
-              r="18"
-              fill="currentColor"
-              fillOpacity="0.08"
-              stroke="currentColor"
-              strokeOpacity="0.36"
-            />
-            <path
-              d="M112 84L217 63M106 108L213 127M241 83L232 112"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeDasharray="6 7"
-              strokeOpacity="0.54"
-            />
-          </>
-        )}
-      </svg>
-
+      ) : (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 grid place-items-center"
+          style={{ color: accentColor }}
+        >
+          <span className="h-24 w-24 rotate-12 rounded-3xl border border-current opacity-30" />
+          <span className="absolute h-14 w-14 -rotate-12 rounded-full border border-current opacity-50" />
+        </div>
+      )}
       <div
         className="absolute bottom-3 left-3 rounded-lg px-2.5 py-1 text-xs font-semibold tracking-[0.08em]"
         style={{
           color: "var(--color-text)",
           backgroundColor:
-            "color-mix(in srgb, var(--color-background) 82%, transparent)",
+            "color-mix(in srgb, var(--color-background) 86%, transparent)",
         }}
       >
         {project.company && companyUrl ? (
@@ -527,7 +330,9 @@ const Projects: React.FC<{
   const featuredProjects = projects
     .filter((project) => project.featured)
     .sort(sortFeatured);
-  const archiveProjects = projects.filter((project) => !project.featured);
+  const archiveProjects = projects.filter(
+    (project) => !project.featured || project.showInArchive,
+  );
 
   const grouped = [
     {

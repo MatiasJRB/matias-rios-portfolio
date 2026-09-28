@@ -179,7 +179,11 @@
         "Roadmap y backlog canónicos para iniciativas cross-repo.",
         "Capa agéntica portable, con reglas, agentes y skills como fuente de verdad.",
         "Sincronización versionada hacia repos consumidores mediante PRs."
-      ]
+      ],
+      "visual": {
+        "image": "/images/projects/mango-engineering-agentic.webp",
+        "alt": "Imagen editorial de planos de ingeniería conectados a un tablero modular, en tonos papel y latón."
+      }
     },
     {
       "name": "Transactions",
@@ -192,6 +196,19 @@
         "Sentry"
       ],
       "role": "Desarrollador",
+      "company": "Mango"
+    },
+    {
+      "name": "Salud de Mango Créditos",
+      "description": "Tablero operativo de invariantes de crédito y pagos para detectar desvíos en la plataforma financiera.",
+      "impact": "Definí con el equipo el alcance y los criterios de un tablero de salud que convierte reglas de crédito y pagos en señales operativas para ingeniería.",
+      "tech": [
+        "Grafana",
+        "SQL",
+        "Docker",
+        "Mango Créditos"
+      ],
+      "role": "Dirección técnica",
       "company": "Mango"
     },
     {
@@ -253,8 +270,8 @@
         "Entrega documentada con rollout Android, health checks y ventana post go-live."
       ],
       "visual": {
-        "image": "/images/projects/badger-mobile-home.png",
-        "alt": "Captura mobile de Badger/MAPSA mostrando el dashboard de inventario."
+        "image": "/images/projects/badger-editorial.webp",
+        "alt": "Imagen editorial de piezas industriales inventariadas con un escáner y un registro de stock."
       }
     },
     {
@@ -299,9 +316,10 @@
         "Concilié la evidencia de la app, Mercado Pago y Supabase antes de aprobar la versión Android."
       ],
       "visual": {
-        "image": "/images/projects/asiento-libre-home.png",
-        "alt": "Captura mobile de Asiento Libre mostrando la pantalla de inicio de la app."
-      }
+        "image": "/images/projects/asiento-libre-editorial.webp",
+        "alt": "Imagen editorial de un mapa de ruta interurbana con dos puntos conectados y una llave de auto."
+      },
+      "showInArchive": true
     },
     {
       "name": "Turna",
@@ -328,5 +346,5 @@
       "url": "https://www.uns.edu.ar"
     }
   ],
-  "footer": "<p>Basado en el diseño de <a href=\"https://brittanychiang.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>Brittany Chiang</a>, construido con <a href=\"https://nextjs.org\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>Next.js 16</a> y desplegado con <a href=\"https://vercel.com\" target=\"_blank\" class=\"font-semibold cursor-pointer text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors duration-300\" clickable>Vercel</a>. Todo el texto usa Inter.</p>"
+  "footer": "<p>Diseñado y construido por Matias Rios. Hecho con <a href=\"https://nextjs.org\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold hover:text-primary transition-colors\">Next.js</a> y desplegado en <a href=\"https://vercel.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-semibold hover:text-primary transition-colors\">Vercel</a>.</p>"
 }
