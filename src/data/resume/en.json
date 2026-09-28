@@ -39,9 +39,8 @@
       "endDate": "PRESENT",
       "summary": "I lead the technical evolution of a multi-product fintech platform, connecting business strategy, architecture, and execution. My impact has evolved from hands-on implementation across payments and integrations toward designing products, standards, and delivery mechanisms that help the team operate with greater quality, security, and predictability.",
       "highlights": [
-        "Defined and versioned the specifications for Cobros and reconciliation, then coordinated implementation through production in approximately five weeks with one frontend engineer, one backend engineer, and infrastructure.",
+        "Designed Mango’s engineering system: separated roadmap, backlog, specs, and ADRs from a versioned agent layer distributed to consumer repos through PRs.",
         "Directed the migration of 15 functional modules from Vue 2 to Next.js while preserving critical workflows and contracts with the existing backend.",
-        "Created a central engineering governance source to unify cross-repository roadmaps, ADRs, specifications, and delivery standards.",
         "Strengthened the reliability of financial integrations through observability, health checks, traceability, and automated rollback.",
         "Raised the security and delivery baseline through secret scanning, protected branches, and required checks across critical services.",
         "Turned quality, observability, and technical debt into planned and measurable engineering capacity.",
@@ -55,7 +54,7 @@
       "url": "https://geome7ric.com",
       "startDate": "02-2020",
       "endDate": "PRESENT",
-      "summary": "Co-founded and run a side venture building products across web, mobile, and AI, including multi-tenant applications using React Native, Next.js, and Supabase.",
+      "summary": "I co-founded Geome7ric and lead client software projects alongside my work at Mango. For Badger, I shipped an industrial-inventory app and back office to production; I have also built tools for field operations. I own architecture, implementation, and delivery.",
       "highlights": [
         "Co-founded Geome7ric, leading product strategy, technical architecture, and client relationships.",
         "Built and shipped multiple custom products end-to-end: AI knowledge assistants, carpooling apps, and multi-tenant platforms.",
@@ -154,56 +153,33 @@
       "company": "Mango"
     },
     {
-      "name": "Cobros",
-      "description": "Payment reconciliation product for construction material distributors. STP integration for automated transfers, SAT tax validation, CLABE account management, and full audit trail.",
+      "name": "Mango Engineering + Agentic",
+      "description": "Built Mango’s engineering system in two layers: mango-engineering centralizes planning and decisions; mango-agentic versions rules, agents, and skills and syncs them to consumer repos.",
       "tech": [
-        "Next.js",
-        "Laravel",
-        "AWS",
-        "STP API"
+        "Markdown",
+        "Bash",
+        "Node.js",
+        "GitHub Actions",
+        "MCP"
       ],
-      "role": "Tech Lead & Architect",
+      "role": "Creator & Architect",
       "company": "Mango",
       "featured": true,
       "featuredRank": 1,
-      "eyebrow": "Tech Lead / Architecture",
-      "headline": "Spec-driven delivery for payments and reconciliation.",
-      "impact": "Took Cobros from versioned specs to production in five weeks, coordinating architecture, infrastructure, frontend, and backend.",
-      "status": "Mango · Internal product",
+      "eyebrow": "Internal system",
+      "headline": "Cross-repo planning and a versioned agent layer for Mango.",
+      "impact": "Separated roadmap, backlog, specs, and ADRs from shared rules and agents; the agent layer is versioned and reaches consumer repos through PRs.",
+      "status": "Mango · Internal system",
       "proof": [
-        "Spec-Driven Development",
-        "Specs → production ≈5 weeks",
-        "FE + BE team"
+        "Centralized roadmap, backlog, and ADRs",
+        "Versioned rules and agents",
+        "PR-based distribution across repos"
       ],
       "highlights": [
-        "Defined the technical scope before building: architecture, flows, data models, APIs, integrations, and acceptance criteria.",
-        "Broke the work down into executable tasks to move from product definition to production with minimal rework.",
-        "Coordinated delivery with one frontend SE and one backend SE while keeping technical clarity and MVP focus."
-      ],
-      "visual": {
-        "pattern": "payments",
-        "nodes": [
-          "Technical spec",
-          "Architecture",
-          "Granular tasks",
-          "MVP delivery"
-        ]
-      }
-    },
-    {
-      "name": "./mango-engineering",
-      "description": "Central engineering governance and product/technical planning repo for Mango. I consolidated the cross-repo roadmap and backlog system, SDD templates, shared rules and agents, ADRs, cross-cutting specs, Asana Sprint Board sync, and a local viewer for initiatives.",
-      "impact": "Designed Mango's central engineering governance and planning system, unifying the cross-repo roadmap, ADRs, SDD, agents, and Asana sync.",
-      "tech": [
-        "Markdown",
-        "SDD",
-        "AI Agents",
-        "MCP",
-        "Asana",
-        "Bash/Node.js"
-      ],
-      "role": "Creator & Architect",
-      "company": "Mango"
+        "Canonical roadmap and backlog for cross-repo initiatives.",
+        "Portable agent layer with rules, agents, and skills as the source of truth.",
+        "Versioned sync to consumer repos through PRs."
+      ]
     },
     {
       "name": "Transactions",
@@ -296,21 +272,8 @@
       "url": "https://geome7ric.com"
     },
     {
-      "name": "Infrastructure audit",
-      "description": "A reproducible audit of a multi-platform ecosystem to determine what remained active, what it actually cost, and which conclusions still had limited evidence.",
-      "impact": "Inventoried 100+ projects, ran health checks, and separated verified cost, estimates, and evidence limits to create a trustworthy technical and financial decision baseline.",
-      "tech": [
-        "Multi-cloud",
-        "FinOps",
-        "Health checks",
-        "Cost governance"
-      ],
-      "role": "Technical direction",
-      "company": "Geome7ric"
-    },
-    {
       "name": "Asiento Libre",
-      "description": "Carpooling app for Argentina (BlaBlaCar-style). Search, publish trips, real-time booking, ratings, and payment integration across iOS, Android, and web.",
+      "description": "Carpooling app for Argentina. Visitors can explore, search, and publish trips, request seats, and coordinate bookings; payments are integrated in a controlled flow.",
       "tech": [
         "React Native",
         "Expo",
@@ -322,13 +285,13 @@
       "featured": true,
       "featuredRank": 3,
       "eyebrow": "Own product",
-      "headline": "Mobile-first carpooling with end-to-end validated payments.",
-      "impact": "Closed Android v80 with a controlled payment, cancellation, and refund test, reconciling the app, Mercado Pago, and backend without enabling broad financial processing.",
+      "headline": "An app for sharing intercity trips in Argentina.",
+      "impact": "Designed and built the mobile experience for passengers and drivers, then validated payment, cancellation, and refund in a controlled test across the app, backend, and Mercado Pago.",
       "status": "Own product · MVP/demo",
       "proof": [
-        "Payment → cancellation → refund: PASS",
-        "Provider ↔ backend reconciled",
-        "Zero payouts; global controls locked"
+        "Trip search, publishing, and booking",
+        "Passenger and driver experiences",
+        "Payment, cancellation, and refund validated in a controlled test"
       ],
       "highlights": [
         "Route/waypoint engine for Argentine corridors and trip search.",
@@ -339,20 +302,6 @@
         "image": "/images/projects/asiento-libre-home.png",
         "alt": "Asiento Libre mobile screenshot showing the app home screen."
       }
-    },
-    {
-      "name": "Ferret",
-      "description": "AI-powered knowledge assistant. RAG pipeline, Slack integration, multi-tenant payments, and self-serve onboarding for teams.",
-      "impact": "Designed a multi-tenant RAG assistant with Slack, payments, and self-serve onboarding for teams.",
-      "tech": [
-        "Next.js",
-        "Supabase",
-        "OpenAI",
-        "Mercado Pago",
-        "Slack API"
-      ],
-      "role": "Creator & Developer",
-      "url": "https://geome7ric.com"
     },
     {
       "name": "Turna",

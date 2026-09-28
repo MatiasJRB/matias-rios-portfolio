@@ -39,9 +39,8 @@
       "endDate": "PRESENTE",
       "summary": "Lidero la evolución técnica de una plataforma fintech multi-producto, conectando estrategia de negocio, arquitectura y ejecución. Mi impacto evolucionó desde la implementación directa sobre pagos e integraciones hacia el diseño de productos, estándares y mecanismos de entrega que permiten al equipo operar con mayor calidad, seguridad y previsibilidad.",
       "highlights": [
-        "Definí y versioné las especificaciones de Cobros y conciliación, y coordiné su implementación hasta producción en aproximadamente cinco semanas con un ingeniero frontend, uno backend e infraestructura.",
+        "Diseñé el sistema de ingeniería de Mango: separé roadmap, backlog, specs y ADRs de una capa agéntica versionada que se distribuye por PR a los repos consumidores.",
         "Dirigí la migración de 15 módulos funcionales desde Vue 2 hacia Next.js, preservando flujos críticos y contratos con el backend existente.",
-        "Creé una fuente central de engineering governance para unificar roadmap cross-repo, ADRs, especificaciones y estándares de delivery.",
         "Fortalecí la confiabilidad de integraciones financieras con observabilidad, health checks, trazabilidad y rollback automatizado.",
         "Elevé el baseline de seguridad y delivery mediante secret scanning, protección de ramas y required checks en servicios críticos.",
         "Convertí calidad, observabilidad y deuda técnica en capacidad planificada y medible del equipo.",
@@ -55,7 +54,7 @@
       "url": "https://geome7ric.com",
       "startDate": "02-2020",
       "endDate": "PRESENTE",
-      "summary": "Co-fundé y dirijo en paralelo un emprendimiento de software que construye productos web, mobile e IA, incluyendo aplicaciones multi-tenant con React Native, Next.js y Supabase.",
+      "summary": "Co-fundé Geome7ric y lidero proyectos de software para clientes en paralelo a mi trabajo en Mango. En Badger llevé una app y un backoffice de inventario industrial a producción; también desarrollé herramientas para operaciones de campo. Me ocupo de la arquitectura, la ejecución y la entrega.",
       "highlights": [
         "Co-fundé Geome7ric, liderando estrategia de producto, arquitectura técnica y relaciones con clientes.",
         "Construí y lancé múltiples productos a medida de punta a punta: asistentes de conocimiento con IA, apps de carpooling y plataformas multi-tenant.",
@@ -154,56 +153,33 @@
       "company": "Mango"
     },
     {
-      "name": "Cobros",
-      "description": "Producto de conciliación de pagos para distribuidores de materiales de construcción. Integración STP para transferencias automatizadas, validación fiscal SAT, gestión de cuentas CLABE y trazabilidad completa.",
+      "name": "Mango Engineering + Agentic",
+      "description": "Construí el sistema de ingeniería de Mango en dos capas: mango-engineering centraliza planificación y decisiones; mango-agentic versiona reglas, agentes y skills y las sincroniza a los repos consumidores.",
       "tech": [
-        "Next.js",
-        "Laravel",
-        "AWS",
-        "STP API"
+        "Markdown",
+        "Bash",
+        "Node.js",
+        "GitHub Actions",
+        "MCP"
       ],
-      "role": "Tech Lead & Arquitecto",
+      "role": "Creador & Arquitecto",
       "company": "Mango",
       "featured": true,
       "featuredRank": 1,
-      "eyebrow": "Tech Lead / Arquitectura",
-      "headline": "Entrega guiada por specs para cobros y conciliación.",
-      "impact": "Llevé Cobros de specs versionadas a producción en cinco semanas, coordinando arquitectura, infraestructura y un equipo frontend/backend.",
-      "status": "Mango · Producto interno",
+      "eyebrow": "Sistema interno",
+      "headline": "Planificación cross-repo y capa agéntica versionada para Mango.",
+      "impact": "Separé roadmap, backlog, specs y ADRs de las reglas y agentes compartidos; la capa agéntica se versiona y llega a los repos por PR.",
+      "status": "Mango · Sistema interno",
       "proof": [
-        "Desarrollo guiado por especificaciones",
-        "Especificaciones → producción ≈5 semanas",
-        "Equipo frontend + backend"
+        "Roadmap, backlog y ADRs centralizados",
+        "Reglas y agentes versionados",
+        "Distribución a repos por PR"
       ],
       "highlights": [
-        "Definí el alcance técnico antes de construir: arquitectura, flujos, modelos, APIs, integraciones y criterios de aceptación.",
-        "Granularicé el trabajo en tareas ejecutables para llevar el producto desde definición hasta producción con poco retrabajo.",
-        "Coordiné la entrega con un SE frontend y un SE backend, manteniendo claridad técnica y foco de MVP."
-      ],
-      "visual": {
-        "pattern": "payments",
-        "nodes": [
-          "Spec técnica",
-          "Arquitectura",
-          "Tareas granulares",
-          "Entrega MVP"
-        ]
-      }
-    },
-    {
-      "name": "./mango-engineering",
-      "description": "Repositorio central de governance de ingeniería y planificación técnica/producto para Mango. Consolidé roadmap y backlog cross-repo, templates SDD, reglas y agentes compartidos, ADRs, specs transversales, sync con Asana Sprint Board y un viewer local para visualizar iniciativas.",
-      "impact": "Diseñé el sistema central de governance y planificación de Mango, unificando roadmap cross-repo, ADRs, SDD, agentes y sincronización con Asana.",
-      "tech": [
-        "Markdown",
-        "SDD",
-        "AI Agents",
-        "MCP",
-        "Asana",
-        "Bash/Node.js"
-      ],
-      "role": "Creador & Arquitecto",
-      "company": "Mango"
+        "Roadmap y backlog canónicos para iniciativas cross-repo.",
+        "Capa agéntica portable, con reglas, agentes y skills como fuente de verdad.",
+        "Sincronización versionada hacia repos consumidores mediante PRs."
+      ]
     },
     {
       "name": "Transactions",
@@ -296,21 +272,8 @@
       "url": "https://geome7ric.com"
     },
     {
-      "name": "Auditoría de infraestructura",
-      "description": "Auditoría reproducible de un ecosistema multi-plataforma para determinar qué seguía activo, cuánto costaba realmente y qué conclusiones todavía tenían evidencia limitada.",
-      "impact": "Inventarié más de 100 proyectos, ejecuté controles de salud y separé costos verificados, estimaciones y límites de evidencia para dejar una base confiable de decisión técnica y financiera.",
-      "tech": [
-        "Multi-cloud",
-        "FinOps",
-        "Health checks",
-        "Cost governance"
-      ],
-      "role": "Dirección técnica",
-      "company": "Geome7ric"
-    },
-    {
       "name": "Asiento Libre",
-      "description": "App de carpooling para Argentina (estilo BlaBlaCar). Búsqueda y publicación de viajes, reservas en tiempo real, calificaciones e integración de pagos en iOS, Android y web.",
+      "description": "App de carpooling para Argentina. Permite explorar, buscar y publicar viajes, solicitar asientos y coordinar reservas; integra pagos en un circuito controlado.",
       "tech": [
         "React Native",
         "Expo",
@@ -322,13 +285,13 @@
       "featured": true,
       "featuredRank": 3,
       "eyebrow": "Producto propio",
-      "headline": "Carpooling mobile-first con pagos validados de punta a punta.",
-      "impact": "Cerré Android v80 con una prueba controlada de pago, cancelación y reintegro, conciliando app, Mercado Pago y backend sin habilitar procesamiento financiero global.",
+      "headline": "Una app para compartir viajes entre ciudades argentinas.",
+      "impact": "Diseñé y construí la experiencia mobile para pasajeros y conductores, y validé en una prueba controlada el recorrido de pago, cancelación y reintegro entre la app, el backend y Mercado Pago.",
       "status": "Producto propio · MVP/demo",
       "proof": [
-        "Pago → cancelación → reintegro: aprobado",
-        "Proveedor ↔ backend conciliados",
-        "Cero pagos salientes; controles globales cerrados"
+        "Búsqueda, publicación y reserva de viajes",
+        "Experiencia para pasajeros y conductores",
+        "Pago, cancelación y reintegro validados en prueba controlada"
       ],
       "highlights": [
         "Motor de rutas/waypoints para corredores argentinos y búsqueda de viajes.",
@@ -339,20 +302,6 @@
         "image": "/images/projects/asiento-libre-home.png",
         "alt": "Captura mobile de Asiento Libre mostrando la pantalla de inicio de la app."
       }
-    },
-    {
-      "name": "Ferret",
-      "description": "Asistente de conocimiento con IA. Pipeline RAG, integración con Slack, pagos multi-tenant y onboarding self-serve para equipos.",
-      "impact": "Diseñé un asistente RAG multi-tenant con Slack, pagos y onboarding self-serve para equipos.",
-      "tech": [
-        "Next.js",
-        "Supabase",
-        "OpenAI",
-        "Mercado Pago",
-        "Slack API"
-      ],
-      "role": "Creador & Desarrollador",
-      "url": "https://geome7ric.com"
     },
     {
       "name": "Turna",

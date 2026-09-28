@@ -259,6 +259,14 @@
       "Which projects has he taken to production?",
       "Is he a fit for this role?"
     ],
+    "followUpLabel": "Keep exploring",
+    "followUps": {
+      "leadership": ["How did that leadership show up in a project?", "Which systems did he design?"],
+      "projects": ["Which part of the project did Matias lead?", "What technical decisions did he make?"],
+      "fit": ["Which stack has he worked with recently?", "What evidence supports that fit?"],
+      "contact": ["Where can I find his CV?", "What kind of work does he do now?"],
+      "general": ["Can you give me a concrete example?", "Which project demonstrates that?"]
+    },
     "inputLabel": "Question for the portfolio assistant",
     "placeholder": "Ask a question or paste context…",
     "sendButton": "Send message",
@@ -267,6 +275,6 @@
     "tooLongError": "The text is too long. Trim it a bit and try again.",
     "rateLimitError": "Too many requests in a row. Wait a minute and try again.",
     "genericError": "I could not answer right now. Please try again in a moment.",
-    "privacyNote": "Messages and attached file text are sent to Google Gemini to generate a response. This site does not intentionally retain the conversation."
+    "privacyNote": "Chat and files go to Gemini; they are not stored here."
   }
 }
