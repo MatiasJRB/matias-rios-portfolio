@@ -141,6 +141,13 @@ const History: React.FC<
         work.map((job, index) => {
           const jobId = `job-${job.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
           const animation = getSlideInAnimation(index);
+          const logo = getCompanyLogo(job.name);
+          const monogram = job.name
+            .split(/\s*\/\s*|\s+/)
+            .filter(Boolean)
+            .slice(0, 2)
+            .map((part) => part[0])
+            .join("");
           return (
             <div
               key={job.name}
@@ -188,27 +195,31 @@ const History: React.FC<
                         "var(--color-border)";
                   }}
                 >
-                  {getCompanyLogo(job.name) && (
-                    <div
-                      className="company-logo flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border transition-[border-color,transform] duration-200"
-                      style={{
-                        backgroundColor: "var(--color-muted)",
-                        borderColor: "var(--color-border)",
-                        boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)",
-                      }}
-                    >
+                  <span
+                    aria-hidden="true"
+                    className="company-logo flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border transition-[border-color,transform] duration-200"
+                    style={{
+                      backgroundColor: "var(--color-surface)",
+                      borderColor: "var(--color-border)",
+                      color: getCompanyHoverColor(job.name),
+                    }}
+                  >
+                    {logo ? (
                       <Image
-                        src={getCompanyLogo(job.name)!}
-                        alt={`${job.name} logo`}
+                        src={logo}
+                        alt=""
                         width={26}
                         height={26}
                         className="object-contain"
                         style={{ width: "auto", height: "auto" }}
                         loading="lazy"
-                        quality={85}
                       />
-                    </div>
-                  )}
+                    ) : (
+                      <span className="text-[0.6rem] font-bold tracking-[-0.02em]">
+                        {monogram}
+                      </span>
+                    )}
+                  </span>
                   <span>
                     <span
                       className="job-text transition-colors duration-200"

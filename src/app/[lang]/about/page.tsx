@@ -66,7 +66,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           {dictionary.about.backToPortfolio}
         </Link>
 
-        <div className="mt-12 grid gap-14 lg:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] lg:gap-20">
+        <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] lg:gap-16">
           {/* Identity rail */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
             {basics.image && (
@@ -76,7 +76,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 width={288}
                 height={288}
                 unoptimized
-                className="h-36 w-36 object-cover md:h-44 md:w-44"
+                className="h-44 w-44 object-cover md:h-56 md:w-56 lg:h-60 lg:w-60"
                 style={{
                   borderRadius: "2.25rem 2.25rem 2.25rem 0.75rem",
                   border:
@@ -111,13 +111,13 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <h1 className="text-5xl font-semibold leading-none tracking-[-0.035em] text-[var(--color-text)] md:text-7xl">
               {dictionary.about.title}
             </h1>
-            <p className="mt-7 max-w-[65ch] text-lg leading-8 text-[var(--color-muted)] md:text-xl md:leading-9">
+            <p className="mt-5 max-w-[65ch] text-lg leading-8 text-[var(--color-muted)] md:text-xl md:leading-9">
               {dictionary.about.description}
             </p>
 
             <section
               aria-labelledby="about-story"
-              className="mt-16 border-t border-[var(--color-border)] pt-12"
+              className="mt-10 border-t border-[var(--color-border)] pt-8"
             >
               <h2
                 id="about-story"
@@ -125,7 +125,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               >
                 {dictionary.about.storyTitle}
               </h2>
-              <About about={basics.about} className="mt-8" />
+              <About about={basics.about} className="mt-5" />
             </section>
 
             <section aria-labelledby="about-timeline" className="mt-20">

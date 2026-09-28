@@ -67,60 +67,64 @@ function ProjectArtifact({
           strokeOpacity="0.09"
         />
 
-        {normalizedName.includes("cobros") ? (
+        {normalizedName.includes("mango engineering") ? (
           <>
             <rect
-              x="26"
-              y="38"
-              width="78"
-              height="104"
-              rx="12"
-              fill="currentColor"
-              fillOpacity="0.1"
-              stroke="currentColor"
-              strokeOpacity="0.42"
-            />
-            <path
-              d="M43 61H87M43 78H76M43 112H87M43 128H68"
-              stroke="currentColor"
-              strokeWidth="5"
-              strokeLinecap="round"
-              strokeOpacity="0.62"
-            />
-            <path
-              d="M112 90H159M205 90H252"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeDasharray="5 6"
-              strokeOpacity="0.58"
-            />
-            <circle
-              cx="182"
-              cy="90"
-              r="24"
-              fill="currentColor"
-              fillOpacity="0.16"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="M173 90H191M182 81V99"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-            <rect
-              x="254"
-              y="52"
-              width="40"
-              height="76"
+              x="24"
+              y="30"
+              width="116"
+              height="120"
               rx="10"
               fill="currentColor"
-              fillOpacity="0.08"
+              fillOpacity="0.07"
               stroke="currentColor"
-              strokeOpacity="0.42"
+              strokeOpacity="0.45"
             />
-            <circle cx="274" cy="111" r="3" fill="currentColor" />
+            <text x="38" y="50" fill="currentColor" fontSize="9" fontWeight="700" letterSpacing="1.1">
+              ENGINEERING
+            </text>
+            <path
+              d="M39 66H115M39 81H101M39 96H110M39 111H91M39 126H106"
+              stroke="currentColor"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeOpacity="0.46"
+            />
+            <path
+              d="M144 90H183M173 83L183 90L173 97"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity="0.7"
+            />
+            <rect
+              x="188"
+              y="30"
+              width="108"
+              height="120"
+              rx="10"
+              fill="currentColor"
+              fillOpacity="0.12"
+              stroke="currentColor"
+              strokeOpacity="0.62"
+            />
+            <text x="202" y="50" fill="currentColor" fontSize="9" fontWeight="700" letterSpacing="1.1">
+              AGENTIC
+            </text>
+            <path
+              d="M242 70V118M218 92H266"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeOpacity="0.6"
+            />
+            <circle cx="242" cy="70" r="6" fill="currentColor" fillOpacity="0.72" />
+            <circle cx="216" cy="92" r="5" fill="currentColor" fillOpacity="0.5" />
+            <circle cx="268" cy="92" r="5" fill="currentColor" fillOpacity="0.5" />
+            <circle cx="242" cy="120" r="6" fill="currentColor" fillOpacity="0.72" />
+            <text x="202" y="139" fill="currentColor" fontSize="8" fontWeight="600" letterSpacing="0.8" opacity="0.7">
+              VERSIONED SYNC
+            </text>
           </>
         ) : normalizedName.includes("badger") ? (
           <>

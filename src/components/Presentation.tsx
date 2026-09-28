@@ -83,7 +83,7 @@ const Presentation: React.FC<PresentationProps> = ({
             priority
           />
         )}
-        <h1 className="font-display text-4xl font-bold leading-tight tracking-[-0.03em] md:text-5xl lg:text-5xl xl:text-6xl">
+        <h1 className="font-display text-4xl font-bold leading-none tracking-[-0.03em] md:text-5xl lg:text-[4rem]">
           <Link
             className="cursor-pointer rounded-sm outline-none transition-colors duration-200 hover:text-[color:var(--color-primary)] focus-visible:text-[color:var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"
             href={`/${lang}/about`}

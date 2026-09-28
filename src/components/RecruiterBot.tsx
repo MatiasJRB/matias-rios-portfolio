@@ -26,6 +26,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/utils";
 import PixelWolfAvatar from "@/components/PixelWolfAvatar";
+import { getChatFollowUps } from "@/lib/chat-follow-ups";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
@@ -278,6 +279,23 @@ export default function RecruiterBot({
     !isParsingFile &&
     !isTooLong &&
     (Boolean(input.trim()) || fileContexts.length > 0);
+  const lastMessage = messages[messages.length - 1];
+  const askedQuestions = messages
+    .filter((message) => message.role === "user")
+    .map((message) => message.content);
+  const showFollowUps =
+    messages.length > 1 &&
+    lastMessage?.role === "assistant" &&
+    lastMessage.status === "normal" &&
+    !isSubmitting &&
+    !input.trim() &&
+    fileContexts.length === 0;
+  const suggestions =
+    messages.length === 1
+      ? copy.suggestions
+      : showFollowUps && askedQuestions.length > 0
+        ? getChatFollowUps(askedQuestions, copy.followUps)
+        : [];
 
   useEffect(() => {
     const shouldOpenFromHash = ["#recruiter-bot", "#assistant", "#ai"].includes(
@@ -911,19 +929,25 @@ export default function RecruiterBot({
                     </div>
                   );
                 })}
-                {messages.length === 1 && !isSubmitting ? (
+                {suggestions.length > 0 && !isSubmitting ? (
                   <div
                     className="max-w-[88%] space-y-2 pb-2"
-                    aria-label={copy.suggestionsLabel}
+                    aria-label={
+                      messages.length === 1
+                        ? copy.suggestionsLabel
+                        : copy.followUpLabel
+                    }
                   >
                     <p
                       className="text-xs font-semibold"
                       style={{ color: "var(--color-muted)" }}
                     >
-                      {copy.suggestionsLabel}
+                      {messages.length === 1
+                        ? copy.suggestionsLabel
+                        : copy.followUpLabel}
                     </p>
                     <div className="grid gap-2">
-                      {copy.suggestions.map((suggestion) => (
+                      {suggestions.map((suggestion) => (
                         <button
                           key={suggestion}
                           type="button"
@@ -950,7 +974,7 @@ export default function RecruiterBot({
               <div className="assistant-composer-dock pointer-events-none absolute inset-x-0 bottom-0 px-4 pb-3 pt-6">
                 <div
                   className={cn(
-                    "assistant-composer-avatar-row pointer-events-none -mb-[3px] mr-5 flex justify-end",
+                    "assistant-composer-avatar-row pointer-events-none mb-0 mr-5 flex justify-end",
                     isExpanded && "assistant-composer-avatar-row--expanded",
                   )}
                 >
@@ -1123,11 +1147,7 @@ export default function RecruiterBot({
                     className="mt-1 flex items-center justify-between gap-3 px-2 text-xs font-semibold"
                     style={{ color: "var(--color-muted)" }}
                   >
-                    <span>
-                      {fileContexts.length
-                        ? `${copy.privacyNote} ${contextFileCopy.contextHint}`
-                        : copy.privacyNote}
-                    </span>
+                    <span>{copy.privacyNote}</span>
                     <span
                       style={{
                         color:
