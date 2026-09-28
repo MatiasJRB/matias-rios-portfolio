@@ -247,7 +247,8 @@ Borders are usually one pixel and warm, often mixed toward transparency. Full-bl
 - **Error / Disabled:** warning color replaces the focus tint for over-limit content; disabled controls retain form and reduce opacity while using a not-allowed cursor.
 - **Assistant Shell:** the chat opens with a compact identity header, clear title, scope description, and 44px controls before conversation content begins.
 - **First-Use Guidance:** the welcome state offers three concrete prompt starters; selecting one fills and focuses the composer without sending automatically.
-- **Avatar Palette:** the pixel cat is monochromatic Ink + Mint: a mint body, deeper mint shadow/tail/`M` mark, and the current ink/background token for facial contrast. Never introduce amber/orange inside the compact sprite.
+- **Avatar Palette:** the pixel wolf is monochromatic Ink + Mint: a mint body, deeper mint ears/ruff/tail/nose, a pale mint muzzle, chest, and tail tip, and the current ink/background token for the eyes. Never introduce amber/orange inside the compact sprite.
+- **Avatar Rendering:** the wolf is a single SVG built from `src/lib/pixel-wolf-sprite.ts`. Render it only at multiples of its 16-column grid (32, 48, 64px) so every sprite pixel stays square, and animate it frame by frame (tail mid/up/mid/down, an occasional ear twitch, blinking) instead of sliding pixels.
 - **Mobile Behavior:** opening the assistant must not summon the software keyboard automatically. Composer focus is desktop-only until the visitor explicitly chooses an action.
 
 ### Navigation
