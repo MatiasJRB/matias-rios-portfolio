@@ -12,11 +12,13 @@ export const NAV_ITEMS_WITH_NOTES = [
 
 // Mapeo de logos de empresas
 export const COMPANY_LOGOS: Record<string, string> = {
-  Mango: "/images/work/mango.png",
-  Mangxo: "/images/work/mango.png",
-  Geome7ric: "/images/work/geome7ric.png",
-  Kalkomey: "/images/work/kalkomey.png",
-  Nuqlea: "/images/work/nuqlea.png",
+  Mango: "/images/work/mango-mark.svg",
+  Mangxo: "/images/work/mango-mark.svg",
+  Geome7ric: "/images/work/geome7ric-mark.svg",
+  Kalkomey: "/images/work/kalkomey-mark.png",
+  Nuqlea: "/images/work/nuqlea-mark.png",
+  RazorTech: "/images/work/razortech-mark.svg",
+  Profertil: "/images/work/profertil-symbol.svg",
 };
 
 // Colores del sistema (referencia a CSS variables)

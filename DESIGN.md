@@ -25,6 +25,10 @@ colors:
   night-primary: "#79cbb0"
   night-amber-accent: "#d7a05b"
   project-teal: "#2f6e68"
+  company-cargill-badge-ink: "#1f6e43"
+  company-cargill-badge-paper: "#d9ecdc"
+  company-indoscience-badge-ink: "#2b5970"
+  company-indoscience-badge-paper: "#dcebf0"
 typography:
   display:
     fontFamily: "Inter, sans-serif"
@@ -154,6 +158,7 @@ The palette resembles paper, graphite, evergreen ink, technical drafting ink, an
 - **Bone Ink** (`night-ink`), **Soft Bone** (`night-secondary-ink`), and **Ash Label** (`night-muted-ink`): the dark-mode text hierarchy.
 - **Night Hairline** (`night-border`): low-contrast structure on dark surfaces.
 - **Editorial Red** (`error`): errors only; never a decorative project accent.
+- **Secondary Work Badges:** Cargill green and Indoscience blue use fixed ink/paper pairs on their small overlapping labels; these are typographic identifiers, not copied corporate logos.
 
 ### Named Rules
 
@@ -236,7 +241,7 @@ Borders are usually one pixel and warm, often mixed toward transparency. Full-bl
 - **Archive Affordance:** public work makes the complete row a link and labels the destination; private work stays visually static and is explicitly labeled as a private case.
 - **Confidential Evidence:** internal or restricted work exposes only generalized scope, method, evidence limits, and outcomes. Remove client, project, and account identifiers plus exact financial or private-topology details; keep the item unlinked, explicitly private, and in the archive rather than promoting it to featured proof.
 - **Border:** mix the project accent lightly into featured borders. Archive groups use shared hairlines with 1.5–1.75rem vertical row padding.
-- **Signature Artifact:** each featured card begins with a project-specific inline SVG diagram in a 16:9 frame. It may scale to 1.035 and rise 2px over 420ms on card hover or focus-within; it must remain non-photographic and relevant to the project.
+- **Signature Artifact:** each featured card begins with a project-specific generated editorial still life in a 16:9 frame. The image is a visual metaphor, not a claimed product screenshot; preserve the shared paper, brass, charcoal, and restrained green/teal palette and an accessible descriptive alt.
 
 **The Confidential Evidence Rule.** Credibility comes from bounded, verifiable disclosure: anonymize restricted source material, state evidence limits, and never imply a public destination for a private case.
 
@@ -274,14 +279,14 @@ Motion across all components is measured: 150–220ms for direct state feedback,
 - **Do** preserve the two-column desktop index and allow major work evidence to span both columns.
 - **Do** use Inter consistently across display, reading, metadata, and controls, separating roles through scale and weight.
 - **Do** let warm neutral surfaces, hairlines, and whitespace carry most of the composition.
-- **Do** create project-specific inline SVG artifacts that explain a system, workflow, or relationship.
+- **Do** create project-specific editorial image assets that communicate the system or product without pretending to show real UI.
 - **Do** match hover with keyboard focus and maintain a 44px minimum touch target for primary controls.
 - **Do** stop motion cleanly for reduced-motion users, including ambient shaders.
 
 ### Don't:
 
 - **Don't** flood a page with green, amber, gradients, glows, or glass effects; accents are annotations.
-- **Don't** replace project artifacts with generic stock photography, browser mockups, or unrelated decorative geometry.
+- **Don't** use generic stock photography, browser mockups, misleading UI screenshots, or unrelated decorative geometry as project art.
 - **Don't** flatten dark mode into a mechanical inversion of the light palette.
 - **Don't** wrap every section in a rounded card; border rhythm and measure are the default separators.
 - **Don't** introduce another headline or body family, oversized pill language, or exaggerated spring motion.

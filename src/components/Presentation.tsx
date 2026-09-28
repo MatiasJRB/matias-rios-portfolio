@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 import type { Dictionary } from "@/i18n/types";
 import type { Locale } from "@/i18n/config";
 import CompanyLinkedText from "@/components/CompanyLinkedText";
@@ -29,36 +28,7 @@ const Presentation: React.FC<PresentationProps> = ({
   lang,
   companyUrls,
 }) => {
-  const [emailCopied, setEmailCopied] = useState(false);
-  const resetCopyTimer = useRef<number | null>(null);
   const mailtoHref = `mailto:${basics.email}?subject=${encodeURIComponent(dictionary.cta.contactSubject)}&body=${encodeURIComponent(dictionary.cta.contactBody)}`;
-
-  useEffect(
-    () => () => {
-      if (resetCopyTimer.current) window.clearTimeout(resetCopyTimer.current);
-    },
-    [],
-  );
-
-  const handleContactClick = async (
-    event: React.MouseEvent<HTMLAnchorElement>,
-  ) => {
-    event.preventDefault();
-
-    try {
-      await navigator.clipboard.writeText(basics.email);
-      setEmailCopied(true);
-      if (resetCopyTimer.current) window.clearTimeout(resetCopyTimer.current);
-      resetCopyTimer.current = window.setTimeout(
-        () => setEmailCopied(false),
-        2400,
-      );
-    } catch {
-      setEmailCopied(false);
-    }
-
-    window.location.href = mailtoHref;
-  };
 
   return (
     <div className="w-full scroll-mt-24">
@@ -83,7 +53,7 @@ const Presentation: React.FC<PresentationProps> = ({
             priority
           />
         )}
-        <h1 className="font-display text-4xl font-bold leading-none tracking-[-0.03em] md:text-5xl lg:text-[4rem]">
+        <h1 className="font-display text-4xl font-bold leading-tight tracking-[-0.03em] md:text-5xl lg:text-5xl xl:text-6xl">
           <Link
             className="cursor-pointer rounded-sm outline-none transition-colors duration-200 hover:text-[color:var(--color-primary)] focus-visible:text-[color:var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"
             href={`/${lang}/about`}
@@ -127,7 +97,6 @@ const Presentation: React.FC<PresentationProps> = ({
         </a>
         <a
           href={mailtoHref}
-          onClick={handleContactClick}
           className="control-hover inline-flex min-h-11 items-center justify-center rounded-xl border px-5 text-sm font-semibold outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"
           style={{
             color: "var(--color-text)",
@@ -136,9 +105,7 @@ const Presentation: React.FC<PresentationProps> = ({
               "color-mix(in srgb, var(--color-surface) 42%, transparent)",
           }}
         >
-          <span aria-live="polite">
-            {emailCopied ? dictionary.cta.emailCopied : dictionary.cta.contact}
-          </span>
+          {dictionary.cta.contact}
         </a>
         <Link
           href={`/${lang}/about`}

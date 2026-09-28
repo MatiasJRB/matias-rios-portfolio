@@ -61,6 +61,7 @@ export interface Project {
   company?: string;
   url?: string;
   featured?: boolean;
+  showInArchive?: boolean;
   featuredRank?: number;
   eyebrow?: string;
   headline?: string;
