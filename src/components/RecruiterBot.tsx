@@ -8,6 +8,7 @@ import {
   KeyboardEvent,
   ReactNode,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -27,6 +28,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/utils";
 import PixelWolfAvatar from "@/components/PixelWolfAvatar";
 import { getChatFollowUps } from "@/lib/chat-follow-ups";
+import { getReplyScrollTop } from "@/lib/chat-scroll";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
@@ -269,6 +271,8 @@ export default function RecruiterBot({
   ]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const messagesRef = useRef<HTMLDivElement>(null);
+  const responseAnchorIdRef = useRef<string | null>(null);
+  const followPendingRef = useRef(true);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dragDepthRef = useRef(0);
@@ -315,13 +319,45 @@ export default function RecruiterBot({
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isOpen) return;
 
-    messagesRef.current?.scrollTo({
-      top: messagesRef.current.scrollHeight,
-      behavior: "smooth",
-    });
+    const container = messagesRef.current;
+    if (!container) return;
+
+    const responseId = responseAnchorIdRef.current;
+    const latestMessage = messages[messages.length - 1];
+
+    if (
+      responseId &&
+      latestMessage.id === responseId &&
+      latestMessage.status !== "loading"
+    ) {
+      responseAnchorIdRef.current = null;
+
+      // If the visitor browsed earlier messages while waiting, leave their
+      // reading position alone instead of pulling them to the new answer.
+      if (!followPendingRef.current) return;
+
+      const reply = container.querySelector<HTMLElement>(
+        `[data-chat-message-id="${responseId}"]`,
+      );
+      if (reply) {
+        const replyTop =
+          container.scrollTop +
+          reply.getBoundingClientRect().top -
+          container.getBoundingClientRect().top;
+
+        container.scrollTop = getReplyScrollTop(
+          replyTop,
+          container.scrollHeight,
+          container.clientHeight,
+        );
+        return;
+      }
+    }
+
+    container.scrollTop = container.scrollHeight;
   }, [isOpen, messages]);
 
   useEffect(() => {
@@ -373,6 +409,7 @@ export default function RecruiterBot({
     content: string,
     status: ChatMessage["status"] = "normal",
   ) => {
+    responseAnchorIdRef.current = pendingId;
     setMessages((current) =>
       current.map((message) =>
         message.id === pendingId
@@ -648,6 +685,8 @@ export default function RecruiterBot({
     setFileContexts([]);
     setFileError(null);
     setIsSubmitting(true);
+    responseAnchorIdRef.current = null;
+    followPendingRef.current = true;
     setMessages((current) => [...current, userMessage, pendingMessage]);
 
     try {
@@ -866,6 +905,16 @@ export default function RecruiterBot({
                 ref={messagesRef}
                 className="assistant-messages-scroll min-h-0 flex-1 space-y-4 overflow-y-auto px-4 pt-4"
                 aria-live="polite"
+                onScroll={(event) => {
+                  if (!isSubmitting) return;
+
+                  const container = event.currentTarget;
+                  followPendingRef.current =
+                    container.scrollHeight -
+                      container.clientHeight -
+                      container.scrollTop <=
+                    64;
+                }}
               >
                 {messages.map((message) => {
                   const isUser = message.role === "user";
@@ -874,6 +923,7 @@ export default function RecruiterBot({
                   return (
                     <div
                       key={message.id}
+                      data-chat-message-id={message.id}
                       className={cn(
                         "flex",
                         isUser ? "justify-end" : "justify-start",
