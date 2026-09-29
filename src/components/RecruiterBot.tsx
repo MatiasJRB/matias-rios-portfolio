@@ -24,7 +24,7 @@ import {
   FaTrash,
   FaTimes,
 } from "react-icons/fa";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/utils";
 import PixelWolfAvatar from "@/components/PixelWolfAvatar";
 import { getChatFollowUps } from "@/lib/chat-follow-ups";
@@ -255,6 +255,9 @@ export default function RecruiterBot({
   const copy = dictionary.recruiterBot;
   const contextFileCopy = CONTEXT_FILE_COPY[lang];
   const [isOpen, setIsOpen] = useState(false);
+  const [launcherPhase, setLauncherPhase] = useState<"peeking" | "settled">("peeking");
+  const reduceMotion = useReducedMotion();
+  const shouldPeek = launcherPhase === "peeking" && !reduceMotion;
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
   const [rolePasteMode, setRolePasteMode] = useState(false);
@@ -755,28 +758,41 @@ export default function RecruiterBot({
         className,
       )}
     >
-      <AnimatePresence initial={false} mode="wait">
+      <AnimatePresence mode="wait">
         {!isOpen ? (
           <motion.button
             key="assistant-launcher"
             type="button"
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              setLauncherPhase("settled");
+              setIsOpen(true);
+            }}
             className="group pointer-events-auto relative ml-auto flex cursor-pointer items-end rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)]"
             aria-label={copy.openLabel}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            style={{ transformOrigin: "100% 90%" }}
+            initial={shouldPeek ? { opacity: 1, x: 100, rotate: 0 } : { opacity: 1, x: 0, rotate: 0 }}
+            animate={shouldPeek
+              ? { opacity: 1, x: [100, 65, 65, 0], rotate: [0, -9, -9, 0] }
+              : { opacity: 1, x: 0, rotate: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.24, ease: "easeOut" }}
+            transition={shouldPeek
+              ? { delay: 0.32, duration: 1.45, times: [0, 0.26, 0.6, 1], ease: [0.22, 0.68, 0.25, 1] }
+              : { duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+            onAnimationComplete={() => {
+              setLauncherPhase("settled");
+            }}
           >
-            <span
-              aria-hidden="true"
-              className="assistant-launcher-bubble pointer-events-none absolute bottom-9 right-[calc(100%-0.15rem)] z-10 hidden w-max px-3 py-2 sm:block sm:max-w-52"
-            >
-              <span className="assistant-launcher-bubble__tail" />
-              <span className="relative block text-xs font-normal leading-tight tracking-normal">
-                {copy.launcherBubble}
+            {(launcherPhase === "settled" || reduceMotion) && (
+              <span
+                aria-hidden="true"
+                className="assistant-launcher-bubble pointer-events-none absolute bottom-9 right-[calc(100%-0.15rem)] z-10 hidden w-max px-3 py-2 sm:block sm:max-w-52"
+              >
+                <span className="assistant-launcher-bubble__tail" />
+                <span className="relative block text-xs font-normal leading-tight tracking-normal">
+                  {copy.launcherBubble}
+                </span>
               </span>
-            </span>
+            )}
             <span className="control-hover relative inline-block rounded-2xl p-2">
               <PixelWolfAvatar />
             </span>

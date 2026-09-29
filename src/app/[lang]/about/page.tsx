@@ -78,7 +78,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 unoptimized
                 className="h-44 w-44 object-cover md:h-56 md:w-56 lg:h-60 lg:w-60"
                 style={{
-                  borderRadius: "2.25rem 2.25rem 2.25rem 0.75rem",
+                  borderRadius: "22%",
                   border:
                     "1px solid color-mix(in srgb, var(--color-border) 86%, transparent)",
                   boxShadow: "10px 12px 32px var(--shadow)",

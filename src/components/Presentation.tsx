@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import type { Dictionary } from "@/i18n/types";
 import type { Locale } from "@/i18n/config";
 import CompanyLinkedText from "@/components/CompanyLinkedText";
@@ -28,7 +29,16 @@ const Presentation: React.FC<PresentationProps> = ({
   lang,
   companyUrls,
 }) => {
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "manual">("idle");
   const mailtoHref = `mailto:${basics.email}?subject=${encodeURIComponent(dictionary.cta.contactSubject)}&body=${encodeURIComponent(dictionary.cta.contactBody)}`;
+  const copyEmail = async () => {
+    // Keep the address visible even if a browser blocks or stalls Clipboard API.
+    setCopyStatus("manual");
+    try {
+      await navigator.clipboard.writeText(basics.email);
+      setCopyStatus("copied");
+    } catch {}
+  };
 
   return (
     <div className="w-full scroll-mt-24">
@@ -45,7 +55,7 @@ const Presentation: React.FC<PresentationProps> = ({
             unoptimized
             className="h-16 w-16 shrink-0 object-cover transition-transform duration-300 hover:-rotate-2 lg:h-20 lg:w-20"
             style={{
-              borderRadius: "1.35rem 1.35rem 1.35rem 0.45rem",
+              borderRadius: "22%",
               border:
                 "1px solid color-mix(in srgb, var(--color-border) 86%, transparent)",
               boxShadow: "8px 10px 26px var(--shadow)",
@@ -107,6 +117,19 @@ const Presentation: React.FC<PresentationProps> = ({
         >
           {dictionary.cta.contact}
         </a>
+        <button
+          type="button"
+          onClick={copyEmail}
+          className="inline-flex min-h-11 items-center justify-center rounded-xl px-3 text-sm font-semibold underline-offset-4 outline-none transition-colors hover:underline focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"
+          style={{ color: "var(--color-muted)" }}
+        >
+          {dictionary.cta.copyEmail}
+        </button>
+        {copyStatus !== "idle" && (
+          <span className="self-center text-xs" role="status" aria-live="polite" style={{ color: "var(--color-muted)" }}>
+            {copyStatus === "copied" ? dictionary.cta.emailCopied : basics.email}
+          </span>
+        )}
         <Link
           href={`/${lang}/about`}
           className="inline-flex min-h-11 items-center justify-center rounded-xl px-1 text-sm font-semibold underline-offset-4 outline-none transition-colors hover:text-[color:var(--color-text)] hover:underline focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"

@@ -16,9 +16,11 @@ export const COMPANY_LOGOS: Record<string, string> = {
   Mangxo: "/images/work/mango-mark.svg",
   Geome7ric: "/images/work/geome7ric-mark.svg",
   Kalkomey: "/images/work/kalkomey-mark.png",
+  HuntWise: "/images/work/huntwise-mark.png",
   Nuqlea: "/images/work/nuqlea-mark.png",
   RazorTech: "/images/work/razortech-mark.svg",
   Profertil: "/images/work/profertil-symbol.svg",
+  Indoscience: "/images/work/indoscience-mark.jpg",
 };
 
 // Colores del sistema (referencia a CSS variables)

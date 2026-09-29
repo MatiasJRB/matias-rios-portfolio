@@ -141,28 +141,14 @@ const History: React.FC<
         work.map((job, index) => {
           const jobId = `job-${job.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
           const animation = getSlideInAnimation(index);
-          const isRazorTech = job.name === "Cargill";
-          const isProfertil = job.name.includes("Indoscience");
-          const logo = isRazorTech
-            ? getCompanyLogo("RazorTech")
-            : isProfertil
-              ? getCompanyLogo("Profertil")
-              : getCompanyLogo(job.name);
-          const secondaryCompany = isRazorTech
-            ? {
-                label: "C",
-                name: "Cargill",
-                color: "#1f6e43",
-                background: "#d9ecdc",
-              }
-            : isProfertil
-              ? {
-                  label: "IN",
-                  name: "Indoscience",
-                  color: "#2b5970",
-                  background: "#dcebf0",
-                }
-              : null;
+          const logoBadges =
+            job.name === "Kalkomey"
+              ? ["Kalkomey", "HuntWise", "RazorTech"]
+              : job.name === "Cargill"
+                ? ["RazorTech", "Cargill"]
+                : job.name.includes("Indoscience")
+                  ? ["Profertil", "Indoscience"]
+                  : [job.name];
           const monogram = job.name
             .split(/\s*\/\s*|\s+/)
             .filter(Boolean)
@@ -218,42 +204,46 @@ const History: React.FC<
                 >
                   <span
                     aria-hidden="true"
-                    className={`relative inline-flex h-9 flex-shrink-0 items-start ${secondaryCompany ? "w-12" : "w-8"}`}
+                    className="relative inline-flex h-9 flex-shrink-0 items-start"
+                    style={{ width: 32 + (logoBadges.length - 1) * 25 }}
                   >
-                    {secondaryCompany ? (
-                      <span
-                        title={secondaryCompany.name}
-                        className="absolute bottom-0 right-0 z-0 flex h-6 w-6 items-center justify-center rounded-full border border-white text-xs font-extrabold leading-none tracking-[-0.05em] shadow-sm"
-                        style={{
-                          color: secondaryCompany.color,
-                          backgroundColor: secondaryCompany.background,
-                        }}
-                      >
-                        {secondaryCompany.label}
-                      </span>
-                    ) : null}
-                    <span
-                      className="company-logo relative z-10 flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border bg-white shadow-sm transition-[border-color,transform] duration-200"
-                      style={{
-                        borderColor: "var(--color-border)",
-                        color: getCompanyHoverColor(job.name),
-                      }}
-                    >
-                      {logo ? (
-                        <Image
-                          src={logo}
-                          alt=""
-                          width={26}
-                          height={26}
-                          className="h-[26px] w-[26px] object-contain"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <span className="text-[0.6rem] font-bold tracking-[-0.02em]">
-                          {monogram}
+                    {logoBadges.map((company, badgeIndex) => {
+                      const badgeLogo = getCompanyLogo(company);
+                      const isAppIcon = company === "Kalkomey" || company === "Nuqlea";
+                      return (
+                        <span
+                          key={company}
+                          title={company}
+                          className={`absolute top-0 flex h-8 w-8 items-center justify-center overflow-hidden rounded-[10px] border shadow-[0_2px_7px_rgba(0,0,0,0.16)] transition-[border-color,transform] duration-200 ${badgeIndex === 0 ? "company-logo" : ""}`}
+                          style={{
+                            left: badgeIndex * 25,
+                            zIndex: logoBadges.length - badgeIndex,
+                            borderColor: isAppIcon ? "transparent" : "var(--color-border)",
+                            backgroundColor: isAppIcon ? "transparent" : "#fff",
+                            color: company === "Cargill" ? "#1f6e43" : getCompanyHoverColor(job.name),
+                          }}
+                        >
+                          {badgeLogo ? (
+                            <Image
+                              src={badgeLogo}
+                              alt=""
+                              width={32}
+                              height={32}
+                              className={
+                                isAppIcon
+                                  ? "h-full w-full object-cover"
+                                  : company === "Indoscience"
+                                    ? "h-full w-full object-cover"
+                                    : "h-[21px] w-[21px] object-contain"
+                              }
+                              loading="lazy"
+                            />
+                          ) : (
+                            <span className="text-xs font-bold">{company === "Cargill" ? "C" : monogram}</span>
+                          )}
                         </span>
-                      )}
-                    </span>
+                      );
+                    })}
                   </span>
                   <span>
                     <span
