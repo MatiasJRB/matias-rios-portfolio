@@ -1213,6 +1213,10 @@ html:not(.dark) .pixel-assistant-avatar,
 
 .pixel-assistant-avatar--composer {
   --avatar-size: 48px;
+  /* The last sprite row is its feet; no spacer below them before the composer edge. */
+  height: calc(
+    var(--avatar-size) * var(--pixel-wolf-rows) / var(--pixel-wolf-columns)
+  );
 }
 
 /* Keep the floating launcher from covering the single-column mobile layout. */
