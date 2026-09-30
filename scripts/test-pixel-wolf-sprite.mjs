@@ -120,7 +120,7 @@ test("both tongue segments contact the raised paw pad", () => {
 });
 
 test("light choreography never shows detached tongue or duplicate head/paw poses", async () => {
-  const css = await readFile(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  const css = await readFile(new URL("../src/components/pixel-wolf.css", import.meta.url), "utf8");
   const opacityAt = (name, progress) => {
     const frames = css.match(new RegExp(`@keyframes ${name} \\{([\\s\\S]*?)\\n\\}`))?.[1];
     assert.ok(frames, `missing ${name}`);
