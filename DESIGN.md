@@ -29,6 +29,7 @@ colors:
   company-cargill-badge-paper: "#d9ecdc"
   company-indoscience-badge-ink: "#2b5970"
   company-indoscience-badge-paper: "#dcebf0"
+  wolf-tongue-rose: "#db718b"
 typography:
   display:
     fontFamily: "Inter, sans-serif"
@@ -252,8 +253,9 @@ Borders are usually one pixel and warm, often mixed toward transparency. Full-bl
 - **Error / Disabled:** warning color replaces the focus tint for over-limit content; disabled controls retain form and reduce opacity while using a not-allowed cursor.
 - **Assistant Shell:** the chat opens with a compact identity header, clear title, scope description, and 44px controls before conversation content begins.
 - **First-Use Guidance:** the welcome state offers three concrete prompt starters; selecting one fills and focuses the composer without sending automatically.
-- **Avatar Palette:** the pixel wolf is monochromatic Ink + Mint: a mint body, deeper mint ears/ruff/tail/nose, a pale mint muzzle, chest, and tail tip, and the current ink/background token for the eyes. Never introduce amber/orange inside the compact sprite.
-- **Avatar Rendering:** the wolf is a single SVG built from `src/lib/pixel-wolf-sprite.ts`. Render it only at multiples of its 16-column grid (32, 48, 64px) so every sprite pixel stays square, and animate it frame by frame (tail mid/up/mid/down, an occasional ear twitch, blinking) instead of sliding pixels.
+- **Avatar Palette:** the pixel wolf is Ink + Mint: a mint body, deeper mint ears/ruff/tail/nose, a pale mint muzzle, chest, and tail tip, and the current ink/background token for the eyes. A tiny rose tongue appears only while licking its paw, so the gesture reads as grooming rather than a green appendage. Never introduce amber/orange inside the compact sprite; the separate dark-mode pixel moon may use the existing amber accent.
+- **Avatar Rendering:** the wolf is a single SVG built from `src/lib/pixel-wolf-sprite.ts`. Render it only at multiples of its 16-column grid (32, 48, 64px) so every sprite pixel stays square, and animate it frame by frame (tail mid/up/mid/down, an occasional ear twitch, blinking, and authored head/paw poses) instead of sliding pixels.
+- **Launcher Story Beat:** after the wolf settles, dark mode brings a full pixel moon from the right edge, well above and separate from the avatar; the body stays planted while the head cycles through neutral, muzzle-lift and skyward howl poses. Light mode has no celestial prop: the wolf folds one forepaw inward, looks down at it, licks the pad twice and lowers it. The rose tongue's second segment sweeps over the stationary paw, then retracts; this is not panting or waving. The 8.6-second light sequence has a quiet rest between grooming beats, uses existing CSS/SVG layers without new dependencies, and does not alter the entrance or chat controls. Reduced-motion visitors see the resting light wolf or static dark howl/moon.
 - **Mobile Behavior:** opening the assistant must not summon the software keyboard automatically. Composer focus is desktop-only until the visitor explicitly chooses an action.
 
 ### Navigation
