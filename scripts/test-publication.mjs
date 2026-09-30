@@ -98,6 +98,7 @@ try {
       "Ingeniería con agentes",
       "Salud de Mango Créditos",
       "Enviar email",
+      'href="mailto:matiasjriosb@gmail.com"',
       "Diseñado y construido por Matias Rios",
       "La IA aceleró la escritura de código",
       "Audité 113 proyectos",
@@ -105,6 +106,7 @@ try {
     ],
     excludes: [
       "Brittany Chiang",
+      "Copiar email",
       "Desarrollo AI-First",
       "La primera vez que alguien dependió",
       "El framework no podía actualizarse",
@@ -112,8 +114,8 @@ try {
   });
   await expectResponse(baseUrl, "/en", {
     status: 200,
-    includes: ["Agent-assisted engineering", "Mango Credit Health", "Send email"],
-    excludes: ["Brittany Chiang"],
+    includes: ["Agent-assisted engineering", "Mango Credit Health", "Send email", 'href="mailto:matiasjriosb@gmail.com"'],
+    excludes: ["Brittany Chiang", "Copy email"],
   });
   await expectResponse(baseUrl, "/images/projects/mango-engineering-agentic.webp", {
     status: 200,

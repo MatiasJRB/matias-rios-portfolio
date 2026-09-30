@@ -1138,6 +1138,7 @@ html:not(.dark) .cinematic-spotlight {
   --pixel-wolf-drop-shadow: var(--shadow-hover);
   --pixel-wolf-drop-shadow-small: var(--shadow);
   --pixel-wolf-floor-shadow: var(--shadow-hover);
+  --pixel-wolf-tongue: #db718b;
   position: relative;
   display: inline-flex;
   width: var(--avatar-size);
@@ -1244,6 +1245,11 @@ html:not(.dark) .pixel-assistant-avatar,
   transition: fill 320ms ease-in-out;
 }
 
+.dark .pixel-assistant-avatar--launcher .pixel-wolf__head {
+  /* SVG transform units follow the 16-column viewBox: 1px = one sprite row. */
+  animation: pixel-wolf-howl-head 6.8s step-end infinite;
+}
+
 .pixel-wolf__paint--body {
   fill: var(--pixel-wolf-body);
 }
@@ -1266,6 +1272,109 @@ html:not(.dark) .pixel-assistant-avatar,
   fill: var(--pixel-wolf-eye);
   animation: pixel-wolf-blink var(--pixel-wolf-eye-duration, 3.4s) step-end
     infinite;
+}
+
+.pixel-wolf__paint--tongue {
+  fill: var(--pixel-wolf-tongue);
+}
+
+.pixel-wolf__head-pose--lift,
+.pixel-wolf__head-pose--howl,
+.pixel-wolf__head-pose--groom,
+.pixel-wolf__paw-lift,
+.pixel-wolf__paw-groom,
+.pixel-wolf__tongue-short,
+.pixel-wolf__tongue-tip {
+  opacity: 0;
+}
+
+.dark .pixel-assistant-avatar--launcher .pixel-wolf__head-pose--rest {
+  animation: pixel-wolf-howl-rest 6.8s step-end infinite;
+}
+
+.dark .pixel-assistant-avatar--launcher .pixel-wolf__head-pose--lift {
+  animation: pixel-wolf-howl-lift 6.8s step-end infinite;
+}
+
+.dark .pixel-assistant-avatar--launcher .pixel-wolf__head-pose--howl {
+  animation: pixel-wolf-howl-full 6.8s step-end infinite;
+}
+
+html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__paw-rest {
+  animation: pixel-wolf-groom-paw-rest 8.6s step-end infinite;
+}
+
+html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__paw-lift {
+  animation: pixel-wolf-groom-paw-lift 8.6s step-end infinite;
+}
+
+html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__paw-groom,
+html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__head-pose--groom {
+  animation: pixel-wolf-groom-pose 8.6s step-end infinite;
+}
+
+html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__head-pose--rest {
+  animation: pixel-wolf-groom-head-rest 8.6s step-end infinite;
+}
+
+html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__tongue-short {
+  animation: pixel-wolf-groom-tongue-short 8.6s step-end infinite;
+}
+
+html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__tongue-tip {
+  animation: pixel-wolf-groom-tongue-tip 8.6s step-end infinite;
+}
+
+@keyframes pixel-wolf-howl-head {
+  0%, 31%, 50%, 100% { transform: translateY(0); }
+  32%, 49% { transform: translateY(-1px); }
+}
+
+@keyframes pixel-wolf-howl-rest {
+  0%, 26%, 54%, 100% { opacity: 1; }
+  27%, 53% { opacity: 0; }
+}
+
+@keyframes pixel-wolf-howl-lift {
+  0%, 26%, 32%, 49%, 54%, 100% { opacity: 0; }
+  27%, 31%, 50%, 53% { opacity: 1; }
+}
+
+@keyframes pixel-wolf-howl-full {
+  0%, 31%, 50%, 100% { opacity: 0; }
+  32%, 49% { opacity: 1; }
+}
+
+/* Lift → look down → two licks on the stationary paw → lower → rest.
+   The tongue tip moves along the pad, never independently of the raised paw. */
+@keyframes pixel-wolf-groom-paw-rest {
+  0%, 29%, 59%, 100% { opacity: 1; }
+  30%, 58% { opacity: 0; }
+}
+
+@keyframes pixel-wolf-groom-paw-lift {
+  0%, 29%, 34%, 55%, 59%, 100% { opacity: 0; }
+  30%, 33%, 56%, 58% { opacity: 1; }
+}
+
+@keyframes pixel-wolf-groom-pose {
+  0%, 33%, 56%, 100% { opacity: 0; }
+  34%, 55% { opacity: 1; }
+}
+
+@keyframes pixel-wolf-groom-head-rest {
+  0%, 33%, 56%, 100% { opacity: 1; }
+  34%, 55% { opacity: 0; }
+}
+
+@keyframes pixel-wolf-groom-tongue-short {
+  0%, 37%, 45%, 47%, 55%, 100% { opacity: 0; }
+  38%, 44%, 48%, 54% { opacity: 1; }
+}
+
+@keyframes pixel-wolf-groom-tongue-tip {
+  0%, 38%, 43%, 48%, 53%, 100% { opacity: 0; }
+  39%, 42%, 49%, 52% { opacity: 1; }
 }
 
 /* Frame-by-frame poses: the tail wags mid → up → mid → down and the right
@@ -1358,6 +1467,46 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
     var(--color-primary) 82%,
     var(--pixel-wolf-body)
   );
+}
+
+.assistant-wolf-celestial {
+  display: none;
+  position: absolute;
+  right: -0.5rem;
+  bottom: calc(100% + 2rem);
+  z-index: 0;
+  width: 33px;
+  height: 33px;
+  color: var(--color-accent);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(50px, 12px, 0) scale(0.75);
+  filter: drop-shadow(0 3px 8px color-mix(in srgb, var(--color-accent) 30%, transparent));
+}
+
+.assistant-wolf-celestial svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.dark .assistant-wolf-celestial {
+  display: block;
+  animation: assistant-wolf-moon-rise 6.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes assistant-wolf-moon-rise {
+  0%, 20% { opacity: 0; transform: translate3d(50px, 12px, 0) scale(0.75); }
+  29%, 49% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  55%, 100% { opacity: 0; transform: translate3d(50px, -4px, 0) scale(0.8); }
+}
+
+@media (max-width: 639px) {
+  .assistant-wolf-celestial {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .assistant-launcher-bubble {
@@ -1712,5 +1861,27 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
   .pixel-wolf__paint--mark,
   .pixel-wolf__frame {
     animation: none;
+  }
+
+  .dark .pixel-assistant-avatar--launcher .pixel-wolf__head,
+  .dark .pixel-assistant-avatar--launcher .pixel-wolf__head-pose,
+  html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__head-pose,
+  html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__paw-rest,
+  html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__paw-lift,
+  html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__paw-groom,
+  html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__tongue-short,
+  html:not(.dark) .pixel-assistant-avatar--launcher .pixel-wolf__tongue-tip,
+  .dark .assistant-wolf-celestial {
+    animation: none;
+  }
+
+  .dark .pixel-assistant-avatar--launcher .pixel-wolf__head-pose--rest {
+    opacity: 0;
+  }
+
+  .dark .pixel-assistant-avatar--launcher .pixel-wolf__head-pose--howl,
+  .dark .assistant-wolf-celestial {
+    opacity: 1;
+    transform: none;
   }
 }

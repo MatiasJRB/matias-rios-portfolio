@@ -782,6 +782,11 @@ export default function RecruiterBot({
               setLauncherPhase("settled");
             }}
           >
+            <span className="assistant-wolf-celestial" aria-hidden="true">
+              <svg className="assistant-wolf-celestial__moon" viewBox="0 0 11 11" shapeRendering="crispEdges" focusable="false">
+                <path d="M4 0h3v1H4zM2 1h7v1H2zM1 2h9v2H1zM0 4h11v3H0zM1 7h9v2H1zM2 9h7v1H2zM4 10h3v1H4z" />
+              </svg>
+            </span>
             {(launcherPhase === "settled" || reduceMotion) && (
               <span
                 aria-hidden="true"
