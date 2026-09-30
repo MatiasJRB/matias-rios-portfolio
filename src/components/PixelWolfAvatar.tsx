@@ -82,13 +82,13 @@ export default function PixelWolfAvatar({
           </g>
           {size === "launcher" && (
             <>
-              <g className="pixel-wolf__head-pose pixel-wolf__head-pose--lift">
+              <g className="pixel-wolf__head-pose pixel-wolf__head-pose--lift" opacity="0">
                 {renderPaths(headLiftPaths)}
               </g>
-              <g className="pixel-wolf__head-pose pixel-wolf__head-pose--howl">
+              <g className="pixel-wolf__head-pose pixel-wolf__head-pose--howl" opacity="0">
                 {renderPaths(headHowlPaths)}
               </g>
-              <g className="pixel-wolf__head-pose pixel-wolf__head-pose--groom">
+              <g className="pixel-wolf__head-pose pixel-wolf__head-pose--groom" opacity="0">
                 {renderPaths(headGroomPaths)}
               </g>
             </>
@@ -102,10 +102,10 @@ export default function PixelWolfAvatar({
         <g className="pixel-wolf__paw-rest">{renderPaths(pawRestPaths)}</g>
         {size === "launcher" && (
           <>
-            <g className="pixel-wolf__paw-lift">{renderPaths(pawLiftPaths)}</g>
-            <g className="pixel-wolf__paw-groom">{renderPaths(pawGroomPaths)}</g>
-            <g className="pixel-wolf__tongue-short">{renderPaths(tongueShortPaths)}</g>
-            <g className="pixel-wolf__tongue-tip">{renderPaths(tongueTipPaths)}</g>
+            <g className="pixel-wolf__paw-lift" opacity="0">{renderPaths(pawLiftPaths)}</g>
+            <g className="pixel-wolf__paw-groom" opacity="0">{renderPaths(pawGroomPaths)}</g>
+            <g className="pixel-wolf__tongue-short" opacity="0">{renderPaths(tongueShortPaths)}</g>
+            <g className="pixel-wolf__tongue-tip" opacity="0">{renderPaths(tongueTipPaths)}</g>
           </>
         )}
       </svg>

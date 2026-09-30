@@ -95,6 +95,10 @@ try {
   // A successful deploy/HTML response does not prove its CSS matches the SVG.
   for (const locale of ["es", "en"]) {
     const html = await (await fetch(`${baseUrl}/${locale}`)).text();
+    for (const pose of ["head-pose--lift", "head-pose--howl", "head-pose--groom", "paw-lift", "paw-groom", "tongue-short", "tongue-tip"]) {
+      const tag = [...html.matchAll(/<g\b[^>]*>/g)].find(([group]) => group.includes(`pixel-wolf__${pose}`))?.[0];
+      if (!tag?.includes('opacity="0"')) throw new Error(`${locale}: ${pose} lacks safe SVG visibility fallback`);
+    }
     const hrefs = [...html.matchAll(/<link\b[^>]*\brel="stylesheet"[^>]*>/g)]
       .map(([tag]) => tag.match(/\bhref="([^"]+)"/)?.[1]).filter(Boolean);
     if (!hrefs.length) throw new Error(`${locale}: no linked stylesheets`);
