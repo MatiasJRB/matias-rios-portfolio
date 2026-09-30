@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { join } from "node:path";
+import { assertWolfStyles } from "./check-wolf-css.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
 const host = "127.0.0.1";
@@ -90,6 +91,22 @@ const serverProcess = spawn(
 
 try {
   await waitForServer(`${baseUrl}/es`, serverProcess);
+
+  // A successful deploy/HTML response does not prove its CSS matches the SVG.
+  for (const locale of ["es", "en"]) {
+    const html = await (await fetch(`${baseUrl}/${locale}`)).text();
+    const hrefs = [...html.matchAll(/<link\b[^>]*\brel="stylesheet"[^>]*>/g)]
+      .map(([tag]) => tag.match(/\bhref="([^"]+)"/)?.[1]).filter(Boolean);
+    if (!hrefs.length) throw new Error(`${locale}: no linked stylesheets`);
+    const styles = await Promise.all(hrefs.map(async (href) => {
+      const url = new URL(href.replaceAll("&amp;", "&"), baseUrl);
+      if (url.origin !== baseUrl) throw new Error(`Unexpected external stylesheet: ${url}`);
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Stylesheet ${url}: HTTP ${response.status}`);
+      return response.text();
+    }));
+    assertWolfStyles(styles.join("\n"), `${locale} linked production stylesheets`);
+  }
 
   await expectResponse(baseUrl, "/es", {
     status: 200,

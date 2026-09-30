@@ -21,6 +21,8 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
+      - run: node --test scripts/test-pixel-wolf-sprite.mjs scripts/test-wolf-styles.mjs
       - run: npm run build
         env:
           GEMINI_API_KEY: ci-placeholder
+      - run: npm run test:publication

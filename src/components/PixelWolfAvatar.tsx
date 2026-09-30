@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import "./pixel-wolf.css";
 import { cn } from "@/utils";
 import {
   toPaths,
