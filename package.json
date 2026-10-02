@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "rm -rf .next && next dev",
-    "build": "next build && node scripts/check-wolf-css.mjs",
+    "build": "next build && node scripts/check-wolf-css.mjs && node scripts/check-overlay-css.mjs",
     "start": "next start",
     "lint": "eslint .",
     "analyze": "ANALYZE=true next build",
@@ -12,7 +12,8 @@
     "generate:cv-pdfs": "node scripts/generate-cv-pdfs.mjs",
     "generate:og-image": "node scripts/generate-og-images.mjs",
     "test:publication": "node scripts/test-publication.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:ux": "node --test scripts/test-overlay-dialog.mjs scripts/test-chat-interaction.mjs scripts/test-chat-scroll.mjs scripts/test-chat-follow-ups.mjs"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.2",
@@ -22,14 +23,14 @@
     "framer-motion": "^12.23.24",
     "mammoth": "^1.12.0",
     "negotiator": "^1.0.0",
-    "next": "^16.3.0",
+    "next": "^16.3.8",
     "next-themes": "^0.4.6",
     "p5": "^2.1.1",
     "pdf-parse": "^2.4.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-icons": "^5.5.0",
-    "sharp": "^0.35.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.0.0",
     "three": "^0.181.2",
     "vanta": "^0.5.24"
@@ -43,6 +44,7 @@
     "@types/react-dom": "^19.2.4",
     "eslint": "^9",
     "eslint-config-next": "^16.3.0",
+    "jsdom": "^27.4.0",
     "typescript": "^5"
   }
 }
