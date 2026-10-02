@@ -1,5 +1,7 @@
 "use client";
 
+import { createPortal } from "react-dom";
+import { activateOverlayModal, observeOverlayViewport } from "@/lib/overlay-dialog";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   TbArrowLeft,
@@ -104,6 +106,8 @@ export default function PortfolioTimeMachine({
   dictionary,
 }: PortfolioTimeMachineProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
+  useEffect(() => setPortalHost(document.body), []);
   const [selectedIndex, setSelectedIndex] = useState(CURRENT_ERA_INDEX);
   const [direction, setDirection] = useState(0);
   const reduceMotion = useReducedMotion();
@@ -126,7 +130,7 @@ export default function PortfolioTimeMachine({
 
   const close = useCallback(() => {
     setIsOpen(false);
-    window.setTimeout(() => launcherRef.current?.focus(), 0);
+    window.setTimeout(() => launcherRef.current?.focus({ preventScroll: true }), 300);
   }, []);
 
   const open = () => {
@@ -138,17 +142,11 @@ export default function PortfolioTimeMachine({
   useEffect(() => {
     if (!isOpen) return;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.setTimeout(() => closeRef.current?.focus(), 0);
+    if (!dialogRef.current || !closeRef.current) return;
+    const restoreModal = activateOverlayModal(dialogRef.current, closeRef.current, close);
+    const restoreViewport = observeOverlayViewport(dialogRef.current);
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        close();
-        return;
-      }
-
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         selectEra(Math.max(0, selectedIndex - 1));
@@ -160,29 +158,12 @@ export default function PortfolioTimeMachine({
         selectEra(Math.min(PORTFOLIO_ERAS.length - 1, selectedIndex + 1));
         return;
       }
-
-      if (event.key === "Tab" && dialogRef.current) {
-        const focusable = Array.from(
-          dialogRef.current.querySelectorAll<HTMLElement>(
-            'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
-          ),
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
     };
 
     document.addEventListener("keydown", onKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
+      restoreViewport();
+      restoreModal();
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [close, isOpen, selectEra, selectedIndex]);
@@ -250,7 +231,7 @@ export default function PortfolioTimeMachine({
         <TimeMachineIcon />
       </button>
 
-      <AnimatePresence>
+      {portalHost && createPortal(<AnimatePresence>
         {isOpen && (
           <motion.div
             ref={dialogRef}
@@ -436,7 +417,7 @@ export default function PortfolioTimeMachine({
             </motion.section>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>, portalHost)}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { join } from "node:path";
+import { assertOverlayStyles } from "./check-overlay-css.mjs";
 import { assertWolfStyles } from "./check-wolf-css.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
@@ -110,6 +111,7 @@ try {
       return response.text();
     }));
     assertWolfStyles(styles.join("\n"), `${locale} linked production stylesheets`);
+    assertOverlayStyles(styles.join("\n"), `${locale} linked overlay stylesheets`);
   }
 
   await expectResponse(baseUrl, "/es", {

@@ -61,7 +61,7 @@ export default function InteractiveLayout({
       {mounted && !isCVPage && <PortfolioShaderBackdrop />}
       {mounted && !isCVPage && <CinematicEffects />}
       {!isCVPage && !previewMode && (
-        <div className="fixed right-[8.5rem] top-5 z-[310] flex h-[38px] items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 shadow-sm md:right-[9rem] md:top-6 lg:right-6 lg:bottom-6 lg:top-auto lg:h-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:shadow-none">
+        <div className="portfolio-toolbar fixed right-[8.5rem] top-5 flex h-[38px] items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 shadow-sm md:right-[9rem] md:top-6 lg:right-6 lg:bottom-6 lg:top-auto lg:h-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:shadow-none">
           <PortfolioTimeMachine lang={lang} dictionary={dictionary} />
           <div className="hidden lg:block">
             <KeyboardNavigationHint
@@ -73,7 +73,7 @@ export default function InteractiveLayout({
           </div>
         </div>
       )}
-      <div className="fixed right-5 top-5 z-[300] flex items-center md:right-6 md:top-6">
+      <div className="portfolio-toolbar fixed right-5 top-5 flex items-center md:right-6 md:top-6">
         <ThemeSwitch />
       </div>
       <div

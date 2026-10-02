@@ -7,6 +7,7 @@ import {
   FormEvent,
   KeyboardEvent,
   ReactNode,
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -29,6 +30,8 @@ import { cn } from "@/utils";
 import PixelWolfAvatar from "@/components/PixelWolfAvatar";
 import { getChatFollowUps } from "@/lib/chat-follow-ups";
 import { getReplyScrollTop } from "@/lib/chat-scroll";
+import { activateOverlayModal, observeOverlayViewport } from "@/lib/overlay-dialog";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
@@ -276,9 +279,45 @@ export default function RecruiterBot({
   const messagesRef = useRef<HTMLDivElement>(null);
   const responseAnchorIdRef = useRef<string | null>(null);
   const followPendingRef = useRef(true);
+  const savedScrollTopRef = useRef(0);
+  const previousContainerRef = useRef<HTMLDivElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dragDepthRef = useRef(0);
+  const shellRef = useRef<HTMLElement>(null);
+  const launcherRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const [panelElement, setPanelElement] = useState<HTMLDivElement | null>(null);
+  const isSmallScreen = useMediaQuery("(max-width: 639px), (pointer: coarse)");
+  const isModal = isSmallScreen || isExpanded;
+  const wasOpenRef = useRef(false);
+
+  const closeChat = useCallback(() => {
+    textareaRef.current?.blur();
+    setIsOpen(false);
+    setIsExpanded(false);
+    setIsDraggingFile(false);
+    dragDepthRef.current = 0;
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen || !panelElement || !shellRef.current) return;
+    return observeOverlayViewport(shellRef.current);
+  }, [isOpen, panelElement]);
+
+  useEffect(() => {
+    if (!isOpen || !isModal || !panelElement || !closeRef.current) return;
+    return activateOverlayModal(panelElement, closeRef.current, closeChat);
+  }, [isOpen, isModal, panelElement, closeChat]);
+
+  useEffect(() => {
+    const shouldRestoreFocus = wasOpenRef.current && !isOpen;
+    wasOpenRef.current = isOpen;
+    if (!shouldRestoreFocus) return;
+    // AnimatePresence mounts the launcher after the outgoing panel has settled.
+    const timer = window.setTimeout(() => launcherRef.current?.focus({ preventScroll: true }), 400);
+    return () => window.clearTimeout(timer);
+  }, [isOpen]);
 
   const remainingChars = MAX_CHARS - input.length;
   const isTooLong = remainingChars < 0;
@@ -323,10 +362,16 @@ export default function RecruiterBot({
   }, []);
 
   useLayoutEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || !panelElement) return;
 
     const container = messagesRef.current;
     if (!container) return;
+
+    if (previousContainerRef.current !== container) {
+      previousContainerRef.current = container;
+      container.scrollTop = savedScrollTopRef.current;
+      return;
+    }
 
     const responseId = responseAnchorIdRef.current;
     const latestMessage = messages[messages.length - 1];
@@ -361,10 +406,10 @@ export default function RecruiterBot({
     }
 
     container.scrollTop = container.scrollHeight;
-  }, [isOpen, messages]);
+  }, [isOpen, messages, panelElement]);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || isModal) return;
 
     const shouldFocusComposer = window.matchMedia(
       "(min-width: 640px) and (pointer: fine)",
@@ -378,7 +423,7 @@ export default function RecruiterBot({
     );
 
     return () => window.clearTimeout(focusTimer);
-  }, [isOpen]);
+  }, [isOpen, isModal]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -387,8 +432,7 @@ export default function RecruiterBot({
       if (event.key !== "Escape") return;
 
       event.preventDefault();
-      setIsOpen(false);
-      setIsExpanded(false);
+      closeChat();
     };
 
     window.addEventListener("keydown", handleEscape);
@@ -396,7 +440,7 @@ export default function RecruiterBot({
     return () => {
       window.removeEventListener("keydown", handleEscape);
     };
-  }, [isOpen]);
+  }, [isOpen, closeChat]);
 
   const visibleHistory = useMemo(
     () =>
@@ -737,16 +781,13 @@ export default function RecruiterBot({
     }
   };
 
-  const closeChat = () => {
-    setIsOpen(false);
-    setIsExpanded(false);
-  };
-
   return (
     <aside
+      ref={shellRef}
       aria-label={copy.ariaLabel}
       className={cn(
-        "assistant-bot-shell pointer-events-none z-[80]",
+        "assistant-bot-shell pointer-events-none",
+        isSmallScreen && "assistant-bot-shell--mobile",
         isOpen &&
           !isExpanded &&
           "assistant-bot-shell--open fixed right-0 w-full max-w-none sm:right-4 sm:w-[calc(100vw-2rem)] sm:max-w-[440px] md:right-6",
@@ -761,6 +802,7 @@ export default function RecruiterBot({
       <AnimatePresence mode="wait">
         {!isOpen ? (
           <motion.button
+            ref={launcherRef}
             key="assistant-launcher"
             type="button"
             onClick={() => {
@@ -769,6 +811,8 @@ export default function RecruiterBot({
             }}
             className="group pointer-events-auto relative ml-auto flex cursor-pointer items-end rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)]"
             aria-label={copy.openLabel}
+            aria-haspopup="dialog"
+            aria-expanded={isOpen}
             style={{ transformOrigin: "100% 90%" }}
             initial={shouldPeek ? { opacity: 1, x: 100, rotate: 0 } : { opacity: 1, x: 0, rotate: 0 }}
             animate={shouldPeek
@@ -804,12 +848,16 @@ export default function RecruiterBot({
           </motion.button>
         ) : (
           <motion.div
+            ref={setPanelElement}
             key="assistant-panel"
+            role="dialog"
+            aria-modal={isModal || undefined}
+            aria-label={copy.title}
             className={cn(
-              "pointer-events-auto relative flex w-full overflow-hidden overscroll-contain border backdrop-blur-2xl",
+              "assistant-panel pointer-events-auto relative flex w-full overflow-hidden overscroll-contain border backdrop-blur-2xl",
               isExpanded
-                ? "h-[100svh] max-h-[100svh] min-h-[100svh] rounded-none"
-                : "max-h-[100svh] min-h-[520px] rounded-b-none rounded-t-3xl sm:max-h-[calc(100svh-2rem)] sm:rounded-3xl md:min-h-[580px] lg:max-h-[calc(100svh-7rem)]",
+                ? "rounded-none"
+                : "rounded-b-none rounded-t-3xl sm:rounded-3xl",
             )}
             style={{
               background:
@@ -868,7 +916,7 @@ export default function RecruiterBot({
               </div>
 
               <header
-                className="flex min-h-[4.75rem] items-center gap-3 border-b px-4 py-3"
+                className="assistant-panel-header relative z-40 flex min-h-[4.75rem] shrink-0 items-center gap-3 border-b px-4 py-3"
                 style={{
                   borderColor:
                     "color-mix(in srgb, var(--color-primary) 12%, var(--color-border))",
@@ -912,6 +960,7 @@ export default function RecruiterBot({
                   </button>
                   <button
                     type="button"
+                    ref={closeRef}
                     onClick={closeChat}
                     className="flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-200 hover:bg-[color:var(--color-card-hover)]"
                     style={{ color: "var(--color-muted)" }}
@@ -927,9 +976,9 @@ export default function RecruiterBot({
                 className="assistant-messages-scroll min-h-0 flex-1 space-y-4 overflow-y-auto px-4 pt-4"
                 aria-live="polite"
                 onScroll={(event) => {
-                  if (!isSubmitting) return;
-
                   const container = event.currentTarget;
+                  savedScrollTopRef.current = container.scrollTop;
+                  if (!isSubmitting) return;
                   followPendingRef.current =
                     container.scrollHeight -
                       container.clientHeight -
@@ -952,7 +1001,7 @@ export default function RecruiterBot({
                     >
                       <div
                         className={cn(
-                          "max-w-[88%] rounded-2xl px-4 py-3 text-sm font-medium leading-relaxed",
+                          "min-w-0 max-w-[88%] break-words rounded-2xl px-4 py-3 text-sm font-medium leading-relaxed",
                           isUser ? "rounded-br-md" : "rounded-bl-md border",
                         )}
                         style={{
@@ -1060,7 +1109,7 @@ export default function RecruiterBot({
                 ) : null}
               </div>
 
-              <div className="assistant-composer-dock pointer-events-none absolute inset-x-0 bottom-0 px-4 pb-3 pt-6">
+              <div className="assistant-composer-dock pointer-events-none relative shrink-0 px-4 pb-3">
                 <div
                   className={cn(
                     "assistant-composer-avatar-row pointer-events-none mb-0 mr-5 flex justify-end",
@@ -1086,7 +1135,7 @@ export default function RecruiterBot({
                     onChange={handleContextFileInputChange}
                   />
                   {(fileContexts.length > 0 || fileError || isParsingFile) && (
-                    <div className="mb-2 space-y-2 px-2 pt-1">
+                    <div className="assistant-context-files mb-2 max-h-24 space-y-2 overflow-y-auto px-2 pt-1">
                       {fileContexts.length > 0 && (
                         <div>
                           <p
@@ -1210,7 +1259,7 @@ export default function RecruiterBot({
                       name="portfolio-assistant-question"
                       autoComplete="off"
                       aria-label={copy.inputLabel}
-                      className="max-h-32 min-h-12 flex-1 resize-none overflow-y-auto bg-transparent px-2 py-2 text-sm font-medium leading-relaxed outline-none focus:outline-none focus-visible:outline-none placeholder:text-[color:var(--color-muted)]"
+                      className="max-h-32 min-h-12 min-w-0 flex-1 resize-none overflow-y-auto bg-transparent px-2 py-2 text-base sm:text-sm font-medium leading-relaxed outline-none focus:outline-none focus-visible:outline-none placeholder:text-[color:var(--color-muted)]"
                       style={{ color: "var(--color-text)" }}
                     />
                     <button

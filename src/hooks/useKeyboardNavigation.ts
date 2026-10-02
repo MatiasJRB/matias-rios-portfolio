@@ -365,6 +365,8 @@ export const useKeyboardNavigation = ({
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Overlays own their keyboard interaction; never navigate the page behind them.
+      if (e.defaultPrevented || (e.target instanceof HTMLElement && e.target.closest('[role="dialog"]')) || document.querySelector('[aria-modal="true"]')) return;
       if (isTypingTarget(e.target)) return;
 
       // Handle Enter key for opening links
