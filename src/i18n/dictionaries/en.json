@@ -248,21 +248,36 @@
     "launcherBubble": "Ask about Matias",
     "launcherHint": "JDs, ideas, stack, projects, or focused questions",
     "title": "Portfolio chat",
-    "description": "Experience, projects, and roles.",
-    "greeting": "Hi. I can help with Matias' experience, projects, and role fit. You can also share your project and see if Matias can help.",
+    "description": "AI assistant · Experience and projects.",
+    "greeting": "I'm Matias' AI assistant. We can explore his experience or discuss a job description or project.",
     "suggestionsLabel": "Start with a question",
     "suggestions": [
-      "What experience does he have leading teams?",
-      "Which projects has he taken to production?",
-      "Paste a job post to assess fit"
+      "Explore experience",
+      "Evaluate a job description",
+      "Discuss a project"
     ],
     "followUpLabel": "Keep exploring",
     "followUps": {
-      "leadership": ["How did that leadership show up in a project?", "Which systems did he design?"],
-      "projects": ["Which part of the project did Matias lead?", "What technical decisions did he make?"],
-      "fit": ["Which stack has he worked with recently?", "What evidence supports that fit?"],
-      "contact": ["Where can I find his CV?", "What kind of work does he do now?"],
-      "general": ["Can you give me a concrete example?", "Which project demonstrates that?"]
+      "leadership": [
+        "How did that leadership show up in a project?",
+        "Which systems did he design?"
+      ],
+      "projects": [
+        "Which part of the project did Matias lead?",
+        "What technical decisions did he make?"
+      ],
+      "fit": [
+        "Which stack has he worked with recently?",
+        "What evidence supports that fit?"
+      ],
+      "contact": [
+        "Where can I find his CV?",
+        "What kind of work does he do now?"
+      ],
+      "general": [
+        "Can you give me a concrete example?",
+        "Which project demonstrates that?"
+      ]
     },
     "inputLabel": "Question for the portfolio assistant",
     "placeholder": "Ask a question or paste context…",
@@ -270,10 +285,22 @@
     "loading": "Thinking…",
     "emptyError": "Write a question or paste context before sending.",
     "tooLongError": "The text is too long. Trim it a bit and try again.",
-    "rateLimitError": "Too many requests in a row. Wait a minute and try again.",
-    "genericError": "I could not answer right now. Please try again in a moment.",
+    "rateLimitError": "You reached the temporary request limit. You can retry when the wait ends.",
+    "genericError": "I couldn't complete the answer. You can retry without retyping or reattaching files.",
     "privacyNote": "Chat and files go to Gemini; they are not stored here.",
     "rolePastePlaceholder": "Paste the role description or requirements here…",
-    "rolePasteHint": "Paste the full job post; I’ll compare its requirements with portfolio evidence."
+    "rolePasteHint": "Paste or attach the job description. I compare requirements, matches and gaps against portfolio evidence.",
+    "contactBoundary": "This chat does not send messages to Matias.",
+    "experiencePrompt": "What experience and projects support Matias' work as a Tech Lead?",
+    "projectPlaceholder": "Tell me about the problem or project idea…",
+    "projectHint": "Describe what you want to achieve and the project's current stage.",
+    "moreDetails": "Show more detail",
+    "evidenceLabel": "Portfolio evidence",
+    "opensNewTab": "opens in a new tab",
+    "retryButton": "Retry question",
+    "retryWait": "Retry in {seconds} s",
+    "requestSaved": "Your question and context are still available to retry.",
+    "unavailableError": "The assistant is temporarily unavailable. Please try again later.",
+    "timeoutError": "The response took too long. You can retry your question."
   }
 }

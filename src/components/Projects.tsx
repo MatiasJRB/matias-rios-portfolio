@@ -8,6 +8,7 @@ import type { Project } from "@/types";
 import type { Dictionary } from "@/i18n/types";
 import { getCompanyUrl } from "@/lib/companies";
 import { getSlideInAnimation } from "@/hooks/useSlideInAnimation";
+import { getProjectAnchor } from "@/lib/chat-evidence";
 
 const COMPANY_COLORS: Record<string, string> = {
   Mango: "var(--company-mango)",
@@ -103,8 +104,9 @@ function FeaturedProjectCard({
 
   return (
     <article
+      id={getProjectAnchor(project.name)}
       className={cn(
-        "group relative flex h-full flex-col rounded-2xl border p-5 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 focus-within:-translate-y-1 md:p-6",
+        "group relative flex h-full scroll-mt-24 flex-col rounded-2xl border p-5 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 focus-within:-translate-y-1 md:p-6",
         animation.className,
       )}
       style={{
@@ -282,7 +284,8 @@ function ArchiveProjectCard({
   return (
     <article
       key={project.name}
-      className={cn("relative border-b", animation.className)}
+      id={`${getProjectAnchor(project.name)}${project.featured ? "-archive" : ""}`}
+      className={cn("relative scroll-mt-24 border-b", animation.className)}
       style={{
         ...animation.style,
         borderColor:

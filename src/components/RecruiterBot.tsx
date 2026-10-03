@@ -32,10 +32,13 @@ import { getChatFollowUps } from "@/lib/chat-follow-ups";
 import { getReplyScrollTop } from "@/lib/chat-scroll";
 import { activateOverlayModal, observeOverlayViewport } from "@/lib/overlay-dialog";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { getReplyPresentation, getRetryDelay, getRetryWindow, parseAssistantResponse } from "@/lib/chat-response";
+import type { ChatEvidence } from "@/lib/chat-response";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
 type MessageRole = "assistant" | "user";
+type ChatIntent = "general" | "experience" | "fit" | "project";
 
 type ChatMessage = {
   id: string;
@@ -43,6 +46,9 @@ type ChatMessage = {
   content: string;
   status?: "normal" | "loading" | "error" | "warning";
   attachments?: string[];
+  details?: string;
+  sources?: ChatEvidence[];
+  retryRequest?: ChatRequestSnapshot;
 };
 
 type BotResponse = {
@@ -61,6 +67,14 @@ type ContextFile = {
   pagesUsed?: number;
   charCount?: number;
   truncated?: boolean;
+};
+
+type ChatRequestSnapshot = {
+  lang: Locale;
+  message: string;
+  messages: Array<{ role: MessageRole; content: string }>;
+  fileContexts: ContextFile[];
+  intent: ChatIntent;
 };
 
 type ContextFileUploadResponse = {
@@ -263,7 +277,7 @@ export default function RecruiterBot({
   const shouldPeek = launcherPhase === "peeking" && !reduceMotion;
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
-  const [rolePasteMode, setRolePasteMode] = useState(false);
+  const [composerIntent, setComposerIntent] = useState<ChatIntent>("general");
   const [fileContexts, setFileContexts] = useState<ContextFile[]>([]);
   const [fileError, setFileError] = useState<string | null>(null);
   const [isDraggingFile, setIsDraggingFile] = useState(false);
@@ -291,6 +305,27 @@ export default function RecruiterBot({
   const isSmallScreen = useMediaQuery("(max-width: 639px), (pointer: coarse)");
   const isModal = isSmallScreen || isExpanded;
   const wasOpenRef = useRef(false);
+  const requestInFlightRef = useRef(false);
+  const requestControllerRef = useRef<AbortController | null>(null);
+  const mountedRef = useRef(true);
+  const [retryAvailableAt, setRetryAvailableAt] = useState(0);
+  const [retryClock, setRetryClock] = useState(0);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; requestControllerRef.current?.abort(); };
+  }, []);
+
+  useEffect(() => {
+    if (!retryAvailableAt) return;
+    const timer = window.setInterval(() => {
+      const now = Date.now();
+      setRetryClock(now);
+      if (now >= retryAvailableAt) window.clearInterval(timer);
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [retryAvailableAt]);
+  const retryWaitSeconds = Math.max(0, Math.ceil((retryAvailableAt - retryClock) / 1000));
 
   const closeChat = useCallback(() => {
     textareaRef.current?.blur();
@@ -325,6 +360,7 @@ export default function RecruiterBot({
     !isSubmitting &&
     !isParsingFile &&
     !isTooLong &&
+    retryWaitSeconds === 0 &&
     (Boolean(input.trim()) || fileContexts.length > 0);
   const lastMessage = messages[messages.length - 1];
   const askedQuestions = messages
@@ -339,14 +375,13 @@ export default function RecruiterBot({
     fileContexts.length === 0;
   const suggestions =
     messages.length === 1
-      ? rolePasteMode
-        ? []
-        : copy.suggestions
+      ? copy.suggestions
       : showFollowUps && askedQuestions.length > 0
         ? getChatFollowUps(askedQuestions, copy.followUps)
         : [];
-  const composerPlaceholder = rolePasteMode
+  const composerPlaceholder = composerIntent === "fit"
     ? copy.rolePastePlaceholder
+    : composerIntent === "project" ? copy.projectPlaceholder
     : fileContexts.length
       ? `${copy.placeholder} ${contextFileCopy.contextHint}`
       : copy.placeholder;
@@ -445,9 +480,9 @@ export default function RecruiterBot({
   const visibleHistory = useMemo(
     () =>
       messages
-        .filter((message) => message.status !== "loading")
+        .filter((message) => !message.status || message.status === "normal")
         .slice(-HISTORY_LIMIT)
-        .map(({ role, content }) => ({ role, content })),
+        .map(({ role, content, details }) => ({ role, content: [content, details].filter(Boolean).join("\n\n") })),
     [messages],
   );
 
@@ -455,8 +490,10 @@ export default function RecruiterBot({
     pendingId: string,
     content: string,
     status: ChatMessage["status"] = "normal",
+    extras: Pick<ChatMessage, "details" | "sources" | "retryRequest"> = {},
   ) => {
     responseAnchorIdRef.current = pendingId;
+    if (!mountedRef.current) return;
     setMessages((current) =>
       current.map((message) =>
         message.id === pendingId
@@ -464,6 +501,7 @@ export default function RecruiterBot({
               ...message,
               content,
               status,
+              ...extras,
             }
           : message,
       ),
@@ -684,7 +722,7 @@ export default function RecruiterBot({
     if (
       (!trimmedInput && fileContexts.length === 0) ||
       isSubmitting ||
-      isParsingFile
+      isParsingFile || requestInFlightRef.current || retryWaitSeconds > 0
     ) {
       return;
     }
@@ -716,25 +754,29 @@ export default function RecruiterBot({
       status: "loading",
     };
 
-    const contextsForRequest = fileContexts.map(
-      ({ name, kind, text, pageCount, pagesUsed, truncated }) => ({
-        name,
-        kind,
-        text,
-        pageCount,
-        pagesUsed,
-        truncated,
-      }),
-    );
+    const snapshot: ChatRequestSnapshot = {
+      lang, message: trimmedInput,
+      messages: [...visibleHistory, { role: userMessage.role, content: userMessage.content }].slice(-HISTORY_LIMIT),
+      fileContexts: fileContexts.map((file) => ({ ...file })), intent: composerIntent,
+    };
 
     setInput("");
-    setRolePasteMode(false);
+    setComposerIntent("general");
     setFileContexts([]);
     setFileError(null);
-    setIsSubmitting(true);
     responseAnchorIdRef.current = null;
     followPendingRef.current = true;
     setMessages((current) => [...current, userMessage, pendingMessage]);
+    await handleChatRequest(snapshot, pendingId);
+  };
+
+  const handleChatRequest = async (snapshot: ChatRequestSnapshot, pendingId: string) => {
+    if (requestInFlightRef.current || retryWaitSeconds > 0) return;
+    requestInFlightRef.current = true;
+    setIsSubmitting(true);
+    const controller = new AbortController();
+    requestControllerRef.current = controller;
+    const timer = window.setTimeout(() => controller.abort(), 35_000);
 
     try {
       const response = await fetch("/api/recruiter-bot", {
@@ -742,36 +784,55 @@ export default function RecruiterBot({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          lang,
-          message: trimmedInput,
-          messages: [...visibleHistory, userMessage].slice(-HISTORY_LIMIT),
-          fileContexts: contextsForRequest,
-        }),
+        body: JSON.stringify(snapshot),
+        signal: controller.signal,
       });
 
-      const data = (await response.json()) as BotResponse;
+      const data = (await response.json().catch(() => null)) as BotResponse | null;
 
-      if (data.answer) {
+      // A provider can return a helpful error message in `answer` with HTTP 429
+      // or 503. It is still a failed request, never a successful assistant turn.
+      if (!response.ok) {
+        const delay = getRetryDelay(response.status, response.headers?.get("Retry-After") ?? null);
+        if (delay && mountedRef.current) {
+          const window = getRetryWindow(delay);
+          setRetryClock(window.now);
+          setRetryAvailableAt(window.availableAt);
+        }
         appendAssistantMessage(
-          pendingId,
-          data.answer,
-          data.missingConfig ? "warning" : "normal",
+          pendingId, response.status === 429 ? copy.rateLimitError
+            : response.status === 503 ? copy.unavailableError
+            : response.status === 504 ? copy.timeoutError : copy.genericError,
+          "error", { retryRequest: snapshot },
         );
         return;
       }
 
-      if (response.status === 429) {
-        appendAssistantMessage(pendingId, copy.rateLimitError, "error");
+      const reply = parseAssistantResponse(data);
+      if (reply) {
+        appendAssistantMessage(pendingId, reply.answer, "normal", { details: reply.details, sources: reply.sources });
         return;
       }
 
-      appendAssistantMessage(pendingId, copy.genericError, "error");
+      appendAssistantMessage(pendingId, copy.genericError, "error", { retryRequest: snapshot });
     } catch {
-      appendAssistantMessage(pendingId, copy.genericError, "error");
+      appendAssistantMessage(pendingId, controller.signal.aborted ? copy.timeoutError : copy.genericError, "error", { retryRequest: snapshot });
     } finally {
-      setIsSubmitting(false);
+      window.clearTimeout(timer);
+      requestControllerRef.current = null;
+      requestInFlightRef.current = false;
+      if (mountedRef.current) setIsSubmitting(false);
     }
+  };
+
+  const retryMessage = async (message: ChatMessage) => {
+    if (!message.retryRequest || requestInFlightRef.current || retryWaitSeconds > 0) return;
+    const snapshot = message.retryRequest;
+    responseAnchorIdRef.current = null;
+    followPendingRef.current = true;
+    setMessages((current) => current.map((item) => item.id === message.id
+      ? { ...item, content: copy.loading, status: "loading", retryRequest: undefined } : item));
+    await handleChatRequest(snapshot, message.id);
   };
 
   const handleComposerKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -989,6 +1050,7 @@ export default function RecruiterBot({
                 {messages.map((message) => {
                   const isUser = message.role === "user";
                   const isLoading = message.status === "loading";
+                  const reply = getReplyPresentation(message.content, message.details);
 
                   return (
                     <div
@@ -1052,7 +1114,39 @@ export default function RecruiterBot({
                             ) : null}
                           </>
                         ) : (
-                          <FormattedMessage content={message.content} />
+                          <>
+                            <FormattedMessage content={message.status === "normal" ? reply.preview : message.content} />
+                            {message.id === "welcome" ? <p className="mt-2 text-xs" style={{ color: "var(--color-muted)" }}>{copy.contactBoundary}</p> : null}
+                            {message.status === "normal" && reply.details ? (
+                              <details className="assistant-reply-details mt-3 border-t pt-2" style={{ borderColor: "var(--color-border)" }}>
+                                <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)]">{copy.moreDetails}</summary>
+                                <FormattedMessage content={reply.details} />
+                              </details>
+                            ) : null}
+                            {message.sources?.length ? (
+                              <nav className="mt-3 border-t pt-2" style={{ borderColor: "var(--color-border)" }} aria-label={copy.evidenceLabel}>
+                                <p className="text-xs font-semibold" style={{ color: "var(--color-muted)" }}>{copy.evidenceLabel}</p>
+                                {message.sources.map((source) => (
+                                  <a key={source.id} href={source.href} target="_blank" rel="noopener noreferrer"
+                                    className="block min-h-11 break-words py-3 text-sm font-semibold underline decoration-1 underline-offset-4 outline-none hover:text-[color:var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)]"
+                                    aria-label={`${source.label} · ${copy.opensNewTab}`}>
+                                    {source.label}
+                                  </a>
+                                ))}
+                              </nav>
+                            ) : null}
+                            {message.status === "error" && message.retryRequest ? (
+                              <div className="mt-3">
+                                <p className="text-xs" style={{ color: "var(--color-muted)" }}>{copy.requestSaved}</p>
+                                <button type="button" disabled={isSubmitting || retryWaitSeconds > 0}
+                                  onClick={() => void retryMessage(message)}
+                                  className="mt-2 min-h-11 rounded-xl border px-3 py-2 text-sm font-semibold outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50"
+                                  style={{ color: "var(--color-text)", borderColor: "var(--color-border)" }} aria-live="off">
+                                  {retryWaitSeconds ? copy.retryWait.replace("{seconds}", String(retryWaitSeconds)) : copy.retryButton}
+                                </button>
+                              </div>
+                            ) : null}
+                          </>
                         )}
                       </div>
                     </div>
@@ -1076,23 +1170,23 @@ export default function RecruiterBot({
                         : copy.followUpLabel}
                     </p>
                     <div className="grid gap-2">
-                      {suggestions.map((suggestion) => (
+                      {suggestions.map((suggestion, index) => (
                         <button
                           key={suggestion}
                           type="button"
                           onClick={() => {
-                            if (
-                              messages.length === 1 &&
-                              suggestion === copy.suggestions[2]
-                            ) {
-                              setInput("");
-                              setRolePasteMode(true);
+                            if (messages.length === 1) {
+                              const intent = (["experience", "fit", "project"] as const)[index];
+                              setComposerIntent(intent);
+                              setInput((current) => !current.trim() || current === copy.experiencePrompt
+                                ? intent === "experience" ? copy.experiencePrompt : "" : current);
                             } else {
                               setInput(suggestion);
-                              setRolePasteMode(false);
+                              setComposerIntent("general");
                             }
                             textareaRef.current?.focus();
                           }}
+                          aria-pressed={messages.length === 1 ? composerIntent === (["experience", "fit", "project"] as const)[index] : undefined}
                           className="min-h-11 rounded-xl border px-3 py-2 text-left text-xs font-semibold leading-snug transition-[background-color,border-color,color] duration-200 hover:border-[color:var(--color-primary)] hover:bg-[color:var(--color-card-hover)]"
                           style={{
                             color: "var(--color-text-secondary)",
@@ -1277,12 +1371,12 @@ export default function RecruiterBot({
                       <FaPaperPlane aria-hidden="true" size={14} />
                     </button>
                   </div>
-                  {rolePasteMode ? (
+                  {composerIntent === "fit" || composerIntent === "project" ? (
                     <p
                       className="px-2 pt-1 text-xs font-medium"
                       style={{ color: "var(--color-muted)" }}
                     >
-                      {copy.rolePasteHint}
+                      {composerIntent === "fit" ? copy.rolePasteHint : copy.projectHint}
                     </p>
                   ) : null}
                   <div
