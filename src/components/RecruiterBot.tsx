@@ -1190,9 +1190,10 @@ export default function RecruiterBot({
                           className="min-h-11 rounded-xl border px-3 py-2 text-left text-xs font-semibold leading-snug transition-[background-color,border-color,color] duration-200 hover:border-[color:var(--color-primary)] hover:bg-[color:var(--color-card-hover)]"
                           style={{
                             color: "var(--color-text-secondary)",
-                            borderColor: "var(--color-border)",
-                            backgroundColor:
-                              "color-mix(in srgb, var(--color-surface) 54%, transparent)",
+                            borderColor: messages.length === 1 && composerIntent === (["experience", "fit", "project"] as const)[index]
+                              ? "var(--color-primary)" : "var(--color-border)",
+                            backgroundColor: messages.length === 1 && composerIntent === (["experience", "fit", "project"] as const)[index]
+                              ? "var(--color-card-hover)" : "color-mix(in srgb, var(--color-surface) 54%, transparent)",
                           }}
                         >
                           {suggestion}
