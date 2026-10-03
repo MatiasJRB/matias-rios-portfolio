@@ -14,6 +14,8 @@ const infrastructureAuditSlug =
   "audite-113-proyectos-el-costo-no-era-el-principal-problema";
 const personalAssistantSlug =
   "yo-seguia-siendo-la-api-entre-la-ia-y-mi-vida";
+const alienGameSlug =
+  "el-mismo-alien-dos-formas-de-hacer-un-juego";
 const aiBottleneckSlug =
   "la-ia-acelero-la-escritura-de-codigo-pero-traslado-el-cuello-de-botella";
 
@@ -124,10 +126,11 @@ try {
       'href="mailto:matiasjriosb@gmail.com"',
       "Diseñado y construido por Matias Rios",
       "La IA aceleró la escritura de código",
-      "Audité 113 proyectos",
+      "El mismo alien, dos formas de hacer un juego",
       "Yo seguía siendo la API entre la IA y mi vida",
     ],
     excludes: [
+      "Audité 113 proyectos",
       "Brittany Chiang",
       "Copiar email",
       "Desarrollo AI-First",
@@ -163,6 +166,29 @@ try {
       "Yo seguía siendo la API entre la IA y mi vida",
       "La IA aceleró la escritura de código",
     ],
+  });
+  await expectResponse(baseUrl, `/es/notes/${alienGameSlug}`, {
+    status: 200,
+    includes: [
+      "El mismo alien, dos formas de hacer un juego",
+      "me llevó muchísimas horas",
+      "Sebastián Benamo",
+      "www.youtube-nocookie.com/embed/AuBwgJXerKc",
+      "start=225",
+      "end=234",
+      "/videos/notes/going-back-home-recreation.mp4",
+      "Créditos del fragmento",
+      "downshiftdx",
+    ],
+    excludes: ["Antes de publicar", ">Borrador<", "autoplay="],
+  });
+  await expectResponse(baseUrl, "/videos/notes/going-back-home-recreation.mp4", {
+    status: 200,
+    contentType: "video/mp4",
+  });
+  await expectResponse(baseUrl, "/images/notes/going-back-home-recreation-poster.jpg", {
+    status: 200,
+    contentType: "image/jpeg",
   });
   await expectResponse(baseUrl, `/es/notes/${slug}`, {
     status: 200,
@@ -220,6 +246,7 @@ try {
     contentType: "application/rss+xml",
     includes: [
       "<rss version=\"2.0\"",
+      `<link>https://www.matiasjrb.com.ar/es/notes/${alienGameSlug}</link>`,
       `<link>https://www.matiasjrb.com.ar/es/notes/${slug}</link>`,
       `<link>https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}</link>`,
       `<link>https://www.matiasjrb.com.ar/es/notes/${infrastructureAuditSlug}</link>`,
@@ -231,6 +258,7 @@ try {
     status: 200,
     includes: [
       "https://www.matiasjrb.com.ar/es/notes",
+      `https://www.matiasjrb.com.ar/es/notes/${alienGameSlug}`,
       `https://www.matiasjrb.com.ar/es/notes/${slug}`,
       `https://www.matiasjrb.com.ar/es/notes/${migrationLinterSlug}`,
       `https://www.matiasjrb.com.ar/es/notes/${infrastructureAuditSlug}`,

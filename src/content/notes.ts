@@ -15,6 +15,17 @@ export const AI_BOTTLENECK_NOTE_SLUG =
 export interface NoteSection {
   heading?: string;
   paragraphs: string[];
+  videos?: (
+    | { kind: "youtube"; videoId: string; title: string; caption: string; start?: number; end?: number }
+    | { kind: "file"; src: string; poster: string; title: string; caption: string; credits?: { label: string; url: string }[]; creditNote?: string }
+  )[];
+  images?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption: string;
+  }[];
 }
 
 export interface Note {
@@ -42,6 +53,93 @@ export interface Note {
 }
 
 const notes: Note[] = [
+  {
+    "slug": "el-mismo-alien-dos-formas-de-hacer-un-juego",
+    "locale": "es",
+    "draft": false,
+    "publishedAt": "2026-10-03",
+    "originYear": 2018,
+    "context": {
+      "es": "Computación Gráfica · recreación en 2026",
+      "en": "Computer Graphics · recreated in 2026"
+    },
+    "readingMinutes": 3,
+    "title": "El mismo alien, dos formas de hacer un juego",
+    "description": "El juego que programé a mano para Computación Gráfica me llevó muchísimas horas. Recrearlo con agentes fue un ratito en comparación, y el resultado me gusta más.",
+    "englishTitle": "The same alien, two ways of making a game",
+    "englishDescription": "The university game I coded by hand took many hours. Recreating it with agents took a fraction of that personal effort, and I prefer the new result.",
+    "tags": [
+      "Universidad",
+      "Juegos",
+      "Agentes de IA"
+    ],
+    "heroAlt": "",
+    "heroCaption": "",
+    "sections": [
+      {
+        "paragraphs": [
+          "Para Computación Gráfica, en la universidad, hicimos Going Back Home con Sebastián Benamo. Era un juego en el que un alien azul recorría un bosque, juntaba objetos y volvía a su nave para regresar a casa. La programación del original la hice a mano y me llevó muchísimas horas.",
+          "Ahora volví a esa idea con agentes de IA. Recrear el juego fue un ratito en comparación con lo que me había llevado hacerlo entonces. Y, para mí, el resultado es mejor. Ver las dos versiones juntas hace bastante concreta una diferencia que, cuando hablamos de IA, a veces queda demasiado abstracta."
+        ],
+        "videos": [
+          {
+            "kind": "youtube",
+            "videoId": "AuBwgJXerKc",
+            "title": "Going Back Home original en Unity",
+            "caption": "Original · Unity · fragmento de 9 segundos de la entrega universitaria.",
+            "start": 225,
+            "end": 234
+          },
+          {
+            "kind": "file",
+            "src": "/videos/notes/going-back-home-recreation.mp4",
+            "poster": "/images/notes/going-back-home-recreation-poster.jpg",
+            "title": "Recreación de Going Back Home con agentes en Godot",
+            "caption": "Recreación · Godot · 9 segundos de gameplay real, sin audio.",
+            "credits": [
+              { "label": "Gray Alien — downshiftdx (CC-BY)", "url": "https://blendswap.com/blend/5758" },
+              { "label": "Pine Tree — evolveduk", "url": "https://sketchfab.com/3d-models/pine-tree-d45218a3fab349e5b1de040f29e7b6f9" },
+              { "label": "Pine tree low-poly — Ricardo Sanchez", "url": "https://sketchfab.com/3d-models/pine-tree-low-poly-e72f2c31aac544e58b667c13ec718daf" },
+              { "label": "Tree Bake Upload — restlessmonkey", "url": "https://sketchfab.com/3d-models/tree-bake-upload-4e78d13152cf4214a256230765f6d6d3" },
+              { "label": "Licencia de los árboles: CC BY 4.0", "url": "https://creativecommons.org/licenses/by/4.0/" }
+            ],
+            "creditNote": "Alien adaptado con nueva escala, rig, animaciones y material. Árboles adaptados en escala, tintes, recorte alfa, sombras e instancias."
+          }
+        ]
+      },
+      {
+        "heading": "Muchísimas horas para llevar una idea a la pantalla",
+        "paragraphs": [
+          "El alien y el shader del original los conseguí gratis. Lo que programé a mano fue el juego: hacer que el personaje se moviera, integrar las animaciones y las físicas, recoger objetos, definir cuándo se ganaba o se perdía y conectar todo eso con el escenario.",
+          "Cada parte que quería agregar requería trabajo mío para que existiera. Tenía que aprender cómo resolverla, escribir el código e integrarla con lo que ya había hecho. El esfuerzo se acumulaba incluso en cosas que, una vez funcionando, parecían simples.",
+          "Era un proyecto para una materia y ese trabajo también era parte del aprendizaje. No miro al original como algo que estuvo mal hacer así. Pero recuerdo muy bien la cantidad de horas que llevó llegar a ese resultado."
+        ]
+      },
+      {
+        "heading": "Esta vez no tuve que programar cada parte",
+        "paragraphs": [
+          "Para la recreación pude partir del juego que recordaba y pedirle a los agentes que lo construyeran. El alien azul con aspecto de galaxia, el bosque, el lago con una pasarela, los objetos por recoger y la vuelta a casa ya tenían una referencia concreta.",
+          "Los agentes se ocuparon de buena parte de la implementación. Yo pude darle dirección al resultado y jugar la nueva versión sin escribir personalmente todo el código que había detrás. Seguí tomando decisiones, pero la cantidad de esfuerzo manual que tuve que poner fue muchísimo menor."
+        ]
+      },
+      {
+        "heading": "Y el resultado me gusta más",
+        "paragraphs": [
+          "La nueva versión conserva al alien azul y la idea de recorrer el bosque para volver a casa. El escenario, el lago y la pasarela tienen otra terminación. Puedo abrir la demo en la Mac, mover al personaje y recorrer ese mundo que había imaginado para la universidad.",
+          "A mí esta versión me parece mejor que la original. Eso vuelve más interesante la comparación: con mucho menos esfuerzo personal llegué a un resultado que me gusta más. No me quedé solamente con la satisfacción de haberlo hecho más rápido; también prefiero lo que apareció en pantalla.",
+          "Pasaron años, cambiaron las herramientas y yo también tengo más experiencia. El original estaba hecho en Unity y esta recreación usa Godot. Es una demo nueva, no una recuperación exacta del proyecto anterior. Esas diferencias importan, pero no borran lo que viví al construir uno y otro."
+        ]
+      },
+      {
+        "heading": "El esfuerzo que ahora puedo elegir hacer",
+        "paragraphs": [
+          "Lo que me entusiasma es poder poner en práctica ideas sin tener que asumir de entrada todo aquel esfuerzo de implementación. Hay una diferencia enorme entre imaginar algo y saber que voy a tener que programar cada parte, e imaginarlo y poder poner agentes a construir una versión que después puedo jugar.",
+          "Going Back Home empezó como un trabajo de Computación Gráfica. Volver a él me permitió ver esa diferencia en algo propio: un juego que hice a mano, el tiempo que me llevó y una nueva versión que ahora puedo construir con mucho menos esfuerzo."
+        ]
+      }
+    ],
+    "pendingChecks": []
+  },
   {
     slug: FIRST_SOFTWARE_NOTE_SLUG,
     locale: "es",

@@ -147,6 +147,77 @@ export default function NoteArticle({
                           </p>
                         ))}
                       </div>
+                      {section.videos && (
+                        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                          {section.videos.map((video) => (
+                            <figure key={video.title}>
+                              {video.kind === "youtube" ? (
+                                <iframe
+                                  src={`https://www.youtube-nocookie.com/embed/${video.videoId}?playsinline=1&mute=1&rel=0${video.start ? `&start=${video.start}` : ""}${video.end ? `&end=${video.end}` : ""}`}
+                                  title={video.title}
+                                  loading="lazy"
+                                  referrerPolicy="strict-origin-when-cross-origin"
+                                  allow="encrypted-media; picture-in-picture; fullscreen"
+                                  allowFullScreen
+                                  className="aspect-video w-full rounded-lg border border-[var(--color-border)] bg-black"
+                                />
+                              ) : (
+                                <video
+                                  controls
+                                  muted
+                                  playsInline
+                                  preload="metadata"
+                                  poster={video.poster}
+                                  aria-label={video.title}
+                                  className="aspect-video w-full rounded-lg border border-[var(--color-border)] bg-black object-contain"
+                                >
+                                  <source src={video.src} type="video/mp4" />
+                                  <a href={video.src}>{video.title}</a>
+                                </video>
+                              )}
+                              <figcaption className="mt-3 text-sm leading-6 text-[var(--color-muted)]">
+                                {video.caption}
+                                {video.kind === "file" && video.credits && (
+                                  <details className="mt-2 text-xs leading-5">
+                                    <summary className="cursor-pointer underline decoration-[var(--color-border)] underline-offset-4 hover:text-[var(--color-primary)]">
+                                      Créditos del fragmento
+                                    </summary>
+                                    <ul className="mt-2 space-y-1">
+                                      {video.credits.map((credit) => (
+                                        <li key={credit.url}>
+                                          <a href={credit.url} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-[var(--color-primary)]">
+                                            {credit.label}
+                                          </a>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                    {video.creditNote && <p className="mt-2">{video.creditNote}</p>}
+                                  </details>
+                                )}
+                              </figcaption>
+                            </figure>
+                          ))}
+                        </div>
+                      )}
+                      {section.images && (
+                        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                          {section.images.map((image) => (
+                            <figure key={image.src}>
+                              <Image
+                                src={image.src}
+                                alt={image.alt}
+                                width={image.width}
+                                height={image.height}
+                                sizes="(max-width: 640px) calc(100vw - 3rem), (max-width: 1024px) 40vw, 340px"
+                                className="h-auto w-full rounded-lg border border-[var(--color-border)]"
+                              />
+                              <figcaption className="mt-3 text-sm leading-6 text-[var(--color-muted)]">
+                                {image.caption}
+                              </figcaption>
+                            </figure>
+                          ))}
+                        </div>
+                      )}
                     </section>
                   ))}
                 </div>
