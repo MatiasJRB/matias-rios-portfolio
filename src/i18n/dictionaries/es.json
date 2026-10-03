@@ -248,21 +248,36 @@
     "launcherBubble": "Preguntame sobre Matias",
     "launcherHint": "JD, ideas, stack, proyectos o dudas puntuales",
     "title": "Chat del portfolio",
-    "description": "Experiencia, proyectos y roles.",
-    "greeting": "Hola. Te ayudo con experiencia, proyectos y fit para roles. También podés contarme tu proyecto y vemos si Matias puede ayudar.",
+    "description": "Asistente IA · Experiencia y proyectos.",
+    "greeting": "Soy el asistente IA de Matias. Podemos explorar su experiencia o analizar una oferta o un proyecto.",
     "suggestionsLabel": "Podés empezar por acá",
     "suggestions": [
-      "¿Qué experiencia tiene liderando equipos?",
-      "¿Qué proyectos llevó a producción?",
-      "Pegá una oferta y evaluamos el fit"
+      "Conocer experiencia",
+      "Evaluar una oferta",
+      "Contar un proyecto"
     ],
     "followUpLabel": "Para seguir",
     "followUps": {
-      "leadership": ["¿Cómo se ve ese liderazgo en un proyecto concreto?", "¿Qué sistemas diseñó?"],
-      "projects": ["¿Qué parte del proyecto lideró Matias?", "¿Qué decisiones técnicas tomó?"],
-      "fit": ["¿Con qué stack trabajó recientemente?", "¿Qué evidencia respalda ese fit?"],
-      "contact": ["¿Dónde encuentro su CV?", "¿Qué tipo de trabajo hace hoy?"],
-      "general": ["¿Podés darme un ejemplo concreto?", "¿Qué proyecto lo demuestra?"]
+      "leadership": [
+        "¿Cómo se ve ese liderazgo en un proyecto concreto?",
+        "¿Qué sistemas diseñó?"
+      ],
+      "projects": [
+        "¿Qué parte del proyecto lideró Matias?",
+        "¿Qué decisiones técnicas tomó?"
+      ],
+      "fit": [
+        "¿Con qué stack trabajó recientemente?",
+        "¿Qué evidencia respalda ese fit?"
+      ],
+      "contact": [
+        "¿Dónde encuentro su CV?",
+        "¿Qué tipo de trabajo hace hoy?"
+      ],
+      "general": [
+        "¿Podés darme un ejemplo concreto?",
+        "¿Qué proyecto lo demuestra?"
+      ]
     },
     "inputLabel": "Pregunta para el asistente del portfolio",
     "placeholder": "Preguntá o pegá contexto…",
@@ -270,10 +285,22 @@
     "loading": "Pensando…",
     "emptyError": "Escribí una pregunta o pegá contexto antes de enviar.",
     "tooLongError": "El texto es demasiado largo. Recortalo un poco y probá de nuevo.",
-    "rateLimitError": "Demasiadas consultas seguidas. Esperá un minuto y probá de nuevo.",
-    "genericError": "No pude responder ahora. Probá de nuevo en un momento.",
+    "rateLimitError": "Alcanzaste el límite temporal de consultas. Podés reintentar cuando termine la espera.",
+    "genericError": "No pude completar la respuesta. Podés reintentar sin volver a escribir ni adjuntar.",
     "privacyNote": "Chat y adjuntos se envían a Gemini; no se guardan aquí.",
     "rolePastePlaceholder": "Pegá acá la descripción o los requisitos del rol…",
-    "rolePasteHint": "Pegá el aviso completo; comparo requisitos con evidencia del portfolio."
+    "rolePasteHint": "Pegá la oferta o adjuntala. Comparo requisitos, encajes y dudas con evidencia del portfolio.",
+    "contactBoundary": "Este chat no le envía mensajes a Matias.",
+    "experiencePrompt": "¿Qué experiencia y proyectos respaldan el trabajo de Matias como Tech Lead?",
+    "projectPlaceholder": "Contame el problema o la idea de tu proyecto…",
+    "projectHint": "Contá qué querés lograr y en qué etapa está el proyecto.",
+    "moreDetails": "Ver más detalle",
+    "evidenceLabel": "Evidencia del portfolio",
+    "opensNewTab": "abre en otra pestaña",
+    "retryButton": "Reintentar consulta",
+    "retryWait": "Reintentar en {seconds} s",
+    "requestSaved": "La pregunta y el contexto siguen disponibles para reintentar.",
+    "unavailableError": "El asistente no está disponible por ahora. Probá de nuevo más tarde.",
+    "timeoutError": "La respuesta tardó demasiado. Podés reintentar tu consulta."
   }
 }

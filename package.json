@@ -13,7 +13,7 @@
     "generate:og-image": "node scripts/generate-og-images.mjs",
     "test:publication": "node scripts/test-publication.mjs",
     "typecheck": "tsc --noEmit",
-    "test:ux": "node --test scripts/test-overlay-dialog.mjs scripts/test-chat-interaction.mjs scripts/test-chat-scroll.mjs scripts/test-chat-follow-ups.mjs"
+    "test:ux": "node --test scripts/test-overlay-dialog.mjs scripts/test-chat-interaction.mjs scripts/test-chat-scroll.mjs scripts/test-chat-follow-ups.mjs scripts/test-chat-response.mjs"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.2",

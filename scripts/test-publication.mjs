@@ -1,10 +1,18 @@
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { join } from "node:path";
+import { readFile } from "node:fs/promises";
+import ts from "typescript";
 import { assertOverlayStyles } from "./check-overlay-css.mjs";
 import { assertWolfStyles } from "./check-wolf-css.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
+// Exercise the actual API catalog against published HTML, not a second slug rule.
+const evidenceModule = { exports: {} };
+const evidenceSource = await readFile(join(root, "src/lib/chat-evidence.ts"), "utf8");
+new Function("module", "exports", ts.transpileModule(evidenceSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+}).outputText)(evidenceModule, evidenceModule.exports);
 const host = "127.0.0.1";
 const slug =
   "la-primera-vez-que-alguien-dependio-de-que-mi-software-funcionara";
@@ -98,6 +106,14 @@ try {
   // A successful deploy/HTML response does not prove its CSS matches the SVG.
   for (const locale of ["es", "en"]) {
     const html = await (await fetch(`${baseUrl}/${locale}`)).text();
+    const resume = JSON.parse(await readFile(join(root, `src/data/resume/${locale}.json`), "utf8"));
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+    for (const source of evidenceModule.exports.buildChatEvidence(resume, locale, [])) {
+      const anchor = source.href.split("#")[1];
+      if (anchor && ids.filter((id) => id === anchor).length !== 1) {
+        throw new Error(`${locale}: evidence anchor ${anchor} must exist exactly once`);
+      }
+    }
     for (const pose of ["head-pose--lift", "head-pose--howl", "head-pose--groom", "paw-lift", "paw-groom", "tongue-short", "tongue-tip"]) {
       const tag = [...html.matchAll(/<g\b[^>]*>/g)].find(([group]) => group.includes(`pixel-wolf__${pose}`))?.[0];
       if (!tag?.includes('opacity="0"')) throw new Error(`${locale}: ${pose} lacks safe SVG visibility fallback`);
