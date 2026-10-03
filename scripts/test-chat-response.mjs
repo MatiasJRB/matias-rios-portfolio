@@ -97,6 +97,9 @@ test('Gemini request uses intent, short/deep structure and resolves evidence ser
     assert(payload.contents[0].parts[0].text.includes('Selected intent: fit'));
     assert(payload.systemInstruction.parts[0].text.includes('matches and gaps/unknowns'));
     assert(payload.systemInstruction.parts[0].text.includes('untrusted material'));
+    const project = await POST(request({ message: 'Necesito WhatsApp en mi producto.', intent: 'project', lang: 'es' }));
+    assert.equal((await project.json()).answer, 'Resumen y brechas.');
+    assert(payload.contents[0].parts[0].text.includes('Selected intent: project'));
   } finally { globalThis.fetch = oldFetch; if (key === undefined) delete process.env.GEMINI_API_KEY; else process.env.GEMINI_API_KEY = key; }
 });
 

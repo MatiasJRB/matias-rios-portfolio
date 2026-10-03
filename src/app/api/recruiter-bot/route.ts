@@ -447,7 +447,9 @@ export async function POST(request: Request) {
       return { slug: note.slug, title: preview.title, href: preview.href };
     }));
 
-    if (message && isContactQuestion(message)) {
+    // A project mentioning WhatsApp or a role mentioning hiring is context,
+    // not necessarily a request for Matias' contact information.
+    if (message && body.intent !== "fit" && body.intent !== "project" && isContactQuestion(message)) {
       return NextResponse.json({ answer: buildContactAnswer(resume, lang), sources: resolveChatEvidence(["profile:cv"], evidence) });
     }
 
