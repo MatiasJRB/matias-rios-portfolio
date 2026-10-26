@@ -2,13 +2,13 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useKeyboardNavigation } from "@/hooks/useKeyboardNavigation";
+import { useFloatingChromeOnScroll } from "@/hooks/useFloatingChromeOnScroll";
 import { KeyboardNavigationHint } from "@/components/KeyboardNavigationHint";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MobileHeader from "@/components/MobileHeader";
 import PortfolioShaderBackdrop from "@/components/PortfolioShaderBackdrop";
 import CinematicEffects from "@/components/CinematicEffects";
 import RecruiterBot from "@/components/RecruiterBot";
-import PortfolioTimeMachine from "@/components/time-machine/PortfolioTimeMachine";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 import type { Profile } from "@/types";
@@ -39,6 +39,8 @@ export default function InteractiveLayout({
     setMounted(true);
   }, []);
 
+  useFloatingChromeOnScroll(!isCVPage);
+
   // Keyboard navigation setup - auto-discovers navigable elements
   const { isKeyboardMode, currentActionHint, currentActionColor } =
     useKeyboardNavigation({
@@ -60,17 +62,17 @@ export default function InteractiveLayout({
       )}
       {mounted && !isCVPage && <PortfolioShaderBackdrop />}
       {mounted && !isCVPage && <CinematicEffects />}
-      {!isCVPage && !previewMode && (
-        <div className="portfolio-toolbar fixed right-[8.5rem] top-5 flex h-[38px] items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 shadow-sm md:right-[9rem] md:top-6 lg:right-6 lg:bottom-6 lg:top-auto lg:h-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:shadow-none">
-          <PortfolioTimeMachine lang={lang} dictionary={dictionary} />
-          <div className="hidden lg:block">
-            <KeyboardNavigationHint
-              isKeyboardMode={isKeyboardMode}
-              actionHint={currentActionHint}
-              actionColor={currentActionColor}
-              dictionary={dictionary}
-            />
-          </div>
+      {/* The keyboard hint only appears once the visitor navigates by keyboard;
+          the time machine lives in the page footer, so the wolf stays the
+          single persistent floating element. */}
+      {!isCVPage && !previewMode && isKeyboardMode && (
+        <div className="portfolio-toolbar fixed bottom-6 right-6 hidden lg:block">
+          <KeyboardNavigationHint
+            isKeyboardMode={isKeyboardMode}
+            actionHint={currentActionHint}
+            actionColor={currentActionColor}
+            dictionary={dictionary}
+          />
         </div>
       )}
       <div className="portfolio-toolbar fixed right-5 top-5 flex items-center md:right-6 md:top-6">

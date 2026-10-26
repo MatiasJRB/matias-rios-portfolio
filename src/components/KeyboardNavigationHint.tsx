@@ -117,7 +117,7 @@ export const KeyboardNavigationHint = ({
 
           {/* Text */}
           <span
-            className="text-[10px] uppercase tracking-wider"
+            className="text-xs uppercase tracking-wider"
             style={{
               color: isKeyboardMode
                 ? "var(--color-primary)"
@@ -160,7 +160,7 @@ export const KeyboardNavigationHint = ({
 
               {/* Text with crossfade animation */}
               <span
-                className="text-[10px] uppercase tracking-wider relative overflow-hidden"
+                className="text-xs uppercase tracking-wider relative overflow-hidden"
                 style={{
                   minWidth: "60px",
                 }}

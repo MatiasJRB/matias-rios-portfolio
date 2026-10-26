@@ -66,7 +66,7 @@
     "featuredIntro": "Tres trabajos seleccionados para mostrar alcance y criterio técnico.",
     "archiveTitle": "Archivo seleccionado",
     "archiveIntro": "Un registro de sistemas, decisiones y productos que amplían el trabajo destacado.",
-    "archiveOwnGroup": "Productos propios",
+    "archiveOwnGroup": "Productos propios y open source",
     "archivePublicLabel": "Ver proyecto",
     "archivePrivateLabel": "Caso privado",
     "archiveClosing": "Estos proyectos recorren plataformas financieras, sistemas operativos y productos propios construidos desde arquitectura hasta producción.",
@@ -154,8 +154,8 @@
       "ecosystems": [
         "Microservicios",
         "Diseño de REST & API",
-        "Optimización de PostgreSQL / SQL",
-        "Estrategias de caché",
+        "Optimización de PostgreSQL / MySQL",
+        "Migraciones seguras de base de datos",
         "Sistemas event-driven"
       ]
     },
@@ -174,7 +174,7 @@
       "label": "Liderazgo Técnico",
       "description": "Construcción de cultura de equipo a través de estándares de code review, pipelines CI/CD, mentoría y alineación técnica con objetivos de negocio.",
       "ecosystems": [
-        "Planificación de sprints & delivery",
+        "Roadmap trimestral, sprints & delivery",
         "CI/CD & gestión de releases",
         "Cultura de code review",
         "Onboarding & mentoría",
@@ -185,7 +185,7 @@
       "label": "Ingeniería con agentes",
       "description": "Integro agentes al trabajo de ingeniería: convierto specs, decisiones y estándares en contexto versionado; automatizo tareas repetibles y reviso los resultados antes de llevarlos a producción.",
       "ecosystems": [
-        "Agentes y skills versionados",
+        "Agentes por rol con gates de revisión",
         "Specs y ADRs como contexto",
         "Automatización entre repositorios",
         "Revisión humana y pruebas",

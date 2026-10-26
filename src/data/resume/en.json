@@ -267,7 +267,8 @@
       "highlights": [
         "Monorepo with Expo/React Native mobile app, Next.js backoffice, Supabase, and shared packages.",
         "Inventory, assignments, rentals, roles, and warehouse-floor operations.",
-        "Documented delivery with Android rollout, health checks, and post go-live support window."
+        "Documented delivery with Android rollout, health checks, and post go-live support window.",
+        "Visual reports by owner in production: asset records and photos without downloading spreadsheets."
       ],
       "visual": {
         "image": "/images/projects/badger-editorial.webp",
@@ -334,6 +335,43 @@
       ],
       "role": "Creator & Developer",
       "url": "https://turna.ar"
+    },
+    {
+      "name": "Laravel Migration Linter",
+      "description": "Open-source AST-based analyzer that checks whether a Laravel migration is safe before deploy, without booting the framework or connecting to the database. Supports PHP-Parser 4 and 5 for established stacks.",
+      "impact": "Built it when the roadmap needed a library that did not exist, shipped four releases and adopted it gradually as an advisory CI report.",
+      "tech": [
+        "PHP",
+        "PHP-Parser",
+        "GitHub Actions"
+      ],
+      "role": "Creator & Maintainer",
+      "url": "https://github.com/MatiasJRB/laravel-migration-linter"
+    },
+    {
+      "name": "Monotributo Copilot AR",
+      "description": "Open tools that let an AI agent prepare invoices and review Argentina's monotributo tax status, with evidence and human approval before every sensitive action.",
+      "impact": "Designed the open-source base with explicit gates: the agent prepares and explains, and tax actions wait for the person's approval.",
+      "tech": [
+        "TypeScript",
+        "Node.js",
+        "AI agents"
+      ],
+      "role": "Creator",
+      "url": "https://github.com/MatiasJRB/monotributo-copilot-ar"
+    },
+    {
+      "name": "Captura",
+      "description": "Self-hosted prototype that turns a phone into voice input for agents: records user-started audio, optionally syncs to Drive and transcribes locally with whisper.cpp.",
+      "impact": "Built capture for Android and iPhone plus a local worker that verifies originals, transcribes, and resumes recording when another app takes the microphone.",
+      "tech": [
+        "Java",
+        "Swift",
+        "Python",
+        "whisper.cpp"
+      ],
+      "role": "Creator",
+      "url": "https://github.com/MatiasJRB/captura"
     }
   ],
   "education": [

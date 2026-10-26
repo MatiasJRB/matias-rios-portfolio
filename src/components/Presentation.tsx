@@ -5,7 +5,6 @@ import Link from "next/link";
 import type { Dictionary } from "@/i18n/types";
 import type { Locale } from "@/i18n/config";
 import CompanyLinkedText from "@/components/CompanyLinkedText";
-import { getSlideInAnimation } from "@/hooks/useSlideInAnimation";
 
 interface Basics {
   name: string;
@@ -31,8 +30,7 @@ const Presentation: React.FC<PresentationProps> = ({
   return (
     <div className="w-full scroll-mt-24">
       <div
-        className="mb-7 flex items-center gap-5 animate-slide-in opacity-0"
-        style={getSlideInAnimation(0).style}
+        className="mb-7 flex items-center gap-5 animate-hero-in"
       >
         {basics.image && (
           <Image
@@ -62,26 +60,25 @@ const Presentation: React.FC<PresentationProps> = ({
         </h1>
       </div>
       <div
-        className="max-w-xl animate-slide-in text-xl font-semibold leading-tight tracking-[-0.02em] opacity-0 md:text-2xl lg:text-3xl"
-        style={{ color: "var(--color-text)", ...getSlideInAnimation(1).style }}
+        className="max-w-xl animate-hero-in text-xl font-semibold leading-tight tracking-[-0.02em] md:text-2xl lg:text-3xl"
+        style={{ color: "var(--color-text)" }}
       >
         {basics.label}
       </div>
       <p
-        className="mt-7 max-w-[58ch] animate-slide-in text-base font-normal leading-[1.75] opacity-0"
-        style={{ color: "var(--color-muted)", ...getSlideInAnimation(2).style }}
+        className="mt-7 max-w-[58ch] animate-hero-in text-base font-normal leading-[1.75]"
+        style={{ color: "var(--color-muted)" }}
       >
         <CompanyLinkedText text={basics.summary} urls={companyUrls} />
       </p>
       <p
-        className="mt-5 max-w-[58ch] animate-slide-in text-base font-normal leading-[1.75] opacity-0"
-        style={{ color: "var(--color-muted)", ...getSlideInAnimation(3).style }}
+        className="mt-5 max-w-[58ch] animate-hero-in text-base font-normal leading-[1.75]"
+        style={{ color: "var(--color-muted)" }}
       >
         {dictionary.cta.lookingForOpportunities}
       </p>
       <div
-        className="mt-8 flex flex-wrap gap-3 animate-slide-in opacity-0"
-        style={getSlideInAnimation(4).style}
+        className="mt-8 flex flex-wrap gap-3 animate-hero-in"
       >
         <a
           href="#projects"

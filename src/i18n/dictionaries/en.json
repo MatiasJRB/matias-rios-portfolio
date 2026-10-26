@@ -66,7 +66,7 @@
     "featuredIntro": "Selected work that shows product scope and technical judgment.",
     "archiveTitle": "Selected archive",
     "archiveIntro": "A record of systems, decisions, and products that extends the featured work.",
-    "archiveOwnGroup": "Independent products",
+    "archiveOwnGroup": "Independent products & open source",
     "archivePublicLabel": "View project",
     "archivePrivateLabel": "Private case",
     "archiveClosing": "These projects span financial platforms, operational systems, and independent products built from architecture through production.",
@@ -154,8 +154,8 @@
       "ecosystems": [
         "Microservices",
         "REST & API design",
-        "PostgreSQL / SQL optimization",
-        "Caching strategies",
+        "PostgreSQL / MySQL optimization",
+        "Safe database migrations",
         "Event-driven systems"
       ]
     },
@@ -174,7 +174,7 @@
       "label": "Technical Leadership",
       "description": "Building team culture through code review standards, CI/CD pipelines, mentoring, and aligning tech decisions with business goals.",
       "ecosystems": [
-        "Sprint planning & delivery",
+        "Quarterly roadmap, sprints & delivery",
         "CI/CD & release management",
         "Code review culture",
         "Onboarding & mentoring",
@@ -185,7 +185,7 @@
       "label": "Agent-assisted engineering",
       "description": "I bring agents into engineering workflows: turn specs, decisions, and standards into versioned context, automate repeatable work, and review results before shipping.",
       "ecosystems": [
-        "Versioned agents and skills",
+        "Role-based agents with review gates",
         "Specs and ADRs as context",
         "Cross-repo automation",
         "Human review and tests",
