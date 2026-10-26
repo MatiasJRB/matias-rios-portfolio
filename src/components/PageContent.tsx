@@ -29,8 +29,10 @@ const NotesPreview = dynamic(
   () => import("@/components/notes/NotesPreview"),
 );
 const Footer = dynamic(() => import("@/components/Footer"));
+// Client-only so its stylesheet loads after hydration instead of blocking the first paint
 const PortfolioTimeMachine = dynamic(
   () => import("@/components/time-machine/PortfolioTimeMachine"),
+  { ssr: false },
 );
 
 function SectionHeading({

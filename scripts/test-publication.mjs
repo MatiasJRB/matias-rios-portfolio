@@ -120,16 +120,19 @@ try {
     }
     const hrefs = [...html.matchAll(/<link\b[^>]*\brel="stylesheet"[^>]*>/g)]
       .map(([tag]) => tag.match(/\bhref="([^"]+)"/)?.[1]).filter(Boolean);
-    if (!hrefs.length) throw new Error(`${locale}: no linked stylesheets`);
-    const styles = await Promise.all(hrefs.map(async (href) => {
+    // experimental.inlineCss ships the CSS as <style> tags instead of links.
+    const inlineStyles = [...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/g)].map((match) => match[1]);
+    if (!hrefs.length && !inlineStyles.length) throw new Error(`${locale}: no stylesheets`);
+    const linkedStyles = await Promise.all(hrefs.map(async (href) => {
       const url = new URL(href.replaceAll("&amp;", "&"), baseUrl);
       if (url.origin !== baseUrl) throw new Error(`Unexpected external stylesheet: ${url}`);
       const response = await fetch(url);
       if (!response.ok) throw new Error(`Stylesheet ${url}: HTTP ${response.status}`);
       return response.text();
     }));
-    assertWolfStyles(styles.join("\n"), `${locale} linked production stylesheets`);
-    assertOverlayStyles(styles.join("\n"), `${locale} linked overlay stylesheets`);
+    const styles = [...inlineStyles, ...linkedStyles];
+    assertWolfStyles(styles.join("\n"), `${locale} production stylesheets`);
+    assertOverlayStyles(styles.join("\n"), `${locale} overlay stylesheets`);
   }
 
   await expectResponse(baseUrl, "/es", {

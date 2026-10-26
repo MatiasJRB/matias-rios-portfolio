@@ -38,7 +38,6 @@ const Presentation: React.FC<PresentationProps> = ({
             alt={basics.name}
             width={80}
             height={80}
-            unoptimized
             className="h-16 w-16 shrink-0 object-cover transition-transform duration-300 hover:-rotate-2 lg:h-20 lg:w-20"
             style={{
               borderRadius: "22%",
