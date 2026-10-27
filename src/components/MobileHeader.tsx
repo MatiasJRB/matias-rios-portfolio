@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import SocialMedia from "./SocialMedia";
 import { cn } from "@/utils";
-import { useIsMobile } from "@/hooks/useMediaQuery";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { NAV_ITEMS, NAV_ITEMS_WITH_NOTES } from "@/constants";
 import type { Dictionary } from "@/i18n/types";
 import type { Profile } from "@/types";
@@ -21,7 +21,8 @@ const MobileHeader = ({
   showNotes = false,
 }: MobileHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useIsMobile();
+  // Below the lg breakpoint the left-column nav is hidden, so tablets need this menu too
+  const isMobile = useMediaQuery("(max-width: 1023px)");
   const navItems = showNotes ? NAV_ITEMS_WITH_NOTES : NAV_ITEMS;
 
   if (!isMobile) return null;
@@ -43,7 +44,7 @@ const MobileHeader = ({
         backgroundColor: "transparent",
       }}
     >
-      <div className="flex items-center justify-start px-5 py-4">
+      <div className="mobile-nav-controls flex items-center justify-start px-5 py-4 md:px-6 md:py-6">
         {/* Hamburger Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}

@@ -38,6 +38,7 @@ export default function ClientPageWrapper({
         dictionary={dictionary}
         scrollAreaRef={scrollAreaRef}
         showNotes={showNotes}
+        previewMode={previewMode}
       />
     </InteractiveLayout>
   );

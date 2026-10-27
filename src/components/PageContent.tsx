@@ -29,6 +29,11 @@ const NotesPreview = dynamic(
   () => import("@/components/notes/NotesPreview"),
 );
 const Footer = dynamic(() => import("@/components/Footer"));
+// Client-only so its stylesheet loads after hydration instead of blocking the first paint
+const PortfolioTimeMachine = dynamic(
+  () => import("@/components/time-machine/PortfolioTimeMachine"),
+  { ssr: false },
+);
 
 function SectionHeading({
   id,
@@ -58,12 +63,14 @@ export default function PageContent({
   dictionary,
   scrollAreaRef,
   showNotes = false,
+  previewMode = false,
 }: {
   lang: Locale;
   resume: Resume;
   dictionary: Dictionary;
   scrollAreaRef: React.RefObject<HTMLDivElement | null>;
   showNotes?: boolean;
+  previewMode?: boolean;
 }) {
   const companyUrls = buildCompanyUrls(resume);
   const githubUrl = resume.basics.profiles.find((profile) =>
@@ -246,7 +253,10 @@ export default function PageContent({
             "color-mix(in srgb, var(--color-border) 58%, transparent)",
         }}
       >
-        <section aria-label="Social media" className="lg:pt-7">
+        <section
+          aria-label="Social media"
+          className="flex flex-wrap items-center gap-4 lg:pt-7"
+        >
           <SocialMedia
             profiles={resume.basics.profiles}
             dictionary={dictionary}
@@ -254,6 +264,10 @@ export default function PageContent({
             behavior="justify-start"
             className="items-center"
           />
+          {/* Lives here instead of floating so the wolf is the only fixed element */}
+          {!previewMode && (
+            <PortfolioTimeMachine lang={lang} dictionary={dictionary} />
+          )}
         </section>
 
         <Footer

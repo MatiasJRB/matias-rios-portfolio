@@ -3,7 +3,7 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaFileAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { cn } from "@/utils";
 import { ANIMATION } from "@/design-tokens";
 import type { SocialMediaProps, Profile } from "@/types";
@@ -18,6 +18,42 @@ const iconMap: Record<string, any> = {
   github: FaGithub,
   linkedin: FaLinkedin,
 };
+
+const CONTROL_CLASS_NAME =
+  "control-hover social-control inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border text-sm font-bold outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]";
+
+// Real links keep open-in-new-tab, copy link and link semantics
+function SocialLink({
+  url,
+  isExternal,
+  ariaLabel,
+  children,
+}: {
+  url: string;
+  isExternal: boolean;
+  ariaLabel: string;
+  children: React.ReactNode;
+}) {
+  if (!isExternal) {
+    return (
+      <Link href={url} className={CONTROL_CLASS_NAME} aria-label={ariaLabel}>
+        {children}
+      </Link>
+    );
+  }
+
+  const opensNewTab = !url.startsWith("mailto:");
+  return (
+    <a
+      href={url}
+      className={CONTROL_CLASS_NAME}
+      aria-label={ariaLabel}
+      {...(opensNewTab && { target: "_blank", rel: "noopener noreferrer" })}
+    >
+      {children}
+    </a>
+  );
+}
 
 const SocialMedia: React.FC<
   SocialMediaProps & {
@@ -35,27 +71,6 @@ const SocialMedia: React.FC<
   showCV = true,
   lang = "es",
 }) => {
-  const router = useRouter();
-
-  const handleURL = (url: string, isExternal?: boolean) => {
-    // Si es un enlace externo (https/http)
-    if (url.startsWith("http://") || url.startsWith("https://")) {
-      window.open(url, "_blank");
-    }
-    // Si es un mailto
-    else if (url.startsWith("mailto:")) {
-      window.location.href = url;
-    }
-    // Si está marcado como externo pero no tiene protocolo
-    else if (isExternal) {
-      window.open(url, "_blank");
-    }
-    // Enlaces internos (usar router de Next.js)
-    else {
-      router.push(url);
-    }
-  };
-
   const getAriaLabel = (url: string, network?: string) => {
     if (network === "cv" || url.includes("/cv"))
       return dictionary.social.cvProfile || "Ver CV";
@@ -99,18 +114,17 @@ const SocialMedia: React.FC<
               animationFillMode: "forwards",
             }}
           >
-            <button
-              type="button"
-              className="control-hover social-control inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border text-sm font-bold outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"
-              onClick={() => handleURL(profile.url, isExternal)}
-              aria-label={ariaLabel}
+            <SocialLink
+              url={profile.url}
+              isExternal={isExternal}
+              ariaLabel={ariaLabel}
             >
               {isCV ? (
                 <span className="leading-none tracking-tight">CV</span>
               ) : IconComponent ? (
                 <IconComponent aria-hidden="true" size={19} />
               ) : null}
-            </button>
+            </SocialLink>
           </div>
         );
       })}

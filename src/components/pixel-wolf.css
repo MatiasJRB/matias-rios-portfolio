@@ -374,11 +374,12 @@ html:not(.dark) .pixel-assistant-avatar--thinking,
   z-index: 0;
   width: 33px;
   height: 33px;
-  color: var(--color-accent);
+  /* A pale moon keeps the launcher free of a second accent colour */
+  color: var(--color-text);
   opacity: 0;
   pointer-events: none;
   transform: translate3d(50px, 12px, 0) scale(0.75);
-  filter: drop-shadow(0 3px 8px color-mix(in srgb, var(--color-accent) 30%, transparent));
+  filter: drop-shadow(0 3px 8px color-mix(in srgb, var(--color-text) 18%, transparent));
 }
 
 .assistant-wolf-celestial svg {

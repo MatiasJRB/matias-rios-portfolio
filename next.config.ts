@@ -17,6 +17,8 @@ const nextConfig: NextConfig = {
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ["framer-motion", "react-icons"],
+    // Inline CSS in the HTML so the first paint does not wait on a stylesheet round trip
+    inlineCss: true,
   },
 
   // Compiler optimizations

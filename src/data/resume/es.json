@@ -267,7 +267,8 @@
       "highlights": [
         "Monorepo con app Expo/React Native, backoffice Next.js, Supabase y paquetes compartidos.",
         "Flujos de inventario, asignaciones, alquileres, roles y operación de depósito.",
-        "Entrega documentada con rollout Android, health checks y ventana post go-live."
+        "Entrega documentada con rollout Android, health checks y ventana post go-live.",
+        "Reportes visuales por responsable en producción: fichas y fotos de activos sin descargar planillas."
       ],
       "visual": {
         "image": "/images/projects/badger-editorial.webp",
@@ -334,6 +335,43 @@
       ],
       "role": "Creador & Desarrollador",
       "url": "https://turna.ar"
+    },
+    {
+      "name": "Laravel Migration Linter",
+      "description": "Analizador open source basado en AST que revisa si una migración de Laravel es segura antes del deploy, sin iniciar el framework ni conectarse a la base. Compatible con PHP-Parser 4 y 5 para stacks establecidos.",
+      "impact": "Lo creé cuando el roadmap necesitaba una librería que no existía, lo publiqué en cuatro versiones y lo adopté de forma gradual como reporte informativo en CI.",
+      "tech": [
+        "PHP",
+        "PHP-Parser",
+        "GitHub Actions"
+      ],
+      "role": "Creador & Mantenedor",
+      "url": "https://github.com/MatiasJRB/laravel-migration-linter"
+    },
+    {
+      "name": "Monotributo Copilot AR",
+      "description": "Herramientas abiertas para que un agente de IA prepare facturas y revise el monotributo, con evidencia y aprobación humana antes de cada acción sensible.",
+      "impact": "Diseñé la base open source con gates explícitos: el agente prepara y explica, y las acciones fiscales esperan aprobación de la persona.",
+      "tech": [
+        "TypeScript",
+        "Node.js",
+        "Agentes de IA"
+      ],
+      "role": "Creador",
+      "url": "https://github.com/MatiasJRB/monotributo-copilot-ar"
+    },
+    {
+      "name": "Captura",
+      "description": "Prototipo self-hosted que convierte el teléfono en entrada de voz para agentes: graba audio iniciado por la persona, sincroniza de forma opcional con Drive y transcribe localmente con whisper.cpp.",
+      "impact": "Construí la captura en Android e iPhone y un worker local que verifica originales, transcribe y recupera la grabación cuando otra app toma el micrófono.",
+      "tech": [
+        "Java",
+        "Swift",
+        "Python",
+        "whisper.cpp"
+      ],
+      "role": "Creador",
+      "url": "https://github.com/MatiasJRB/captura"
     }
   ],
   "education": [
